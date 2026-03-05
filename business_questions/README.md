@@ -10,22 +10,22 @@ This project investigates the Olist marketplace through four analytical lenses:
 
 
 
-### 01_marketplace_growth/
-│
-├── **q01_gmv_trends**
-│   What is Olist's total GMV for delivered orders, and how has monthly revenue trended?
-│
-├── **q02_order_volume_trends**
-│   How many orders were placed over time, and how does monthly order volume relate to GMV?
-│
-├── **q03_delivery_reliability_trends**
-│   How does delivery performance vary over time, and are there months with higher non-delivery?
-│
-├── **q04_seller_product_concentration**
-│   How concentrated are GMV and orders across sellers and products?
-│
-└── **q05_category_gmv_mix**
-    Which product categories drive most GMV and orders, and how stable is the mix?
+### 01_marketplace_growth/    
+│  
+├── **q01_gmv_trends**  
+│   What is Olist's total GMV for delivered orders, and how has monthly revenue trended?  
+│  
+├── **q02_order_volume_trends**  
+│   How many orders were placed over time, and how does monthly order volume relate to GMV?  
+│  
+├── **q03_delivery_reliability_trends**  
+│   How does delivery performance vary over time, and are there months with higher non-delivery?  
+│  
+├── **q04_seller_product_concentration**  
+│   How concentrated are GMV and orders across sellers and products?  
+│  
+└── **q05_category_gmv_mix**  
+    Which product categories drive most GMV and orders, and how stable is the mix?    
 
 
 
