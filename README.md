@@ -123,20 +123,12 @@ The dataset contains information about:
 
 ---
 
-# Reproducibility
+## Reproducibility
 
-Instructions to reproduce the analysis:
-
-`reproducibility/run_instructions.md`
-
-BigQuery connection documentation:
-
-`reproducibility/bigquery_connection.md`
-
-Helper utilities used in the notebook:
-
-`docs/helper_functions.md`
-
+- 📄 [Run Instructions](reproducibility/run_instructions.md)
+- 🔗 [BigQuery Connection Setup](reproducibility/bigquery_connection.md)
+- 🛠️ [Helper Functions](docs/helper_functions.md)
+- 📚 [Data Dictionary](docs/data_dictionary.md)
 
 ---
 ## Project Architecture

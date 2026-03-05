@@ -8,7 +8,7 @@ The workflow follows a **warehouse-first analytical approach**, where SQL transf
 
 ## Environment
 
-Platform: [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks#the-notebooks-environment) 
+Platform: [Kaggle Notebooks](https://www.kaggle.com/docs/notebooks#the-notebooks-environment)   
 Language: R  
 Data Warehouse: Google BigQuery  
 
@@ -17,6 +17,9 @@ Core libraries used:
 - bigrquery
 - DBI
 - dplyr
+- tidyr  
+- skimr  
+- knitr  
 - ggplot2
 - lubridate
 
