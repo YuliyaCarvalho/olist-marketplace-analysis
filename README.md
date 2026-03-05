@@ -138,7 +138,7 @@ Helper utilities used in the notebook:
 `docs/helper_functions.md`
 
 
-
+---
 ## Project Architecture
 
 ![architecture](assets/project_architecture.png)
