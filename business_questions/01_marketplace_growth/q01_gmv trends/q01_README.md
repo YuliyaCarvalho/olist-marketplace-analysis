@@ -54,7 +54,9 @@ This time series was used to analyze revenue trends and identify phases of marke
 
 ## Visualisations
 
-![Monthly GMV](q01_dataviz/gmv_monthly.png)
+<p align="center">
+<img src="q01_dataviz/gmv_monthly.png" width="700">
+</p>
 
 *Figure 1.1 — Olist’s Monthly Gross Merchandise Value (2016–2018), showing the transition from early marketplace growth to operational stabilization.*
 
@@ -94,5 +96,4 @@ This pattern suggests that **Olist successfully scaled transaction volume while 
 
 If GMV increased significantly during this period, the next step is to understand how **order volume evolved over time** and whether revenue growth was driven primarily by more transactions.
 
-➡️ See: `q02_order_volume_trends`
-
+➡️ See: [q02 Order Volume Trends](../q02_order_volume_trends)

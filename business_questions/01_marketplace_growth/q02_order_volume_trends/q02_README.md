@@ -67,8 +67,6 @@ Monthly order counts and GMV were calculated and visualized to compare:
 <img src="q02_dataviz/orders_vs_gmv.png" width="700">
 </p>
 
-![Orders vs GMV](q02_dataviz/orders_vs_gmv.png)
-
 *Figure 2.1 — Monthly comparison of all orders, delivered orders, and GMV (thousand BRL), illustrating the relationship between transaction volume and revenue.*
 
 ---
@@ -106,4 +104,4 @@ The close alignment between **delivered orders and GMV** suggests that revenue g
 
 If the delivery rate is consistently high, the next step is to examine **how delivery performance varies over time** and whether certain periods show higher risk of non-delivery.
 
-➡️ See: `q03_delivery_reliability_trends`
+➡️ See: [q03 Delivery Reliability Trends](../q03_delivery_reliability_trends)
