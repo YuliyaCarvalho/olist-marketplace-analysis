@@ -98,4 +98,4 @@ This suggests that the platform’s operational challenges are likely related to
 
 ---
 
-➡️ **Next:** [q04 Seller Product Concentration](../q04_seller_product_concentration)
+➡️ **Next:** [q04 Seller Product Concentration](../q04_seller_product_concentration/q04_README.md)
