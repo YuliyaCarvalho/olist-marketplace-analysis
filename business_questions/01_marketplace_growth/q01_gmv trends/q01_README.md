@@ -80,7 +80,7 @@ Validation confirmed that aggregating payment values at the **individual payment
 
 ## Insight
 
-The GMV trajectory indicates a classic marketplace growth pattern: early adoption in 2016, rapid expansion throughout 2017, and operational stabilization by 2018.  
+➜ The GMV trajectory indicates a classic marketplace growth pattern: early adoption in 2016, rapid expansion throughout 2017, and operational stabilization by 2018.  
 This pattern suggests that **Olist successfully scaled transaction volume while maintaining consistent fulfillment performance**, laying the foundation for further marketplace development.
 
 
