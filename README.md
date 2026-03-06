@@ -143,6 +143,22 @@ The dataset contains information about:
 
 ---
 
+## Execution Environment
+
+The analysis notebook was executed on Kaggle using a **pinned environment snapshot (2024-07-11)** to ensure package stability and reproducibility.
+
+Runtime details:
+
+- Platform: Kaggle Notebooks
+- R version: 4.4.0
+- Operating system: Ubuntu 22.04
+- Data warehouse: Google BigQuery
+- BigQuery interface: `bigrquery` R package
+
+The Kaggle notebook runs in a **non-persistent container**, meaning each execution starts from a clean environment. All datasets used in the analysis are stored in Google BigQuery rather than written to the local filesystem.
+
+---
+
 ## Reproducibility
 
 - 📄 [Run Instructions](reproducibility/run_instructions.md)
