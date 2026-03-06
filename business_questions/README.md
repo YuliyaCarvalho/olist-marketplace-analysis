@@ -8,7 +8,7 @@ This project investigates the Olist marketplace through four analytical lenses:
 4. Profitability & Risk  
 
 
-
+---
 
 ### 01_marketplace_growth/    
 │  
@@ -27,7 +27,7 @@ This project investigates the Olist marketplace through four analytical lenses:
 └── **q05_category_gmv_mix**  
     Which product categories drive most GMV and orders, and how stable is the mix?    
 
-
+---
 
 ### 02_customer_behavior/
 │
@@ -46,7 +46,7 @@ This project investigates the Olist marketplace through four analytical lenses:
 └── **q10_category_mix_by_repeat_segment**
     How does product category GMV differ between one-time, light-repeat, and heavy-repeat customers?
 
-
+---
 ### 03_operations_and_logistics/
 │
 ├── **q11_delivery_speed_vs_repeat_rate**
@@ -64,7 +64,7 @@ This project investigates the Olist marketplace through four analytical lenses:
 └── **q18_product_size_vs_logistics**
     How do product dimensions and weight affect delivery performance and freight costs?
 
-
+---
 
 ### 04_profitability_and_risk/
 │

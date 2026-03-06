@@ -67,7 +67,27 @@ linking orders, customers, sellers, products, payments and reviews.
 ---
 # Repository Structure
 
-
+.
+├── app.py
+├── docs
+│   ├── faq.md
+│   ├── methodology.md
+│   └── skills_jam.md
+├── eval
+│   ├── questions.json
+│   └── run_eval.py
+├── rag
+│   ├── __init__.py
+│   ├── generate.py
+│   ├── ingest.py
+│   ├── retrieve.py
+│   └── safety.py
+├── requirements.txt
+├── LICENSE
+├── storage
+│   └── .gitkeep
+└── uploads
+    └── .gitkeep
 
 
 

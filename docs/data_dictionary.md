@@ -1,13 +1,11 @@
 # Data Dictionary
 
-Dataset source: [Olist Brazilian E-Commerce Public Dataset (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
----
-
-# Data Dictionary
-
 ## Entity Relationship Diagram
 
 ![Dataset ERD](dataset_erd.png)
+
+Dataset source: [Olist Brazilian E-Commerce Public Dataset (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+---
 
 This document describes the structure of the datasets used in the **Olist Marketplace Analysis** project.
 
@@ -15,20 +13,6 @@ The data originates from the **Olist Brazilian E-Commerce Public Dataset (2016â€
 
 The dataset contains transactional marketplace data including orders, payments, products, sellers, customers, reviews, and geographic information.
 
-
-The schema is organized into three layers:
-
-- **Raw source tables** (original dataset structure)
-- **Processed / analytical tables (`*_final`)**
-- **Reference and lookup tables**
-
----
-
-# Data Dictionary
-
-This document describes the structure of the datasets used in the **Olist Marketplace Analysis** project.
-
-The data originates from the **Olist Brazilian E-Commerce Public Dataset (2016â€“2018)** and was loaded into **Google BigQuery**, where additional cleaned and derived tables were created for analysis.
 
 The schema is organized into three layers:
 
