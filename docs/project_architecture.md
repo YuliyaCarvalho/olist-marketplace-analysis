@@ -15,4 +15,4 @@ Exploratory Analysis & Visualisation
 Business Insights   
 
 
-[Project Architecture](assets\project_architecture.png")
+[Project Architecture](assets\project_architecture.png)
