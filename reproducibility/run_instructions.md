@@ -228,7 +228,7 @@ Several helper functions were created to simplify query execution and result ins
 
 Documentation:
 
-`docs/helper_functions.md` ➡ [Helper functions documentation LINK](../docs/helper_functions.md)
+`docs/helper_functions.md` ➡ [Helper functions documentation](../docs/helper_functions.md)
 
 These functions standardize how SQL queries are executed and how results are displayed within the notebook.
 
@@ -238,4 +238,4 @@ These functions standardize how SQL queries are executed and how results are dis
 
 Details about the BigQuery connection setup are documented here:
 
-`reproducibility/bigquery_connection.md` ➡ [BigQuery connection setup LINK](bigquery_connection.md)
+`reproducibility/bigquery_connection.md` ➡ [BigQuery connection setup](bigquery_connection.md)

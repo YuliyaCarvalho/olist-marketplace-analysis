@@ -18,7 +18,7 @@ All helper functions execute a SQL query in BigQuery, download the results into 
 
 ---
 
-# 1. `run_small_query()`
+### 1. `run_small_query()`
 
 Executes a SQL query and prints the **full result table** directly in the notebook output.
 
@@ -53,7 +53,7 @@ run_small_query <- function(sql) {
 
 ---
 
-# 2. `run_small_query_wide()`
+### 2. `run_small_query_wide()`
 
 Executes a SQL query and displays the result using R’s **interactive data viewer**.
 
@@ -88,7 +88,7 @@ run_small_query_wide <- function(sql) {
 
 ---
 
-# 3. `run_large_query()`
+### 3. `run_large_query()`
 
 Executes a SQL query and prints a **controlled preview** of the results.
 
@@ -124,7 +124,7 @@ This allows additional analysis or visualization using the full dataset while ke
 
 ---
 
-# 4. `run_large_query_wide()`
+### 4. `run_large_query_wide()`
 
 Executes a SQL query and opens the full dataset in an **interactive viewer**.
 
