@@ -2,10 +2,9 @@
 
 # Business Question 2 — Order Volume & GMV Relationship
 
-
-<div style="background:#eef6ff; padding:10px; border-left:4px solid #1f77b4;">
-<strong>Business Question:</strong> What factors drive customer repeat purchases?
-</div>
+> [!IMPORTANT]
+> **Business Question:**  
+> What factors drive customer repeat purchases?
 
 
 ## Question
