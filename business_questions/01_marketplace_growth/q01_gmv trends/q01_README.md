@@ -88,6 +88,5 @@ This pattern suggests that **Olist successfully scaled transaction volume while 
 
 ## Next Question
 
-If GMV increased significantly during this period, the next step is to understand how **order volume evolved over time** and whether revenue growth was driven primarily by more transactions.
-
-➡️ See: [q02 Order Volume Trends](../q02_order_volume_trends/q02_README.md)
+➡️ Next: If GMV increased significantly during this period, the next step is to understand how **order volume evolved over time** and whether revenue growth was driven primarily by more transactions. 
+[q02 Order Volume Trends](../q02_order_volume_trends/q02_README.md)

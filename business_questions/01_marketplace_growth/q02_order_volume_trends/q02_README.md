@@ -92,6 +92,5 @@ Operational capacity scaled effectively alongside the rapid demand growth observ
 
 ## Next Question
 
-If the delivery rate is consistently high, the next step is to examine **how delivery performance varies over time** and whether certain periods show higher risk of non-delivery.
-
-➡️ See: [q03 Delivery Reliability Trends](../q03_delivery_reliability_trends/q03_README.md)
+➡️ Next: If the delivery rate is consistently high, the next step is to examine **how delivery performance varies over time** and whether certain periods show higher risk of non-delivery.
+[q03 Delivery Reliability Trends](../q03_delivery_reliability_trends/q03_README.md)

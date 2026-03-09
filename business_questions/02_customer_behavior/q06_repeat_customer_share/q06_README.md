@@ -79,4 +79,6 @@ Customer purchase counts were calculated to identify repeat behavior, after whic
 
 ---
 
+## Next Question
+
 ➡️ **Next:** [q07 Repeat Customer Unit Economics](../q07_repeat_customer_unit_economics/q07_README.md)

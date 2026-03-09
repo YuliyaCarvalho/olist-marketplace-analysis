@@ -1,4 +1,4 @@
-**Customer Behavior → Q10 Category Mix by Repeat Segment**
+**Customer Behavior → q10 GMV by Category & Customer Segment**
 
 # Business Question 10 — Category Preferences of Repeat Customers
 
@@ -27,6 +27,12 @@ To evaluate category affinity across different customer segments, transaction va
 - `customers`
 - `products`
 
+**Customer segmentation**: Customers were grouped according to their purchase frequency:
+
+- **One-time** → 1 order  
+- **Light-repeat** → 2 orders  
+- **Heavy-repeat** → 3+ orders
+
 **Key filters**
 
 To ensure reliable results, the analysis was restricted to:
@@ -35,13 +41,18 @@ To ensure reliable results, the analysis was restricted to:
 - transactions with valid chronological timelines
 - records excluding operational anomalies
 
-**Derived metrics**
 
-- **Item-level GMV** — calculated by distributing order-level payment value proportionally across individual order items.
-- **Customer frequency segments**  
-  > - **One-time buyers** — 1 order  
-  > - **Light-repeat buyers** — 2 orders  
-  > - **Heavy-repeat buyers** — 3 or more orders
+**Derived metrics:**
+
+* **Proportional Item GMV** ➜ Because a single order can contain items from multiple categories, total order GMV was allocated to individual items **proportionally by item price**:
+`Proportional Item GMV`: gmv_item = gmv_order × (item_price / total_order_price)
+This ensures that revenue is correctly distributed across product categories.
+
+* **Category GMV Share** ➜ For each customer segment: `GMV share = category GMV / total GMV of that segment`
+This allows direct comparison of category importance across segments.
+
+* **Validation** ➜ To prevent metric inflation, item-level allocations were validated to confirm that: `Σ item GMV = order GMV`
+This ensures that revenue remains consistent between order-level and item-level analysis.
 
 **Granularity**
 
@@ -59,11 +70,12 @@ Customer purchase frequency segments were combined with category-level GMV calcu
 
 ## Visualisations
 
+*Only the top five categories by GMV share are displayed in the chart to improve readability; the remaining long-tail categories are omitted*
 <p align="center">
-<img src="q10_dataviz/category_gmv_by_segment.png" width="700">
+<img src="q10_dataviz/top_categories_segment.png" width="700">
 </p>
 
-*Figure 10.1 — Top product categories by GMV share within each customer frequency segment, highlighting the stronger category concentration among heavy-repeat buyers.*
+*Figure 10.1 — Top product categories by GMV share within each customer frequency segment, illustrating how heavy-repeat buyers concentrate spending in specific lifestyle categories.*
 
 ---
 
@@ -90,10 +102,22 @@ Customer purchase frequency segments were combined with category-level GMV calcu
 
 ## Insight
 
-➜ Repeat purchasing on Olist appears to be strongly linked to specific product categories, particularly those related to **home goods, sports, and lifestyle products**.
+➜ Repeat purchasing on Olist is **not random**, it appears to be strongly linked to specific product categories - a small set of lifestyle and home categories.
 
-➜ The increasing importance of **bed_bath_table** and **sports_leisure** among heavy-repeat customers suggests that these categories encourage repeat engagement. By steering one-time buyers toward these high-loyalty categories through cross-selling and personalized recommendations, Olist could meaningfully increase its repeat purchase rate.
+➜ The share of **bed_bath_table** nearly doubles as customers move from their first purchase (~8%) to heavy-repeat status (~15%).  
+This pattern suggests that certain categories naturally encourage **habitual or multi-item purchasing behaviour**.
+
+From a strategic perspective, Olist could improve its repeat purchase rate by:
+
+- directing first-time buyers toward high-loyalty categories
+- implementing category-based recommendation engines
+- introducing targeted cross-sell campaigns early in the customer lifecycle
 
 ---
 
-➡️ **Next:** [Q11 Delivery Speed vs Repeat Rate](../../03_operations_and_logistics/q11_delivery_speed_vs_repeat_rate/q11_README.md)
+## Next Question
+
+➡️ **Next:** Having established what these loyal customers are buying, the next logical step is to see if their loyalty is earned through superior service: "How do delivery times and delays differ between one‑time, light‑repeat, and heavy‑repeat customers, and is faster, more reliable delivery associated with higher repeat purchase behaviour?"
+[q11 Delivery Speed vs Repeat Rate](../../03_operations_and_logistics/q11_delivery_speed_vs_repeat_rate/q11_README.md)
+
+

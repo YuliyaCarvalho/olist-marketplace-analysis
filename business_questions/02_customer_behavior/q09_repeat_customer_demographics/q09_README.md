@@ -1,4 +1,4 @@
-**Customer Behavior → Q09 Repeat Customer Demographics**
+**Customer Behavior → q09 Repeat Customer Demographics**
 
 # Business Question 9 — Profile of Repeat Buyers
 
@@ -93,4 +93,8 @@ Approximately **179 credit-card customers generate ~85K BRL in GMV**, compared t
 
 ---
 
-➡️ **Next:** [q10 Category Mix by Repeat Segment](../q10_category_mix_by_repeat_segment/q10_README.md)
+## Next Question 
+
+➡️ **Next:** Having profiled the "who" and "where" of repeat behavior, the next step is to investigate what these customers are buying: "How does GMV by product category differ between one‑time, light‑repeat, and heavy‑repeat customers, and which categories are relatively more important for heavy‑repeat customers?"
+[q10 Category Mix by Repeat Segment](../q10_category_mix_by_repeat_segment/q10_README.md)
+

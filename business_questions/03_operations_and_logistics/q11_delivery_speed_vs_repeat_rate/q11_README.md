@@ -1,4 +1,4 @@
-**Operations & Logistics → Q11 Delivery Speed vs Repeat Rate**
+**Operations & Logistics → q11 Delivery Speed vs Repeat Rate/Customer Loyalty**
 
 # Business Question 11 — Delivery Speed and Customer Loyalty
 
@@ -10,9 +10,13 @@
 
 ## Why This Matters
 
+This analysis evaluates whether **logistics performance acts as a catalyst for customer loyalty**.
 Delivery speed is often assumed to be a key driver of customer loyalty in e-commerce. If faster delivery significantly increases the likelihood of repeat purchases, Olist could justify aggressive investments in high-speed logistics infrastructure.
 
 However, if delivery performance is similar across all customer segments, it suggests that other factors—such as product variety, pricing, or category preference—may play a larger role in encouraging repeat purchases.
+
+Understanding the role of logistics in retention helps determine whether operational investments in delivery speed would meaningfully improve customer lifetime value.
+
 
 ---
 
@@ -22,13 +26,13 @@ To investigate the relationship between logistics performance and customer loyal
 
 **Main datasets**
 
-- `orders_enriched`
+- `delivered_orders`
 - `order_items`
-- `customer_segments`
+
 
 **Key filters**
 
-The analysis was restricted to **delivered orders with valid chronological timelines** to ensure that delivery performance metrics reflect completed transactions.
+The analysis was restricted to **delivered orders with valid chronological timelines** to ensure that delivery performance metrics reflect completed and internally consistent transactions.
 
 **Derived metrics:**
 
@@ -38,13 +42,25 @@ The analysis was restricted to **delivered orders with valid chronological timel
   > - **3 = Slow**  
   > - **4 = Very Slow**
 
-**Customer segmentation:**
-
-Customers were grouped into:
+**Customer frequency segments:** Customers were classified based on their order history:
 
 > - **One-time buyers** — 1 order  
 > - **Light-repeat buyers** — 2 orders  
 > - **Heavy-repeat buyers** — 3 or more orders
+
+**Delivery performance metric:** Delivery speed was categorized using **category-specific percentile benchmarks**:
+
+| Performance Tier | Definition |
+|---|---|
+| Fast | ≤ P25 delivery time |
+| Typical | P25–P75 |
+| Slow | P75–P95 |
+| Very Slow | > P95 |
+
+This normalization ensures fair comparisons across product categories with different logistical characteristics.
+
+**Aggregation level:** The analysis measures the **share of orders within each delivery performance tier for every customer segment**.
+
 
 **Granularity:** Delivery performance was evaluated using:  
 
@@ -64,50 +80,72 @@ Orders were classified into delivery performance tiers and compared across custo
 ## Visualisations
 
 <p align="center">
-<img src="q11_dataviz/avg_delivery_days_by_segment.png" width="700">
+<img src="q11_dataviz/delivery_mix_segments.png" width="700">
 </p>
 
-*Figure 11.1 — Average delivery days by customer segment, showing that delivery time from purchase to receipt does not significantly decrease for more loyal customers.*
+*Figure 11.1 — Delivery performance mix by customer segment, showing that the distribution of delivery speeds (Fast, Typical, Slow, Very Slow) remains highly consistent across different customer loyalty levels.*
 
 <p align="center">
-<img src="q11_dataviz/delivery_performance_by_segment.png" width="700">
+<img src="q11_dataviz/delivery_friction_rate.png" width="700">
 </p>
 
-*Figure 11.2 — Delivery performance mix by customer segment, demonstrating that the distribution of delivery speeds remains remarkably consistent regardless of customer loyalty.*
+*Figure 11.2 — Delivery friction rate by customer segment, comparing the share of “Good” delivery experiences (Fast + Typical) versus delayed experiences (Slow + Very Slow).*
 
 ---
 
+
 ## Key Findings
 
-**Consistent delivery experience**
+**Consistent Core Experience**
 
-Delivery performance is remarkably similar across all customer segments, with only marginal differences between one-time and repeat buyers.
+Delivery performance is highly uniform across customer segments.  
+For all groups:
 
-**Stable distribution**
+- roughly **47–54% of orders fall into the "Typical" range**
+- approximately **27–29% are classified as "Fast"**
 
-Across segments, approximately:
+This indicates a stable logistics experience regardless of customer loyalty.
 
-- **~50%** of orders fall into the **Typical** delivery range  
-- **~27–29%** of orders are classified as **Fast**
+---
 
-**Tolerance for delays**
+**No Speed Advantage for Loyal Customers**
 
-Heavy-repeat customers still experience slower deliveries in a meaningful share of transactions, with **19% of their orders classified as Slow or Very Slow**.
+Heavy-repeat buyers do **not receive systematically faster deliveries** than one-time buyers. The delivery performance distribution remains nearly identical across all segments.
 
-**Minimal advantage**
+---
 
-One-time buyers have a slightly higher share of **Very Slow** deliveries (6.2%) compared with heavy-repeat customers (4.6%), but the difference is too small to suggest that delivery speed drives repeat behaviour.
+**Tolerance for Logistics Friction**
+
+Even among heavy-repeat customers:
+
+- approximately **19% of orders are classified as Slow or Very Slow**
+
+This demonstrates that loyal customers continue purchasing despite occasional delivery delays.
+
+---
+
+**Marginal Differences**
+
+One-time buyers experience a slightly higher proportion of **Very Slow deliveries (6.2%)** compared to heavy-repeat buyers (**4.6%**). However, the gap is too small to meaningfully explain differences in repeat behaviour.
 
 ---
 
 ## Insight
 
-The results suggest that **delivery speed alone is not a primary driver of customer loyalty on the Olist platform**. Loyal customers experience delivery performance patterns that are broadly similar to those of one-time buyers.
+Delivery speed does **not appear to be the primary driver of customer loyalty on the Olist platform**.
 
-This indicates that repeat purchasing behaviour is more likely influenced by **product category preferences, pricing, or perceived product value** rather than logistics performance.
+Because repeat buyers experience delivery performance similar to one-time buyers, their decision to return is likely influenced by other factors such as:
 
-While reducing slow deliveries remains important for protecting overall customer satisfaction, **merchandising strategy and personalized offers may represent more effective levers for improving customer retention**.
+- product assortment
+- category affinity
+- pricing competitiveness
+
+While reducing slow deliveries remains important for maintaining overall customer satisfaction, the most effective strategy for increasing repeat purchases likely lies in **merchandising, product recommendations, and targeted retention initiatives** rather than purely logistical improvements.
 
 ---
 
-➡️ **Next:** [Q12 Reviews vs Repeat Rate](../q12_reviews_vs_repeat_rate)
+## Next Question
+
+➡️ **Next:** If delivery speed isn't the primary differentiator for loyalty, the next step is to examine subjective satisfaction: "How do customer review scores differ between one‑time, light‑repeat, and heavy‑repeat customers, and are higher review scores associated with higher repeat‑purchase behaviour?"
+[q12 Reviews vs Repeat Rate](../q12_reviews_vs_repeat_rate)
+
