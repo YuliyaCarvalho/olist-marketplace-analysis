@@ -7,6 +7,25 @@
 > What factors drive customer repeat purchases?
 
 
+> [!BUSINESS QUESTION]
+> **Business Question:**  
+> What factors drive customer repeat purchases?
+
+> [!NOTE]
+> 1
+> 2
+> 3
+
+> [!TIP]
+> 1
+> 2
+> 3
+
+> [!WARNING]
+> 1
+> 2
+> 3
+
 ## Question
 
 **How many orders were placed on Olist over time, and how does monthly order volume relate to the GMV trend?**
