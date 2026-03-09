@@ -57,7 +57,7 @@ This allows detection of both pre-holiday shipping strain and post-holiday revie
 
 ### Interaction Regression Model
 
-A linear regression model was built to test whether the penalty for late deliveries increases during holiday periods.
+A linear regression model was built to test whether the penalty for late deliveries increases during holiday periods.  
 `review_score_num ~ delay_vs_eta * is_holiday_period`
 
 The interaction term tests whether **delay has a stronger effect on reviews during holidays than during normal periods**.
@@ -79,24 +79,32 @@ Revenue at risk represents the total value of orders delivered late within each 
 </p>
 
 *Figure 16.1 — Share of Low Reviews by Delivery Performance and Shopping Period: A heatmap showing that "Severely Late" (>3 days) orders during Christmas and Carnival trigger the highest rates of dissatisfaction (77.1%–77.9% low reviews)*
+<br>
+<br>
 
 <p align="center">
 <img src="q16_dataviz/on_time_vs_late_satisfaction.png" width="700">
 </p>
 
 *Figure 16.2 — Customer Satisfaction: On-time vs. Late Deliveries: Compares average review scores across periods. Relationship holidays like Father's Day show much higher tolerance for lateness (3.47 avg score) than promotional events like Carnival (2.21 avg score)*
+<br>
+<br>
 
 <p align="center">
 <img src="q16_dataviz/satisfaction_drop_ranked.png" width="700">
 </p>
 
 *Figure 16.3 — Satisfaction Drop When Late (Ranked by Impact): Ranks periods by the magnitude of the satisfaction decrease. Promotional events and Christmas show the largest "pain" from delays, with scores dropping by ~1.8 to 1.9 points*
+<br>
+<br>
 
 <p align="center">
 <img src="q16_dataviz/revenue_risk_vs_satisfaction.png" width="900">
 </p>
 
 *Figure 16.4 — Revenue Risk vs. Customer Satisfaction Impact: Relates the satisfaction drop to the percentage of revenue at risk. Christmas and Valentine's Day occupy the most vulnerable quadrants.*
+<br>
+<br>
 
 <p align="center">
 <img src="q16_dataviz/cumulative_revenue_risk_waterfall.png" width="800">
