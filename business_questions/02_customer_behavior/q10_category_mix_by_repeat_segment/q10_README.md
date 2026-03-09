@@ -90,9 +90,9 @@ Customer purchase frequency segments were combined with category-level GMV calcu
 
 **Heavy-repeat category affinity**: Heavy-repeat customers show particularly strong concentration in:  
 
-> - **bed_bath_table (≈15%)**  
-> - **sports_leisure (≈10%)**  
-> - **watches_gifts (≈10%)**  
+> - **bed_bath_table (~15%)**  
+> - **sports_leisure (~10%)**  
+> - **watches_gifts (~10%)**  
 
 **Segment differences**: While **health_beauty** dominates purchases among one-time buyers, its relative importance declines among repeat customers. In contrast, **bed_bath_table** becomes the primary category among heavy-repeat buyers.  
 

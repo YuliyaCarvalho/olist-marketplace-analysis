@@ -60,13 +60,13 @@ A summary dataset was generated at the **customer level**, enabling statistical 
 
 ## Key Findings
 
-**One-time buyer dominance**: Approximately **97% of customers place exactly one order**, showing limited natural repeat purchasing behavior during the observed period.  
+* **One-time buyer dominance:** Approximately **97% of customers place exactly one order**, showing limited natural repeat purchasing behavior during the observed period.  
 
-**Low repeat frequency**: Among repeat buyers, the **average purchase frequency is approximately 2.1 orders per customer**.  
+* **Low repeat frequency:** Among repeat buyers, the **average purchase frequency is approximately 2.1 orders per customer**.  
 
-**Highly skewed distribution**: Ordering behavior among repeat buyers is strongly **right-skewed**, with both the **median and the 90th percentile equal to 2 orders**.  
+* **Highly skewed distribution:** Ordering behavior among repeat buyers is strongly **right-skewed**, with both the **median and the 90th percentile equal to 2 orders**.  
 
-**Small "elite" segment**: A very small fraction of customers demonstrates strong loyalty, with the **maximum observed purchase frequency reaching 15 orders**.  
+* **Small "elite" segment:** A very small fraction of customers demonstrates strong loyalty, with the **maximum observed purchase frequency reaching 15 orders**.  
 
 ---
 

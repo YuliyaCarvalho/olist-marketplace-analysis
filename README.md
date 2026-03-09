@@ -1,4 +1,5 @@
 # Olist Marketplace Analysis
+
 ### Retention, Logistics Performance & Operational Risk
 
 Data-driven analysis of the **Olist Brazilian e-commerce marketplace (2016–2018)** using SQL queries executed in **Google BigQuery** and analyzed in a **Kaggle R notebook**.
@@ -14,7 +15,7 @@ The goal of this project is to identify operational bottlenecks and growth oppor
 
 # Project Snapshot
 
-Dataset: Olist Brazilian E-Commerce Marketplace  
+Dataset: [Olist Brazilian E-Commerce Marketplace](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 Time Period: 2016–2018  
 
 Orders analyzed: ~100,000  
@@ -65,6 +66,7 @@ linking orders, customers, sellers, products, payments and reviews.
 ![Dataset ERD](docs/dataset_erd.png)
 
 ---
+
 # Repository Structure
 
 .
@@ -118,6 +120,7 @@ The dataset contains information about:
 - payments
 - products
 - sellers
+- customers
 - delivery logistics
 - customer reviews
 
@@ -125,21 +128,22 @@ The dataset contains information about:
 
 # Tools Used
 
-**Data Warehouse**
+**Data Warehouse and Processing:** Google BigQuery
 
-- Google BigQuery
+**Analysis Environment and Statistical Analysis:** R (Kaggle Notebook)
 
-**Analysis Environment**
+**Core Libraries:**
+> - bigrquery
+> - DBI
+> - dplyr
+> - ggplot2
+> - lubridate
 
-- R (Kaggle Notebook)
+**Visualization:** *ggplot2*
 
-**Core Libraries**
+**Version control:** Git and GitHub
 
-- bigrquery
-- DBI
-- dplyr
-- ggplot2
-- lubridate
+**Documentation workflow:** Google NotebookLM (AI-assisted report drafting and summarisation for the repository)
 
 ---
 
@@ -172,3 +176,6 @@ The Kaggle notebook runs in a **non-persistent container**, meaning each executi
 ![architecture](assets/project_architecture.png)
 
 
+## Documentation Workflow
+
+Project reports for this repository were drafted using an AI-assisted documentation workflow with Google NotebookLM to structure and summarize analytical outputs. All analytical logic, code, and results were independently validated and written by the author.
