@@ -15,4 +15,6 @@ Exploratory Analysis & Visualisation
 Business Insights   
 
 
-[Project Architecture](assets\project_architecture.png)
+<p align="center">
+<img src="../assets/project_architecture.png" width="400">
+</p>
