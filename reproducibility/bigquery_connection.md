@@ -1,5 +1,6 @@
 # BigQuery Connection Setup
 
+> [!IMPORTANT]
 > Infrastructure documentation describing how the Kaggle notebook connects to Google BigQuery.
 
 This project queries the **Olist Brazilian E-Commerce dataset** stored in **Google BigQuery**.  
