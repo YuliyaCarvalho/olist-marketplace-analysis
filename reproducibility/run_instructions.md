@@ -239,3 +239,11 @@ These functions standardize how SQL queries are executed and how results are dis
 Details about the BigQuery connection setup are documented here:
 
 `reproducibility/bigquery_connection.md` ➡ [BigQuery connection setup](bigquery_connection.md)
+
+---
+
+## Data Cleaning SQL
+
+All cleaning logic used to construct the analytical tables is documented in the `/sql_cleaning` directory.
+
+Each SQL file corresponds to a raw dataset table and contains validation checks, anomaly detection queries, and transformation logic used during the cleaning and EDA phases.   

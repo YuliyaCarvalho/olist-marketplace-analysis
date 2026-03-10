@@ -15,8 +15,21 @@ The goal of this project is to identify operational bottlenecks and growth oppor
 
 # Project Snapshot
 
-Dataset: [Olist Brazilian E-Commerce Marketplace](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+Data source: [Olist Brazilian E-Commerce Marketplace Public Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 Time Period: 2016–2018  
+
+
+The dataset contains information about:
+
+- orders
+- order items
+- payments
+- products
+- sellers
+- customers
+- geographical information
+- customer reviews
+
 
 Orders analyzed: ~100,000  
 Customers: ~96,000  
@@ -25,22 +38,22 @@ Sellers: ~3,000
 Warehouse: Google BigQuery  
 Analysis: Kaggle R Notebook (SQL, R)
 
+Complete Notebook: [Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
 ---
-
 
 
 # Key Findings
 
-- **Delivery delays are the primary driver of dissatisfaction**  
+➜ **Delivery delays are the primary driver of dissatisfaction**  
   Crossing the 3-day delay threshold increases negative reviews by ~265%.
 
-- **Operational risk is highly concentrated**  
+➜ **Operational risk is highly concentrated**  
   Only ~2% of sellers account for ~22% of revenue exposed to delay risk.
 
-- **Logistics bottlenecks are route-specific**  
+➜ **Logistics bottlenecks are route-specific**  
   14 delivery corridors represent ~28% of platform volume.
 
-- **Retention is extremely low**  
+➜ **Retention is extremely low**  
   ~94% of GMV comes from one-time buyers.
 
 These insights translate into targeted operational and growth strategies documented in the **Executive Summary**.
@@ -95,35 +108,6 @@ linking orders, customers, sellers, products, payments and reviews.
 
 
 
-
-
-
-
-
-
-
-
----
-
-# Data Source
-
-Dataset: **Olist Brazilian E-Commerce Public Dataset**
-
-- ~100k orders
-- ~90k customers
-- ~3k sellers
-- time span: **2016–2018**
-
-The dataset contains information about:
-
-- orders
-- payments
-- products
-- sellers
-- customers
-- delivery logistics
-- customer reviews
-
 ---
 
 # Tools Used
@@ -142,8 +126,6 @@ The dataset contains information about:
 **Visualization:** *ggplot2*
 
 **Version control:** Git and GitHub
-
-**Documentation workflow:** Google NotebookLM (AI-assisted report drafting and summarisation for the repository)
 
 ---
 
