@@ -105,7 +105,7 @@ Revenue at risk represents the total value of orders delivered late within each 
 <br>
 
 <p align="center">
-<img src="q16_dataviz/revenue_risk_vs_satisfaction.png" width="900">
+<img src="q16_dataviz/revenue_risk_vs_satisfaction.png" width="800">
 </p>
 
 *Figure 16.4 — Revenue Risk vs. Customer Satisfaction Impact: Relates the satisfaction drop to the percentage of revenue at risk. Christmas and Valentine's Day occupy the most vulnerable quadrants.*
