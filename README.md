@@ -39,8 +39,117 @@ Warehouse: Google BigQuery
 Analysis: Kaggle R Notebook (SQL, R)
 
 Complete Notebook: [Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
+
+## Dataset Schema (ERD)
+
+The analytical warehouse is built on the Olist marketplace dataset, linking orders, customers, sellers, products, payments and reviews.
+![Dataset ERD](docs/dataset_erd.png)
+
+---
+## 🔎 Explore the Project
+
+### Business Analysis
+The analysis is structured as a set of focused business questions covering marketplace growth, customer behavior, operations, and profitability.
+
+➡️ **[Browse Business Questions](./business_questions/)**
+
+Examples:
+- [GMV Trends](./business_questions/01_marketplace_growth/q01_gmv_trends/)
+- [Repeat Customer Share](./business_questions/02_customer_behavior/q06_repeat_customer_share/)
+- [Delivery Speed vs Repeat Rate](./business_questions/03_operations_and_logistics/q11_delivery_speed_vs_repeat_rate/)
+- [Churn by Review Score](./business_questions/04_profitability_and_risk/q14_churn_by_review_score/)
+
 ---
 
+### SQL Data Preparation
+All datasets were cleaned, validated, and enriched using **BigQuery SQL**.
+
+➡️ **[View SQL Cleaning Pipeline](./sql_cleaning/)**
+
+Key scripts:
+- [customers_cleaning.sql](./sql_cleaning/customers_cleaning.sql)
+- [orders_cleaning.sql](./sql_cleaning/orders_cleaning.sql)
+- [order_items_cleaning.sql](./sql_cleaning/order_items_cleaning.sql)
+- [products_cleaning.sql](./sql_cleaning/products_cleaning.sql)
+- [reviews_cleaning.sql](./sql_cleaning/reviews_cleaning.sql)
+- [payments_cleaning.sql](./sql_cleaning/payment_cleaning.sql)
+
+---
+
+### Full End-to-End Notebook
+The entire investigation is also available as a single continuous notebook.
+
+- 📓 [Jupyter Notebook](./notebooks/olist-retention-logistics-risk.ipynb)
+- 🌐 [HTML Version](./notebooks/olist-retention-logistics-risk.html)
+- 📄 [PDF Version](./notebooks/olist-retention-logistics-risk.pdf)
+
+---
+
+### Reproducibility
+Instructions for rerunning the project.
+
+- [BigQuery Connection Setup](./reproducibility/bigquery_connection.md)
+- [Run Instructions](./reproducibility/run_instructions.md)
+---
+## Recommended Reading Path
+
+If you are reviewing this project, the best order is:
+
+1. **Main README.md** – project scope, methodology, and architecture  
+2. **`business_questions/README.md`** – overview of the analytical themes  
+3. **Any individual `q0X_README.md`** – focused business insight by question  
+4. **`notebooks/`** – full end-to-end notebook versions (.md, .pdf and .html format)  
+5. **[`SQL Cleaning Scripts`](./sql_cleaning/)** – dataset preparation and audit trail (each dataset table separately)
+
+---
+
+## Project Layout at a Glance
+
+                             olist-marketplace-analysis
+                                        │
+        ┌────────────────────────────────┼────────────────────────────────┐
+        │                                │                                │
+        │                                │                                │
+     README.md                        assets                         notebooks
+        │                                │                                │
+        │                                │                                ├── .ipynb
+        │                                │                                ├── .html
+        │                                │                                └── .pdf
+        │                                │
+        │                                └── project_architecture.png
+        │
+        ├──────────────────────┬──────────────────────┬───────────────────┐
+        │                      │                      │                   │
+        │                      │                      │                   │
+business_questions       sql_cleaning         reproducibility          docs
+        │                      │                      │
+        │                      │                      ├── bigquery_connection.md
+        │                      │                      └── run_instructions.md
+        │                      │
+        │                      ├── customers_cleaning.sql
+        │                      ├── sellers_cleaning.sql
+        │                      ├── products_cleaning.sql
+        │                      ├── orders_cleaning.sql
+        │                      ├── order_items_cleaning.sql
+        │                      ├── payment_cleaning.sql
+        │                      ├── reviews_cleaning.sql
+        │                      └── geolocations_cleaning.sql
+        │
+        ├── 01_marketplace_growth
+        ├── 02_customer_behavior
+        ├── 03_operations_and_logistics
+        └── 04_profitability_and_risk
+                               │
+                               │
+                  Each question folder follows the same pattern:
+                               │
+                               └── q0X_question_name
+                                   ├── q0X_README.md
+                                   └── q0X_dataviz
+
+<br>
+
+---
 
 # Key Findings
 
@@ -60,53 +169,110 @@ These insights translate into targeted operational and growth strategies documen
 
 ---
 
-# Start Here
-
-| Section | Description |
-|------|------|
-| `docs/executive_summary.md` | Strategic findings and recommendations |
-| `questions/` | 18 business questions with SQL queries and visualizations |
-| `sql/` | Standalone BigQuery SQL queries |
-| `notebooks/` | Kaggle R notebook used for the analysis |
-| `reproducibility/` | Instructions and BigQuery connection setup |
-
----
-
-## Dataset Schema (ERD)
-
-The analytical warehouse is built on the Olist marketplace dataset,
-linking orders, customers, sellers, products, payments and reviews.
-![Dataset ERD](docs/dataset_erd.png)
-
----
-
 # Repository Structure
 
 .
-├── app.py
-├── docs
-│   ├── faq.md
-│   ├── methodology.md
-│   └── skills_jam.md
-├── eval
-│   ├── questions.json
-│   └── run_eval.py
-├── rag
-│   ├── __init__.py
-│   ├── generate.py
-│   ├── ingest.py
-│   ├── retrieve.py
-│   └── safety.py
-├── requirements.txt
-├── LICENSE
-├── storage
-│   └── .gitkeep
-└── uploads
-    └── .gitkeep
-
-
-
-
+├── README.md
+├── assets
+│   └── project_architecture.png
+│
+├── business_questions
+│   ├── README.md
+│   │
+│   ├── 01_marketplace_growth
+│   │   ├── q01_gmv_trends
+│   │   │   ├── q01_README.md
+│   │   │   └── q01_dataviz
+│   │   │
+│   │   ├── q02_order_volume_trends
+│   │   │   ├── q02_README.md
+│   │   │   └── q02_dataviz
+│   │   │
+│   │   ├── q03_delivery_reliability_trends
+│   │   │   ├── q03_README.md
+│   │   │   └── q03_dataviz
+│   │   │
+│   │   ├── q04_seller_product_concentration
+│   │   │   ├── q04_README.md
+│   │   │   └── q04_dataviz
+│   │   │
+│   │   └── q05_category_gmv_mix
+│   │       ├── q05_README.md
+│   │       └── q05_dataviz
+│   │
+│   ├── 02_customer_behavior
+│   │   ├── q06_repeat_customer_share
+│   │   │   ├── q06_README.md
+│   │   │   └── q06_dataviz
+│   │   │
+│   │   ├── q07_repeat_customer_unit_economics
+│   │   │   ├── q07_README.md
+│   │   │   └── q07_dataviz
+│   │   │
+│   │   ├── q08_customer_order_distribution
+│   │   │   ├── q08_README.md
+│   │   │   └── q08_dataviz
+│   │   │
+│   │   ├── q09_repeat_customer_demographics
+│   │   │   ├── q09_README.md
+│   │   │   └── q09_dataviz
+│   │   │
+│   │   └── q10_category_mix_by_repeat_segment
+│   │       ├── q10_README.md
+│   │       └── q10_dataviz
+│   │
+│   ├── 03_operations_and_logistics
+│   │   ├── q11_delivery_speed_vs_repeat_rate
+│   │   │   ├── q11_README.md
+│   │   │   └── q11_dataviz
+│   │   │
+│   │   ├── q15_operational_drivers_of_reviews
+│   │   │   ├── q15_README.md
+│   │   │   └── q15_dataviz
+│   │   │
+│   │   ├── q16_holiday_delay_impact
+│   │   │   ├── q16_README.md
+│   │   │   └── q16_dataviz
+│   │   │
+│   │   ├── q17_geographic_delivery_performance
+│   │   │   ├── q17_README.md
+│   │   │   └── q17_dataviz
+│   │   │
+│   │   └── q18_product_size_vs_logistics
+│   │       ├── q18_README.md
+│   │       └── q18_dataviz
+│   │
+│   └── 04_profitability_and_risk
+│       ├── q12_reviews_vs_repeat_rate
+│       │   ├── q12_README.md
+│       │   └── q12_dataviz
+│       │
+│       ├── q13_revenue_by_repeat_segment
+│       │   ├── q13_README.md
+│       │   └── q13_dataviz
+│       │
+│       └── q14_churn_by_review_score
+│           ├── q14_README.md
+│           └── q14_dataviz
+│
+├── notebooks
+│   ├── olist-retention-logistics-risk.ipynb
+│   ├── olist-retention-logistics-risk.html
+│   └── olist-retention-logistics-risk.pdf
+│
+├── reproducibility
+│   ├── bigquery_connection.md
+│   └── run_instructions.md
+│
+└── sql_cleaning
+    ├── customers_cleaning.sql
+    ├── geolocations_cleaning.sql
+    ├── order_items_cleaning.sql
+    ├── orders_cleaning.sql
+    ├── payment_cleaning.sql
+    ├── products_cleaning.sql
+    ├── reviews_cleaning.sql
+    └── sellers_cleaning.sql
 
 ---
 
