@@ -1,9 +1,5 @@
 # Data Dictionary
 
-## Entity Relationship Diagram
-
-![Dataset ERD](dataset_erd.png)
-
 Dataset source: [Olist Brazilian E-Commerce Public Dataset (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 ---
 
@@ -21,6 +17,8 @@ The schema is organized into three layers:
 - **Reference and lookup tables**
 
 ---
+## Entity Relationship Diagram
+![Dataset ERD](dataset_erd.png)
 
 # 1. Raw Source Tables
 
