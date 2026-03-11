@@ -26,24 +26,16 @@ To profile customer segments, the analysis combined behavioral transaction data 
 - `customers` (geographic attributes)
 - `order_payments` (payment behavior)
 
-**Key filters**
+**Key filters:** The analysis was restricted to **successfully delivered orders** to ensure only completed transactions were considered.
 
-The analysis was restricted to **successfully delivered orders** to ensure only completed transactions were considered.
+**Customer segmentation:** Customers were categorized using a derived variable `freq_segment`:
+> - **One-time buyers** — 1 order
+> - **Light-repeat buyers** — 2 orders
+> - **Heavy-repeat buyers** — 3 or more orders
 
-**Customer segmentation**
-
-Customers were categorized using a derived variable `freq_segment`:
-
-- **One-time buyers** — 1 order
-- **Light-repeat buyers** — 2 orders
-- **Heavy-repeat buyers** — 3 or more orders
-
-**Aggregation**
-
-Segment-level analysis examined how GMV and transaction behavior differed across:
-
-- Brazilian states
-- payment methods
+**Aggregation:** Segment-level analysis examined how GMV and transaction behavior differed across:
+> - Brazilian states
+> - payment methods
 
 ---
 
@@ -67,15 +59,14 @@ Customer-level transaction data was grouped to identify how geographic location 
 
 ## Key Findings
 
-**Credit card dominance**: Credit card payments account for the majority of GMV across all customer segments and are particularly associated with repeat purchasing behavior.  
+* **Credit card dominance:** Credit card payments account for the majority of GMV across all customer segments and are particularly associated with repeat purchasing behavior.  
 
-**Heavy-repeat economics**: Among heavy-repeat customers (3+ orders), credit card users generate the majority of value.    
+* **Heavy-repeat economics:** Among heavy-repeat customers (3+ orders), credit card users generate the majority of value.    
 Approximately **179 credit-card customers generate ~85K BRL in GMV**, compared to roughly **25K BRL from Boleto users**.  
 
-**Boleto propensity among one-time buyers**: One-time buyers exhibit a significantly higher share of transactions via **Boleto**, contributing approximately **2.56M BRL in GMV** through this payment method.  
+* **Boleto propensity among one-time buyers:** One-time buyers exhibit a significantly higher share of transactions via **Boleto**, contributing approximately **2.56M BRL in GMV** through this payment method.  
 
-**Geographic concentration**: Repeat purchasing behavior is strongly concentrated in Brazil’s largest economic regions:  
-
+* **Geographic concentration:** Repeat purchasing behavior is strongly concentrated in Brazil’s largest economic regions:  
 > * São Paulo (SP)
 > * Rio de Janeiro (RJ)
 > * Minas Gerais (MG)
