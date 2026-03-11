@@ -89,6 +89,7 @@ The entire investigation is also available as a single continuous notebook.
 - 📓 [Jupyter Notebook](./notebooks/olist-retention-logistics-risk.ipynb)
 - 🌐 [HTML Version](./notebooks/olist-retention-logistics-risk.html)
 - 📄 [PDF Version](./notebooks/olist-retention-logistics-risk.pdf)
+- [Markdown Version](./notebooks/olist-retention-logistics-risk.md)
 
 or you can check out the original  
 [Kaggle Notebook](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
@@ -111,8 +112,7 @@ Only ~2% of sellers account for ~22% of revenue exposed to delay risk.
 
 These insights translate into targeted operational and growth strategies documented in the **Executive Summary section of the analysis notebook**.
 
-These insights translate into targeted operational and growth strategies discussed in the  
-[Executive Summary](./notebooks/olist-retention-logistics-risk.md#5-olist-e-commerce-operations-analysis-executive-summary).
+These insights translate into targeted operational and growth strategies discussed in the [Executive Summary](./notebooks/olist-retention-logistics-risk.md#5-olist-e-commerce-operations-analysis-executive-summary).
 
 ---
 
