@@ -8,7 +8,7 @@ By analyzing marketplace records from **2016–2018**, the study finds that whil
 
 ---
 
-# 🚀 Core Insights
+# Core Insights
 
 ## Delivery Speed is the Master Variable
 
