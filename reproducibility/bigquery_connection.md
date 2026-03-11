@@ -57,12 +57,12 @@ run_small_query <- function(sql) {
 
 }
 ```
-Additional helper utilities used in the notebook are documented in: [`docs/helper_functions.md`](../docs/helper_functions.md)
-**Purpose of this approach**
+Additional helper utilities used in the notebook are documented in: [`docs/helper_functions.md`](../docs/helper_functions.md)  
 
-- Execute lightweight queries  
-- Preview data during the **Prepare and Process phases**  
-- Quickly download small result sets into R  
+**Purpose of this approach:**  
+> - Execute lightweight queries    
+> - Preview data during the **Prepare and Process phases**    
+> - Quickly download small result sets into R    
 
 ---
 
@@ -115,18 +115,15 @@ Authentication is handled automatically through the **Kaggle notebook environmen
 
 ## Data Storage Strategy
 
-During early experimentation, external **Google Drive tables** were considered for data access.
-
-However, this approach produced **credential and access issues** within the Kaggle environment.
-
+During early experimentation, external **Google Drive tables** were considered for data access. However, this approach produced **credential and access issues** within the Kaggle environment.
 To improve reliability, all source files were imported into **BigQuery as native tables**.
 
-Advantages of this approach include:
+Advantages of this approach include:  
 
-- improved query performance  
-- more stable authentication  
-- simplified dataset management  
-- better compatibility with Kaggle notebooks  
+> - improved query performance  
+> - more stable authentication  
+> - simplified dataset management  
+> - better compatibility with Kaggle notebooks  
 
 ---
 
