@@ -95,4 +95,6 @@ These metrics provide complementary perspectives on marketplace inequality and c
 
 ---
 
-➡️ **Next:** [q05 Category GMV Mix](../q05_category_gmv_mix/q05_README.md)
+## Next Question
+
+➡️ **Next:** Having confirmed that the seller base is diversified despite high inequality, the next step is to examine demand concentration at the category level: "Which product categories drive most of Olist’s GMV and orders, and how stable is this mix over time?" [q05 Category GMV Mix](../q05_category_gmv_mix/q05_README.md)
