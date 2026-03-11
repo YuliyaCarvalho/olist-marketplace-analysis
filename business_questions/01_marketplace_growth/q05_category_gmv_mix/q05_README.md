@@ -101,4 +101,4 @@ Categories were ranked by GMV to evaluate:
 
 ## Next Question
 
-➡️ **Next:** With the revenue-driving categories identified, the next step is to understand the customer base behind these transactions: "How many customers are one-time buyers vs repeat buyers, and how much GMV comes from repeat customers?" [q06 Repeat Customer Share](../../02_customer_behavior/q06_repeat_customer_share)
+➡️ **Next:** With the revenue-driving categories identified, the next step is to understand the customer base behind these transactions: "How many customers are one-time buyers vs repeat buyers, and how much GMV comes from repeat customers?" [q06 Repeat Customer Share](../../02_customer_behavior/q06_repeat_customer_share/q06_README.md)
