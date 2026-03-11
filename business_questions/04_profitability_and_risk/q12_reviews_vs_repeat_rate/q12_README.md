@@ -35,12 +35,11 @@ To evaluate the relationship between satisfaction and loyalty, customer review d
 **Key metrics**
 
 **Review Distribution:** For each customer segment, the share of reviews was calculated across normalized rating categories:
-
-- excellent  
-- good  
-- neutral  
-- bad  
-- very bad  
+> - excellent  
+> - good  
+> - neutral  
+> - bad  
+> - very bad  
 
 This metric reveals how sentiment changes as customers become more loyal.
 
@@ -53,7 +52,7 @@ This metric reveals how sentiment changes as customers become more loyal.
 ## Visualisations
 
 <p align="center">
-<img src="q12_dataviz/review_mix_segments.png" width="900">
+<img src="q12_dataviz/review_mix_segments.png" width="700">
 </p>
 
 *Figure 12.1 — Review score distribution by customer segment, showing a clear increase in “excellent” ratings as customer loyalty rises.*
