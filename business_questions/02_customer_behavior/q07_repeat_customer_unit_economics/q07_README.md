@@ -55,7 +55,7 @@ Aggregations were performed to measure order-level value and customer-level life
 ## Visualisations
 
 <p align="center">
-<img src="q07_dataviz/unit_economics_customer_type.png" width="700">
+<img src="q07_dataviz/unit_economics_customer_type.png" width="400">
 </p>
 
 *Figure 7.1 — Unit economics comparison between one-time and repeat customers.*
@@ -64,11 +64,11 @@ Aggregations were performed to measure order-level value and customer-level life
 
 ## Key Findings
 
-**Higher transaction value for one-time buyers**: One-time buyers exhibit slightly higher **Average Order Value (AOV)**, suggesting that their individual purchases tend to involve marginally larger baskets.  
+* **Higher transaction value for one-time buyers:** One-time buyers exhibit slightly higher **Average Order Value (AOV)**, suggesting that their individual purchases tend to involve marginally larger baskets.  
 
-**Higher lifetime value for repeat customers**: Despite slightly smaller individual orders, repeat customers generate significantly greater **total GMV per customer** due to multiple purchases over time.  
+* **Higher lifetime value for repeat customers:** Despite slightly smaller individual orders, repeat customers generate significantly greater **total GMV per customer** due to multiple purchases over time.  
 
-**Substantial economic advantage**: On a per-customer basis, repeat buyers are nearly **twice as valuable** as one-time buyers over their lifetime on the platform.  
+* **Substantial economic advantage:** On a per-customer basis, repeat buyers are nearly **twice as valuable** as one-time buyers over their lifetime on the platform.  
 
 ---
 
@@ -79,5 +79,6 @@ Aggregations were performed to measure order-level value and customer-level life
 ➜ Even modest improvements in retention rates could substantially increase overall GMV and reduce reliance on expensive customer acquisition strategies.
 
 ---
+## Next Question
 
-➡️ **Next:** [q08 Customer Order Distribution](../q08_customer_order_distribution/q08_README.md)
+➡️ **Next:** Having established the superior value of repeat customers, the next step is to analyze the specific frequency of their purchases: "How many orders does the average one‑time vs repeat customer place, and how skewed is ordering behavior within each group?" [q08 Customer Order Distribution](../q08_customer_order_distribution/q08_README.md)
