@@ -63,13 +63,13 @@ Categories were ranked by GMV to evaluate:
 ## Visualisations
 
 <p align="center">
-<img src="q05_dataviz/cumulative_gmv_by_category.png" width="500">
+<img src="q05_dataviz/cumulative_gmv_by_category.png" width="600">
 </p>
 
 *Figure 5.1 — Cumulative GMV share by product category. The steep rise among the first categories followed by gradual flattening indicates a strong long-tail distribution.*
 
 <p align="center">
-<img src="q05_dataviz/top_categories_gmv.png" width="500">
+<img src="q05_dataviz/top_categories_gmv.png" width="700">
 </p>
 
 *Figure 5.2 — Top 20 product categories ranked by GMV, highlighting the dominant contribution of health_beauty, watches_gifts, and bed_bath_table.*
