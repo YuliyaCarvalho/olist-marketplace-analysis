@@ -81,6 +81,6 @@ A summary dataset was generated at the **customer level**, enabling statistical 
 ## Next Question
 
 ➡️ **Next:** Having defined the frequency segments, the next step is to understand the profile of these users: "How do customer demographics and purchase characteristics differ between one‑time, light‑repeat (2 orders), and heavy‑repeat (3+ orders) customers?
-[q09 Repeat Customer Demographics](../q09_repeat_customer_demographics)
+[q09 Repeat Customer Demographics](../q09_repeat_customer_demographics/q09_README.md)
 
 
