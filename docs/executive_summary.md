@@ -1,6 +1,6 @@
 # Executive Summary: Olist Marketplace Optimization & Logistics Risk Mitigation
 
-> High-level findings from the full SQL analysis available in the `/business-questions` directory.
+> High-level findings from the full SQL + R analysis available in the **[`/business-questions`](./business_questions/)** directory. 
 
 This project provides a **data-driven strategic roadmap** to enhance Olist's operational efficiency and customer retention.  
 
