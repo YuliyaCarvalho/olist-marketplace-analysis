@@ -17,7 +17,6 @@ Data Warehouse: Google BigQuery
 
 The notebook was executed in a **pinned Kaggle runtime environment (2024-07-11)** to ensure stable package versions and prevent future platform updates from breaking the analysis.
 
-
 ### Runtime Details
 
 - **R version:** 4.4.0  
@@ -82,6 +81,8 @@ GROUP BY order_status
 ")
 ```
 
+---
+
 ### 2. Transformational Queries
 
 When inconsistencies were discovered during exploratory analysis, corrective transformations were applied directly in BigQuery.
@@ -131,7 +132,8 @@ There are two ways to explore or reproduce this analysis.
 
 ### Option 1 — Explore the Analysis (Recommended)
 
-The easiest way to review the full analysis is through the published Kaggle notebook: [Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
+The easiest way to review the full analysis is through the published Kaggle notebook:  
+[Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
 
 The notebook contains the complete analytical workflow, including:
 
@@ -149,18 +151,20 @@ Because the notebook was executed before publication, all results and figures ar
 
 To fully reproduce the data transformations locally:
 
-1. Download the [**Olist Brazilian E-Commerce Dataset**]( https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)  
- 
+1. Download the [**Olist Brazilian E-Commerce Dataset**](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
 2. Import the raw tables into your own **Google BigQuery project**.
 
-3. Execute the [SQL scripts](../sql_cleaning/) provided in the repository. Each SQL file contains the validation checks and transformation logic used to construct the cleaned analytical tables. Before executing the scripts, replace the project and dataset identifiers (e.g. `olist-project-yuliacarvalho.Olist_datasets`) with the corresponding names in your own BigQuery environment.
+3. Execute the [SQL scripts](../sql_cleaning/) provided in the repository. Each SQL file contains the validation checks and transformation logic used to construct the cleaned analytical tables.  
+Before executing the scripts, replace the project and dataset identifiers (e.g. `olist-project-yuliacarvalho.Olist_datasets`) with the corresponding names in your own BigQuery environment.
 
 4. Once the cleaned tables are created, you can run the R code contained in the Kaggle notebook.
 
 ---
 
 > [!IMPORTANT]
-> * The original analysis was performed using a **warehouse-first workflow**:
+> The original analysis was performed using a **warehouse-first workflow**:
+
 ```
 Raw Olist dataset
         ↓
@@ -172,7 +176,7 @@ R analysis and visualization in Kaggle
 ```
 
 * Because the notebook was designed for **exploratory analysis**, SQL queries for validation, cleaning, and transformation appear interspersed throughout the workflow.
-* However, the SQL scripts in the `/sql_cleaning` directory contain the finalized transformation logic used to build the analytical dataset.
+* The SQL scripts in the `/sql_cleaning` directory contain the finalized transformation logic used to build the analytical dataset.
 * Because the notebook environment is non-persistent, all important data transformations are stored in BigQuery rather than in the notebook filesystem.
 
 ---
@@ -201,4 +205,4 @@ Details about the BigQuery connection setup are documented here:
 
 All cleaning logic used to construct the analytical tables is documented in the `/sql_cleaning` directory.
 
-Each SQL file corresponds to a raw dataset table and contains validation checks, anomaly detection queries, and transformation logic used during the cleaning and EDA phases.   
+Each SQL file corresponds to a raw dataset table and contains validation checks, anomaly detection queries, and transformation logic used during the cleaning and exploratory phases of the analysis.
