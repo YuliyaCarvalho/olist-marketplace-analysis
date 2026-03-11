@@ -52,7 +52,7 @@ This metric reveals how sentiment changes as customers become more loyal.
 ## Visualisations
 
 <p align="center">
-<img src="q12_dataviz/review_mix_segments.png" width="700">
+<img src="q12_dataviz/review_mix_segments.png" width="900">
 </p>
 
 *Figure 12.1 — Review score distribution by customer segment, showing a clear increase in “excellent” ratings as customer loyalty rises.*
