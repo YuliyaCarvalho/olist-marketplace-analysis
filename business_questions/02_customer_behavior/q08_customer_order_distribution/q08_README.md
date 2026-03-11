@@ -51,7 +51,7 @@ A summary dataset was generated at the **customer level**, enabling statistical 
 ## Visualisations
 
 <p align="center">
-<img src="q08_dataviz/repeat_customer_order_distribution.png" width="700">
+<img src="q08_dataviz/repeat_customer_order_distribution.png" width="500">
 </p>
 
 *Figure 8.1 — Distribution of order frequency among repeat customers, highlighting the strong right-skew in purchasing behavior.*
