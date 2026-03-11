@@ -47,7 +47,7 @@ This time series was used to analyze revenue trends and identify phases of marke
 ## Visualisations
 
 <p align="center">
-<img src="q01_dataviz/gmv_monthly.png" width="600">
+<img src="q01_dataviz/gmv_monthly.png" width="800">
 </p>
 
 *Figure 1.1 — Olist’s Monthly Gross Merchandise Value (2016–2018), showing the transition from early marketplace growth to operational stabilization.*
