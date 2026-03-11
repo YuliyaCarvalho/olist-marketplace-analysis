@@ -71,30 +71,25 @@ Monthly delivery performance metrics were calculated to evaluate:
 
 ## Key Findings
 
-**High operational stability**
+* **High operational stability:** After the initial ramp-up phase in late 2016, the monthly delivery rate remained consistently close to **100%** throughout the rest of the 2016–2018 period.
 
-After the initial ramp-up phase in late 2016, the monthly delivery rate remained consistently close to **100%** throughout the rest of the 2016–2018 period.
+* **Adjusted performance:** While the raw average delivery rate across all orders was **87.9%**, restricting the analysis to orders that reached a final outcome (filtering out `is_hanging = 1` orders) increases the success rate to **99.9%**.
+ 
+* **Launch-phase anomaly:** A small spike in non-delivery (approximately **1.5%**) occurred in **October 2016**, likely reflecting early operational immaturity or low initial order volumes during the marketplace launch.
 
-**Adjusted performance**
-
-While the raw average delivery rate across all orders was **87.9%**, restricting the analysis to orders that reached a final outcome (filtering out `is_hanging = 1` orders) increases the success rate to **99.9%**.
-
-**Launch-phase anomaly**
-
-A small spike in non-delivery (approximately **1.5%**) occurred in **October 2016**, likely reflecting early operational immaturity or low initial order volumes during the marketplace launch.
-
-**No seasonal degradation**
-
-Beyond the launch period, there is **no evidence of seasonal performance deterioration**, indicating that Olist’s logistics network handled demand spikes effectively.
+* **No seasonal degradation:** Beyond the launch period, there is **no evidence of seasonal performance deterioration**, indicating that Olist’s logistics network handled demand spikes effectively.
 
 ---
 
 ## Insight
 
-Olist demonstrates extremely strong fulfillment reliability. As the marketplace scaled rapidly during 2017, delivery completion rates remained consistently high, indicating that the logistics infrastructure expanded successfully alongside marketplace demand.
+➜ Olist demonstrates extremely strong fulfillment reliability. As the marketplace scaled rapidly during 2017, delivery completion rates remained consistently high, indicating that the logistics infrastructure expanded successfully alongside marketplace demand.
 
-This suggests that the platform’s operational challenges are likely related to **delivery speed and delays**, rather than the completion of orders themselves.
+➜ This suggests that the platform’s operational challenges are likely related to **delivery speed and delays**, rather than the completion of orders themselves.
 
 ---
 
-➡️ **Next:** [q04 Seller Product Concentration](../q04_seller_product_concentration/q04_README.md)
+## Next Question
+
+➡️ **Next:** With fulfillment completion confirmed as stable, the next logical step is to examine the concentration of the marketplace participants: "How concentrated is Olist’s GMV and order volume across sellers and products?" [q04 Seller Product Concentration](../q04_seller_product_concentration/q04_README.md)
+
