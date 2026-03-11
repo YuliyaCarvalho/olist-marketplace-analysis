@@ -67,7 +67,7 @@ Customer purchase frequency segments were combined with category-level GMV calcu
 
 *Only the top five categories by GMV share are displayed in the chart to improve readability; the remaining long-tail categories are omitted*
 <p align="center">
-<img src="q10_dataviz/top_categories_segment.png" width="700">
+<img src="q10_dataviz/top_categories_segment.png" width="800">
 </p>
 
 *Figure 10.1 — Top product categories by GMV share within each customer frequency segment, illustrating how heavy-repeat buyers concentrate spending in specific lifestyle categories.*
