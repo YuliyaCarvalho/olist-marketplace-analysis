@@ -71,13 +71,12 @@ Monthly order counts and GMV were calculated and visualized to compare:
 
 ## Key Findings
 
-**Volume–value correlation**: Order volume and GMV increased rapidly from late 2016 through mid-2017 before stabilizing at a high activity level throughout 2018.  
+* **Volume–value correlation**: Order volume and GMV increased rapidly from late 2016 through mid-2017 before stabilizing at a high activity level throughout 2018.  
+* **Fulfillment stability**: The series representing **all orders** consistently sits slightly above the **delivered orders** series with a small and stable gap.  
 
-**Fulfillment stability**: The series representing **all orders** consistently sits slightly above the **delivered orders** series with a small and stable gap.  
+* **Delivery rate**: This gap corresponds to an approximate **97% delivery success rate**, indicating that only a small proportion of orders fail to complete.  
 
-**Delivery rate**: This gap corresponds to an approximate **97% delivery success rate**, indicating that only a small proportion of orders fail to complete.  
-
-**Seasonal demand**: A clear spike in activity occurs in **late 2017**, likely reflecting strong seasonal demand associated with Black Friday and Christmas.  
+* **Seasonal demand**: A clear spike in activity occurs in **late 2017**, likely reflecting strong seasonal demand associated with Black Friday and Christmas.  
 
 ---
 
