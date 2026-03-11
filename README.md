@@ -35,8 +35,7 @@ Sellers: ~3,000
 Warehouse: Google BigQuery  
 Analysis: Kaggle R Notebook (SQL, R)
 
-Complete Notebook:  
-[Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)
+Complete Notebook: [Olist: Retention, Logistics & Risk](https://www.kaggle.com/code/yuliyacarvalho/olist-retention-logistics-risk)  
 
 ---
 
@@ -169,19 +168,163 @@ EDA ➜ feature engineering ➜ segmentation ➜ hypothesis testing ➜ business
 
 ## Project Architecture
 
-![architecture](assets/project_architecture.png)
+<img src="assets/project_architecture.png" width="700">
 
 ---
 
 ## Project Layout at a Glance
 
-[diagram remains unchanged]
+```text
+                             olist-marketplace-analysis
+                                        │
+        ┌────────────────────────────────┼────────────────────────────────┐
+        │                                │                                │
+        │                                │                                │
+     README.md                        assets                         notebooks
+        │                                │                                │
+        │                                │                                ├── .ipynb
+        │                                │                                ├── .html
+        │                                │                                └── .pdf
+        │                                │
+        │                                └── project_architecture.png
+        │
+        ├──────────────────────┬──────────────────────┬───────────────────┐
+        │                      │                      │                   │
+        │                      │                      │                   │
+business_questions       sql_cleaning         reproducibility          docs
+        │                      │                      │
+        │                      │                      ├── bigquery_connection.md
+        │                      │                      └── run_instructions.md
+        │                      │
+        │                      ├── customers_cleaning.sql
+        │                      ├── sellers_cleaning.sql
+        │                      ├── products_cleaning.sql
+        │                      ├── orders_cleaning.sql
+        │                      ├── order_items_cleaning.sql
+        │                      ├── payment_cleaning.sql
+        │                      ├── reviews_cleaning.sql
+        │                      └── geolocations_cleaning.sql
+        │
+        ├── 01_marketplace_growth
+        ├── 02_customer_behavior
+        ├── 03_operations_and_logistics
+        └── 04_profitability_and_risk
+                               │
+                               │
+                  Each question folder follows the same pattern:
+                               │
+                               └── q0X_question_name
+                                   ├── q0X_README.md
+                                   └── q0X_dataviz
 
 ---
 
 # Repository Structure
 
-[tree remains unchanged]
+# Repository Structure
+
+.
+├── README.md
+├── assets
+│   └── project_architecture.png
+│
+├── business_questions
+│   ├── README.md
+│   │
+│   ├── 01_marketplace_growth
+│   │   ├── q01_gmv_trends
+│   │   │   ├── q01_README.md
+│   │   │   └── q01_dataviz
+│   │   │
+│   │   ├── q02_order_volume_trends
+│   │   │   ├── q02_README.md
+│   │   │   └── q02_dataviz
+│   │   │
+│   │   ├── q03_delivery_reliability_trends
+│   │   │   ├── q03_README.md
+│   │   │   └── q03_dataviz
+│   │   │
+│   │   ├── q04_seller_product_concentration
+│   │   │   ├── q04_README.md
+│   │   │   └── q04_dataviz
+│   │   │
+│   │   └── q05_category_gmv_mix
+│   │       ├── q05_README.md
+│   │       └── q05_dataviz
+│   │
+│   ├── 02_customer_behavior
+│   │   ├── q06_repeat_customer_share
+│   │   │   ├── q06_README.md
+│   │   │   └── q06_dataviz
+│   │   │
+│   │   ├── q07_repeat_customer_unit_economics
+│   │   │   ├── q07_README.md
+│   │   │   └── q07_dataviz
+│   │   │
+│   │   ├── q08_customer_order_distribution
+│   │   │   ├── q08_README.md
+│   │   │   └── q08_dataviz
+│   │   │
+│   │   ├── q09_repeat_customer_demographics
+│   │   │   ├── q09_README.md
+│   │   │   └── q09_dataviz
+│   │   │
+│   │   └── q10_category_mix_by_repeat_segment
+│   │       ├── q10_README.md
+│   │       └── q10_dataviz
+│   │
+│   ├── 03_operations_and_logistics
+│   │   ├── q11_delivery_speed_vs_repeat_rate
+│   │   │   ├── q11_README.md
+│   │   │   └── q11_dataviz
+│   │   │
+│   │   ├── q15_operational_drivers_of_reviews
+│   │   │   ├── q15_README.md
+│   │   │   └── q15_dataviz
+│   │   │
+│   │   ├── q16_holiday_delay_impact
+│   │   │   ├── q16_README.md
+│   │   │   └── q16_dataviz
+│   │   │
+│   │   ├── q17_geographic_delivery_performance
+│   │   │   ├── q17_README.md
+│   │   │   └── q17_dataviz
+│   │   │
+│   │   └── q18_product_size_vs_logistics
+│   │       ├── q18_README.md
+│   │       └── q18_dataviz
+│   │
+│   └── 04_profitability_and_risk
+│       ├── q12_reviews_vs_repeat_rate
+│       │   ├── q12_README.md
+│       │   └── q12_dataviz
+│       │
+│       ├── q13_revenue_by_repeat_segment
+│       │   ├── q13_README.md
+│       │   └── q13_dataviz
+│       │
+│       └── q14_churn_by_review_score
+│           ├── q14_README.md
+│           └── q14_dataviz
+│
+├── notebooks
+│   ├── olist-retention-logistics-risk.ipynb
+│   ├── olist-retention-logistics-risk.html
+│   └── olist-retention-logistics-risk.pdf
+│
+├── reproducibility
+│   ├── bigquery_connection.md
+│   └── run_instructions.md
+│
+└── sql_cleaning
+    ├── customers_cleaning.sql
+    ├── geolocations_cleaning.sql
+    ├── order_items_cleaning.sql
+    ├── orders_cleaning.sql
+    ├── payment_cleaning.sql
+    ├── products_cleaning.sql
+    ├── reviews_cleaning.sql
+    └── sellers_cleaning.sql
 
 ---
 
