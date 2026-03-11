@@ -55,7 +55,7 @@ This serves as a proxy for their latest experience with the platform.
 ## Visualisations
 
 <p align="center">
-<img src="q13_dataviz/revenue_by_segment_review.png" width="800">
+<img src="q13_dataviz/revenue_by_segment_review.png" width="900">
 </p>
 
 *Figure 13.1 — Average customer revenue by loyalty segment and review score, illustrating that purchase frequency drives far larger revenue differences than satisfaction alone.*
