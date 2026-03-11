@@ -36,14 +36,13 @@ The analysis was restricted to **delivered orders with valid chronological timel
 
 **Derived metrics:**
 
-- **delivery_performance** — a four-tier classification based on category-specific benchmarks:  
+**delivery_performance** — a four-tier classification based on category-specific benchmarks:  
   > - **1 = Fast**  
   > - **2 = Typical**  
   > - **3 = Slow**  
   > - **4 = Very Slow**
 
 **Customer frequency segments:** Customers were classified based on their order history:
-
 > - **One-time buyers** — 1 order  
 > - **Light-repeat buyers** — 2 orders  
 > - **Heavy-repeat buyers** — 3 or more orders
@@ -61,11 +60,9 @@ This normalization ensures fair comparisons across product categories with diffe
 
 **Aggregation level:** The analysis measures the **share of orders within each delivery performance tier for every customer segment**.
 
-
 **Granularity:** Delivery performance was evaluated using:  
-
-- **Average delivery days per segment**
-- **Share of orders across performance tiers**
+> - **Average delivery days per segment**
+> - **Share of orders across performance tiers**
 
 ---
 
@@ -96,51 +93,32 @@ Orders were classified into delivery performance tiers and compared across custo
 
 ## Key Findings
 
-**Consistent Core Experience**
+* **Consistent Core Experience:** Delivery performance is highly uniform across customer segments. For all groups:  
+> - roughly **47–54% of orders fall into the "Typical" range**  
+> - approximately **27–29% are classified as "Fast"**  
 
-Delivery performance is highly uniform across customer segments.  
-For all groups:
+This indicates a stable logistics experience regardless of customer loyalty.  
 
-- roughly **47–54% of orders fall into the "Typical" range**
-- approximately **27–29% are classified as "Fast"**
+* **No Speed Advantage for Loyal Customers:** Heavy-repeat buyers do **not receive systematically faster deliveries** than one-time buyers. The delivery performance distribution remains nearly identical across all segments.  
 
-This indicates a stable logistics experience regardless of customer loyalty.
+* **Tolerance for Logistics Friction:** Even among heavy-repeat customers approximately **19% of orders are classified as Slow or Very Slow**. 
+This demonstrates that loyal customers continue purchasing despite occasional delivery delays.  
 
----
-
-**No Speed Advantage for Loyal Customers**
-
-Heavy-repeat buyers do **not receive systematically faster deliveries** than one-time buyers. The delivery performance distribution remains nearly identical across all segments.
-
----
-
-**Tolerance for Logistics Friction**
-
-Even among heavy-repeat customers:
-
-- approximately **19% of orders are classified as Slow or Very Slow**
-
-This demonstrates that loyal customers continue purchasing despite occasional delivery delays.
-
----
-
-**Marginal Differences**
-
-One-time buyers experience a slightly higher proportion of **Very Slow deliveries (6.2%)** compared to heavy-repeat buyers (**4.6%**). However, the gap is too small to meaningfully explain differences in repeat behaviour.
+* **Marginal Differences:** One-time buyers experience a slightly higher proportion of **Very Slow deliveries (6.2%)** compared to heavy-repeat buyers (**4.6%**). However, the gap is too small to meaningfully explain differences in repeat behaviour.  
 
 ---
 
 ## Insight
 
-Delivery speed does **not appear to be the primary driver of customer loyalty on the Olist platform**.
+➜ Delivery speed does **not appear to be the primary driver of customer loyalty on the Olist platform**.
 
-Because repeat buyers experience delivery performance similar to one-time buyers, their decision to return is likely influenced by other factors such as:
+➜ Because repeat buyers experience delivery performance similar to one-time buyers, their decision to return is likely influenced by other factors such as:
 
 - product assortment
 - category affinity
 - pricing competitiveness
 
-While reducing slow deliveries remains important for maintaining overall customer satisfaction, the most effective strategy for increasing repeat purchases likely lies in **merchandising, product recommendations, and targeted retention initiatives** rather than purely logistical improvements.
+➜ While reducing slow deliveries remains important for maintaining overall customer satisfaction, the most effective strategy for increasing repeat purchases likely lies in **merchandising, product recommendations, and targeted retention initiatives** rather than purely logistical improvements.
 
 ---
 
