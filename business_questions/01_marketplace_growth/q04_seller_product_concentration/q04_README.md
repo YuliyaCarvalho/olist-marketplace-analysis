@@ -66,7 +66,7 @@ These metrics provide complementary perspectives on marketplace inequality and c
 ## Visualisations
 
 <p align="center">
-<img src="q04_dataviz/cumulative_gmv_by_seller.png" width="600">
+<img src="q04_dataviz/cumulative_gmv_by_seller.png" width="800">
 </p>
 
 *Figure 4.1 — Cumulative GMV share by seller. The steep initial slope followed by a gradual flattening illustrates a right-skewed long-tail distribution.*
