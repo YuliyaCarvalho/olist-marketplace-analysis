@@ -75,7 +75,7 @@ This allows comparison between **distance-driven delays and size-driven delays**
 <br>
 
 <p align="center">
-<img src="q18_dataviz/size_vs_delivery_performance.png" width="700">
+<img src="q18_dataviz/size_vs_delivery_performance.png" width="500">
 </p>
 
 *Figure 18.2 — Impact of product size on delivery performance. Freight cost increases dramatically with size, while delivery time grows only modestly.*
