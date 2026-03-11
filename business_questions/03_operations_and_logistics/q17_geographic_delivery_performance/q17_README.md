@@ -118,15 +118,15 @@ High-volume routes responsible for a disproportionate share of logistics failure
 
 ## Key Findings
 
-**Geography dominates logistics performance:** Delivery problems are primarily driven by **destination infrastructure and distance**, not seller inefficiency. Across **16 of Brazil’s 27 states**, inbound logistics capacity is the main bottleneck.  
+* **Geography dominates logistics performance:** Delivery problems are primarily driven by **destination infrastructure and distance**, not seller inefficiency. Across **16 of Brazil’s 27 states**, inbound logistics capacity is the main bottleneck.  
 
-**Extreme regional stratification:** Average delivery times vary **3.4× across Brazil**, ranging from roughly **9 days in the Southeast to nearly 29 days in Northern states**.  
+* **Extreme regional stratification:** Average delivery times vary **3.4× across Brazil**, ranging from roughly **9 days in the Southeast to nearly 29 days in Northern states**.  
 
-**The São Paulo bottleneck:** São Paulo functions as Olist’s **primary logistics hub**. Sellers in SP ship efficiently (often **~10 days ahead of ETA**), but long-distance routes from SP to Northern and Northeastern states significantly degrade delivery performance.  
+* **The São Paulo bottleneck:** São Paulo functions as Olist’s **primary logistics hub**. Sellers in SP ship efficiently (often **~10 days ahead of ETA**), but long-distance routes from SP to Northern and Northeastern states significantly degrade delivery performance.  
 
-**Rio de Janeiro last-mile failure:**  Despite geographic proximity to São Paulo, **RJ exhibits a late-delivery rate nearly three times higher than SP**, driven primarily by **urban last-mile constraints in the metropolitan region**.  
+* **Rio de Janeiro last-mile failure:**  Despite geographic proximity to São Paulo, **RJ exhibits a late-delivery rate nearly three times higher than SP**, driven primarily by **urban last-mile constraints in the metropolitan region**.  
 
-**Concentrated operational risk:**  Only **14 major routes (~11%) account for nearly 28% of platform orders**, yet represent the majority of logistics failures. Fixing these routes would significantly improve platform reliability.  
+* **Concentrated operational risk:**  Only **14 major routes (~11%) account for nearly 28% of platform orders**, yet represent the majority of logistics failures. Fixing these routes would significantly improve platform reliability.  
 
 ---
 
