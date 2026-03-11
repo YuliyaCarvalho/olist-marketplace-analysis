@@ -182,9 +182,11 @@ EDA ➜ feature engineering ➜ segmentation ➜ hypothesis testing ➜ business
         │                                │                                │
      README.md                        assets                         notebooks
         │                                │                                │
-        │                                │                                ├── .ipynb
-        │                                │                                ├── .html
-        │                                │                                └── .pdf
+        │                                │                                ├── olist-retention-logistics-risk.ipynb
+        │                                │                                ├── olist-retention-logistics-risk.html
+        │                                │                                ├── olist-retention-logistics-risk.md
+        │                                │                                ├── olist-retention-logistics-risk.pdf
+        │                                │                                └── olist-retention-logistics-risk_files/
         │                                │
         │                                └── project_architecture.png
         │
@@ -215,14 +217,14 @@ business_questions       sql_cleaning         reproducibility          docs
                                │
                                └── q0X_question_name
                                    ├── q0X_README.md
-                                   └── q0X_dataviz
+                                   └── q0X_dataviz/
+```
 
 ---
 
 # Repository Structure
 
-# Repository Structure
-
+```text
 .
 ├── README.md
 ├── assets
@@ -310,7 +312,9 @@ business_questions       sql_cleaning         reproducibility          docs
 ├── notebooks
 │   ├── olist-retention-logistics-risk.ipynb
 │   ├── olist-retention-logistics-risk.html
-│   └── olist-retention-logistics-risk.pdf
+│   ├── olist-retention-logistics-risk.md
+│   ├── olist-retention-logistics-risk.pdf
+│   └── olist-retention-logistics-risk_files
 │
 ├── reproducibility
 │   ├── bigquery_connection.md
@@ -325,6 +329,7 @@ business_questions       sql_cleaning         reproducibility          docs
     ├── products_cleaning.sql
     ├── reviews_cleaning.sql
     └── sellers_cleaning.sql
+```
 
 ---
 
