@@ -77,13 +77,13 @@ Orders were classified into delivery performance tiers and compared across custo
 ## Visualisations
 
 <p align="center">
-<img src="q11_dataviz/delivery_mix_segments.png" width="700">
+<img src="q11_dataviz/delivery_mix_segments.png" width="800">
 </p>
 
 *Figure 11.1 — Delivery performance mix by customer segment, showing that the distribution of delivery speeds (Fast, Typical, Slow, Very Slow) remains highly consistent across different customer loyalty levels.*
 
 <p align="center">
-<img src="q11_dataviz/delivery_friction_rate.png" width="700">
+<img src="q11_dataviz/delivery_friction_rate.png" width="800">
 </p>
 
 *Figure 11.2 — Delivery friction rate by customer segment, comparing the share of “Good” delivery experiences (Fast + Typical) versus delayed experiences (Slow + Very Slow).*
