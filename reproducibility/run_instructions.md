@@ -73,6 +73,7 @@ Examples of exploratory checks included:
 These queries typically used `SELECT` statements executed through helper functions in the notebook.
 
 Example:
+
 ```r
 run_small_query("
 SELECT order_status, COUNT(*)
@@ -86,11 +87,11 @@ GROUP BY order_status
 When inconsistencies were discovered during exploratory analysis, corrective transformations were applied directly in BigQuery.
 
 These transformations typically used statements such as:
+
 ```sql
 CREATE OR REPLACE TABLE dataset.table_name AS
 SELECT ...
 ```
-
 
 These queries were used to:
 
