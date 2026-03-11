@@ -168,7 +168,7 @@ EDA ➜ feature engineering ➜ segmentation ➜ hypothesis testing ➜ business
 
 ## Project Architecture
 
-<img src="assets/project_architecture.png" width="700">
+<img src="assets/project_architecture.png" width="500">
 
 ---
 
