@@ -119,15 +119,15 @@ Comparison of delivery performance across route types and product sizes.
 
 ## Key Findings
 
-**Freight cost is the primary size penalty:** Shipping costs increase dramatically with product size. Average freight rises from roughly **16 BRL for small items to over 130 BRL for very large products**, representing an **eight-fold increase driven by dimensional pricing**.  
+* **Freight cost is the primary size penalty:** Shipping costs increase dramatically with product size. Average freight rises from roughly **16 BRL for small items to over 130 BRL for very large products**, representing an **eight-fold increase driven by dimensional pricing**.  
 
-**Delivery time impact is modest:** Product size increases delivery times only slightly. Average delivery duration rises from approximately **12 days for small items to 15 days for very large items**, a relatively small effect compared to geographic variation.  
+* **Delivery time impact is modest:** Product size increases delivery times only slightly. Average delivery duration rises from approximately **12 days for small items to 15 days for very large items**, a relatively small effect compared to geographic variation.  
 
-**Size does not predict lateness:** The statistical relationship between product dimensions and delivery delays is negligible (**correlation ≈ 0.02**). Large products are **not inherently more likely to be late**.  
+* **Size does not predict lateness:** The statistical relationship between product dimensions and delivery delays is negligible (**correlation ≈ 0.02**). Large products are **not inherently more likely to be late**.  
 
-**Geography dominates logistics performance:** Distance and infrastructure have a far stronger influence on delivery reliability than product size. A **small item shipped across long distances** shows a higher late rate than **large items shipped locally**.  
+* **Geography dominates logistics performance:** Distance and infrastructure have a far stronger influence on delivery reliability than product size. A **small item shipped across long distances** shows a higher late rate than **large items shipped locally**.  
 
-**Unexpected category patterns:** Some lightweight product categories, such as **audio equipment and fashion items**, have higher late-delivery rates than bulky categories like **office furniture**, indicating that delays are primarily driven by route infrastructure rather than package characteristics.  
+* **Unexpected category patterns:** Some lightweight product categories, such as **audio equipment and fashion items**, have higher late-delivery rates than bulky categories like **office furniture**, indicating that delays are primarily driven by route infrastructure rather than package characteristics.  
 
 ---
 
