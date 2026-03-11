@@ -17,14 +17,15 @@ Data Warehouse: Google BigQuery
 
 The notebook was executed in a **pinned Kaggle runtime environment (2024-07-11)** to ensure stable package versions and prevent future platform updates from breaking the analysis.
 
-Runtime details:
 
-- R version: 4.4.0  
-- Operating system: Ubuntu 22.04  
-- Notebook runtime: Kaggle container environment  
-- BigQuery interface: `bigrquery` R package  
+### Runtime Details
 
-The Kaggle notebook runs in a **non-persistent environment**, meaning each execution starts from a clean container.  
+- **R version:** 4.4.0  
+- **Operating system:** Ubuntu 22.04  
+- **Notebook runtime:** Kaggle container environment  
+- **BigQuery interface:** `bigrquery` R package
+
+The Kaggle notebook runs in a **non-persistent container environment**, meaning each execution starts from a clean container.  
 No files are stored locally between runs, and all analytical datasets are stored in Google BigQuery.
 
 Core libraries used:
@@ -72,23 +73,23 @@ Examples of exploratory checks included:
 These queries typically used `SELECT` statements executed through helper functions in the notebook.
 
 Example:
----
+```r
 run_small_query("
 SELECT order_status, COUNT(*)
 FROM orders
 GROUP BY order_status
 ")
----
+```
 
 ### 2. Transformational Queries
 
 When inconsistencies were discovered during exploratory analysis, corrective transformations were applied directly in BigQuery.
 
 These transformations typically used statements such as:
----
+```sql
 CREATE OR REPLACE TABLE dataset.table_name AS
 SELECT ...
----
+```
 
 
 These queries were used to:
@@ -151,16 +152,14 @@ To fully reproduce the data transformations locally:
  
 2. Import the raw tables into your own **Google BigQuery project**.
 
-3. Execute the [SQL scripts](../sql_cleaning/) provided in the repository. Each SQL file contains the validation checks and transformation logic used to construct the cleaned analytical tables.
+3. Execute the [SQL scripts](../sql_cleaning/) provided in the repository. Each SQL file contains the validation checks and transformation logic used to construct the cleaned analytical tables. Before executing the scripts, replace the project and dataset identifiers (e.g. `olist-project-yuliacarvalho.Olist_datasets`) with the corresponding names in your own BigQuery environment.
 
 4. Once the cleaned tables are created, you can run the R code contained in the Kaggle notebook.
 
 ---
 
 > [!IMPORTANT]
-> # Important Notes
-
-* The original analysis was performed using a **warehouse-first workflow**:
+> * The original analysis was performed using a **warehouse-first workflow**:
 ```
 Raw Olist dataset
         ↓
