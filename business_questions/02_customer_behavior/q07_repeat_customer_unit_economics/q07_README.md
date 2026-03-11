@@ -55,7 +55,7 @@ Aggregations were performed to measure order-level value and customer-level life
 ## Visualisations
 
 <p align="center">
-<img src="q07_dataviz/unit_economics_customer_type.png" width="400">
+<img src="q07_dataviz/unit_economics_customer_type.png" width="500">
 </p>
 
 *Figure 7.1 — Unit economics comparison between one-time and repeat customers.*
