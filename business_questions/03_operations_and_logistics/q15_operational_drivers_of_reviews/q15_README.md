@@ -90,25 +90,25 @@ Evaluates whether a seller's **historical reputation and consistency** influence
 ## Visualisations
 
 <p align="center">
-<img src="q15_dataviz/avg_review_delay.png" width="500">
+<img src="q15_dataviz/avg_review_delay.png" width="600">
 </p>
 
 *Figure 15.1 — Average Review Score by Delivery Delay, showing the rapid deterioration of satisfaction once an order passes its ETA.*
 
 <p align="center">
-<img src="q15_dataviz/low_review_share_delay.png" width="500">
+<img src="q15_dataviz/low_review_share_delay.png" width="600">
 </p>
 
 *Figure 15.2 — Share of Low Reviews (1–2) by Delivery Delay, illustrating that over 70% of customers leave a negative review when an order is more than 3 days late.*
 
 <p align="center">
-<img src="q15_dataviz/delay_freight_interaction.png" width="700">
+<img src="q15_dataviz/delay_freight_interaction.png" width="800">
 </p>
 
 *Figure 15.3 — Interaction between delivery delays and freight cost, showing that customer dissatisfaction increases sharply with delay regardless of shipping price.*
 
 <p align="center">
-<img src="q15_dataviz/regression_coefficients.png" width="700">
+<img src="q15_dataviz/regression_coefficients.png" width="800">
 </p>
 
 *Figure 15.4 — Regression coefficients illustrating that delivery delay has a significantly stronger impact on review scores than freight cost or seller-level factors.*
