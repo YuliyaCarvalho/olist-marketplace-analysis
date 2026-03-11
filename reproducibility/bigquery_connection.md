@@ -57,7 +57,7 @@ run_small_query <- function(sql) {
 
 }
 ```
-Additional helper utilities used in the notebook are documented in: [`docs/helper_functions.md`}](docs/helper_functions.md)
+Additional helper utilities used in the notebook are documented in: [`docs/helper_functions.md`](helper_functions.md)
 **Purpose of this approach**
 
 - Execute lightweight queries  
