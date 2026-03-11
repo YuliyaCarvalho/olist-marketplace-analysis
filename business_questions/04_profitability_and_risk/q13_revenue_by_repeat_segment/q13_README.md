@@ -39,37 +39,23 @@ Customers were grouped according to their purchase history:
 
 ### Key metrics
 
-**Total Revenue**
+**Total Revenue:** Customer lifetime revenue was calculated as `total_revenue = price + freight` summed across all orders placed by each `customer_unique_id`.
 
-Customer lifetime revenue was calculated as:
-
-```
-total_revenue = price + freight
-```
-
-summed across all orders placed by each `customer_unique_id`.
-
-**Most Recent Review Score**
-
-To represent current customer sentiment, the analysis extracted the **review score from each customer's most recent order**.
-
+**Most Recent Review Score:** To represent current customer sentiment, the analysis extracted the **review score from each customer's most recent order**.
 This serves as a proxy for their latest experience with the platform.
 
-**Customer-Level Aggregation**
-
-All orders belonging to the same `customer_unique_id` were aggregated to create a single record per customer containing:
-
-- total lifetime revenue
-- total orders
-- frequency segment
-- most recent review score
+**Customer-Level Aggregation:** All orders belonging to the same `customer_unique_id` were aggregated to create a single record per customer containing:
+> - total lifetime revenue
+> - total orders
+> - frequency segment
+> - most recent review score
 
 ---
 
 ## Visualisations
 
 <p align="center">
-<img src="q13_dataviz/revenue_by_segment_review.png" width="900">
+<img src="q13_dataviz/revenue_by_segment_review.png" width="800">
 </p>
 
 *Figure 13.1 — Average customer revenue by loyalty segment and review score, illustrating that purchase frequency drives far larger revenue differences than satisfaction alone.*
@@ -111,36 +97,28 @@ This table summarizes revenue statistics across loyalty segments and satisfactio
 
 ## Key Findings
 
-**Frequency Dominates Value**
+**Frequency Dominates Value:** Customer lifetime value is driven primarily by **purchase frequency**, not satisfaction alone. One-time buyers show a low revenue ceiling of roughly **150–200 BRL**, regardless of review score.
 
-Customer lifetime value is driven primarily by **purchase frequency**, not satisfaction alone. One-time buyers show a low revenue ceiling of roughly **150–200 BRL**, regardless of review score.
+**The Step-Up Effect:** Moving a customer from **one-time to light-repeat behaviour nearly doubles their average revenue**, increasing lifetime value from approximately **160 BRL to ~300 BRL**.
 
-**The Step-Up Effect**
+**Heavy Repeaters Generate the Highest Value:** Heavy-repeat customers generate the highest lifetime revenue (approximately **600 BRL per customer**), but represent only a **very small portion of the total customer base**.
 
-Moving a customer from **one-time to light-repeat behaviour nearly doubles their average revenue**, increasing lifetime value from approximately **160 BRL to ~300 BRL**.
-
-**Heavy Repeaters Generate the Highest Value**
-
-Heavy-repeat customers generate the highest lifetime revenue (approximately **600 BRL per customer**), but represent only a **very small portion of the total customer base**.
-
-**Sentiment and Revenue Are Partially Decoupled**
-
-Among heavy-repeat buyers, the highest lifetime revenue sometimes appears in cases where the **most recent review score is negative**. This suggests that loyal customers may continue purchasing even after a problematic order.
+**Sentiment and Revenue Are Partially Decoupled:** Among heavy-repeat buyers, the highest lifetime revenue sometimes appears in cases where the **most recent review score is negative**. This suggests that loyal customers may continue purchasing even after a problematic order.
 
 ---
 
 ## Insight
 
-Customer lifetime value on the Olist platform is driven primarily by **repeat purchasing behaviour rather than satisfaction alone**.
+➜ Customer lifetime value on the Olist platform is driven primarily by **repeat purchasing behaviour rather than satisfaction alone**.
 
-Improving the experience of a one-time buyer does not significantly increase their financial contribution unless it **converts them into a repeat buyer**.
+➜ Improving the experience of a one-time buyer does not significantly increase their financial contribution unless it **converts them into a repeat buyer**.
 
-From a strategic perspective, Olist should focus on:
+➜ From a strategic perspective, Olist should focus on:
 
 - converting first-time buyers into second purchases
 - proactively recovering high-value repeat customers after negative experiences
 
-Because heavy-repeat customers generate disproportionate revenue, retaining even a small fraction of this group has a **large impact on total marketplace GMV**.
+➜ Because heavy-repeat customers generate disproportionate revenue, retaining even a small fraction of this group has a **large impact on total marketplace GMV**.
 
 ---
 
