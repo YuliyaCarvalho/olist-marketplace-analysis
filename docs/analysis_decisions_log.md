@@ -55,6 +55,6 @@ marketplace growth.
 
 **Decision:** Deep-dive analyses of specific routes or cities were performed only when the sample size met a minimum threshold:
 
-`**n ≥ 50 orders**`
+**`n ≥ 50 orders`**
 
 **Reason:** Small sample sizes can produce unstable or misleading conclusions. This threshold ensures that reported insights are statistically meaningful.
