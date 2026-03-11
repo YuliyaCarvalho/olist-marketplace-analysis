@@ -56,7 +56,7 @@ However:
 
 ---
 
-# 📊 Strategic Action Plan
+# Strategic Action Plan
 
 ## 1. Immediate Operational Fixes
 
@@ -124,7 +124,7 @@ Objective:
 
 ---
 
-# 💰 Financial Impact Summary
+# Financial Impact Summary
 
 ### Total Addressable Opportunity
 
