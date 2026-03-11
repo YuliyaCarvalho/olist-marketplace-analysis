@@ -56,13 +56,13 @@ Monthly delivery performance metrics were calculated to evaluate:
 ## Visualisations
 
 <p align="center">
-<img src="q03_dataviz/monthly_delivery_rate.png" width="600">
+<img src="q03_dataviz/monthly_delivery_rate.png" width="700">
 </p>
 
 *Figure 3.1 — Monthly delivery rate (orders with final outcomes), showing rapid improvement after launch and consistently near-perfect fulfillment performance.*
 
 <p align="center">
-<img src="q03_dataviz/monthly_non_delivery_rate.png" width="600">
+<img src="q03_dataviz/monthly_non_delivery_rate.png" width="700">
 </p>
 
 *Figure 3.2 — Monthly non-delivery rate highlighting a minor spike during the early platform launch period followed by effectively near-zero failure.*
