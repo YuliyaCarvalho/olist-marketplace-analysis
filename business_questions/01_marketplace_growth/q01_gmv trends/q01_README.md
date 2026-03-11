@@ -56,14 +56,13 @@ This time series was used to analyze revenue trends and identify phases of marke
 
 ## Key Findings
 
-**Marketplace scale:** Olist generated approximately **15.5M BRL in GMV** between October 2016 and August 2018.  
+* **Marketplace scale:** Olist generated approximately **15.5M BRL in GMV** between October 2016 and August 2018.  
 
-**2017 acceleration:** The platform moved from an early adoption phase in late 2016 into rapid expansion during 2017, with monthly GMV increasing to roughly **700K BRL**.  
+* **2017 acceleration:** The platform moved from an early adoption phase in late 2016 into rapid expansion during 2017, with monthly GMV increasing to roughly **700K BRL**.  
 
-**2018 maturation:** By 2018 the marketplace reached a stable high-volume phase, with monthly revenue consistently ranging between **900K and 1.1M BRL**.  
+* **2018 maturation:** By 2018 the marketplace reached a stable high-volume phase, with monthly revenue consistently ranging between **900K and 1.1M BRL**.  
  
-**Data robustness:** Validation confirmed that aggregating payment values at the **individual payment level** and **order level** produced identical results, ensuring the structural integrity of the financial data (Additionally, this robustness is supported by the **Payment-Item Integrity Check** performed during the "Prepare and Process" phase, which confirmed near-perfect consistency (99.9% coverage) between the total amount paid by customers and the combined price and freight of items for delivered orders).
-
+* **Data robustness:** Validation confirmed that aggregating payment values at the **individual payment level** and **order level** produced identical results, ensuring the structural integrity of the financial data (Additionally, this robustness is supported by the **Payment-Item Integrity Check** performed during the "Prepare and Process" phase, which confirmed near-perfect consistency (99.9% coverage) between the total amount paid by customers and the combined price and freight of items for delivered orders).
 
 
 ---
