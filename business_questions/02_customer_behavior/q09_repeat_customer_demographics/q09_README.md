@@ -50,7 +50,7 @@ Customer-level transaction data was grouped to identify how geographic location 
 ## Visualisations
 
 <p align="center">
-<img src="q09_dataviz/gmv_by_state_and_segment.png" width="700">
+<img src="q09_dataviz/gmv_by_state_and_segment.png" width="800">
 </p>
 
 *Figure 9.1 — GMV share by customer frequency segment and state (top states), highlighting the geographic concentration of repeat buyers in Brazil’s major economic regions.*
