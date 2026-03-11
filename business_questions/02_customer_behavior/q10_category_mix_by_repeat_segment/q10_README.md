@@ -33,19 +33,16 @@ To evaluate category affinity across different customer segments, transaction va
 - **Light-repeat** → 2 orders  
 - **Heavy-repeat** → 3+ orders
 
-**Key filters**
-
-To ensure reliable results, the analysis was restricted to:
-
-- delivered orders
-- transactions with valid chronological timelines
-- records excluding operational anomalies
+**Key filters:** To ensure reliable results, the analysis was restricted to:
+> - delivered orders
+> - transactions with valid chronological timelines
+> - records excluding operational anomalies
 
 
 **Derived metrics:**
 
 * **Proportional Item GMV** ➜ Because a single order can contain items from multiple categories, total order GMV was allocated to individual items **proportionally by item price**:
-`Proportional Item GMV`: gmv_item = gmv_order × (item_price / total_order_price)
+`Proportional Item GMV: gmv_item = gmv_order x (item_price / total_order_price)`
 This ensures that revenue is correctly distributed across product categories.
 
 * **Category GMV Share** ➜ For each customer segment: `GMV share = category GMV / total GMV of that segment`
@@ -54,9 +51,7 @@ This allows direct comparison of category importance across segments.
 * **Validation** ➜ To prevent metric inflation, item-level allocations were validated to confirm that: `Σ item GMV = order GMV`
 This ensures that revenue remains consistent between order-level and item-level analysis.
 
-**Granularity**
-
-Product-category GMV share was calculated separately for each customer frequency segment.
+**Granularity** ➜ Product-category GMV share was calculated separately for each customer frequency segment.
 
 ---
 
@@ -81,22 +76,20 @@ Customer purchase frequency segments were combined with category-level GMV calcu
 
 ## Key Findings
 
-**Core revenue drivers**: Across all segments, GMV is concentrated in a small group of lifestyle and consumer categories, including:   
-
+* **Core revenue drivers:** Across all segments, GMV is concentrated in a small group of lifestyle and consumer categories, including:   
 > - **health_beauty**
 > - **sports_leisure**
 > - **fashion_bags_accessories**
 > - **watches_gifts**
 
-**Heavy-repeat category affinity**: Heavy-repeat customers show particularly strong concentration in:  
-
+* **Heavy-repeat category affinity:** Heavy-repeat customers show particularly strong concentration in:  
 > - **bed_bath_table (~15%)**  
 > - **sports_leisure (~10%)**  
 > - **watches_gifts (~10%)**  
 
-**Segment differences**: While **health_beauty** dominates purchases among one-time buyers, its relative importance declines among repeat customers. In contrast, **bed_bath_table** becomes the primary category among heavy-repeat buyers.  
+* **Segment differences:** While **health_beauty** dominates purchases among one-time buyers, its relative importance declines among repeat customers. In contrast, **bed_bath_table** becomes the primary category among heavy-repeat buyers.  
 
-**Category-driven loyalty**: The concentration of spending among repeat buyers suggests that repeat behavior is often tied to **habitual purchases within specific product niches**.  
+* **Category-driven loyalty:** The concentration of spending among repeat buyers suggests that repeat behavior is often tied to **habitual purchases within specific product niches**.  
 
 ---
 
