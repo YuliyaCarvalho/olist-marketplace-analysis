@@ -62,7 +62,7 @@ Monthly order counts and GMV were calculated and visualized to compare:
 ## Visualization
 
 <p align="center">
-<img src="q02_dataviz/orders_vs_gmv.png" width="700">
+<img src="q02_dataviz/orders_vs_gmv.png" width="800">
 </p>
 
 *Figure 2.1 — Monthly comparison of all orders, delivered orders, and GMV (thousand BRL), illustrating the relationship between transaction volume and revenue.*
