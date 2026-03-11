@@ -93,21 +93,13 @@ Median response time remains **1 day regardless of review sentiment**, indicatin
 
 ## Key Findings
 
-**Positive Loyalty Gradient:** Customer satisfaction increases with loyalty.  
-While **58.9% of one-time buyers leave “excellent” reviews**, this share rises to **71.8% among heavy-repeat customers**.
+* **Positive Loyalty Gradient:** Customer satisfaction increases with loyalty. While **58.9% of one-time buyers leave “excellent” reviews**, this share rises to **71.8% among heavy-repeat customers**.    
 
+* **Low Severe Dissatisfaction:** Negative feedback remains relatively rare across all segments. Combined **bad and very bad reviews represent ~7% of heavy-repeat feedback**, compared to roughly **13% among one-time buyers**.  
 
+* **Seller Communication Consistency:** Sellers typically respond to reviews within **one day**, regardless of sentiment. This suggests that response timing does not play a major role in shaping customer satisfaction outcomes.  
 
-**Low Severe Dissatisfaction:** Negative feedback remains relatively rare across all segments.  
-Combined **bad and very bad reviews represent ~7% of heavy-repeat feedback**, compared to roughly **13% among one-time buyers**.
-
-
-
-**Seller Communication Consistency:** Sellers typically respond to reviews within **one day**, regardless of sentiment.  
-This suggests that response timing does not play a major role in shaping customer satisfaction outcomes.
-
-
-**Acquisition Drives Complaint Volume:** Although one-time buyers have a higher share of negative reviews, they also represent **the vast majority of customers (~97%)**, meaning they contribute most of the platform’s total complaints in absolute terms.
+* **Acquisition Drives Complaint Volume:** Although one-time buyers have a higher share of negative reviews, they also represent **the vast majority of customers (~97%)**, meaning they contribute most of the platform’s total complaints in absolute terms.  
 
 ---
 
