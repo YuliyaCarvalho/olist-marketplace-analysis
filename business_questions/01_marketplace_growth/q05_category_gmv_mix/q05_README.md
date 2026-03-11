@@ -63,13 +63,13 @@ Categories were ranked by GMV to evaluate:
 ## Visualisations
 
 <p align="center">
-<img src="q05_dataviz/cumulative_gmv_by_category.png" width="700">
+<img src="q05_dataviz/cumulative_gmv_by_category.png" width="500">
 </p>
 
 *Figure 5.1 — Cumulative GMV share by product category. The steep rise among the first categories followed by gradual flattening indicates a strong long-tail distribution.*
 
 <p align="center">
-<img src="q05_dataviz/top_categories_gmv.png" width="700">
+<img src="q05_dataviz/top_categories_gmv.png" width="500">
 </p>
 
 *Figure 5.2 — Top 20 product categories ranked by GMV, highlighting the dominant contribution of health_beauty, watches_gifts, and bed_bath_table.*
@@ -78,26 +78,27 @@ Categories were ranked by GMV to evaluate:
 
 ## Key Findings
 
-**Extreme category concentration**: Olist’s GMV is heavily concentrated within a relatively small subset of the product catalogue. The top **15 categories generate the majority of total marketplace revenue**, while the remaining **40+ categories contribute marginal shares individually.**
+* **Extreme category concentration:** Olist’s GMV is heavily concentrated within a relatively small subset of the product catalogue. The top **15 categories generate the majority of total marketplace revenue**, while the remaining **40+ categories contribute marginal shares individually.**
 
-**Revenue leaders**: The highest-performing categories are:
-
+* **Revenue leaders:** The highest-performing categories are:
 > * **health_beauty** (~1.39M BRL)
 > * **watches_gifts** (~1.25M BRL)
 > * **bed_bath_table** (~1.21M BRL)
 
-**Platform impact**: The **top three categories alone generate approximately 25% of total GMV**, indicating strong demand concentration.
+* **Platform impact:** The **top three categories alone generate approximately 25% of total GMV**, indicating strong demand concentration.
 
-**Long-tail structure**: The **top 20 categories account for nearly 84% of total GMV**, confirming that the remaining categories represent a broad but relatively low-revenue tail.
+* **Long-tail structure:** The **top 20 categories account for nearly 84% of total GMV**, confirming that the remaining categories represent a broad but relatively low-revenue tail.
 
 ---
 
 ## Insight
 
-Olist’s marketplace is structurally dependent on a core group of **lifestyle and consumer goods categories** that serve as primary revenue engines.
+➜ Olist’s marketplace is structurally dependent on a core group of **lifestyle and consumer goods categories** that serve as primary revenue engines.
 
-While the platform benefits from offering a wide assortment, overall marketplace growth and stability are disproportionately influenced by the performance of these leading categories. Strategic initiatives—such as seller recruitment, promotion campaigns, and inventory optimization—are therefore likely to deliver the greatest impact when focused on these high-volume segments.
+➜ While the platform benefits from offering a wide assortment, overall marketplace growth and stability are disproportionately influenced by the performance of these leading categories. Strategic initiatives, such as seller recruitment, promotion campaigns, and inventory optimization, - are therefore likely to deliver the greatest impact when focused on these high-volume segments.
 
 ---
 
-➡️ **Next:** [q06 Repeat Customer Share](../../02_customer_behavior/q06_repeat_customer_share)
+## Next Question
+
+➡️ **Next:** With the revenue-driving categories identified, the next step is to understand the customer base behind these transactions: "How many customers are one-time buyers vs repeat buyers, and how much GMV comes from repeat customers?" [q06 Repeat Customer Share](../../02_customer_behavior/q06_repeat_customer_share)
