@@ -70,6 +70,9 @@ library(glue)
     Installing package into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
     
+    also installing the dependencies ‘stable’, ‘statip’
+    
+    
     Registered S3 method overwritten by 'rmutil':
       method         from
       print.response httr
@@ -108,7 +111,7 @@ sessionInfo()
      [1] glue_1.7.0       modeest_2.4.0    kableExtra_1.4.0 caret_6.0-94    
      [5] lattice_0.22-6   gridExtra_2.3    DT_0.33          knitr_1.47      
      [9] skimr_2.1.5      lubridate_1.9.3  scales_1.3.0     ggplot2_3.5.1   
-    [13] tidyr_1.3.1      dplyr_1.1.4      bigrquery_1.6.1  httr_1.4.7      
+    [13] tidyr_1.3.1      dplyr_1.1.4      bigrquery_1.5.1  httr_1.4.7      
     
     loaded via a namespace (and not attached):
      [1] DBI_1.2.3            pROC_1.18.5          rlang_1.1.4         
@@ -145,7 +148,8 @@ sessionInfo()
 
 ![Olist Logo](https://www.notion.com/_next/image?url=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fpublic.notion-static.com%2F7fa59d58-ba42-4de1-840a-e2e31ab9ce3b%2Fba416d9e-ee4d-4b7a-a9fe-a506333af2b7.png&w=1920&q=75)
 
-# Google Data Analytics Capstone Project by ***Yulia Carvalho***
+# Google Data Analytics Capstone Project 
+### by Yulia Carvalho
 
 
 This `project` marks the culmination of my journey towards earning the **[Google Data Analytics Professional Certificate](https://www.coursera.org/professional-certificates/google-data-analytics)**.  
@@ -153,6 +157,25 @@ Over recent months, I have developed and sharpened my skills in data cleaning, a
 
 In this case study, I will analyze Brazil’s dynamic e-commerce landscape using the public Olist dataset [Olist dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce), which contains records from thousands of sales, customer behavior, product categories and seller operations. The goal is to uncover patterns and insights that can support strategic decision-making for online marketplaces, with a particular emphasis on operational efficiency and consumer trends. I will work through each step of the data analysis workflow — from defining questions and preparing data, to executing exploratory data analysis (EDA), hypothesis testing and sharing results. 
 Key frameworks, such as ***Ask ➡︎ Prepare ➡︎ Process ➡︎ Analyze ➡︎ Share ➡︎ Act***, will guide my approach.
+
+---
+
+## Project Repository (Executive Report)
+
+This notebook presents the **complete analytical workflow** for the project, documenting each step of the data analysis process — including data cleaning, transformations, exploratory analysis, methodological decisions, and intermediate reasoning.
+
+In parallel, a structured **executive-style version of the analysis** is available in the project repository:
+
+**GitHub Repository:** [LINK](https://github.com/YuliyaCarvalho/olist-marketplace-analysis)
+
+While this notebook provides a continuous and detailed analytical narrative, the repository organizes the findings into a series of **individual business questions**, each summarized in a dedicated report.
+
+This structure allows readers to either:
+
+- follow the **full end-to-end analytical process** within this notebook, or  
+- review the **condensed executive summaries** of the key findings and insights in the repository.
+
+---
 
  
 **<span style="text-decoration: underline; color:red;">Disclaimer:</span>**
@@ -353,6 +376,9 @@ project_id <- "olist-project-yuliacarvalho"
 
     Installing package into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
+    
+    also installing the dependency ‘nanoparquet’
+    
     
     
 
@@ -7039,21 +7065,21 @@ LIMIT 15")
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>ac1a1d01dcd4350d31887f6eab3f63d5</td><td>1</td><td>58c91c9e1ddc24815b7c15ac4e8fee5e</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-29 21:55:16</td><td>27.72</td><td> 7.93</td><td>small_appliances_home_oven_and_coffee</td><td>2018-08-23 21:43:41</td><td>2018-08-23 21:55:16</td><td>2018-08-27 14:54:00</td><td>2018-08-30 21:05:56</td><td>2018-08-31</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>good     </td></tr>
-	<tr><td>abf8d2c3cc9ffa42db0103106b061889</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-05-14 08:35:23</td><td>25.00</td><td>23.28</td><td>office_furniture                     </td><td>2018-05-08 08:23:21</td><td>2018-05-08 08:35:23</td><td>2018-05-08 13:20:00</td><td>2018-05-15 16:52:15</td><td>2018-06-08</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>neutral  </td></tr>
-	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>4</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>2</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>fcaa22948cf53b9b3ff7de0c67b6391c</td><td>1</td><td>31240eaae01b43247d878f3e89996e35</td><td>8b28d096634035667e8263d57ba3368c</td><td>2018-02-14 19:55:28</td><td>24.90</td><td>11.85</td><td>small_appliances_home_oven_and_coffee</td><td>2018-02-08 19:39:39</td><td>2018-02-08 19:55:28</td><td>2018-02-10 00:26:22</td><td>2018-02-16 14:33:01</td><td>2018-03-02</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>7f6945b2c635db3bce1cfb585ba82d33</td><td>1</td><td>514171f9d45a3d93574fc587ef775579</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-02 10:04:23</td><td>35.19</td><td>18.35</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-27 09:52:08</td><td>2018-07-27 10:04:23</td><td>2018-07-30 12:15:00</td><td>2018-08-02 23:03:29</td><td>2018-08-28</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>082730bdb06cc2b755fbb33becd6ccec</td><td>1</td><td>eee404f099d4035b0f3e4dc374669a31</td><td>88cf19ec1fc2c58f161aee259d57142c</td><td>2018-07-30 23:15:14</td><td>30.00</td><td>18.31</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-24 23:00:55</td><td>2018-07-24 23:15:14</td><td>2018-07-25 14:50:00</td><td>2018-08-01 16:28:49</td><td>2018-08-10</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>312f43273284b7ab987d5bc4d880d5ef</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-09 20:31:35</td><td>25.00</td><td>16.37</td><td>office_furniture                     </td><td>2018-07-03 20:17:22</td><td>2018-07-05 16:27:45</td><td>2018-07-04 13:01:00</td><td>2018-07-09 15:40:50</td><td>2018-07-27</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>22014e568766c4f4d4faf4f8ee12c606</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-12 03:11:21</td><td>25.00</td><td>20.45</td><td>office_furniture                     </td><td>2018-07-04 17:37:50</td><td>2018-07-06 03:11:21</td><td>2018-07-09 13:16:00</td><td>2018-07-14 01:40:49</td><td>2018-07-31</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>good     </td></tr>
-	<tr><td>b0f3b60e4ef21a14515d0e51782a7580</td><td>1</td><td>31240eaae01b43247d878f3e89996e35</td><td>8b28d096634035667e8263d57ba3368c</td><td>2017-08-21 03:50:29</td><td>21.90</td><td>11.85</td><td>small_appliances_home_oven_and_coffee</td><td>2017-08-13 22:11:21</td><td>2017-08-15 03:50:29</td><td>2017-08-16 12:57:16</td><td>2017-08-19 14:02:47</td><td>2017-09-01</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>neutral  </td></tr>
-	<tr><td>61f26d1fbc29fc8e6d6bc8ba373e81f6</td><td>1</td><td>6341aca5b02d00d80b6f4dead6816435</td><td>5194c22ed1f616ec0c0f33c571542879</td><td>2018-07-31 21:30:18</td><td>29.90</td><td>22.14</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-27 21:19:42</td><td>2018-07-27 21:32:03</td><td>2018-07-30 13:11:00</td><td>2018-08-15 18:59:50</td><td>2018-08-21</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>good     </td></tr>
-	<tr><td>55bd3d21d10786b863b8537b32bc3899</td><td>1</td><td>32bad49615b7c5da42609b98df97482c</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-06 14:05:16</td><td>16.29</td><td>18.23</td><td>small_appliances_home_oven_and_coffee</td><td>2018-08-01 13:52:56</td><td>2018-08-01 14:05:16</td><td>2018-08-03 11:20:00</td><td>2018-08-07 20:33:36</td><td>2018-08-20</td><td>delivered</td><td> 5</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>3</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>1e67200d1a2ae06bc9830fa7b62d8b85</td><td>1</td><td>32bad49615b7c5da42609b98df97482c</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-02 02:05:11</td><td>10.19</td><td> 7.87</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-25 22:57:36</td><td>2018-07-27 02:05:11</td><td>2018-07-30 12:26:00</td><td>2018-08-01 20:03:17</td><td>2018-08-06</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>1</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>95e01270fcbae9863423400103359279</td><td>1</td><td>b73f6899a58fe7a37e55149e9a11c717</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-10 15:51:43</td><td> 86.99</td><td>28.23</td><td>office_furniture</td><td>2016-10-04 18:52:56</td><td>2016-10-06 15:51:42</td><td>2016-11-01 07:27:42</td><td>2016-11-04 17:54:00</td><td>2016-11-24</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>bad      </td></tr>
+	<tr><td>5f4c8250b9e6ee47971e0b19da4aa0f2</td><td>1</td><td>c62dee961914cc2e49239963b04258ec</td><td>38874e327ce94d11390b96eb42d61928</td><td>2016-10-12 11:12:54</td><td>689.99</td><td>93.23</td><td>office_furniture</td><td>2016-10-08 10:31:00</td><td>2016-10-08 11:12:53</td><td>2016-11-09 11:34:00</td><td>2016-11-18 16:05:46</td><td>2016-12-06</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>neutral  </td></tr>
+	<tr><td>7e2dddf174cc4d2768bf39c43ab2bd7a</td><td>1</td><td>e41a6ac2f57a273eb0d214c7cbab5db9</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-14 05:54:52</td><td>129.97</td><td>29.38</td><td>office_furniture</td><td>2016-10-09 15:10:41</td><td>2016-10-10 05:54:51</td><td>2016-11-03 07:43:55</td><td>2016-11-10 09:27:42</td><td>2016-12-02</td><td>delivered</td><td> 5</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>3</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>87f48ad03a575830fd30137520ef411b</td><td>1</td><td>cbbc2be2dd13b09f354a19a987e05924</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-10 23:33:27</td><td> 94.99</td><td>19.96</td><td>office_furniture</td><td>2017-02-01 23:33:27</td><td>2017-02-01 23:45:16</td><td>2017-02-09 07:37:27</td><td>2017-02-14 14:49:01</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>NA       </td></tr>
+	<tr><td>d708b88543d7c2b7c9eb0b31864c8ca1</td><td>2</td><td>8c22b9ad6943f7dfc87fde6fb92ab133</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 23:52:10</td><td>136.99</td><td>46.65</td><td>office_furniture</td><td>2017-02-05 23:52:10</td><td>2017-02-06 01:05:37</td><td>2017-02-20 07:14:11</td><td>2017-02-23 15:07:38</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>good     </td></tr>
+	<tr><td>d708b88543d7c2b7c9eb0b31864c8ca1</td><td>1</td><td>e0352fc1b2c93712f1772fc4b0204db7</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 23:52:10</td><td>119.99</td><td> 0.06</td><td>office_furniture</td><td>2017-02-05 23:52:10</td><td>2017-02-06 01:05:37</td><td>2017-02-20 07:14:11</td><td>2017-02-23 15:07:38</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>good     </td></tr>
+	<tr><td>ae86389756e9af7f5f5f64aa266a439a</td><td>1</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 20:00:06</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-02-05 20:00:06</td><td>2017-02-07 04:03:10</td><td>2017-02-10 07:55:57</td><td>2017-02-16 05:43:59</td><td>2017-03-08</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>e2eaf909eb6ba881117aa407992a5ffb</td><td>1</td><td>b73f6899a58fe7a37e55149e9a11c717</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-11 02:49:10</td><td> 86.99</td><td>28.23</td><td>office_furniture</td><td>2016-10-05 11:05:52</td><td>2016-10-07 02:49:09</td><td>2016-11-01 07:13:36</td><td>2016-11-14 15:03:36</td><td>2016-11-25</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>96b947c986b42f213c9e6b8ccccedb89</td><td>1</td><td>7d1d3de69616eacb023e39204065a068</td><td>1ca4bdb0cd7fc48e949bac066188ed26</td><td>2018-08-06 03:55:23</td><td>380.00</td><td>79.63</td><td>office_furniture</td><td>2018-07-30 13:00:56</td><td>2018-07-31 03:55:23</td><td>NA</td><td>NA</td><td>2018-08-22</td><td>canceled </td><td> 7</td><td>35</td><td>0</td><td>neutral  </td></tr>
+	<tr><td>cd383d7a5f926abfe7b2ee1b80078b45</td><td>1</td><td>c62dee961914cc2e49239963b04258ec</td><td>38874e327ce94d11390b96eb42d61928</td><td>2017-02-13 22:05:38</td><td>699.99</td><td>80.69</td><td>office_furniture</td><td>2017-02-09 22:05:38</td><td>2017-02-09 22:23:00</td><td>2017-02-20 09:32:08</td><td>2017-02-23 09:22:41</td><td>2017-03-10</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>2</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>9315757eaf0e782619bed131508dbddb</td><td>1</td><td>e41a6ac2f57a273eb0d214c7cbab5db9</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-11 10:44:55</td><td>129.97</td><td>20.49</td><td>office_furniture</td><td>2016-10-07 09:41:02</td><td>2016-10-07 10:44:54</td><td>2016-11-03 08:37:50</td><td>2016-11-07 08:45:43</td><td>2016-11-29</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>c776863a93dc0740c6e7d78104b21413</td><td>1</td><td>ddc50b859563aa0b3d663559f3696690</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-29 09:43:55</td><td>176.97</td><td>87.11</td><td>office_furniture</td><td>2016-10-10 15:01:27</td><td>2016-10-10 15:44:46</td><td>2016-11-14 07:41:23</td><td>2016-12-14 08:03:48</td><td>2016-12-14</td><td>delivered</td><td>19</td><td>35</td><td>0</td><td>NA       </td></tr>
 </tbody>
 </table>
 
@@ -9330,8 +9356,8 @@ ORDER BY count DESC")
     3        -23.50605       -46.71738   141
     4        -23.49062       -46.86900   127
     5        -23.00551       -43.37596   102
-    6        -22.96591       -43.39000    89
-    7        -23.00458       -43.31990    89
+    6        -23.00458       -43.31990    89
+    7        -22.96591       -43.39000    89
     8        -15.84145       -48.02403    85
     9        -23.53719       -46.59404    83
     10       -23.49189       -46.54629    82
@@ -9363,11 +9389,11 @@ ORDER BY count DESC")
     3                        05145       -23.50605       -46.71738   141
     4                        06414       -23.49062       -46.86900   127
     5                        22620       -23.00551       -43.37596   102
-    6                        22775       -22.96591       -43.39000    89
-    7                        22640       -23.00458       -43.31990    89
+    6                        22640       -23.00458       -43.31990    89
+    7                        22775       -22.96591       -43.39000    89
     8                        71936       -15.84145       -48.02403    85
     9                        03015       -23.53719       -46.59404    83
-    10                       09781       -23.72764       -46.53106    81
+    10                       06401       -23.50924       -46.88667    81
     
 
 
@@ -9400,8 +9426,8 @@ LIMIT 10")
 	<tr><td>05145</td><td>-23.50605</td><td>-46.71738</td><td>sao paulo     </td><td>SP</td><td>141</td></tr>
 	<tr><td>06414</td><td>-23.49062</td><td>-46.86900</td><td>barueri       </td><td>SP</td><td>127</td></tr>
 	<tr><td>22620</td><td>-23.00551</td><td>-43.37596</td><td>rio de janeiro</td><td>RJ</td><td>102</td></tr>
-	<tr><td>22775</td><td>-22.96591</td><td>-43.39000</td><td>rio de janeiro</td><td>RJ</td><td> 89</td></tr>
 	<tr><td>22640</td><td>-23.00458</td><td>-43.31990</td><td>rio de janeiro</td><td>RJ</td><td> 89</td></tr>
+	<tr><td>22775</td><td>-22.96591</td><td>-43.39000</td><td>rio de janeiro</td><td>RJ</td><td> 89</td></tr>
 	<tr><td>71936</td><td>-15.84145</td><td>-48.02403</td><td>brasilia      </td><td>DF</td><td> 85</td></tr>
 	<tr><td>03015</td><td>-23.53719</td><td>-46.59404</td><td>sao paulo     </td><td>SP</td><td> 83</td></tr>
 	<tr><td>06401</td><td>-23.50924</td><td>-46.88667</td><td>barueri       </td><td>SP</td><td> 81</td></tr>
@@ -14032,22 +14058,22 @@ This will ensure, that I captured all seller-geography relationships and transpa
 **Geographic Delay Metrics**:   
 In this analysis I calculate **end-to-end delivery delays**, grouped by geographic location, to identify whether delays are driven by origin (seller state) or destination (customer state) infrastructure:
 
-🔹`seller_delay` (more accurately: "origin state delay"): average delay vs. ETA for orders shipped FROM sellers in State X to any destination. Includes seller processing time, carrier pickup, transit and final delivery. A high `seller_delay` will indicate problems with outbound logistics from that state X.  
+🔹`seller_delay` (more accurately: "origin state delay"): average delay vs. ETA for orders shipped FROM sellers in State X to any destination. Includes seller processing time, carrier pickup, transit and final delivery. A high `seller_delay` will indicate problems with outbound logistics from that state X.    
 
-🔹`customer_delay` (more accurately: "destination state delay"): average delay vs. ETA for orders delivered TO customers in State X from any origin. Reflects the difficulty of reaching that state through Brazil's logistics network.
+🔹`customer_delay` (more accurately: "destination state delay"): average delay vs. ETA for orders delivered TO customers in State X from any origin. Reflects the difficulty of reaching that state through Brazil's logistics network.  
 
-🔹`delay_difference`: `seller_delay` - `customer_delay`. Positive values (>+1 day) will indicate seller location problems (harder to ship FROM than TO), while negative values (<-1 day) indicate customer location problems (harder to ship TO than FROM). I classify values between -1 and +1 as "balanced."
+🔹`delay_difference`: `seller_delay` - `customer_delay`. Positive values (>+1 day) will indicate seller location problems (harder to ship FROM than TO), while negative values (<-1 day) indicate customer location problems (harder to ship TO than FROM). I classify values between -1 and +1 as "balanced."  
 
 These metrics measure total supply chain performance by geography, not individual seller behavior (like carrier handoff timing). They reveal systemic infrastructure bottlenecks, rather than seller-specific issues.
 
 **Statistical Reliability Thresholds:**  
 To ensure analysis is based on reliable patterns rather than noise, I applied the following volume thresholds:
 
-🔹`≥30 seller-order pairs`: Central Limit Theorem "dictates" n≥30 for normally distributed means, but I have already established, that Olist data has a "heavy" right tail (extreme delays). I will stick to n≥30, as it will ensure sufficient robustness of the mean delay estimate, limiting the influence of extreme outliers.
+🔹`≥30 seller-order pairs`: Central Limit Theorem "dictates" n≥30 for normally distributed means, but I have already established, that Olist data has a "heavy" right tail (extreme delays). I will stick to n≥30, as it will ensure sufficient robustness of the mean delay estimate, limiting the influence of extreme outliers.  
 
-🔹`≥100 unique orders`: threshold for "high-volume" routes requiring operational attention. Routes with 100+ orders represent meaningful business volume where logistics improvements have measurable ROI. Below this threshold, routes are analyzed, but flagged as lower priority.
+🔹`≥100 unique orders`: threshold for "high-volume" routes requiring operational attention. Routes with 100+ orders represent meaningful business volume where logistics improvements have measurable ROI. Below this threshold, routes are analyzed, but flagged as lower priority.  
 
-🔹`≥50 seller-order pairs`: Mid-range threshold for regional and intra-state analyses, balancing sample size reliability with coverage of important secondary routes.
+🔹`≥50 seller-order pairs`: Mid-range threshold for regional and intra-state analyses, balancing sample size reliability with coverage of important secondary routes.  
 
 
 ```R
@@ -14141,10 +14167,10 @@ cat("\n")
 **PART 1: Summary and Key insights:**
 
 **Analysis scope:**  
-   🔹 Only 1.3% of all orders are multi-seller ones (1275 out of 96470 orders); 98.7% of orders are single-seller;  (95195 orders)  
-   🔹 Total seller-order pairs: 97811, out of which 96470 unique orders: so 1341 extra pairs created by those 1275 multi-seller orders (additional seller entries beyond the first seller in multi-seller orders). My seller-order pair analysis approach does not significantly inflate counts. So technically I could have used orders instead of seller-order pairs   
-   🔹 All 27 Brazilian states have customers, only 21 states have sellers ➜ 6 states are customer only  
-   🔹 408 state-to-state combinations observed (out of 21*27 = 567 possible ones, 72% coverage, meaning 159 routes (28%) have zero observed orders in Olist dataset (customer-only states)). 
+   🔹 Only 1.3% of all orders are multi-seller ones (1275 out of 96470 orders); 98.7% of orders are single-seller (95195 orders)    
+   🔹 Total seller-order pairs: 97811, out of which 96470 unique orders: so 1341 extra pairs created by those 1275 multi-seller orders   (additional seller entries beyond the first seller in multi-seller orders). My seller-order pair analysis approach does not significantly inflate counts. So technically I could have used orders instead of seller-order pairs     
+   🔹 All 27 Brazilian states have customers, only 21 states have sellers ➜ 6 states are customer only    
+   🔹 408 state-to-state combinations observed (out of 21*27 = 567 possible ones, 72% coverage, meaning 159 routes (28%) have zero observed orders in Olist dataset (customer-only states))  
 
 
 ```R
@@ -14656,7 +14682,7 @@ print(cross_region_routes, n = 30)
 > South: ~13.9 days
 > Southeast: ~10.6 days
 
-🔹 Late rates increase as delivery distance & infrastructure complexity increase
+🔹 Late rates increase as delivery distance & infrastructure complexity increase  
 🔹 Customer region is a primary determinant of delivery performance
 
 This is NOT a seller behaviour, this is customer-side only!  
@@ -14683,6 +14709,7 @@ This is NOT a seller behaviour, this is customer-side only!
 ➡️ Olist should focus improvement efforts of inter-region hand-offs (and not on penalizing sellers with good intra-region performance, as I suggested earlier in my analysis)  
 ➡️ Overall this output disproves several assumptions, like **some states have bad sellers** and **late deliveries are mainly due to sellers' inefficiency**, and shows, instead, that **sellers perform reasonably well, once region aspect is removed** and **logistics issues scalate primarily when deliveries are inter-region**  
 
+<br>
 
 **Cross-region route performance analysis:**
 
