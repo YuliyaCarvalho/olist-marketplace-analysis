@@ -10,6 +10,7 @@ This project investigates the Olist marketplace through four analytical lenses:
 
 ---
 
+```text
 ### 01_marketplace_growth/    
 │  
 ├── **q01_gmv_trends**  
@@ -76,3 +77,6 @@ This project investigates the Olist marketplace through four analytical lenses:
 │
 └── **q14_churn_by_review_score**
     Which review groups are most likely to churn?
+    ```
+
+    
