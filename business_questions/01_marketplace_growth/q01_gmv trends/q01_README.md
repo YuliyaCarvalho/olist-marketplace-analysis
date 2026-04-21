@@ -10,8 +10,8 @@
 
 ## Why This Matters
 
-Gross Merchandise Value (GMV) provides a high-level indicator of marketplace scale and demand.  
-Analyzing GMV trends over time provides insight into the platform’s growth trajectory and helps assess whether Olist experienced early-stage adoption, rapid expansion, or operational stabilization.
+* Gross Merchandise Value (GMV) provides a high-level indicator of marketplace scale and demand.  
+* Analyzing GMV trends over time provides insight into the platform’s growth trajectory and helps assess whether Olist experienced early-stage adoption, rapid expansion, or operational stabilization.
 
 
 ---
