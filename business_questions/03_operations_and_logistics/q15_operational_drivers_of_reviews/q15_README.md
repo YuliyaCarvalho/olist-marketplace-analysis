@@ -22,13 +22,6 @@ Additionally, this analysis enables the development of a **targeted seller risk 
 
 To quantify the operational drivers of customer satisfaction, the analysis combined hypothesis testing, seller risk scoring, and regression modeling.
 
-**Main datasets used**
-
-- `orders_ops_buckets`
-- `seller_risk_scored`
-- `orders_enriched`
-- `order_reviews`
-
 ---
 
 ### Hypothesis Testing
