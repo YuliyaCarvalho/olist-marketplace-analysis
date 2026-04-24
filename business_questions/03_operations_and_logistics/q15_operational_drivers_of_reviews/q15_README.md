@@ -1,82 +1,67 @@
-**Operations & Logistics → q15 Operational Drivers of Satisfaction & Revenue**
-
 # Business Question 15 — Operational Drivers of Customer Satisfaction
 
 ## Question
 
-**Which operational factors (delivery delays, freight cost, payment type and seller performance) have the strongest impact on review scores and revenue, and where are the biggest opportunities to improve margin without hurting satisfaction?**
+**Which operational factors (delivery delays, freight cost, and seller processing performance) have the strongest impact on customer satisfaction, and where should Olist focus operational improvements?**
 
 ---
 
 ## Why This Matters
 
-This analysis identifies the **true operational levers of customer satisfaction** on the Olist platform.
+This analysis isolates the **real drivers of customer dissatisfaction** on the Olist platform.
 
-By isolating which operational factors actually influence review scores, Olist can prioritize logistics investments where they matter most while identifying areas where margins can be safely improved. For example, if customers are insensitive to freight costs but highly sensitive to delivery delays, the platform could increase freight margins on reliable routes without harming customer satisfaction.
+Instead of optimizing everything (freight, payments, logistics, sellers), the goal is to identify:
 
-Additionally, this analysis enables the development of a **targeted seller risk framework**, allowing Olist to intervene with the small subset of sellers responsible for a disproportionate share of negative experiences.
+- what actually hurts customer experience
+- what does NOT matter as much as expected
+- where targeted interventions will have the biggest impact
+
+This allows Olist to:
+- prioritize **delivery reliability over cost reductions**
+- identify **high-risk sellers before issues reach customers**
+- avoid wasting effort on low-impact levers (e.g. payment structure)
 
 ---
 
 ## Analytical Approach
 
-To quantify the operational drivers of customer satisfaction, the analysis combined hypothesis testing, seller risk scoring, and regression modeling.
+The analysis combines:
+
+### 1. Order-level behavioral analysis
+
+Customer satisfaction was evaluated against:
+
+- delivery delay vs ETA  
+- freight cost as % of order value  
+- payment structure  
+
+This isolates how customers react to **their own order experience**.
 
 ---
 
-### Hypothesis Testing
+### 2. Seller processing analysis
 
-The first stage tested whether **high freight costs reduce customer tolerance for delivery delays**.
+Instead of using final delivery delay as a seller metric, the analysis focuses on:
 
-Orders were segmented by:
+- **approval-to-carrier time** (seller-controlled stage)
+- **slow-processing rate** (share of orders above platform P90 threshold)
+- **category-adjusted processing gap** (seller vs category baseline)
 
-- delay duration
-- freight cost as a percentage of order value
-
-This allowed comparison of review outcomes across different cost–delay combinations.
-
----
-
-### Seller Risk Framework
-
-A **volume-weighted composite risk score** was constructed to identify sellers creating disproportionate operational risk.
-
-The score incorporates four components:
-
-| Risk Component | Weight |
-|---|---|
-| Lateness frequency | 25% |
-| Delay severity | 35% |
-| Customer satisfaction | 25% |
-| Complaint rate | 15% |
-
-Based on this score, sellers were classified into five operational tiers:
-
-- Critical  
-- High  
-- Medium  
-- Low  
-- Minimal  
+This ensures sellers are evaluated fairly within their operational context.
 
 ---
 
-### Predictive Modeling
+### 3. Regression modeling
 
-Two regression models were built to isolate the independent effect of each operational variable.
+Two models were used:
 
-**Model 1 — Order-Level**
+#### Model 1 — Order-level experience
 
-Evaluates how specific order conditions affect review scores:
+Measures how the **actual delivery experience** affects review scores.
 
-- delivery delay
-- freight cost ratio
-- payment installments
+#### Model 2 — Seller processing risk
 
----
-
-**Model 2A — Seller-Level**
-
-Evaluates whether a seller's **historical reputation and consistency** influence customer satisfaction.
+Measures whether sellers with **slower-than-category processing patterns** tend to receive worse reviews.
 
 ---
 
@@ -86,88 +71,140 @@ Evaluates whether a seller's **historical reputation and consistency** influence
 <img src="q15_dataviz/avg_review_delay.png" width="600">
 </p>
 
-*Figure 15.1 — Average Review Score by Delivery Delay, showing the rapid deterioration of satisfaction once an order passes its ETA.*
+*Figure 15.1 — Average review score by delivery delay, showing how satisfaction changes as orders move from early/on-time to late.*
 
 <p align="center">
 <img src="q15_dataviz/low_review_share_delay.png" width="600">
 </p>
 
-*Figure 15.2 — Share of Low Reviews (1–2) by Delivery Delay, illustrating that over 70% of customers leave a negative review when an order is more than 3 days late.*
+*Figure 15.2 — Share of low reviews by delivery delay, showing the sharp increase in 1–2 star reviews for severely late orders.*
 
 <p align="center">
 <img src="q15_dataviz/delay_freight_interaction.png" width="800">
 </p>
 
-*Figure 15.3 — Interaction between delivery delays and freight cost, showing that customer dissatisfaction increases sharply with delay regardless of shipping price.*
+*Figure 15.3 — Low-review share by delivery delay and freight burden, testing whether freight cost changes customer tolerance for lateness.*
+
+<p align="center">
+<img src="q15_dataviz/category_processing_risk.png" width="800">
+</p>
+
+*Figure 15.4 — Category view of slow-processing seller risk, showing which product categories appear among sellers that are both slow and associated with weak satisfaction.*
+
+<p align="center">
+<img src="q15_dataviz/seller_processing_risk.png" width="800">
+</p>
+
+*Figure 15.5 — Seller-level processing risk, identifying exact sellers that are slower than their category baseline and linked to higher low-review shares.*
 
 <p align="center">
 <img src="q15_dataviz/regression_coefficients.png" width="800">
 </p>
 
-*Figure 15.4 — Regression coefficients illustrating that delivery delay has a significantly stronger impact on review scores than freight cost or seller-level factors.*
-
-
----
-
-## Analytical Tables
-
-### Table 15.1 — Seller Risk Distribution
-
-This table reveals that operational risk is highly concentrated among a small subset of sellers.
-
-| Risk Tier | Sellers | Total Orders | Avg Risk Score | Revenue at Risk (BRL) |
-|---|---|---|---|---|
-| Critical | 5 | 158 | 97.3 | 46,700 |
-| High | 32 | 333 | 84.9 | 35,076 |
-| Medium | 141 | 7,052 | 49.4 | 757,959 |
-| Low | 617 | 57,724 | 27.9 | 2,029,383 |
-| Minimal | 1,069 | 42,713 | 9.7 | 779,114 |
-
-Although most sellers operate reliably, a **very small group generates a disproportionate share of operational risk**.
-
----
-
-### Table 15.2 — Order-Level Regression Model
-
-| Variable | Coefficient (β) | Significance |
-|---|---|---|
-| Intercept | 3.86 | *** |
-| Delay (days late) | -0.031 | *** |
-| Installments (+1) | -0.034 | *** |
-| Freight cost % | -0.002 | *** |
-
-This confirms that **delivery delay is the strongest driver of dissatisfaction**.
+*Figure 15.6 — Regression coefficient comparison, showing how order-level delay and seller-side processing risk relate to review scores.*
 
 ---
 
 ## Key Findings
 
-* **Delivery Delay is the Dominant Driver:** Delivery delay has the largest statistical impact on review scores.  
-Each additional day of delay reduces the expected rating by approximately **0.03 points**.
+### Delivery delay dominates everything
 
+Delivery delay is the strongest and most consistent driver of dissatisfaction.
 
-* **Freight Cost Has Minimal Impact:** The hypothesis that lower freight costs soften the impact of delays was rejected.  
-The proportion of negative reviews remains roughly **73% for late deliveries** regardless of whether shipping costs are low or high.
+- each additional day late reduces review score (~ -0.037)
+- severe delays lead to **massive spikes in low reviews (~70%+)**
 
-* **Individual Experience Outweighs Seller Reputation:** The order-level regression explains **3.5× more variance** than the seller-level model.
-This indicates that customers react primarily to their **specific order experience**, rather than to a seller’s historical track record.
+Customers clearly react to **what happened to their order**, not averages or expectations.
 
-* **Operational Risk is Highly Concentrated:** Approximately **90% of sellers operate reliably**.  
-However, just **37 sellers (~2% of the base)** account for **22% of total satisfaction risk**, making targeted interventions highly effective.
+---
+
+### Freight cost does NOT soften delay impact
+
+The initial hypothesis was wrong.
+
+- expensive shipping does NOT make customers less tolerant
+- cheap shipping does NOT “save” a late delivery
+
+Once an order is late, the outcome is almost the same regardless of freight cost.
+
+---
+
+### Seller processing matters — but less than direct experience
+
+Seller-side processing risk is real:
+
+- slower-than-category sellers get worse reviews
+- high slow-processing rates correlate with dissatisfaction
+
+But:
+
+- effect size is smaller
+- model explains <1% of variation
+
+Meaning:
+
+> seller performance is a **risk signal**, not the main driver of satisfaction
+
+---
+
+### Category context is critical
+
+Some categories are naturally slower.
+
+So the correct comparison is:
+
+> seller vs category baseline, not seller vs platform average
+
+This prevents misclassifying sellers in inherently slower categories (e.g. furniture).
+
+---
+
+### Satisfaction is driven by the individual experience
+
+The strongest pattern across all analysis:
+
+> customers judge the platform based on their own order, not seller reputation
 
 ---
 
 ## Insight
 
-➜ The most important operational improvement opportunity for Olist lies in **reducing delivery delays rather than reducing freight prices**.
+➜ The biggest operational lever is **reducing delivery delays**, not optimizing pricing or payment structure.
 
-➜ Because customers show relatively low sensitivity to shipping cost when deliveries are on time, Olist could increase freight margins on reliable routes and use the additional revenue to strengthen logistics infrastructure where delays occur more frequently.
+➜ Seller processing metrics are valuable as an **early-warning system**, helping identify sellers likely to create future delivery problems.
 
-➜ Furthermore, the analysis suggests that **real-time operational performance matters more than historical seller reputation**. Customers judge the platform primarily based on the outcome of their current order.
+➜ Category-adjusted benchmarks are essential for fair performance evaluation.
+
+---
+
+## Executive Summary
+
+**Core finding:**
+
+> Customer satisfaction is driven primarily by whether the order arrives on time.
+
+Everything else is secondary.
+
+- Delivery delay has the strongest and most visible impact  
+- Freight cost and payment structure have minimal influence  
+- Seller processing performance matters, but mainly as a predictive signal  
+
+**What this means for Olist:**
+
+1. **Fix delays first** — especially severe delays  
+2. **Monitor seller processing early** — before delays reach customers  
+3. **Compare sellers within category context**, not globally  
+4. **Stop over-optimizing freight and payment mechanics** — they do not move satisfaction  
+
+In simple terms:
+
+> Customers do not care how the system works —  
+> they care whether their order arrives when expected.
 
 ---
 
 ## Next Question
 
-➡️ **Next:** Having identified the operational drivers of satisfaction under normal conditions, the next step is to examine whether **delivery delays become more damaging during peak seasonal demand periods**.  
+➡️ **Next:** Do delays become more damaging during peak periods?
+
 [q16 Holiday Delay Impact](../q16_holiday_delay_impact/q16_README.md)
