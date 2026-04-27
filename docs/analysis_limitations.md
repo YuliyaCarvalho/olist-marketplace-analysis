@@ -1,14 +1,11 @@
 # Analytical Limitations
 
-This project is an educational case study based on historical
-e-commerce marketplace data from **2016–2018**.
+This project is an educational case study based on historical e-commerce marketplace data from **2016–2018**.
 
-The purpose of the analysis is to demonstrate analytical reasoning
-and data exploration techniques rather than to support current
-business decision-making.
+The purpose of the analysis is to demonstrate analytical reasoning and data exploration techniques rather than to support current business decision-making.
 
-Because the dataset is **observational**, the analysis identifies
-correlations but cannot establish causal relationships.
+Because the dataset is observational, the analysis identifies associations between variables but cannot establish causal relationships. 
+Observed effects may be influenced by unmeasured factors.
 
 ---
 
@@ -26,13 +23,11 @@ be observed.
 
 # Satisfaction Signal Limitations
 
-Customer review scores contain significant unexplained variation.
+Customer satisfaction is measured after delivery, while expectations are formed earlier in the purchase process. This timing gap may weaken the observable relationship between operational factors and review scores.
 
-Operational factors such as delivery delays explain only a small
-portion of the variance in satisfaction.
+Operational factors such as delivery delays explain only a small portion of the variance in satisfaction.
 
-Other important drivers are not captured in the structured dataset,
-including:
+Other important drivers are not captured in the structured dataset, including:
 
 - product quality
 - seller communication
@@ -43,16 +38,13 @@ including:
 
 # Geographic Constraints
 
-Delivery performance may be influenced by factors that are not
-visible in the dataset, including:
+Delivery performance may be influenced by factors that are not visible in the dataset, including:
 
 - third-party carrier networks
 - regional infrastructure differences
 - urban logistics complexity
 
-For example, dense metropolitan areas such as **Rio de Janeiro**
-may exhibit unique delivery patterns due to local geography
-and traffic conditions.
+For example, dense metropolitan areas such as **Rio de Janeiro** may exhibit systematically different delivery patterns due to local geography and traffic conditions.
 
 ---
 
@@ -81,3 +73,29 @@ with:
 
 Customers with neutral experiences may be under-represented,
 which can bias satisfaction analysis.
+
+---
+
+# Delivered Orders Bias
+
+The analysis **focuses on delivered orders with valid timelines.**
+
+Orders that were cancelled, failed, or not delivered are excluded.  
+As a result, the analysis may under-represent the full extent of operational failures and customer dissatisfaction.
+
+---
+
+# Data Granularity & Independence
+
+Customer satisfaction is analyzed at order level, where each observation represents a single customer experience.
+
+Using item-level data would duplicate observations for multi-item orders, as one review applies to the entire order. This would violate independence assumptions and bias statistical results.
+
+---
+
+# Model Limitations
+
+Linear models assume a stable relationship between delivery delays and satisfaction.  
+Non-linear effects or threshold behaviors (e.g. sharp drops after certain delay levels) may not be fully captured.
+
+---

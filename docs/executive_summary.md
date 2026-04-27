@@ -10,12 +10,12 @@ By analyzing marketplace records from **2016–2018**, the study finds that whil
 
 # Core Insights
 
-## Delivery Speed is the Master Variable
+## Delivery Delay is the Primary Operational Driver
 
 Regression analysis confirms that **Delivery delay is the strongest observed predictor of dissatisfaction**.
 
-- Crossing the **3-day delay threshold** causes negative reviews to spike **265%**  
-  *(from 20% to 73%)*.
+- Low-review share increases sharply from ~20% to ~70% once delays exceed 3 days.  
+  
 
 **Hypothesis rejected:**  
 Contrary to intuition, **low freight costs do not make customers more tolerant of delays**.  
@@ -25,11 +25,11 @@ Price and payment flexibility show **almost no impact on satisfaction**.
 
 ## The "2% Problem" (Seller Risk)
 
-Marketplace risk is **highly concentrated** rather than widespread.
+Marketplace risk is concentrated rather than evenly distributed.
 
-- Only **2% of sellers (37 individuals)** generate **22% of the platform’s revenue at risk** due to chronic lateness.
+A small group of high-risk sellers accounts for a disproportionate share of delay-related revenue at risk. This risk is driven by consistently poor processing and late-delivery patterns rather than isolated failures.
 
-This indicates that **targeted intervention can significantly reduce operational risk** without broad platform disruption.
+This indicates that **targeted seller intervention can reduce operational risk without requiring broad platform-wide enforcement**.
 
 ---
 
@@ -52,7 +52,7 @@ Olist currently behaves like a **“one-shot marketplace.”**
 
 However:
 
-- **Repeat buyers show significantly higher lifetime value**, representing a major **untapped growth lever**.
+- **Repeat buyers generate ~92% higher revenue per customer (273 BRL vs 146 BRL)**, representing a major **untapped growth lever**.
 
 ---
 
@@ -130,10 +130,12 @@ Objective:
 
 By improving the **14 critical routes**, intervening with **high-risk sellers**, and strengthening **customer retention**, Olist could positively impact:
 
-- **~30% of total platform transaction volume**
+- **~30% of total platform transaction volume** (based on concentration across high-volume routes and seller segments identified in the analysis)
 
 This can be achieved with **minimal capital investment**.
 
 ### Estimated Result
 
 - A **2% increase in repeat purchase rate** could generate approximately **300K BRL in additional annual GMV**.
+
+These estimates are directional and based on observational analysis. Actual impact would depend on implementation effectiveness and external operational constraints.

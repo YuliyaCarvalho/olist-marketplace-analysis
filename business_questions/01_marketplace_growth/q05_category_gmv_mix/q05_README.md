@@ -34,7 +34,7 @@ Payment rows flagged as `micro-payments` or `zero-value payments` were excluded 
 
 **Derived metrics**
 
-- **Item-level GMV** — calculated by allocating order-level GMV to individual items proportionally based on each item’s share of `price + freight_value` within the order.
+- **Allocated item-level GMV** — calculated by allocating reconstructed order-level GMV to individual items proportionally based on each item’s share of `price + freight_value` within the order.
 - **Cumulative GMV share** — running percentage of total GMV when categories are ranked from highest to lowest revenue contribution.
 
 **Granularity**
@@ -54,7 +54,7 @@ Category-level GMV contributions were calculated in **R within the Kaggle notebo
 3. compute item weights within each order using price + freight_value  
 4. allocate order-level GMV to order items proportionally  
 5. map items to product categories  
-6. aggregate GMV and distinct order counts by category  
+6. aggregate allocated GMV and category-attributed distinct order counts by category
 
 
 * Categories were ranked by GMV to evaluate:

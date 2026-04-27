@@ -1,76 +1,89 @@
-**Operations & Logistics → q16 Holiday Delay Impact**
-
 # Business Question 16 — Do Delays Hurt More During Holidays?
 
 ## Question
 
-**Do delivery delays cause a larger drop in customer satisfaction during holiday and peak shopping periods compared to regular periods?**
+**Do delivery delays lead to a larger drop in customer satisfaction during holiday and peak shopping periods compared to regular periods?**
 
 ---
 
 ## Why This Matters
 
-Peak shopping periods place significant strain on logistics systems while simultaneously raising customer expectations.
+Peak shopping periods place additional strain on logistics systems while also increasing customer expectations.
 
-Events such as **Christmas, Mother's Day, and other major shopping occasions** combine high order volumes with time-sensitive purchasing behavior. When deliveries are delayed during these periods, the reputational damage can be greater because customers often depend on precise delivery timing for gifts or promotional purchases.
+Events such as **Christmas, promotional campaigns, and seasonal peaks** combine high order volumes with operational pressure. When delays occur during these periods, the impact on customer satisfaction and revenue can be amplified.
 
-Understanding whether customers penalize delays more harshly during holidays allows Olist to:
+Understanding whether delays are more damaging during these periods allows Olist to:
 
-- adjust delivery expectations during high-risk periods  
-- improve communication strategies  
-- proactively protect customer satisfaction during seasonal peaks  
+- adjust delivery expectations during high-risk windows  
+- prioritize operational capacity where it matters most  
+- protect customer satisfaction during peak demand  
 
 ---
 
 ## Analytical Approach
 
-To quantify the relationship between delays, holidays, and satisfaction, the analysis combined **temporal segmentation and regression modeling**.
+The analysis combines **temporal segmentation, interaction modeling, and financial exposure analysis**.
 
+---
 
 ### Holiday Segmentation
 
-Shopping periods were classified into two broad categories:
+Shopping periods were grouped into:
 
-**High-Expectation Holidays:** Events where delivery timing is emotionally important:
-
+**High-Expectation Events:**
 > - Christmas  
 > - Mother’s Day  
 > - Father’s Day  
+> - Valentine’s Day  
+> - Children’s Day  
 
-**High-Volume Promotional Events:** Events driven primarily by discounts and increased purchasing volume:
-
+**High-Volume / Disruption Periods:**
 > - Black November  
 > - Carnival  
+> - Dia do Consumidor  
 
 ---
 
 ### Temporal Windows
 
-Each event was analyzed using custom time windows designed to capture both **logistics pressure before the event** and **customer feedback afterwards**.
+Each event was analyzed using custom time windows capturing:
 
-Example: `Christmas analysis window: -21 to +5 days`
+- **pre-event logistics pressure**
+- **post-event customer feedback**
 
-
-This allows detection of both pre-holiday shipping strain and post-holiday review outcomes.
+Example:  
+`Christmas window: -21 to +5 days`
 
 ---
 
 ### Interaction Regression Model
 
-A linear regression model was built to test whether the penalty for late deliveries increases during holiday periods.  
+A linear model was used to test whether delays are more damaging during holidays:
+
 `review_score_num ~ delay_vs_eta * is_holiday_period`
 
-The interaction term tests whether **delay has a stronger effect on reviews during holidays than during normal periods**.
+Key interpretation:
+
+- Delay impact (baseline): **-0.0359 per day (p < 0.001)**
+- Holiday baseline effect: **-0.036 (p < 0.01)**
+- Interaction effect: **-0.0034 (p < 0.001)**
+
+This shows:
+
+> Delays are slightly more damaging during holidays, but the effect size is small.
 
 ---
 
 ### Financial Impact Mapping
 
-To assess the economic exposure of delays, the analysis calculated **revenue at risk for each shopping period**.
+Revenue at risk is defined as:
 
-Revenue at risk represents the total value of orders delivered late within each period.
+> **Revenue from late deliveries with poor reviews (≤ 2 stars)**
+
+This isolates the portion of revenue directly associated with negative customer experiences.
 
 ---
+
 
 ## Visualisations
 
@@ -78,47 +91,35 @@ Revenue at risk represents the total value of orders delivered late within each 
 <img src="q16_dataviz/low_review_rate_heatmap.png" width="700">
 </p>
 
-*Figure 16.1 — Share of Low Reviews by Delivery Performance and Shopping Period: A heatmap showing that "Severely Late" (>3 days) orders during Christmas and Carnival trigger the highest rates of dissatisfaction (77.1%–77.9% low reviews)*
-<br>
-<br>
-<br>
-<br>
+*Figure 16.1 — Share of Low Reviews by Delivery Performance and Shopping Period: Severely late (>3 days) orders consistently generate very high dissatisfaction (~70–80%) across all periods, with the worst outcomes during Carnival and Christmas.*<br><br><br><br>
 
 <p align="center">
 <img src="q16_dataviz/on_time_vs_late_satisfaction.png" width="700">
 </p>
 
-*Figure 16.2 — Customer Satisfaction: On-time vs. Late Deliveries: Compares average review scores across periods. Relationship holidays like Father's Day show much higher tolerance for lateness (3.47 avg score) than promotional events like Carnival (2.21 avg score)*
-<br>
-<br>
-<br>
-<br>
+*Figure 16.2 — Customer Satisfaction: On-time vs. Late Deliveries: Late deliveries significantly reduce review scores across all periods. Differences between periods are primarily driven by delay severity rather than customer tolerance.*
+
 
 <p align="center">
 <img src="q16_dataviz/satisfaction_drop_ranked.png" width="700">
 </p>
 
-*Figure 16.3 — Satisfaction Drop When Late (Ranked by Impact): Ranks periods by the magnitude of the satisfaction decrease. Promotional events and Christmas show the largest "pain" from delays, with scores dropping by ~1.8 to 1.9 points*
-<br>
-<br>
-<br>
-<br>
+*Figure 16.3 — Satisfaction Drop When Late (Ranked): All periods show substantial drops (~1.8–2.0 points). Variation across periods is secondary compared to the overall effect of delay.*
+
 
 <p align="center">
 <img src="q16_dataviz/revenue_risk_vs_satisfaction.png" width="800">
 </p>
 
-*Figure 16.4 — Revenue Risk vs. Customer Satisfaction Impact: Relates the satisfaction drop to the percentage of revenue at risk. Christmas and Valentine's Day occupy the most vulnerable quadrants.*
-<br>
-<br>
-<br>
-<br>
+*Figure 16.4 — Revenue Risk vs. Customer Satisfaction Impact: Dia do Consumidor, Christmas, and Carnival combine high dissatisfaction with high financial exposure.*
+
 
 <p align="center">
 <img src="q16_dataviz/cumulative_revenue_risk_waterfall.png" width="800">
 </p>
 
-*Figure 16.5 — Cumulative Revenue at Risk from Late Deliveries: A waterfall chart illustrating that while holidays have acute per-order risks, the sheer volume of "Regular" periods accounts for R$933K (64.8%) of total platform revenue at risk.*
+*Figure 16.5 — Cumulative Revenue at Risk from Late Deliveries: Regular periods dominate total revenue at risk (~63%) due to volume, despite some holidays having higher per-order risk.*
+<br>
 
 ---
 
@@ -128,63 +129,74 @@ Revenue at risk represents the total value of orders delivered late within each 
 
 | Shopping Period | Avg Score (Late) | Avg Score (On Time) | Satisfaction Drop | % Drop |
 |---|---|---|---|---|
-| Carnival | 2.21 | 4.12 | 1.91 | 46.4% |
-| Christmas | 2.37 | 4.18 | 1.81 | 43.3% |
-| Black November | 2.39 | 4.14 | 1.75 | 42.3% |
-| Regular | 2.50 | 4.23 | 1.73 | 40.9% |
-| Mother's Day | 3.10 | 4.25 | 1.15 | 27.1% |
-| Father's Day | 3.47 | 4.33 | 0.86 | 19.9% |
+| Carnival | 2.24 | 4.29 | 2.05 | 47.8% |
+| Dia do Consumidor | 2.33 | 4.31 | 1.98 | 45.9% |
+| Christmas | 2.40 | 4.33 | 1.93 | 44.6% |
+| Black November | 2.44 | 4.34 | 1.90 | 43.8% |
+| Regular | 2.53 | 4.37 | 1.84 | 42.1% |
+| Mother's Day | 3.14 | 4.38 | 1.24 | 28.3% |
+| Father's Day | 3.49 | 4.43 | 0.94 | 21.2% |
 
 ---
 
 ### Table 16.2 — Revenue at Risk by Shopping Period
 
-| Shopping Period | Total Revenue (BRL) | Revenue at Risk (BRL) | % Revenue at Risk |
-|---|---|---|---|
-| Valentine's Day | 55,187 | 39,361 | 71.3% |
-| Carnival | 66,353 | 41,236 | 62.1% |
-| Christmas | 108,219 | 66,086 | 61.1% |
-| Regular | 1,535,741 | 933,465 | 60.8% |
-| Father's Day | 161,911 | 57,181 | 35.3% |
+| Shopping Period | Revenue at Risk (BRL) | % Revenue at Risk |
+|---|---|---|
+| Dia do Consumidor | 35,338 | 68.3% |
+| Christmas | 42,570 | 64.0% |
+| Carnival | 20,886 | 62.6% |
+| Regular | 409,234 | 58.1% |
+| Black November | 84,978 | 57.9% |
+| Valentine's Day | 11,781 | 57.5% |
+| Children's Day | 4,589 | 44.2% |
+| Mother's Day | 23,727 | 41.6% |
+| Father's Day | 17,044 | 29.8% |
 
 ---
 
 ## Key Findings
 
-* **Purchase Motivation Influences Tolerance:** Customer tolerance for delays varies depending on the reason for the purchase.  
-Delays have the **largest impact during promotional events** like Carnival and Black November.
+* **Delays are consistently damaging across all periods**  
+Late deliveries reduce satisfaction by ~1.8–2.0 review points regardless of timing.
 
 
-* **Promotional Events Show the Largest Satisfaction Drop:** Price-driven shopping events experience the most severe satisfaction penalties when orders arrive late.
-Carnival shows the largest decline in reviews (**46% satisfaction drop**).
+* **Holiday amplification exists, but is small**  
+The interaction model shows delays are slightly more damaging during holidays, but the effect size is minimal compared to the baseline delay impact.
 
 
-* **Family Holidays Show Greater Customer Forgiveness:** Customers appear more tolerant during sentimental occasions such as **Mother’s Day and Father’s Day**, where the drop in satisfaction is significantly smaller.
+* **Delay severity drives outcomes, not holiday type**  
+Periods with larger delays (Carnival, Black November, Dia do Consumidor) show worse outcomes (period-level differences in satisfaction are largely explained by differences in delay magnitude (e.g. ~10–11 days vs ~4–6 days)). 
+Lower-impact periods (Mother’s/Father’s Day) simply have shorter delays.
 
 
-* **Christmas Represents the Highest Operational Risk:** Christmas combines high logistics demand with strict delivery expectations, producing one of the largest satisfaction penalties when delays occur.
+* **Operational disruption periods are highest risk**  
+Carnival and Dia do Consumidor behave as logistics stress events, not just holidays.
 
 
-* **No Strong Global Holiday Interaction Effect:** The regression interaction term between **delay and holiday status was not statistically significant (p = 0.345)**.
-This indicates that delays do not systematically hurt more during holidays in aggregate, even though **specific events exhibit stronger local effects**.
+* **Regular periods dominate total business risk**  
+Despite moderate per-order impact, regular periods account for the majority of total revenue at risk due to scale.
+
+
+* **Christmas is the most strategically critical period**  
+Combines high volume, high expectations, and high revenue exposure.
 
 ---
 
 ## Insight
 
-➜ The impact of delivery delays during holidays depends more on **customer purchase motivation** than on the calendar itself.
+➜ The impact of delays is driven primarily by **delay severity and operational pressure, with holiday effects playing a secondary role**.
 
-➜ Promotional shopping events create customers who are highly price-sensitive and less tolerant of logistical friction. In contrast, emotionally motivated purchases tend to produce more forgiving customers.
+➜ Holiday periods slightly amplify dissatisfaction, but the dominant factor remains **how late the order is**.
 
-➜ For Olist, this suggests a differentiated operational strategy:
-
-> - prioritize logistics speed during **discount-driven events**
-> - focus on **communication and expectation management** during sentimental holidays
-> - extend delivery estimates before **Christmas** to buffer seasonal logistics strain
+➜ The most critical risk periods are those combining:
+- high delay severity  
+- high operational pressure  
+- high revenue exposure  
 
 ---
 
 ## Next Question
 
-➡️ **Next:** After evaluating how seasonal demand influences delivery performance, the next step is to investigate **geographic logistics constraints across Brazil**.
+➡️ **Next:** After evaluating how seasonal demand influences delivery performance, the next step is to investigate **geographic logistics constraints across Brazil**.  
 [q17 Geographic Delivery Performance](../q17_geographic_delivery_performance/q17_README.md)

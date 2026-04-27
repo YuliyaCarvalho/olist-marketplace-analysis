@@ -6,10 +6,38 @@ These decisions define how metrics were calculated and how data quality issues w
 
 ---
 
+# Data Granularity
+
+**Decision:** Customer satisfaction and delivery performance analyses are conducted at **order level**, where each observation represents a single customer experience.
+
+**Reason:** Reviews are recorded at order level. Using item-level data would duplicate observations for multi-item orders and violate independence assumptions, leading to biased results.
+
+---
+
 # GMV Definition
 
-**Decision:** Gross Merchandise Value (GMV) is calculated as the sum of payment values for **delivered orders only**.
-**Reason:** Cancelled, unavailable, or incomplete orders do not represent completed marketplace transactions and therefore should not contribute to revenue metrics.
+**Decision:** GMV is primarily calculated from payment values at order level.  
+In analyses requiring seller or product attribution, GMV is derived from item-level revenue (`price + freight_value`) or proportionally allocated from order-level GMV.
+
+**Reason:** Payment data reflects actual transaction value, while item-level data is required to preserve valid attribution across sellers and categories.
+
+---
+
+# Revenue at Risk Definition
+
+**Decision:** Revenue at risk is defined as the value of orders that are both:
+- delivered late
+- associated with low customer satisfaction (≤ 2-star reviews)
+
+**Reason:** This isolates revenue directly exposed to poor customer experience rather than total delayed revenue.
+
+---
+
+# Delivery Delay Definition
+
+**Decision:** Delay is measured as the difference between actual delivery date and estimated delivery date (`delay_vs_eta`).
+
+**Reason:** This reflects whether the platform met its promised delivery expectation, which is the basis for customer satisfaction.
 
 ---
 
@@ -57,4 +85,4 @@ marketplace growth.
 
 **`n ≥ 50 orders`**
 
-**Reason:** Small sample sizes can produce unstable or misleading conclusions. This threshold ensures that reported insights are statistically meaningful.
+**Reason:** Small sample sizes produce high variance and unstable estimates. The threshold reduces noise and prevents overinterpreting outliers.

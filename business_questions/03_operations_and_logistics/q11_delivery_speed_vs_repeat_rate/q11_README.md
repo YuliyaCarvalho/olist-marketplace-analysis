@@ -4,14 +4,14 @@
 
 ## Question
 
-**How do delivery times and delays differ between one-time, light-repeat, and heavy-repeat customers, and is faster, more reliable delivery associated with higher repeat purchase behaviour?**
+**How do delivery times and delays differ between one-time, light-repeat, and heavy-repeat customers, and do repeat customers experience systematically different delivery performance compared to one-time buyers?**
 
 ---
 
 ## Why This Matters
 
 This analysis evaluates whether **logistics performance acts as a catalyst for customer loyalty**.
-Delivery speed is often assumed to be a key driver of customer loyalty in e-commerce. If faster delivery significantly increases the likelihood of repeat purchases, Olist could justify aggressive investments in high-speed logistics infrastructure.
+Delivery speed is often assumed to be a key driver of customer loyalty in e-commerce. If repeat customers systematically experience better delivery performance, Olist could justify aggressive investments in high-speed logistics infrastructure.
 
 However, if delivery performance is similar across all customer segments, it suggests that other factors—such as product variety, pricing, or category preference—may play a larger role in encouraging repeat purchases.
 
@@ -108,7 +108,7 @@ Orders were classified into delivery performance tiers and compared across custo
 > - about **17–20%** are classified as **Slow**  
 > - about **6%** are **Very Slow**
 
-This indicates a largely stable logistics experience regardless of customer loyalty level.
+This indicates that delivery performance among retained customers is broadly similar across segments.
 
 * **No meaningful fast-delivery advantage for repeat buyers:** Heavy-repeat customers do **not** show a materially higher share of **Fast** deliveries than one-time buyers.  
 > - **Fast:** 27.75% for one-time vs **25.91%** for heavy-repeat  
@@ -139,7 +139,7 @@ These differences are too small to support the idea that logistics speed is the 
 
 ## Insight
 
-➜ Delivery speed and category-relative delivery performance do **not appear to be the primary drivers of customer loyalty on the Olist platform**.
+➜ Delivery speed and category-relative delivery performance do **do not show strong differentiation across customer segments on the Olist platform**.
 
 ➜ Heavy-repeat customers do show a **slightly cleaner delivery profile**, mainly through a somewhat lower share of slower delivery outcomes, but the differences are modest.
 
@@ -151,6 +151,8 @@ These differences are too small to support the idea that logistics speed is the 
 - purchase intent tied to specific product types
 
 ➜ Logistics performance still matters for overall customer experience, but the evidence here suggests that improving delivery speed alone would probably not generate a large increase in repeat purchasing. The stronger levers are more likely to lie in **merchandising, product discovery, and targeted retention strategies**, rather than purely operational acceleration.
+
+➜ The analysis is descriptive and does not establish causality; repeat behaviour may be influenced by prior experiences not captured in this comparison.
 
 ---
 

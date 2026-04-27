@@ -14,7 +14,7 @@ library(kableExtra)
 install.packages("modeest")
 library(modeest)
 library(glue)
-
+library(ggrepel)
 ```
 
     
@@ -70,9 +70,6 @@ library(glue)
     Installing package into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
     
-    also installing the dependencies ‘stable’, ‘statip’
-    
-    
     Registered S3 method overwritten by 'rmutil':
       method         from
       print.response httr
@@ -111,7 +108,7 @@ sessionInfo()
      [1] glue_1.7.0       modeest_2.4.0    kableExtra_1.4.0 caret_6.0-94    
      [5] lattice_0.22-6   gridExtra_2.3    DT_0.33          knitr_1.47      
      [9] skimr_2.1.5      lubridate_1.9.3  scales_1.3.0     ggplot2_3.5.1   
-    [13] tidyr_1.3.1      dplyr_1.1.4      bigrquery_1.5.1  httr_1.4.7      
+    [13] tidyr_1.3.1      dplyr_1.1.4      bigrquery_1.6.1  httr_1.4.7      
     
     loaded via a namespace (and not attached):
      [1] DBI_1.2.3            pROC_1.18.5          rlang_1.1.4         
@@ -376,9 +373,6 @@ project_id <- "olist-project-yuliacarvalho"
 
     Installing package into ‘/usr/local/lib/R/site-library’
     (as ‘lib’ is unspecified)
-    
-    also installing the dependency ‘nanoparquet’
-    
     
     
 
@@ -2051,8 +2045,8 @@ FROM `olist-project-yuliacarvalho.Olist_datasets.delivered_orders_items_final`")
 ```
 
                         table_name row_count
-    1                 orders_final     99441
-    2 delivered_orders_items_final    110189
+    1 delivered_orders_items_final    110189
+    2                 orders_final     99441
     
 
 
@@ -3691,7 +3685,7 @@ I have come across [CEPs do Brazil](https://www.kaggle.com/datasets/arvati/lista
 
 I have downloaded the `Lista_de_CEPs.xlsx` file and loaded to Google Drive for initial exploration. 
 
-![CEPs_do_Brasil](https://storage.googleapis.com/kagglesdsdata/datasets/8737824/13999740/lista_de_CEPs_original.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20260306%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260306T161314Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=61eae70e859a2242dfe16e27e30118168e17af84404a6dadfbc590170e40bb8dd8ba063cd0ba2ae7d277180e0f17729895cbb580833671aed20165c12bc7c79d7cbb5495f000719176689c18a7641c5e593ad7f8fff28c45312675fdd3051163bc71046861ea1fc27181f20f591c1cd5a7bde89786859ce8474808c47f9fc38f0a693624f3e68dab71e9a6a11d3a0ddd632a2d244e0db42927b153829f4a0dbcc442110537e433e94d57560d376d487fc2c7f28d208aab43b8db87780fde7f3fbf2d4125ea7c128f842aa9e111378bc326faaec3122b7f406df762b4c8625589d70e7f0aa10dabd7ab673a298e942b97c030d7098490bd1a361650a9aae9b080)
+![CEPs_do_Brasil](https://raw.githubusercontent.com/YuliyaCarvalho/olist-marketplace-analysis/main/assets/lista_de_CEPs_original.png)
 
 There's a total of 6015 rows, 5295 unique city names, 27 distinct brazilian state names.
 
@@ -6475,7 +6469,7 @@ ORDER BY review_id")
 
 
 
-![same_review_order_closeup](https://storage.googleapis.com/kagglesdsdata/datasets/8737824/13999740/Untitled%20presentation.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20260306%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260306T151647Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=5579be733470902f7d917ffa993dd3b592f298b5e69f30d4f57fddf57add284d5ddfe95b41efc646ec1481f061d14cd8b7f0bf2c9a2d822b35ef301480c5baf034a767d6ad1a79fc60959e886225443257e90626f34d6131934a281a48deb27e87f14b0b6984922563cf27abaf030c2384d1f77e90ed32162628064f320b26fb9f6452aa4b661b542fc266e7767efcf63503b4b7d1a46c9f14c759cdea073ceaf34ffd5299a4eb779b1974a8d7c604c9a4ea6501975190744ec4de1d3704cea64ed591d59acf05ac7f638b07db9e13b688840eff6bddaa0758dd9ea145921b3b31dfbfdf1a429cfa804c715e8f9b1d648444a904c4af396ba96f02358ad3ab4e)
+![same_review_order_closeup](https://raw.githubusercontent.com/YuliyaCarvalho/olist-marketplace-analysis/main/assets/same_review_order_closeup.png)
 
 Looking at these 4 grouped by **review_id** **order_purchase_timestamp** review_id patterns ➡︎ this is definitive proof of systematic data corruption
 
@@ -7065,21 +7059,21 @@ LIMIT 15")
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;dttm&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>1</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>95e01270fcbae9863423400103359279</td><td>1</td><td>b73f6899a58fe7a37e55149e9a11c717</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-10 15:51:43</td><td> 86.99</td><td>28.23</td><td>office_furniture</td><td>2016-10-04 18:52:56</td><td>2016-10-06 15:51:42</td><td>2016-11-01 07:27:42</td><td>2016-11-04 17:54:00</td><td>2016-11-24</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>bad      </td></tr>
-	<tr><td>5f4c8250b9e6ee47971e0b19da4aa0f2</td><td>1</td><td>c62dee961914cc2e49239963b04258ec</td><td>38874e327ce94d11390b96eb42d61928</td><td>2016-10-12 11:12:54</td><td>689.99</td><td>93.23</td><td>office_furniture</td><td>2016-10-08 10:31:00</td><td>2016-10-08 11:12:53</td><td>2016-11-09 11:34:00</td><td>2016-11-18 16:05:46</td><td>2016-12-06</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>neutral  </td></tr>
-	<tr><td>7e2dddf174cc4d2768bf39c43ab2bd7a</td><td>1</td><td>e41a6ac2f57a273eb0d214c7cbab5db9</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-14 05:54:52</td><td>129.97</td><td>29.38</td><td>office_furniture</td><td>2016-10-09 15:10:41</td><td>2016-10-10 05:54:51</td><td>2016-11-03 07:43:55</td><td>2016-11-10 09:27:42</td><td>2016-12-02</td><td>delivered</td><td> 5</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>3</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>87f48ad03a575830fd30137520ef411b</td><td>1</td><td>cbbc2be2dd13b09f354a19a987e05924</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-10 23:33:27</td><td> 94.99</td><td>19.96</td><td>office_furniture</td><td>2017-02-01 23:33:27</td><td>2017-02-01 23:45:16</td><td>2017-02-09 07:37:27</td><td>2017-02-14 14:49:01</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>NA       </td></tr>
-	<tr><td>d708b88543d7c2b7c9eb0b31864c8ca1</td><td>2</td><td>8c22b9ad6943f7dfc87fde6fb92ab133</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 23:52:10</td><td>136.99</td><td>46.65</td><td>office_furniture</td><td>2017-02-05 23:52:10</td><td>2017-02-06 01:05:37</td><td>2017-02-20 07:14:11</td><td>2017-02-23 15:07:38</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>good     </td></tr>
-	<tr><td>d708b88543d7c2b7c9eb0b31864c8ca1</td><td>1</td><td>e0352fc1b2c93712f1772fc4b0204db7</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 23:52:10</td><td>119.99</td><td> 0.06</td><td>office_furniture</td><td>2017-02-05 23:52:10</td><td>2017-02-06 01:05:37</td><td>2017-02-20 07:14:11</td><td>2017-02-23 15:07:38</td><td>2017-03-10</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>good     </td></tr>
-	<tr><td>ae86389756e9af7f5f5f64aa266a439a</td><td>1</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-14 20:00:06</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-02-05 20:00:06</td><td>2017-02-07 04:03:10</td><td>2017-02-10 07:55:57</td><td>2017-02-16 05:43:59</td><td>2017-03-08</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>e2eaf909eb6ba881117aa407992a5ffb</td><td>1</td><td>b73f6899a58fe7a37e55149e9a11c717</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-11 02:49:10</td><td> 86.99</td><td>28.23</td><td>office_furniture</td><td>2016-10-05 11:05:52</td><td>2016-10-07 02:49:09</td><td>2016-11-01 07:13:36</td><td>2016-11-14 15:03:36</td><td>2016-11-25</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>96b947c986b42f213c9e6b8ccccedb89</td><td>1</td><td>7d1d3de69616eacb023e39204065a068</td><td>1ca4bdb0cd7fc48e949bac066188ed26</td><td>2018-08-06 03:55:23</td><td>380.00</td><td>79.63</td><td>office_furniture</td><td>2018-07-30 13:00:56</td><td>2018-07-31 03:55:23</td><td>NA</td><td>NA</td><td>2018-08-22</td><td>canceled </td><td> 7</td><td>35</td><td>0</td><td>neutral  </td></tr>
-	<tr><td>cd383d7a5f926abfe7b2ee1b80078b45</td><td>1</td><td>c62dee961914cc2e49239963b04258ec</td><td>38874e327ce94d11390b96eb42d61928</td><td>2017-02-13 22:05:38</td><td>699.99</td><td>80.69</td><td>office_furniture</td><td>2017-02-09 22:05:38</td><td>2017-02-09 22:23:00</td><td>2017-02-20 09:32:08</td><td>2017-02-23 09:22:41</td><td>2017-03-10</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>ae162713f33901220faa2a22c2bdba45</td><td>2</td><td>aba86c093ccdbac75b09111d57e50004</td><td>7c67e1448b00f6e969d365cea6b010ab</td><td>2017-02-09 14:38:41</td><td>119.60</td><td>11.45</td><td>office_furniture</td><td>2017-01-31 14:38:41</td><td>2017-02-02 02:45:23</td><td>2017-02-09 07:37:52</td><td>2017-02-14 14:08:16</td><td>2017-03-09</td><td>delivered</td><td> 9</td><td>35</td><td>0</td><td>excellent</td></tr>
-	<tr><td>9315757eaf0e782619bed131508dbddb</td><td>1</td><td>e41a6ac2f57a273eb0d214c7cbab5db9</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-11 10:44:55</td><td>129.97</td><td>20.49</td><td>office_furniture</td><td>2016-10-07 09:41:02</td><td>2016-10-07 10:44:54</td><td>2016-11-03 08:37:50</td><td>2016-11-07 08:45:43</td><td>2016-11-29</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>very bad </td></tr>
-	<tr><td>c776863a93dc0740c6e7d78104b21413</td><td>1</td><td>ddc50b859563aa0b3d663559f3696690</td><td>a7f13822ceb966b076af67121f87b063</td><td>2016-10-29 09:43:55</td><td>176.97</td><td>87.11</td><td>office_furniture</td><td>2016-10-10 15:01:27</td><td>2016-10-10 15:44:46</td><td>2016-11-14 07:41:23</td><td>2016-12-14 08:03:48</td><td>2016-12-14</td><td>delivered</td><td>19</td><td>35</td><td>0</td><td>NA       </td></tr>
+	<tr><td>ac1a1d01dcd4350d31887f6eab3f63d5</td><td>1</td><td>58c91c9e1ddc24815b7c15ac4e8fee5e</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-29 21:55:16</td><td>27.72</td><td> 7.93</td><td>small_appliances_home_oven_and_coffee</td><td>2018-08-23 21:43:41</td><td>2018-08-23 21:55:16</td><td>2018-08-27 14:54:00</td><td>2018-08-30 21:05:56</td><td>2018-08-31</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>good     </td></tr>
+	<tr><td>abf8d2c3cc9ffa42db0103106b061889</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-05-14 08:35:23</td><td>25.00</td><td>23.28</td><td>office_furniture                     </td><td>2018-05-08 08:23:21</td><td>2018-05-08 08:35:23</td><td>2018-05-08 13:20:00</td><td>2018-05-15 16:52:15</td><td>2018-06-08</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>neutral  </td></tr>
+	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>4</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>2</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>fcaa22948cf53b9b3ff7de0c67b6391c</td><td>1</td><td>31240eaae01b43247d878f3e89996e35</td><td>8b28d096634035667e8263d57ba3368c</td><td>2018-02-14 19:55:28</td><td>24.90</td><td>11.85</td><td>small_appliances_home_oven_and_coffee</td><td>2018-02-08 19:39:39</td><td>2018-02-08 19:55:28</td><td>2018-02-10 00:26:22</td><td>2018-02-16 14:33:01</td><td>2018-03-02</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>7f6945b2c635db3bce1cfb585ba82d33</td><td>1</td><td>514171f9d45a3d93574fc587ef775579</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-02 10:04:23</td><td>35.19</td><td>18.35</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-27 09:52:08</td><td>2018-07-27 10:04:23</td><td>2018-07-30 12:15:00</td><td>2018-08-02 23:03:29</td><td>2018-08-28</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>082730bdb06cc2b755fbb33becd6ccec</td><td>1</td><td>eee404f099d4035b0f3e4dc374669a31</td><td>88cf19ec1fc2c58f161aee259d57142c</td><td>2018-07-30 23:15:14</td><td>30.00</td><td>18.31</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-24 23:00:55</td><td>2018-07-24 23:15:14</td><td>2018-07-25 14:50:00</td><td>2018-08-01 16:28:49</td><td>2018-08-10</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>312f43273284b7ab987d5bc4d880d5ef</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-09 20:31:35</td><td>25.00</td><td>16.37</td><td>office_furniture                     </td><td>2018-07-03 20:17:22</td><td>2018-07-05 16:27:45</td><td>2018-07-04 13:01:00</td><td>2018-07-09 15:40:50</td><td>2018-07-27</td><td>delivered</td><td> 6</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>22014e568766c4f4d4faf4f8ee12c606</td><td>1</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-12 03:11:21</td><td>25.00</td><td>20.45</td><td>office_furniture                     </td><td>2018-07-04 17:37:50</td><td>2018-07-06 03:11:21</td><td>2018-07-09 13:16:00</td><td>2018-07-14 01:40:49</td><td>2018-07-31</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>good     </td></tr>
+	<tr><td>b0f3b60e4ef21a14515d0e51782a7580</td><td>1</td><td>31240eaae01b43247d878f3e89996e35</td><td>8b28d096634035667e8263d57ba3368c</td><td>2017-08-21 03:50:29</td><td>21.90</td><td>11.85</td><td>small_appliances_home_oven_and_coffee</td><td>2017-08-13 22:11:21</td><td>2017-08-15 03:50:29</td><td>2017-08-16 12:57:16</td><td>2017-08-19 14:02:47</td><td>2017-09-01</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>neutral  </td></tr>
+	<tr><td>61f26d1fbc29fc8e6d6bc8ba373e81f6</td><td>1</td><td>6341aca5b02d00d80b6f4dead6816435</td><td>5194c22ed1f616ec0c0f33c571542879</td><td>2018-07-31 21:30:18</td><td>29.90</td><td>22.14</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-27 21:19:42</td><td>2018-07-27 21:32:03</td><td>2018-07-30 13:11:00</td><td>2018-08-15 18:59:50</td><td>2018-08-21</td><td>delivered</td><td> 4</td><td>35</td><td>0</td><td>good     </td></tr>
+	<tr><td>55bd3d21d10786b863b8537b32bc3899</td><td>1</td><td>32bad49615b7c5da42609b98df97482c</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-06 14:05:16</td><td>16.29</td><td>18.23</td><td>small_appliances_home_oven_and_coffee</td><td>2018-08-01 13:52:56</td><td>2018-08-01 14:05:16</td><td>2018-08-03 11:20:00</td><td>2018-08-07 20:33:36</td><td>2018-08-20</td><td>delivered</td><td> 5</td><td>35</td><td>0</td><td>excellent</td></tr>
+	<tr><td>5de443f7adc75b72230b61e63ce5007a</td><td>3</td><td>f8a7665279f140d238371c8e7604c204</td><td>6861de0f40cacb0602e473c51639f980</td><td>2018-07-10 08:32:02</td><td>25.00</td><td>18.33</td><td>office_furniture                     </td><td>2018-06-29 08:12:42</td><td>2018-07-05 16:02:24</td><td>2018-07-04 12:57:00</td><td>2018-07-12 18:16:44</td><td>2018-08-08</td><td>delivered</td><td>11</td><td>35</td><td>0</td><td>very bad </td></tr>
+	<tr><td>1e67200d1a2ae06bc9830fa7b62d8b85</td><td>1</td><td>32bad49615b7c5da42609b98df97482c</td><td>d91fb3b7d041e83b64a00a3edfb37e4f</td><td>2018-08-02 02:05:11</td><td>10.19</td><td> 7.87</td><td>small_appliances_home_oven_and_coffee</td><td>2018-07-25 22:57:36</td><td>2018-07-27 02:05:11</td><td>2018-07-30 12:26:00</td><td>2018-08-01 20:03:17</td><td>2018-08-06</td><td>delivered</td><td> 8</td><td>35</td><td>0</td><td>excellent</td></tr>
 </tbody>
 </table>
 
@@ -8581,9 +8575,8 @@ WHERE order_id IN('744bade1fcf9ff3f31d860ace076d422', '1a57108394169c0b47d8f876a
 
 
 
-#### 🔹52546 ➡︎ number of payment rows where payment_installments = 1 (num_payments_installments_1)  
-🔹49060 ➡︎ number of distinct orders that have at least one payment row with payment_installments = 1 (num_orders in the row where 
-")payment_installments = 1)  
+🔹52546 ➡︎ number of payment rows where payment_installments = 1 (num_payments_installments_1)  
+🔹49060 ➡︎ number of distinct orders that have at least one payment row with payment_installments = 1 (num_orders in the row where "payment_installments" = 1)  
 🔹46264 ➡︎ number of orders whose total installments across all payments sum to 1  
 
 **Most payments are single-shot**: 52546 payment rows with payment_installments = 1 belong to 49060 distinct orders. Of these, 46264 orders have exactly one such payment row (total installments = 1)
@@ -8594,16 +8587,24 @@ WHERE order_id IN('744bade1fcf9ff3f31d860ace076d422', '1a57108394169c0b47d8f876a
 🔹Boleto, debit_card, not_defined and voucher appear only with **payment_installments** = 0 or 1 (one-shot payments)  
 
 
-#### Analysis of the 2 zero-installment orders:
-🔸The two rows with **payment_installments = 0** are both credit_card, which are likely data-entry or ETL anomalies (with only 2 cases across ~100k orders, it's clearly an Olist's centralized payment anomaly, not seller behavior)   
-🔸Order '1a57108394169c0b47d8f876acc9ba2d' (May 2018): 2 identical housewares items (2x(41.69 for products + 23.28 freight) = 129.94 BRL total. Same seller, excellent delivery (7 carrier days), instant approval (0.2 hours)  
-🔸Order '744bade1fcf9ff3f31d860ace076d422' (April 2018): 45.90 price + 12.79 freight = 58.69 BRL ➡︎ exact payment match  
+#### Note on zero-installment credit card payments
 
-➡︎ I will flag them as data-quality outliers. These are not early data artifacts - these orders are placed in 2018 - well into the mature dataset period. Both orders are "delivered" with a proper lifecycle timeline and normal payment value. 
+🔸 During cleaning and validation of `order_payments`, **2 payment rows** were identified with `payment_type = 'credit_card'` and `payment_installments = 0`.
 
-**Rules for this flag:**
-> For revenue calculations ➡︎ include (payment happened)  
-> For installment analysis ➡︎ filter WHERE installment_is_valid = 1
+**Reviewed orders**
+- `1a57108394169c0b47d8f876acc9ba2d`
+- `744bade1fcf9ff3f31d860ace076d422`
+  
+🔸 Both cases were reviewed manually. In each case, the order was successfully **delivered**, the payment value was consistent with the order total, and the order timeline was complete and coherent. These transactions also occurred in **2018**, so they are not attributable to early-period dataset instability.
+
+🔸 Given the extremely low frequency of this pattern (**2 cases only** in the full dataset), these rows were treated as **rare source-data anomalies** rather than as evidence of a broader payment-quality issue.
+
+**Analytical treatment:**
+
+> * **Revenue and payment-value analysis:** retained as observed, because a valid payment clearly occurred  
+> * **Installment analysis:** acknowledged as anomalous `credit_card` cases and interpreted as exceptions  
+
+No additional correction flag was created, as this would add unnecessary complexity without materially affecting results.
 
 Next, I will take a look at **order_payments**:
 
@@ -8741,8 +8742,7 @@ SELECT
   COUNT(DISTINCT order_id) AS affected_orders,
   SUM(payment_value) AS total_micro_value
 FROM `olist-project-yuliacarvalho.Olist_datasets.order_payments`
-WHERE payment_value > 0 AND payment_value < 1
-")
+WHERE payment_value > 0 AND payment_value < 1")
 ```
 
       micro_payments_count affected_orders total_micro_value
@@ -8873,23 +8873,23 @@ ORDER BY micro_share_pct_of_all_micro DESC")
 
 
 
-#### What are these micro-payments? 
+#### Note on micro-payments (`payment_value < 1` BRL)
 
-The Olist dataset contains 157 payment records under 1 BRL (0.01-0.99 BRL) across 136 unique orders, totaling to 70.3 BRL (representing just 0.00044% of total payment value, which is materially irrelevant for most business analyses). This subtle pattern of micro-payments emerged clearly once the distribution of **payment_value** was examined at high resolution. 
+Exploration of `order_payments` identified **157 payment records** below **1 BRL**, belonging to **136 unique orders** and totaling **70.3 BRL**. This represents a **materially negligible share** of total payment value.
 
-Cross-tab analysis provides a clean picture: these micro-payments concentrate in vouchers (66 records, which is 1.14% of all 5775 voucher payments) and single-installment credit_card payments (91 records, or 0.36% of all 25455 single-installment credit card payments), with zero occurrences in Boleto or multi-installment credit card payments. Looking at their composition, 58% (91 records) are single-installment credit card payments and 42% (66 records) are vouchers. This distribution confirms they are legitimate customer micro-purchases — real money paid by customers for low-value digital items like promotional vouchers, app add-ons, trial credits, or platform features — typically bought alongside a main order via Brazil's flexible payment systems that support such small transactions without issue.
+Cross-tab checks showed that these low-value payments occur only in:
+- **voucher** payments
+- **single-installment credit_card** payments
 
-The **payment_value** field in Olist's schema specifically captures the transaction-level amount charged to the customer per payment event, confirming these 157 records as genuine revenue rather than data artifacts, refunds or discounts applied to customers. They warrant inclusion in gross transaction value (GMV) for a complete picture of total platform sales volume. However, for core customer metrics like average order value (AOV) and revenue per customer, exclude them using an `is_micro_payment = 1` flag:
-```
-CASE WHEN payment_value > 0 AND payment_value < 1 THEN 1 ELSE 0 END AS is_micro_payment
-```
-🔹**Include:** for gross translaction value calculations (GMV)  
-🔸**Exclude:** from AOV, revenue per customer  
+No such cases were found in boleto or multi-installment credit card payments. Their distribution and transaction-level structure are consistent with genuine low-value payment events rather than failed transactions or obvious data errors.
 
+To preserve this pattern transparently in the cleaned table, I will create a calculated column:
 
-**Why exclude from these metrics?** ➡︎ Revenue per customer and AOV should reflect meaningful customer purchase behavior. 
+**`is_micro_payment = 1` when `payment_value > 0` and `payment_value < 1`, otherwise `0`**
 
-I will add this flag to the **`order_payments`** table
+These records were retained in the cleaned dataset as valid observed payments. However, because they are economically real, but analytically negligible, the `is_micro_payment` flag is used in downstream metric logic to exclude them from **core revenue KPIs** such as **Net GMV**, and therefore also from derived value metrics such as **AOV** and **revenue per customer** where appropriate.
+
+This approach preserves the original payment data while keeping headline business metrics focused on meaningful commercial activity.
 
 
 ```R
@@ -8942,7 +8942,7 @@ I will add a simple flag alongside **is_micro_payment** ➡︎ **is_zero_payment
 
 #### Last, but not least: 
 
-I want to check if payments actually match what coustomers bought and compare by **order_status**
+I want to check if payments actually match what customers bought and compare by **order_status**
 
 
 
@@ -9167,7 +9167,7 @@ So what's the result?:
 > items record never created (or deleted) → inventory sync failed  
 
 Since this order does not exist in **`order_items`** table, there is no way to say which **product_category** it belongs to.
-I wasn't sure, whether it could have been a digital product, but I couldn't find any information about it in online sources, all I found is that Olist is mainly selling physical products. Even if it was a digital product, it would still have a product_category and should have been registered in order_items level. 
+I wasn't sure, whether it could have been a digital product, but I couldn't find any information about it in online sources, all I found is that Olist is mainly selling physical products. Even if it was a digital product, it would still have a **product_category** and should have been registered in order_items level. 
 
 This is a single edge case (0.09% of all "shipped" orders) - it is immaterial for analysis. I will keep it as it is, as it won't distort aggregates.
 
@@ -9188,15 +9188,13 @@ FROM `olist-project-yuliacarvalho.Olist_datasets.order_payments`;
 ```
 #### Flag Usage Summary (Payment Flags Usage Guide)
 
-is_micro_payment = 1 (157 records):
-✅ Include in GMV (real revenue)  
+**is_micro_payment = 1** (157 records):  
+❌ Exclude from GMV (questionable real revenue)  
 ❌ Exclude from AOV, revenue per customer (statistical noise)
 
-is_zero_payment = 1 (9 records):  
-❌ Exclude from ALL monetary metrics (no revenue)
+**is_zero_payment = 1** (9 records):  
+❌ Exclude from ALL monetary metrics (no revenue)  
 ✅ Keep for transaction completeness analysis
-
-
 
 
 ```R
@@ -9356,8 +9354,8 @@ ORDER BY count DESC")
     3        -23.50605       -46.71738   141
     4        -23.49062       -46.86900   127
     5        -23.00551       -43.37596   102
-    6        -23.00458       -43.31990    89
-    7        -22.96591       -43.39000    89
+    6        -22.96591       -43.39000    89
+    7        -23.00458       -43.31990    89
     8        -15.84145       -48.02403    85
     9        -23.53719       -46.59404    83
     10       -23.49189       -46.54629    82
@@ -9421,16 +9419,16 @@ LIMIT 10")
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>88220</td><td>-27.10210</td><td>-48.62961</td><td>itapema       </td><td>SC</td><td>314</td></tr>
-	<tr><td>06414</td><td>-23.49590</td><td>-46.87469</td><td>barueri       </td><td>SP</td><td>189</td></tr>
-	<tr><td>05145</td><td>-23.50605</td><td>-46.71738</td><td>sao paulo     </td><td>SP</td><td>141</td></tr>
-	<tr><td>06414</td><td>-23.49062</td><td>-46.86900</td><td>barueri       </td><td>SP</td><td>127</td></tr>
-	<tr><td>22620</td><td>-23.00551</td><td>-43.37596</td><td>rio de janeiro</td><td>RJ</td><td>102</td></tr>
-	<tr><td>22640</td><td>-23.00458</td><td>-43.31990</td><td>rio de janeiro</td><td>RJ</td><td> 89</td></tr>
-	<tr><td>22775</td><td>-22.96591</td><td>-43.39000</td><td>rio de janeiro</td><td>RJ</td><td> 89</td></tr>
-	<tr><td>71936</td><td>-15.84145</td><td>-48.02403</td><td>brasilia      </td><td>DF</td><td> 85</td></tr>
-	<tr><td>03015</td><td>-23.53719</td><td>-46.59404</td><td>sao paulo     </td><td>SP</td><td> 83</td></tr>
-	<tr><td>06401</td><td>-23.50924</td><td>-46.88667</td><td>barueri       </td><td>SP</td><td> 81</td></tr>
+	<tr><td>88220</td><td>-27.10210</td><td>-48.62961</td><td>itapema              </td><td>SC</td><td>314</td></tr>
+	<tr><td>06414</td><td>-23.49590</td><td>-46.87469</td><td>barueri              </td><td>SP</td><td>189</td></tr>
+	<tr><td>05145</td><td>-23.50605</td><td>-46.71738</td><td>sao paulo            </td><td>SP</td><td>141</td></tr>
+	<tr><td>06414</td><td>-23.49062</td><td>-46.86900</td><td>barueri              </td><td>SP</td><td>127</td></tr>
+	<tr><td>22620</td><td>-23.00551</td><td>-43.37596</td><td>rio de janeiro       </td><td>RJ</td><td>102</td></tr>
+	<tr><td>22775</td><td>-22.96591</td><td>-43.39000</td><td>rio de janeiro       </td><td>RJ</td><td> 89</td></tr>
+	<tr><td>22640</td><td>-23.00458</td><td>-43.31990</td><td>rio de janeiro       </td><td>RJ</td><td> 89</td></tr>
+	<tr><td>71936</td><td>-15.84145</td><td>-48.02403</td><td>brasilia             </td><td>DF</td><td> 85</td></tr>
+	<tr><td>03015</td><td>-23.53719</td><td>-46.59404</td><td>sao paulo            </td><td>SP</td><td> 83</td></tr>
+	<tr><td>09781</td><td>-23.72764</td><td>-46.53106</td><td>sao bernardo do campo</td><td>SP</td><td> 81</td></tr>
 </tbody>
 </table>
 
@@ -9487,7 +9485,7 @@ It is obvious, that there are still inconsistencies to be worked on:
 > there are other types of special characters present  
 > some city names have typos
 
-![geolocationinconsistency](https://storage.googleapis.com/kagglesdsdata/datasets/8737824/13999740/geo_clean_inconsistency.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=databundle-worker-v2%40kaggle-161607.iam.gserviceaccount.com%2F20260306%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260306T151656Z&X-Goog-Expires=345600&X-Goog-SignedHeaders=host&X-Goog-Signature=5332fc9dae45462cbc10f7ced79146283f30f307ecb005128fa89dfb64bbf0f8a6ae4a3edfb6f9ea3601983517ad9f37f93db12600f1ebecc172854b52287f0706cfe87bbc97316ad6ff3ed6522ab0ccc2cf664d8a72619786c556abb7c11fb3e5abbcc6a24f6a51ed1f484bc36cc25ef5069444a33c79a8cd776430c0b6333a69d01cb70d529563197da914fe3c03db65b0b03c935a0e9c33ee47b8339a2ae07eede2de6853b9a2cba0cf68259748ed52092fb6f12cb31a88ab664a84ebe0938f2a9b02f7636b6d8449f4742760b657d83f3fdee75292688a42ad21d3997fced5b18f00e497e5f9be8ac88a0727913f109d5952f4511feedfde587626a43c38)
+![Geo inconsistency](https://raw.githubusercontent.com/YuliyaCarvalho/olist-marketplace-analysis/main/assets/geo_clean_inconsistency.png)
 
 * I have used the following query to further clean up:
 ```
@@ -10489,10 +10487,9 @@ Answering this first question will establish how large and healthy the Olist mar
 
 ```R
 payments_per_order <- order_payments %>%
-  filter(is_micro_payment == 0,
-         is_zero_payment == 0) %>%
   group_by(order_id) %>%
-  summarise(order_gmv = sum(payment_value, na.rm = TRUE), .groups = "drop")
+  summarise(order_gmv = sum(payment_value, na.rm = TRUE), .groups = "drop") %>%
+  filter(order_gmv >= 1)
 
 gmv_monthly <- orders %>%
   filter(order_status == "delivered", timeline_is_valid == 1, is_hanging == 0) %>%
@@ -10527,7 +10524,7 @@ ggplot(gmv_monthly, aes(x = month, y = gmv)) +
     axis.title.y = element_text(size = 16, face = "bold"))
 ```
 
-    Total Olist GMV between 2016-10 and 2018-08, based on delivered orders with valid timelines and excluding micro- and zero-payments, is 15211167 BRL (R$).
+    Total Olist GMV between 2016-10 and 2018-08, based on delivered orders with valid timelines and excluding micro- and zero-payments, is 15211231 BRL (R$).
     
     
     
@@ -10698,40 +10695,38 @@ ggplot(delivery_monthly, aes(x = month, y = non_delivery_rate)) +
 
 
 ### **Question 4: "How concentrated is Olist’s GMV and order volume across sellers and products?"**
-Answer to this question will show whether the marketplace depends on a small set of top sellers/products or is broadly diversified, s well as help identify key contributors to GMV and where risk is if those sellers/products churn
+Answer to this question will show whether the marketplace depends on a small set of top sellers/products or is broadly diversified, as well as help identify key contributors to GMV and where risk is if those sellers/products churn
 
 
 ```R
 seller_gmv <- orders %>%
-  filter(order_status == "delivered", timeline_is_valid == 1, is_hanging == 0) %>%
-  inner_join(order_payments, by = "order_id") %>%
-  filter(is_micro_payment == 0, is_zero_payment == 0) %>%
-  inner_join(order_items %>% select(order_id, seller_id), by = "order_id") %>%
+  filter(order_status == "delivered",
+         timeline_is_valid == 1,
+         is_hanging == 0) %>%
+  select(order_id) %>%
+  inner_join(order_items %>% select(order_id, seller_id, price, freight_value), by = "order_id") %>%
   group_by(seller_id) %>%
-  summarise(gmv = sum(payment_value, na.rm = TRUE), orders_n = n_distinct(order_id), .groups = "drop")
-
-seller_gmv <- seller_gmv %>%
+  summarise(
+    gmv = sum(price + freight_value, na.rm = TRUE),
+    orders_n = n_distinct(order_id),
+    .groups = "drop"
+  ) %>%
   arrange(desc(gmv)) %>%
   mutate(
     seller_rank = row_number(),
     cum_gmv = cumsum(gmv),
     cum_gmv_share = cum_gmv / sum(gmv),
-    cum_gmv_share_pct = round(cum_gmv_share * 100, 2))
+    cum_gmv_share_pct = round(cum_gmv_share * 100, 2)
+  )
 
 seller_gmv %>%
   summarise(
     total_sellers = n(),
     top_10_share = cum_gmv_share_pct[10],
     top_50_share = cum_gmv_share_pct[50],
-    top_100_share = cum_gmv_share_pct[100])
+    top_100_share = cum_gmv_share_pct[100]
+  )
 ```
-
-    Warning message in inner_join(., order_items %>% select(order_id, seller_id), by = "order_id"):
-    “[1m[22mDetected an unexpected many-to-many relationship between `x` and `y`.
-    [36mℹ[39m Row 8 of `x` matches multiple rows in `y`.
-    [36mℹ[39m Row 87198 of `y` matches multiple rows in `x`.
-    [36mℹ[39m If a many-to-many relationship is expected, set `relationship = "many-to-many"` to silence this warning.”
-    
 
 
 <table class="dataframe">
@@ -10741,7 +10736,7 @@ seller_gmv %>%
 	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>2959</td><td>14.32</td><td>33.36</td><td>45.47</td></tr>
+	<tr><td>2959</td><td>12.99</td><td>32.62</td><td>44.9</td></tr>
 </tbody>
 </table>
 
@@ -10772,11 +10767,11 @@ ggplot(seller_gmv, aes(x = seller_rank, y = cum_gmv_share)) +
 
 🔹 The cumulative GMV curve rises steeply for the top-ranked sellers and then gradually flattens, indicating a right-skewed distribution of GMV across sellers, consistent with a **power-law** or **long-tail** marketplace structure.
 
-🔹 Seller-level GMV is meaningfully concentrated but not dominated by a handful of sellers. The top 10 sellers account for approximately 14% of total GMV, the top 50 for 33%, and the top 100 for ~45%, out of 3K+ active sellers. This suggests, that while leading sellers play an important role, a substantial share of GMV is still generated by a broad base of mid-tier and smaller sellers.
+🔹 Seller-level GMV is meaningfully concentrated but not dominated by a handful of sellers. The top 10 sellers account for approximately 13% of total GMV, the top 50 for ~33%, and the top 100 for ~45%, out of ~3K sellers. This suggests that leading sellers contribute disproportionately, but a substantial share of GMV is still generated by a broad base of mid-tier and smaller sellers.
 
-🔹 The long tail contributes incrementally less GMV per additional seller, as reflected by the flattening of the curve at higher ranks. However, its aggregate contribution remains economically relevant, indicating that Olist’s marketplace is not overly dependent on a single seller or a very small elite group, but instead benefits from diversification across many participants.
+🔹 The long tail contributes progressively less GMV per additional seller, as reflected in the flattening cumulative curve at higher ranks. At the same time, its combined contribution remains economically important, suggesting that Olist’s marketplace is not excessively dependent on a very small seller elite.
 
-🔹 From a risk perspective, this structure implies moderate exposure to top-seller churn: losing one or two top sellers would have a noticeable but not catastrophic impact on GMV, while systemic risks would more likely arise from issues affecting a broader segment of sellers rather than isolated churn events.
+🔹 From a risk perspective, this distribution suggests moderate concentration risk rather than extreme dependence. The loss of one or several top sellers would likely have a noticeable impact on GMV, but would not by itself destabilize the marketplace. Broader seller-side issues affecting many participants would likely pose a greater structural risk than isolated top-seller churn.
 
 
 To assess how concentrated Olist’s GMV is across sellers, I decided to use two complementary concentration metrics: the **Gini coefficient** and the **Herfindahl–Hirschman Index (HHI)**.
@@ -10802,20 +10797,20 @@ hhi_gmv <- sum(seller_gmv_shares$gmv_share^2)
 cat(sprintf("Herfindahl–Hirschman Index (HHI) for seller GMV: %.4f\n\n", hhi_gmv))
 ```
 
-    Gini coefficient of seller GMV: 0.787
+    Gini coefficient of seller GMV: 0.782
     
-    Herfindahl–Hirschman Index (HHI) for seller GMV: 0.0039
+    Herfindahl–Hirschman Index (HHI) for seller GMV: 0.0035
     
     
 
-🔹**Gini coefficient = 0.787** ➡︎ indicates extreme inequality in GMV distribution across sellers ➡︎ a small fraction of sellers captures a disproportionately large share of GMV, while majority of sellers contribute relatively little individually (classic long-tail marketplace).
+🔹**Gini coefficient = 0.78** ➡︎ indicates extreme inequality in GMV distribution across sellers ➡︎ a small fraction of sellers captures a disproportionately large share of GMV, while majority of sellers contribute relatively little individually (classic long-tail marketplace).
 
 This quantitatively confirms what the graph's steep initial slope of the cumulative GMV curve already suggested.
 
 However, worth mentioning, that high Gini coefficient does not indicate an unhealthy marketplace. A high Gini is common and often expected in such business scenario, because sellers vary a lot in scale and professionalism, large sellers naturally dominate volume. 
 
 
-🔹**HHI = 0.0039** ➡︎ indicates very low market concentration (0 → perfectly competitive, 1 → monopoly; in competition economics HHI < 0.01 means very unconcentrated) ➡︎ no single seller (or small seller group) dominates the marketplace, even the largest sellers hold only small individual market shares ➡︎ Olist platform risk from single-seller failure is low
+🔹**HHI = 0.0035** ➡︎ indicates very low market concentration (0 → perfectly competitive, 1 → monopoly; in competition economics HHI < 0.01 means very unconcentrated) ➡︎ no single seller (or small seller group) dominates the marketplace, even the largest sellers hold only small individual market shares ➡︎ Olist platform risk from single-seller failure is low
 
 This is a crucial counterbalance to the high Gini.
 
@@ -10846,7 +10841,7 @@ payments_per_order <- order_payments %>%
 
 order_items_weighted <- order_items %>%
   group_by(order_id) %>%
-  mutate(order_total_price = sum(price, na.rm = TRUE), item_weight = price / order_total_price) %>%
+  mutate(order_total_price = sum(price, na.rm = TRUE), item_weight = (price + freight_value) / sum(price + freight_value)) %>%
   ungroup()
 
 items_with_gmv <- order_items_weighted %>%
@@ -10908,26 +10903,26 @@ top_categories
 	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td> 1</td><td>health_beauty        </td><td>1386937.7</td><td>0.09117891</td></tr>
-	<tr><td> 2</td><td>watches_gifts        </td><td>1248069.9</td><td>0.17322849</td></tr>
-	<tr><td> 3</td><td>bed_bath_table       </td><td>1207193.3</td><td>0.25259080</td></tr>
-	<tr><td> 4</td><td>sports_leisure       </td><td>1105389.9</td><td>0.32526044</td></tr>
-	<tr><td> 5</td><td>computers_accessories</td><td>1019332.8</td><td>0.39227257</td></tr>
-	<tr><td> 6</td><td>furniture_decor      </td><td> 869003.2</td><td>0.44940187</td></tr>
-	<tr><td> 7</td><td>housewares           </td><td> 742979.5</td><td>0.49824621</td></tr>
-	<tr><td> 8</td><td>cool_stuff           </td><td> 686286.8</td><td>0.54336351</td></tr>
-	<tr><td> 9</td><td>auto                 </td><td> 662357.4</td><td>0.58690766</td></tr>
-	<tr><td>10</td><td>garden_tools         </td><td> 560047.3</td><td>0.62372582</td></tr>
-	<tr><td>11</td><td>toys                 </td><td> 539767.0</td><td>0.65921074</td></tr>
-	<tr><td>12</td><td>baby                 </td><td> 460096.8</td><td>0.68945804</td></tr>
-	<tr><td>13</td><td>perfumery            </td><td> 436770.2</td><td>0.71817183</td></tr>
-	<tr><td>14</td><td>telephony            </td><td> 375230.5</td><td>0.74283992</td></tr>
-	<tr><td>15</td><td>office_furniture     </td><td> 334152.3</td><td>0.76480748</td></tr>
-	<tr><td>16</td><td>stationery           </td><td> 266399.0</td><td>0.78232087</td></tr>
-	<tr><td>17</td><td>pet_shop             </td><td> 246050.8</td><td>0.79849653</td></tr>
-	<tr><td>18</td><td>computers            </td><td> 228406.1</td><td>0.81351222</td></tr>
-	<tr><td>19</td><td>electronics          </td><td> 198804.4</td><td>0.82658185</td></tr>
-	<tr><td>20</td><td>musical_instruments  </td><td> 198444.9</td><td>0.83962785</td></tr>
+	<tr><td> 1</td><td>health_beauty        </td><td>1386837.5</td><td>0.09117233</td></tr>
+	<tr><td> 2</td><td>watches_gifts        </td><td>1247806.4</td><td>0.17320459</td></tr>
+	<tr><td> 3</td><td>bed_bath_table       </td><td>1206990.4</td><td>0.25255355</td></tr>
+	<tr><td> 4</td><td>sports_leisure       </td><td>1105561.9</td><td>0.32523449</td></tr>
+	<tr><td> 5</td><td>computers_accessories</td><td>1019339.2</td><td>0.39224705</td></tr>
+	<tr><td> 6</td><td>furniture_decor      </td><td> 869493.3</td><td>0.44940856</td></tr>
+	<tr><td> 7</td><td>housewares           </td><td> 743066.8</td><td>0.49825864</td></tr>
+	<tr><td> 8</td><td>cool_stuff           </td><td> 686083.6</td><td>0.54336258</td></tr>
+	<tr><td> 9</td><td>auto                 </td><td> 662460.0</td><td>0.58691348</td></tr>
+	<tr><td>10</td><td>garden_tools         </td><td> 560342.5</td><td>0.62375105</td></tr>
+	<tr><td>11</td><td>toys                 </td><td> 539642.2</td><td>0.65922777</td></tr>
+	<tr><td>12</td><td>baby                 </td><td> 460038.7</td><td>0.68947125</td></tr>
+	<tr><td>13</td><td>perfumery            </td><td> 436847.6</td><td>0.71819012</td></tr>
+	<tr><td>14</td><td>telephony            </td><td> 375315.4</td><td>0.74286380</td></tr>
+	<tr><td>15</td><td>office_furniture     </td><td> 334274.9</td><td>0.76483942</td></tr>
+	<tr><td>16</td><td>stationery           </td><td> 266421.5</td><td>0.78235428</td></tr>
+	<tr><td>17</td><td>pet_shop             </td><td> 246049.7</td><td>0.79852987</td></tr>
+	<tr><td>18</td><td>computers            </td><td> 228349.7</td><td>0.81354185</td></tr>
+	<tr><td>19</td><td>electronics          </td><td> 198703.3</td><td>0.82660484</td></tr>
+	<tr><td>20</td><td>musical_instruments  </td><td> 198445.8</td><td>0.83965090</td></tr>
 </tbody>
 </table>
 
@@ -10956,7 +10951,7 @@ ggplot(top_categories, aes(x = reorder(product_category_eng, -gmv), y = gmv / 10
     
 
 
-🔹 Olist’s GMV is highly concentrated in a small set of product categories. The cumulative curve rises steeply for the first ~15 categories, then flattens, showing that the remaining 40+ categories add only marginal GMV. High‑performing categories like **bed_bath_table**, **health_beauty**, **computers_accessories**, **furniture_decor**, **watches_gifts** and **sports_leisure** drive most GMV and therefore concentrate both: growth potential and risk, while the long tail of smaller categories plays a secondary, niche role.
+🔹 Olist’s GMV is highly concentrated in a small set of product categories. The cumulative curve rises steeply for the first ~15 categories, then flattens, showing that the remaining 40+ categories add only marginal GMV. High‑performing categories like **health_beauty**, **watches_gifts**, **bed_bath_table**, **sports_leisure**, **computers_accessories** and **furniture_decor** drive most GMV and therefore concentrate both: growth potential and risk, while the long tail of smaller categories plays a secondary, niche role.
 
 ### **Question 6: "How many customers are one‑time buyers vs repeat buyers, and how much GMV comes from repeat customers?"**
 
@@ -11032,15 +11027,17 @@ coord_flip() +
     
 
 
+#### Among customers with valid delivered orders, how many were one-time vs repeat, and how was GMV distributed between them?
+
 🔹The vast majority of GMV comes from **one‑time** customers, not repeat ones, they generate about 94% of total GMV.  
 
-🔹Repeat customers contribute only about 5.5% of GMV, they are roughly 3% of the customer base (their per‑customer GMV is higher)
+🔹Repeat customers contribute only about 5.6% of GMV, they are roughly 3% of the customer base (their per‑customer GMV is higher).  
 
-🔹Olist growth relies heavily on acquiring new customers and their first purchases, retention is a minor driver of GMV, but presents a valuable opportunity. Increasing repeat purchase rates could improve profitability and stabilize GMV.
+🔹Olist growth relies heavily on acquiring new customers and their first purchases, retention is a minor driver of GMV, but presents a valuable opportunity. Increasing repeat purchase rates could improve profitability and stabilize GMV.  
 
-🔹Because repeat buyers are more valuable on a per‑customer basis, have much higher lifetime value and are cheaper to retain than new customers are to acquire, improving retention and repeat purchasing could materially shift GMV mix even if the repeat customer share of the base stays relatively small. This could be acheieved by investing in repeat-customers' **post‑purchase experience**, **loyalty programs** and **remarketing campaigns** to increase repeat rate ➜ should materially improve profitability and GMV stability over time
+🔹Because repeat buyers are more valuable on a per‑customer basis, have much higher lifetime value and are cheaper to retain than new customers are to acquire, improving retention and repeat purchasing could materially shift GMV mix even if the repeat customer share of the base stays relatively small. This could be acheieved by investing in repeat-customers' **post‑purchase experience**, **loyalty programs** and **remarketing campaigns** to increase repeat rate ➜ should materially improve profitability and GMV stability over time.  
 
-🔹The bar chart highlights the stark GMV contrast between one-time and repeat buyers. Even though repeat buyers are a small fraction, targeting them effectively could yield outsized returns.
+🔹The bar chart highlights the stark GMV contrast between one-time and repeat buyers. Even though repeat buyers are a small fraction, targeting them effectively could yield outsized returns.  
 
 ### **Question 7: "How do the unit economics (average order value, margin per order, and acquisition/retention costs) differ between one‑time and repeat customers, and what does this imply for where the business should invest to maximize long‑term profit?"**
 
@@ -11497,7 +11494,7 @@ Across all segments, GMV is concentrated in a relatively small number of **lifes
 **Key Observations:**
 
 1. Category concentration differs by customer segment:
-> **Heavy-repeat buyers** ➡︎ GMV among heavy-repeat customers is concentrated in a small set of categories: (bed_bath_table (~15% GMV), sports_leisure (~10%), watches_gifts (~10%), computers_accessories (~8%), fashion_bags_accessories (~6%)) ➡︎ concentration suggests that repeat buyers tend to return to the platform for purchases within a relatively focused set of lifestyle and home-related categories.    
+> **Heavy-repeat buyers** ➡︎ GMV among heavy-repeat customers is concentrated in a small set of categories: (bed_bath_table (ca.15% GMV), sports_leisure (ca.10%), watches_gifts (ca.10%), computers_accessories (ca.8%), fashion_bags_accessories (ca.6%)) ➡︎ concentration suggests that repeat buyers tend to return to the platform for purchases within a relatively focused set of lifestyle and home-related categories.    
 > **Light-repeat buyers** ➡︎ display a somewhat more diversified spending pattern. Their GMV is still strongly represented by:  bed_bath_table, furniture_decor, sports_leisure, and computers_accessories. Compared with heavy-repeat customers, category spending is slightly more dispersed.    
 > **One-time buyers** ➡︎ spending is dominated by categories such as: health_beauty, bed_bath_table, watches_gifts, computers_accessories, and sports_leisure. While similar categories appear across all segments, spending among one-time buyers is somewhat less concentrated than among heavy-repeat customers.   
 
@@ -11520,8 +11517,8 @@ However, **this analysis identifies associations, rather than causal relationshi
 
 * **Focus retention initiatives in repeat-heavy categories** (**bed_bath_table**, **sports_leisure**, **furniture_decor** appear strongly represented among repeat buyers. These categories may be promising targets for retention campaigns or seller recruitment efforts aimed at strengthening repeat engagement).  
 * **Expand cross-sell and up-sell strategies**: customers purchasing within repeat-heavy categories may respond well to cross-sell recommendations for related products. For example:
-> home goods ➡︎ decor or household accessories   
-> sports equipment ➡︎ complementary accessories
+> * home goods ➡︎ decor or household accessories   
+> * sports equipment ➡︎ complementary accessories
 
 Encouraging additional purchases within these ecosystems could increase overall customer lifetime value.  
 
@@ -11537,42 +11534,218 @@ These findings provide useful direction for merchandising strategy, category pro
 
 ### **Question 11: "How do delivery times and delays differ between one‑time, light‑repeat, and heavy‑repeat customers, and is faster, more reliable delivery associated with higher repeat purchase behaviour?"**
 
+### Restricting the analysis to single-item delivered orders
+
+For this question, I initially planned to compare `delivery_performance` across customer frequency segments. However, I found that `delivery_performance` was not always unique at the order level.
+
+The reason is structural: while delivery timestamps are recorded once per order, `delivery_performance` was benchmarked relative to **product-category-specific delivery norms**. In multi-item orders containing products from different categories, the same order-level delivery time can therefore fall into different performance buckets depending on the item category. As a result, a small number of orders (125 orders) appeared in more than one `delivery_performance` class.
+
+This creates a mismatch between:
+- the **business question**, which is order-level and customer-level
+- the **derived variable**, which is category-relative and can become ambiguous in multi-item orders
+
+To preserve a single, unambiguous `delivery_performance` label per order, I restricted this analysis to **single-item delivered orders** only.
+
+This is a defensible tradeoff because:
+- it removes the category-conflict problem at the source
+- it preserves the large majority of the delivered-order cohort
+- it allows clean comparison of delivery performance across one-time, light-repeat, and heavy-repeat customers without double-counting orders across multiple delivery buckets
+
 
 ```R
-orders_delivery_seg <- delivered_orders %>%
-  select(order_id, customer_id, delivery_performance) %>%
-  inner_join(orders_enriched %>% select(order_id, customer_unique_id), by = "order_id") %>%
-  inner_join(customer_segments, by = "customer_unique_id")
+# Identifying/extracting orders, that have exactly one item: 
 
-delivery_perf_by_segment <- orders_delivery_seg %>%
+single_item_orders <- order_items %>%
+  group_by(order_id) %>%
+  summarise(item_count = n(), .groups = "drop") %>%
+  filter(item_count == 1)
+
+# Defining the delivered clean-order base used for this analysis:
+
+delivered_order_base <- orders_enriched %>%
+  filter(order_status == "delivered", timeline_is_valid == 1, is_hanging == 0) %>%
+  select(order_id) %>%
+  distinct()
+
+# Restricting the delivered cohort to single-item orders only:
+
+single_item_delivered_orders <- delivered_order_base %>%
+  semi_join(single_item_orders, by = "order_id")
+
+# Cohort summary:
+
+delivered_cohort_summary <- delivered_order_base %>%
+  summarise(
+    delivered_clean_orders = n()
+  ) %>%
+  mutate(
+    single_item_delivered_orders = nrow(single_item_delivered_orders),
+    excluded_multi_item_orders = delivered_clean_orders - single_item_delivered_orders,
+    pct_single_item_within_delivered = round(100 * single_item_delivered_orders / delivered_clean_orders, 2)
+  )
+
+delivered_cohort_summary
+
+# Validating that delivery_performance is now unique per order:
+
+single_item_delivery_perf_check <- delivered_orders %>%
+  semi_join(single_item_delivered_orders, by = "order_id") %>%
+  select(order_id, delivery_performance) %>%
+  distinct() %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id)
+  )
+
+single_item_delivery_perf_check
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>delivered_clean_orders</th><th scope=col>single_item_delivered_orders</th><th scope=col>excluded_multi_item_orders</th><th scope=col>pct_single_item_within_delivered</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>95082</td><td>85606</td><td>9476</td><td>90.03</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 2</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>85606</td><td>85606</td></tr>
+</tbody>
+</table>
+
+
+
+### Findings from the cohort restriction
+
+The delivered clean-order cohort contains **95082** orders. After restricting the analysis to **single-item delivered orders**, **85606** orders remain, meaning that **90.03%** of the delivered clean-order cohort is retained. Only **9476** multi-item orders are excluded. I have a robust sample size, that is more than enough for the results to be statistically representative of the entire marketplace behavior.
+
+
+This shows, that restricting the analysis to single-item orders preserves the large majority of the delivered clean-order cohort and does not materially reduce the sample.
+
+A second validation step confirmed, that `delivery_performance` is now uniquely defined at the order level within this subset:
+
+-> `rows` = **85606** vs `distinct orders` = **85606**
+
+This resolves the earlier ambiguity caused by multi-item orders spanning categories with different delivery-performance benchmarks. In the restricted subset, each order maps to exactly one `delivery_performance` class, making the variable structurally suitable for order-level comparison across customer frequency segments.
+
+
+Using this cleaned single-item delivered subset, I will next join:
+> - the order-level delivery data
+> - customer identifiers
+> - customer frequency segments
+
+This will produce a clean analytical base where each row represents one order with one customer and one delivery-performance class, allowing a valid comparison across:
+- **One-time**
+- **Light-repeat**
+- **Heavy-repeat** customers
+
+With the single-item restriction validated, I can now construct the order-level table for customer-segment comparison.
+
+
+```R
+orders_delivery_seg_single <- delivered_orders %>%
+  semi_join(single_item_delivered_orders, by = "order_id") %>%
+  select(order_id, delivery_performance) %>%
+  distinct() %>%
+  inner_join(
+    orders_enriched %>%
+      select(order_id, customer_unique_id) %>%
+      distinct(),
+    by = "order_id"
+  ) %>%
+  inner_join(
+    customer_segments %>%
+      select(customer_unique_id, freq_segment) %>%
+      distinct(),
+    by = "customer_unique_id"
+  )
+
+orders_delivery_seg_single %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_customers = n_distinct(customer_unique_id)
+  )
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_customers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>85606</td><td>85606</td><td>83249</td></tr>
+</tbody>
+</table>
+
+
+
+So `orders_delivery_seg_single` is correct with one row per order. I can now safely summarise delivery performance by customer segment without worrying about duplicated orders/ subsequent aritifcial inflation of metrics
+
+
+```R
+delivery_perf_by_segment_single <- orders_delivery_seg_single %>%
   group_by(freq_segment, delivery_performance) %>%
-  summarise(orders_n = n(), .groups = "drop") %>%
+  summarise(
+    orders_n = n(),
+    .groups = "drop"
+  ) %>%
   group_by(freq_segment) %>%
-  mutate(orders_share_pct = round(orders_n / sum(orders_n) * 100, 2)) %>%
+  mutate(
+    orders_share_pct = round(100 * orders_n / sum(orders_n), 2)
+  ) %>%
   ungroup()
 
-delivery_perf_by_segment
+delivery_perf_by_segment_single
 
-cat("\n\n")
 
-delivery_perf_plot <- delivery_perf_by_segment %>%
+# Data for the plot:
+
+delivery_perf_plot_single <- delivery_perf_by_segment_single %>%
   mutate(
     delivery_perf_label = factor(
       delivery_performance,
       levels = c(1, 2, 3, 4),
-      labels = c("Fast (P≤25)", "Typical (P25–75)", "Slow (P75–95)", "Very slow (P>95)")),
-    freq_segment = factor(freq_segment, levels = c("One-time", "Light-repeat (2)", "Heavy-repeat (3+)")),
+      labels = c("Fast (P≤25)", "Typical (P25–75)", "Slow (P75–95)", "Very slow (P>95)")
+    ),
+    freq_segment = factor(
+      freq_segment,
+      levels = c("One-time", "Light-repeat (2)", "Heavy-repeat (3+)")),
     share = orders_share_pct / 100)
 
 options(repr.plot.width = 14, repr.plot.height = 6)
 
-ggplot(delivery_perf_plot, aes(x = freq_segment, y = share, fill = delivery_perf_label)) +
+ggplot(delivery_perf_plot_single, aes(x = freq_segment, y = share, fill = delivery_perf_label)) +
   geom_col(width = 0.7) +
-  geom_text(aes(label = percent(share, accuracy = 1)), position = position_stack(vjust = 0.5), color = "black", size = 5) +
+  geom_text(
+    aes(label = percent(share, accuracy = 1)),
+    position = position_stack(vjust = 0.5),
+    color = "black",
+    size = 5
+  ) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   scale_fill_brewer(name = "Delivery performance", palette = "Pastel1") +
   coord_flip() +
-  labs(title = "Delivery performance mix by customer segment", x = "Customer segment", y = "Share of orders") +
+  labs(
+    title = "Delivery performance mix by customer segment\n(single-item delivered orders only)",
+    x = "Customer segment",
+    y = "Share of orders"
+  ) +
   theme_minimal() +
   theme(
     plot.background  = element_rect(fill = "white", color = NA),
@@ -11594,48 +11767,58 @@ ggplot(delivery_perf_plot, aes(x = freq_segment, y = share, fill = delivery_perf
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>Heavy-repeat (3+)</td><td>1</td><td>  267</td><td>27.11</td></tr>
-	<tr><td>Heavy-repeat (3+)</td><td>2</td><td>  532</td><td>54.01</td></tr>
-	<tr><td>Heavy-repeat (3+)</td><td>3</td><td>  141</td><td>14.31</td></tr>
-	<tr><td>Heavy-repeat (3+)</td><td>4</td><td>   45</td><td> 4.57</td></tr>
-	<tr><td>Light-repeat (2) </td><td>1</td><td> 1769</td><td>29.04</td></tr>
-	<tr><td>Light-repeat (2) </td><td>2</td><td> 2858</td><td>46.91</td></tr>
-	<tr><td>Light-repeat (2) </td><td>3</td><td> 1135</td><td>18.63</td></tr>
-	<tr><td>Light-repeat (2) </td><td>4</td><td>  330</td><td> 5.42</td></tr>
-	<tr><td>One-time         </td><td>1</td><td>28906</td><td>28.46</td></tr>
-	<tr><td>One-time         </td><td>2</td><td>47797</td><td>47.06</td></tr>
-	<tr><td>One-time         </td><td>3</td><td>18551</td><td>18.26</td></tr>
-	<tr><td>One-time         </td><td>4</td><td> 6321</td><td> 6.22</td></tr>
+	<tr><td>Heavy-repeat (3+)</td><td>1</td><td>  163</td><td>25.91</td></tr>
+	<tr><td>Heavy-repeat (3+)</td><td>2</td><td>  322</td><td>51.19</td></tr>
+	<tr><td>Heavy-repeat (3+)</td><td>3</td><td>  108</td><td>17.17</td></tr>
+	<tr><td>Heavy-repeat (3+)</td><td>4</td><td>   36</td><td> 5.72</td></tr>
+	<tr><td>Light-repeat (2) </td><td>1</td><td> 1228</td><td>28.16</td></tr>
+	<tr><td>Light-repeat (2) </td><td>2</td><td> 2012</td><td>46.14</td></tr>
+	<tr><td>Light-repeat (2) </td><td>3</td><td>  860</td><td>19.72</td></tr>
+	<tr><td>Light-repeat (2) </td><td>4</td><td>  261</td><td> 5.98</td></tr>
+	<tr><td>One-time         </td><td>1</td><td>22368</td><td>27.75</td></tr>
+	<tr><td>One-time         </td><td>2</td><td>37861</td><td>46.96</td></tr>
+	<tr><td>One-time         </td><td>3</td><td>15112</td><td>18.75</td></tr>
+	<tr><td>One-time         </td><td>4</td><td> 5275</td><td> 6.54</td></tr>
 </tbody>
 </table>
 
 
 
+
     
-    
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_378_1.png)
     
 
 
-    
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_373_2.png)
-    
+Across all three customer segments, the delivery profile is broadly stable, with most orders falling into:
 
+> * Typical deliveries (2): about 46–51%  
+> * Fast deliveries (1): about 26–28%  
+> * Slow deliveries (3): about 17–20%  
+> * Very slow deliveries (4): about 6% 
+
+So the broad shape is similar across segments. 
+
+Overall, heavy-repeat customers show a slightly more favorable delivery mix, mainly because they have a somewhat higher share of Typical deliveries and a somewhat lower share of Slow / Very slow outcomes. But the differences are small, not structural.
+
+**The key point:**
+Repeat customers do not appear to have a radically different delivery profile (though there are some small differences), but they do seem to experience slightly fewer poor delivery outcomes. However, heavy-repeat segment has a much smaller sample size, so I'd be careful to not over-interpret these small differences. 
 
 
 ```R
-# Are repeat buyers treated better by logistics?:
+# Are repeat buyers "treated better" by logistics?:
 
-delivery_friction <- delivery_perf_by_segment %>%
+delivery_friction <- delivery_perf_by_segment_single %>%
   mutate(
     delivery_group = case_when(
       delivery_performance %in% c(1, 2) ~ "Good delivery",
       delivery_performance %in% c(3, 4) ~ "Slow / delayed delivery")) %>%
   group_by(freq_segment, delivery_group) %>%
   summarise(
-    orders_n = sum(orders_n),
-    .groups = "drop") %>%
+    orders_n = sum(orders_n), .groups = "drop") %>%
   group_by(freq_segment) %>%
-  mutate(share = orders_n / sum(orders_n))
+  mutate(share = orders_n / sum(orders_n)) %>%
+  ungroup()
 
 ggplot(delivery_friction,
        aes(x = freq_segment, y = share, fill = delivery_group)) +
@@ -11649,7 +11832,8 @@ ggplot(delivery_friction,
   scale_fill_manual(
     values = c("#6FCF97", "#EB5757"),
     name = "Delivery experience") +
-  labs(title = "Delivery friction rate by customer segment",
+  labs(
+    title = "Delivery friction rate by customer segment\n(single-item delivered orders only)",
     x = "Customer segment",
     y = "Share of orders") +
   theme_minimal() + 
@@ -11667,55 +11851,41 @@ ggplot(delivery_friction,
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_374_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_380_0.png)
     
 
 
-**Plot 1 Description:** This chart shows how delivery performance is distributed across customer frequency segments: one-time buyers, light-repeat buyers (2 orders), and heavy-repeat buyers (3+ orders). Each horizontal bar represents a customer segment and is divided into four delivery-performance categories:
-> Fast (≤25th percentile)   
-> Typical (25–75th percentile)  
-> Slow (75–95th percentile)  
-> Very slow (>95th percentile)    
-
-The x-axis shows the share of orders within each segment. This allows us to compare the relative distribution of delivery speeds across customer groups, regardless of differences in segment size.
-
-**Plot 2 Description:** Repeat customers experience slightly fewer problematic deliveries. But the difference is small, so logistics is not the primary driver of repeat purchasing.
+**Repeat customers experience slightly less delivery friction, but the gap is modest**
 
 **Key findings:**
 
-1. The distribution of delivery speeds is remarkably consistent across one-time, light-repeat, and heavy-repeat customers.
+When the four delivery categories are collapsed into two broader groups:
 
-For all segments:
-> ~47–54% of orders fall into the “Typical” delivery range  
-> ~27–29% are classified as “Fast”  
-> ~14–19% fall into the “Slow” category  
-> ~4–6% are “Very slow”    
+* **Better delivery (Fast + Typical)**
+> - One-time: 75%  
+> - Light-repeat: 74%  
+> - Heavy-repeat: 77%  
 
-These proportions remain stable across all three customer segments.
+* **Slower / delayed delivery (Slow + Very slow)**
+> - One-time: 25%  
+> - Light-repeat: 26%  
+> - Heavy-repeat: 23%  
 
+🔹 This shows that heavy-repeat customers face somewhat less delivery friction than the other two groups, but the difference is only around 2–3 percentage points.
 
-Important note: segment sizes differ massively (Heavy repeat orders ~ 985; Light repeat orders ~ 6092, One-time orders ~ 101575) . The chart compares relative performance, not absolute volume.
-
-2. Loyal customers do not receive significantly faster deliveries: heavy-repeat customers do not appear to benefit from noticeably faster delivery performance.
-
-For example:
-> * Fast deliveries represent 27% of heavy-repeat orders, compared with 28–29% for other segments  
-> * The share of Very slow deliveries is only slightly lower among heavy-repeat customers (4.6%) than among one-time buyers (6.2%)  
-
-These differences are small and do not indicate a major advantage for repeat customers.
-
-3. Some loyal buyers still tolerate slower deliveries
-Even among heavy-repeat customers:
-> ~14% of orders are classified as Slow  
-> ~5% are Very slow  
-
-This indicates that loyal customers continue purchasing even when delivery performance is not optimal.
+🔹 Light-repeat customers actually look slightly worse than one-time buyers on this collapsed measure, which reinforces the point, that the relationship is not strong or linear.
 
 **Interpretation:**
 
-🔹 The results suggest that delivery performance is broadly consistent across customer segments.
-🔹 Because repeat customers experience delivery speeds similar to those of one-time buyers, faster delivery does not appear to be a strong differentiating factor explaining repeat purchase behaviour in this dataset.
-🔹 This suggests that other factors — such as product assortment, pricing, or category preferences — may play a larger role in encouraging customers to return to the platform.
+The main pattern is not “repeat buyers are treated much better by logistics” The real pattern is weaker:
+
+* Delivery quality is broadly similar across customer segments (because repeat customers experience delivery speeds similar to those of one-time buyers, faster delivery does not appear to be a strong differentiating factor, explaining repeat purchase behaviour in this dataset)
+* This suggests that other factors — such as product assortment, pricing, or category preferences — may play a larger role in encouraging customers to return to the platform  
+* Heavy-repeat customers have a slightly cleaner delivery profile  
+* But the gap is too small to support a strong claim, that logistics is the primary driver of repeat purchase behaviour  
+
+A more defensible conclusion would be that **poor delivery is not absent among repeat buyers**, and **good delivery alone does not clearly explain retention depth**.
+
 
 **Operational implications:**
 
@@ -11825,7 +11995,7 @@ response_time_by_cat
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_376_2.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_382_2.png)
     
 
 
@@ -11929,7 +12099,7 @@ ggplot(segment_review_value, aes(x = freq_segment, y = avg_revenue, fill = most_
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_378_2.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_384_2.png)
     
 
 
@@ -12075,7 +12245,7 @@ ggplot(churn_summary, aes(x = freq_segment, y = churn_rate_pct, fill = most_rece
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_380_3.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_386_3.png)
     
 
 
@@ -12210,7 +12380,7 @@ ggplot(churn_summary, aes(x = freq_segment, y = churn_rate_pct, fill = most_rece
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_382_3.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_388_3.png)
     
 
 
@@ -12233,6 +12403,24 @@ Because the max window is driven by rare long gaps, it is less statistically rob
 
 * I have a hypothesis, I want to check: are customers more tolerant of delays, when shipping costs are low? (when freight price represents a large share of the order value, late deliveries trigger a steep increase in low reviews?)
 
+#### Restricting the analysis to single-item orders
+
+For this question, I am going to restrict the operational analysis to **single-item delivered orders** in order to preserve a clean and interpretable order-level structure.
+
+This is important because the key outcome variables in the analysis — **delivery delay** and **review score** — are both observed at the **order level**, not at the item level. In multi-item orders, the same review score and the same delivery outcome are shared across all items in the order, even when the order contains different products and, in some cases, different sellers.
+
+As a result, multi-item orders introduce unavoidable ambiguity: it is not possible to determine, whether a low review reflects dissatisfaction with one specific item, the full order experience, the seller communication, the delivery, or some combination of these factors. Using such orders in item-level operational comparisons would therefore require assumptions, that the data cannot support.
+
+Restricting the analysis to **single-item orders** removes this ambiguity. Each order then corresponds to:
+> - one item  
+> - one seller 
+> - one delivery outcome  
+> - one review score
+
+This creates a cleaner analytical base for testing how operational factors such as delivery delay, freight burden, payment structure, and seller-level execution relate to customer satisfaction and order value, without introducing unsupported attribution assumptions.
+
+I can use `single_item_delivered_orders` dataframe created earlier in the analysis.
+
 To define **delivery delays**, in this analysis I will treat **order_estimated_delivery_date** as the promised delivery date and measure delays as the difference between this estimate and the actual delivery date, then bucket that difference into delay categories.
 
 
@@ -12241,7 +12429,8 @@ To define **delivery delays**, in this analysis I will treat **order_estimated_d
 
 delay_levels <- c(">=3 days early", "early/on time", "1–3 days late", ">3 days late")
 
-# re-mapping order reviews back to numeric score:
+
+# re-mapping order review labels back to numeric score:
 
 order_review_clean <- order_review %>%
   mutate(
@@ -12252,61 +12441,81 @@ order_review_clean <- order_review %>%
       review_score == "good" ~ 4,
       review_score == "excellent" ~ 5))
 
+
 # delivered_orders: estimated delivery vs actual delivery: 
 
 delivered_orders_delay <- delivered_orders %>%
-  mutate(delay_vs_eta = as.numeric(difftime(order_delivered_customer_date, order_estimated_delivery_date, units = "days")))
+  mutate(delay_vs_eta = as.numeric(
+      difftime(order_delivered_customer_date, order_estimated_delivery_date, units = "days")))
 
-# core ops table:
 
-orders_ops <- delivered_orders_delay %>%
-  select(order_id, delay_vs_eta, price, freight_value) %>%
-  group_by(order_id) %>%
-  summarise(
-    delay_vs_eta = first(delay_vs_eta),
-    order_price = sum(price, na.rm = TRUE),
-    order_freight = sum(freight_value, na.rm = TRUE),
-    order_total = sum(price + freight_value, na.rm = TRUE), .groups = "drop") %>%
-  inner_join(order_payments %>%
+# Building clean single-item ops core ops table:
+
+orders_ops_single <- single_item_delivered_orders %>%
+  inner_join(
+    delivered_orders_delay %>%
+      select(order_id, delay_vs_eta, price, freight_value, seller_id),
+    by = "order_id") %>%
+  inner_join(
+    order_payments %>%
       group_by(order_id) %>%
       summarise(
-        main_payment_type = first(payment_type),
         max_installments = max(payment_installments, na.rm = TRUE),
-        total_payment_value = sum(payment_value, na.rm = TRUE), .groups = "drop"), by = "order_id") %>%
-  inner_join(order_review_clean %>%
-      select(order_id, review_score, review_score_num), by = "order_id") %>%
-  inner_join(order_items %>% select(order_id, seller_id), by = "order_id")
+        main_payment_type = first(payment_type),
+        total_payment_value = sum(payment_value, na.rm = TRUE), .groups = "drop"),
+    by = "order_id") %>%
+  inner_join(
+    order_review_clean %>%
+      select(order_id, review_score, review_score_num),
+    by = "order_id")
 
-# buckets based on promised vs actual delivery 
 
-orders_ops_buckets <- orders_ops %>%
+# Sanity check for correct granularity (must be one row per order):
+
+orders_ops_single %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id))
+
+
+# Adding buckets and derived fields:
+
+orders_ops_buckets <- orders_ops_single %>%
   mutate(
     delay_bucket = case_when(
       delay_vs_eta <= -3 ~ ">=3 days early",
       delay_vs_eta > -3 & delay_vs_eta <= 0 ~ "early/on time",
       delay_vs_eta > 0 & delay_vs_eta <= 3 ~ "1–3 days late",
-      delay_vs_eta > 3 ~ ">3 days late"),
-      
-    delay_bucket = factor(delay_bucket, levels = delay_levels), 
+      delay_vs_eta > 3 ~ ">3 days late",
+      TRUE ~ NA_character_),
+    delay_bucket = factor(delay_bucket, levels = delay_levels),
 
     freight_pct = if_else(
-      order_price > 0,
-      (order_freight / order_price) * 100, NA_real_),
-      
+      price > 0,
+      (freight_value / price) * 100,
+      NA_real_),
+
     freight_pct_bucket = case_when(
       freight_pct <= 5 ~ "<=5%",
       freight_pct > 5 & freight_pct <= 10 ~ "5–10%",
       freight_pct > 10 & freight_pct <= 20 ~ "10–20%",
       freight_pct > 20 ~ ">20%",
       TRUE ~ "unknown"),
-      
+
     installments_bucket = case_when(
       max_installments <= 1 ~ "1",
       max_installments <= 3 ~ "2–3",
       max_installments <= 6 ~ "4–6",
-      max_installments > 6 ~ "7+"))
+      max_installments > 6 ~ "7+",
+      TRUE ~ "unknown"))
 
-# summary by delay & payment (for 2nd plot) 
+# Sanity check again:
+orders_ops_buckets %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id))
+
+# Summary by delay & payment type:
 
 ops_summary <- orders_ops_buckets %>%
   group_by(delay_bucket, main_payment_type) %>%
@@ -12314,31 +12523,55 @@ ops_summary <- orders_ops_buckets %>%
     orders_n = n(),
     avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
     share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2),
-    avg_revenue = round(mean(order_total, na.rm = TRUE), 2),
-    avg_freight = round(mean(order_freight, na.rm = TRUE), 2),
-    avg_installment = round(mean(max_installments, na.rm = TRUE), 2), .groups = "drop") %>%
-  mutate(pct_orders = round((orders_n / sum(orders_n)) * 100, 2)) %>%
+    avg_revenue = round(mean(price + freight_value, na.rm = TRUE), 2),
+    avg_freight = round(mean(freight_value, na.rm = TRUE), 2),
+    avg_installment = round(mean(max_installments, na.rm = TRUE), 2),
+    .groups = "drop") %>%
+  group_by(delay_bucket) %>%
+  mutate(
+    pct_orders = round(100 * orders_n / sum(orders_n), 2)) %>%
+  ungroup() %>%
   arrange(delay_bucket, desc(avg_review))
+
+# Summary by delay & freight burden:
 
 delay_freight_summary <- orders_ops_buckets %>%
   filter(!is.na(review_score_num)) %>%
   group_by(delay_bucket, freight_pct_bucket) %>%
-  summarise(orders_n = n(), avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
-    share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2), .groups = "drop") %>%
+  summarise(
+    orders_n = n(),
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2),
+    .groups = "drop") %>%
   arrange(delay_bucket, freight_pct_bucket)
 
-# 1st plot: average review score by delivery delay bucket:
+# Plot data:
 
 mean_delay <- orders_ops_buckets %>%
   group_by(delay_bucket) %>%
-  summarise(avg_review = round(mean(review_score_num), 2), .groups = "drop")
+  summarise(
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    .groups = "drop")
+
+low_delay <- orders_ops_buckets %>%
+  group_by(delay_bucket) %>%
+  summarise(
+    share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2), .groups = "drop") %>%
+  mutate(
+    delay_bucket = factor(
+      delay_bucket,
+      levels = c(">3 days late", "1–3 days late", "early/on time", ">=3 days early")))
+
+# Plots:
 
 plot1 <- ggplot(mean_delay, aes(x = delay_bucket, y = avg_review, group = 1)) +
   geom_col(fill = "#4b9dd2") +
   geom_text(aes(label = avg_review), vjust = 1.5, color = "white", size = 5) +
-  labs(title = "Average review score by delivery delay",
-    subtitle = "Delay defined vs estimated delivery date (ETA) | How bad is lateness on average?",
-    x = "Delivery delay bucket", y = "Average review score (1–5)") +
+  labs(
+    title = "Average review score by delivery delay",
+    subtitle = "Single-item delivered clean orders | Delay defined vs estimated delivery date (ETA)",
+    x = "Delivery delay bucket",
+    y = "Average review score (1–5)") +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 22),
@@ -12348,20 +12581,14 @@ plot1 <- ggplot(mean_delay, aes(x = delay_bucket, y = avg_review, group = 1)) +
     axis.text.x = element_text(size = 15, angle = 20, hjust = 1),
     panel.grid.minor = element_blank())
 
-# 2nd plot: share of low scores by delay: 
-
-low_delay <- orders_ops_buckets %>%
-  group_by(delay_bucket) %>%
-  summarise(share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2), .groups = "drop") %>%
-  mutate(delay_bucket = factor(delay_bucket, levels = c(">3 days late", "1–3 days late", "early/on time", ">=3 days early")))
-
-
 plot2 <- ggplot(low_delay, aes(x = delay_bucket, y = share_low_1_2)) +
   geom_col(fill = "#4b9dd2") +
   geom_text(aes(label = paste0(share_low_1_2, "%")), vjust = 1.5, size = 5, color = "white") +
-  labs(title = "Share of low reviews (1–2) by delivery delay",
-    subtitle = "Delay defined vs estimated delivery date (ETA)",
-    x = "Delivery delay bucket", y = "Share of 1–2 star reviews (%)") +
+  labs(
+    title = "Share of low reviews (1–2) by delivery delay",
+    subtitle = "Single-item delivered clean orders | Delay defined vs estimated delivery date (ETA)",
+    x = "Delivery delay bucket",
+    y = "Share of 1–2 star reviews (%)") +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 22),
@@ -12371,18 +12598,23 @@ plot2 <- ggplot(low_delay, aes(x = delay_bucket, y = share_low_1_2)) +
     axis.text.x = element_text(size = 15),
     panel.grid.minor = element_blank())
 
-# 3rd plot (delay x freight):
-
-plot3 <- ggplot(delay_freight_summary,
-       aes(x = delay_bucket, y = share_low_1_2, fill = freight_pct_bucket)) +
+plot3 <- ggplot(
+  delay_freight_summary,
+  aes(x = delay_bucket, y = share_low_1_2, fill = freight_pct_bucket)) +
   geom_col(position = "dodge") +
   geom_text(
     aes(label = paste0(round(share_low_1_2, 0), "%")),
-    position = position_dodge(width = 0.9), vjust = 1.5, size  = 5, color = "black") +
+    position = position_dodge(width = 0.9),
+    vjust = 1.5,
+    size = 5,
+    color = "black") +
   scale_fill_brewer(palette = "Spectral") +
-  labs(title = "Customers are far less tolerant of late deliveries than of high shipping costs",
-    subtitle = "Does expensive shipping make lateness hurt more?", x = "Delivery delay vs ETA", y = "Share of 1–2 star reviews (%)",
-    fill = "Freight as % of order value") +
+  labs(
+    title = "Low-review share by delivery delay and freight burden",
+    subtitle = "Single-item delivered clean orders | Does expensive shipping make lateness hurt more?",
+    x = "Delivery delay vs ETA",
+    y = "Share of 1–2 star reviews (%)",
+    fill = "Freight as % of item value") +
   theme_minimal(base_size = 14) +
   theme(
     plot.title = element_text(face = "bold", size = 22),
@@ -12390,18 +12622,47 @@ plot3 <- ggplot(delay_freight_summary,
     axis.text.x = element_text(size = 15),
     panel.grid.minor = element_blank())
 
-# payment x installments
+# Payment & installments:
 
 pay_summary <- orders_ops_buckets %>%
   group_by(main_payment_type, installments_bucket) %>%
   summarise(
     orders_n = n(),
-    avg_review = round(mean(review_score_num), 2),
-    share_low_1_2 = round(mean(review_score_num <= 2) * 100, 2),
-    avg_total = round(mean(order_total), 2), .groups = "drop")
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2),
+    avg_total = round(mean(price + freight_value, na.rm = TRUE), 2),
+    .groups = "drop")
 
 pay_summary
 ```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 2</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>84218</td><td>84218</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 2</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>84218</td><td>84218</td></tr>
+</tbody>
+</table>
+
+
 
 
 <table class="dataframe">
@@ -12411,16 +12672,16 @@ pay_summary
 	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>boleto     </td><td>1  </td><td>21998</td><td>4.08</td><td>14.62</td><td>176.21</td></tr>
-	<tr><td>credit_card</td><td>1  </td><td>25879</td><td>4.18</td><td>12.37</td><td>114.63</td></tr>
-	<tr><td>credit_card</td><td>2–3</td><td>24219</td><td>4.08</td><td>14.73</td><td>144.98</td></tr>
-	<tr><td>credit_card</td><td>4–6</td><td>17633</td><td>4.06</td><td>15.27</td><td>198.31</td></tr>
-	<tr><td>credit_card</td><td>7+ </td><td>14038</td><td>3.96</td><td>18.32</td><td>350.83</td></tr>
-	<tr><td>debit_card </td><td>1  </td><td> 1633</td><td>4.21</td><td>12.19</td><td>149.52</td></tr>
-	<tr><td>voucher    </td><td>1  </td><td> 2406</td><td>4.08</td><td>15.21</td><td>113.95</td></tr>
-	<tr><td>voucher    </td><td>2–3</td><td>  193</td><td>3.96</td><td>16.06</td><td>181.65</td></tr>
-	<tr><td>voucher    </td><td>4–6</td><td>  123</td><td>4.08</td><td>13.82</td><td>206.08</td></tr>
-	<tr><td>voucher    </td><td>7+ </td><td>   87</td><td>3.51</td><td>29.89</td><td>346.57</td></tr>
+	<tr><td>boleto     </td><td>1  </td><td>16627</td><td>4.21</td><td>11.10</td><td>129.71</td></tr>
+	<tr><td>credit_card</td><td>1  </td><td>21528</td><td>4.26</td><td>10.27</td><td> 93.76</td></tr>
+	<tr><td>credit_card</td><td>2–3</td><td>19316</td><td>4.20</td><td>11.32</td><td>128.93</td></tr>
+	<tr><td>credit_card</td><td>4–6</td><td>13469</td><td>4.19</td><td>11.77</td><td>173.28</td></tr>
+	<tr><td>credit_card</td><td>7+ </td><td> 9630</td><td>4.18</td><td>12.67</td><td>333.08</td></tr>
+	<tr><td>debit_card </td><td>1  </td><td> 1307</td><td>4.27</td><td>10.18</td><td>133.10</td></tr>
+	<tr><td>voucher    </td><td>1  </td><td> 2046</td><td>4.17</td><td>12.37</td><td>103.51</td></tr>
+	<tr><td>voucher    </td><td>2–3</td><td>  158</td><td>4.01</td><td>15.82</td><td>181.28</td></tr>
+	<tr><td>voucher    </td><td>4–6</td><td>   87</td><td>4.43</td><td> 4.60</td><td>178.06</td></tr>
+	<tr><td>voucher    </td><td>7+ </td><td>   50</td><td>4.08</td><td>14.00</td><td>375.91</td></tr>
 </tbody>
 </table>
 
@@ -12441,7 +12702,7 @@ print(plot1)
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_385_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_391_1.png)
     
 
 
@@ -12460,7 +12721,7 @@ print(plot2)
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_386_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_392_1.png)
     
 
 
@@ -12479,105 +12740,267 @@ print(plot3)
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_387_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_393_1.png)
     
 
 
-**Part 1: Key findings summary**
+## Part 1: Key findings summary
 
-**`Delivery delay ➡︎ dominant driver`**
+### Delivery delay ➡︎ by far the strongest driver
 
-Late deliveries are the single most damaging driver of customer satisfaction (far more than any other factor):
-> Orders >3 days late: 1.92 avg review + 72.8% low reviews (1-2 stars)
-> Early/on-time orders: 4.06-4.22 avg review + ~12% low reviews
-> ~60 percentage points swing in low-review share between >3 days late vs on-time delivery
+Delivery delay is the most damaging operational factor for customer satisfaction in this analysis — much more than freight burden or payment structure.
+
+The pattern is very clear:
+
+- **>=3 days early** → **4.37 avg review** | **7.29% low reviews (1–2 stars)**
+- **early/on time** → **4.18 avg review** | **9.84% low reviews**
+- **1–3 days late** → **3.82 avg review** | **17.6% low reviews**
+- **>3 days late** → **1.94 avg review** | **72.3% low reviews**
+
+So once delivery becomes **seriously late**, satisfaction falls off a cliff.
+
+That means the real break point is not small lateness - it is **severe lateness**.  
+Moving from on-time / early delivery to **>3 days late** creates a swing of roughly **62–65 percentage points** in low-review share. That is enormous.
+
+### My hypothesis ➡︎ rejected
+
+My initial idea was that customers might be **less tolerant of delays when freight cost is high** - in other words, if shipping already feels expensive, then lateness might hurt even more.
+
+That did **not** show up in the data: within each delay bucket, **low-review shares stay pretty similar across freight-burden groups**.
+
+Most importantly, inside the **>3 days late** bucket, low-review rates are brutal no matter what the freight share looks like:
+
+- **<=5% freight** → **75%** low reviews
+- **5–10% freight** → **73%**
+- **10–20% freight** → **72%**
+- **>20% freight** → **72%**
+
+Same story in the better-performing buckets:
+
+- **>=3 days early** → around **7–9%** low reviews across freight groups
+- **early/on time** → around **10–11%**
+- **1–3 days late** → around **15–18%**
+
+So the conclusion here is simple: **delay bucket predicts satisfaction; freight burden barely changes the story.**
 
 
-<span style="color:#d62728">My hypothesis ➡︎ rejected! ➡︎ freight cost is irrelevant</span>  
+### Freight cost ➡︎ much weaker than delay
 
-My hypothesis, that high freight % makes customers less tolerant of delays turned out to be false:
-> * Within >3 days late bucket: 72-74% low reviews regardless of freight cost (<=5% freight = 74%, >20% freight = 72%)
-> * Within on-time bucket: 10-14% low reviews across all freight levels
-> * Delay bucket predicts satisfaction, freight % does not
+This does **not** mean freight cost never matters.  
+It means that in this analysis, **freight burden is a much weaker satisfaction signal, than delivery timing**.
 
+Customers seem willing to tolerate different shipping-cost levels **as long as the order arrives roughly when expected**. But once an order is **seriously late**, the review penalty is massive, regardless of whether freight was cheap or expensive.
 
-**`Payment Type & Installments ➡︎ Weak Impact`**
+So if the question is "What hurts satisfaction more — expensive shipping or late delivery?" - the answer is clearly: **late delivery, by a mile.**
 
-Payment structure have minimal effect on reviews:
+### Payment type & installments ➡︎ weak effect compared with delay
 
-> Payment type: 3.51-4.18 avg review range
-> Delivery delay: 1.92-4.22 avg review range
+Payment structure looks much less important than delivery timing.
 
-**Bottom line:** freight discounts and payment flexibility won't move satisfaction, focus on delivery speed!
+Delay creates a huge review swing:
+
+- from **4.37** for very early deliveries
+- down to **1.94** for orders **>3 days late**
+
+That is a collapse of more than **2.4 review points** on a 1–5 scale.
+
+By comparison, payment type and installment structure may show some variation, but nothing close to that magnitude.
+
+So the practical takeaway is:
+
+> - **delivery reliability** is a major satisfaction lever  
+> - **payment flexibility** is not a major satisfaction lever  
+> - **freight discounts** are also not a strong satisfaction lever if delivery timing stays the same  
+
+#### Bottom line -> If the goal is to improve customer satisfaction, the strongest operational priority is clear: 
+**reduce serious lateness.**
+
+> ! Not small differences in shipping cost   
+> ! Not payment configuration tweaks  
+> ! Not installment flexibility  
+
+The biggest damage happens, when orders arrive **more than 3 days after the promised date**. That is where customer sentiment really breaks.
+
+### Important scope note
+
+This analysis is based on **single-item delivered clean orders only**.
+
+That restriction was intentional. Delivery delay and review score are both observed at the **order level**, and for multi-item orders it is impossible to tell whether a bad review reflects one item, the whole order, the seller, the delivery experience, or some combination of those. Restricting to single-item orders gives a cleaner and more defensible link between operational factors and customer response.
+
+### Interim takeaway
+
+For the satisfaction side of Question 15, the evidence points strongly in one direction: **late delivery is the main operational problem.**
 
 
 ```R
-seller_perf <- delivered_orders_delay %>%
+# Sellers' stats:
+
+seller_perf <- orders_ops_buckets %>%
   group_by(seller_id) %>%
   summarise(
-    orders_n = n(),
+    seller_orders_n = n(),
     avg_delay = mean(delay_vs_eta, na.rm = TRUE),
-    share_late = mean(delay_vs_eta > 0, na.rm = TRUE) * 100, .groups = "drop")
+    share_late = mean(delay_vs_eta > 0, na.rm = TRUE) * 100,
+    .groups = "drop")
 
-orders_ops_buckets <- orders_ops_buckets %>%
-  inner_join(seller_perf, by = "seller_id")
 
-seller_buckets <- orders_ops_buckets %>%
+seller_perf %>%
+  summarise(
+    sellers = n(),
+    min_orders = min(seller_orders_n, na.rm = TRUE),
+    median_orders = median(seller_orders_n, na.rm = TRUE),
+    max_orders = max(seller_orders_n, na.rm = TRUE))
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>sellers</th><th scope=col>min_orders</th><th scope=col>median_orders</th><th scope=col>max_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2863</td><td>1</td><td>6</td><td>1571</td></tr>
+</tbody>
+</table>
+
+
+
+I can see, that the seller distribution is very uneven. So if I bucket sellers by lateness without any minimum-order threshold, those "tiny" sellers will introduce noise.
+
+As a next step, I will define a mimimum seller volume threshold. 
+
+
+```R
+# Filtering out meaningful seller cohort:
+
+seller_perf_filtered <- seller_perf %>%
+  filter(seller_orders_n >= 30)
+
+seller_perf_filtered %>%
+  summarise(
+    sellers_kept = n(),
+    min_orders = min(seller_orders_n, na.rm = TRUE),
+    median_orders = median(seller_orders_n, na.rm = TRUE),
+    max_orders = max(seller_orders_n, na.rm = TRUE))
+
+seller_perf %>%
+  summarise(total_orders = sum(seller_orders_n, na.rm = TRUE))
+
+seller_perf_filtered %>%
+  summarise(filtered_orders = sum(seller_orders_n, na.rm = TRUE))
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>sellers_kept</th><th scope=col>min_orders</th><th scope=col>median_orders</th><th scope=col>max_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>563</td><td>30</td><td>64</td><td>1571</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+	<tr><th scope=col>total_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>84218</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+	<tr><th scope=col>filtered_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>68840</td></tr>
+</tbody>
+</table>
+
+
+
+After testing various thresholds, I have ended up applying `>=30`:
+> * sellers with fewer than 30 orders are too noisy for reliable lateness-rate comparisons  
+> * seller-level operational risk should be assessed only where there is enough volume for the percentage to mean something
+
+With this filter I still keep:
+
+> * 563 sellers  
+> * 68840 orders out of 84218  
+> * that is about 81.7% of all orders  
+
+This way a lot of unstable tiny sellers are removed, but the subset still has a strong enough coverage:
+
+- enough seller history to make lateness rates meaningful  
+- still preserves the large majority of the order base 
+
+
+```R
+orders_ops_seller <- orders_ops_buckets %>%
+  inner_join(
+    seller_perf_filtered,
+    by = "seller_id")
+
+orders_ops_seller %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_sellers = n_distinct(seller_id))
+
+# "Bucketing" sellers by lateness rate
+
+seller_buckets <- orders_ops_seller %>%
   mutate(
     seller_delay_bucket = case_when(
       share_late <= 10 ~ "<=10% late",
       share_late > 10 & share_late <= 25 ~ "10–25% late",
       share_late > 25 & share_late <= 50 ~ "25–50% late",
       share_late > 50 ~ ">50% late",
-      TRUE ~ NA_character_)) %>%
+      TRUE ~ NA_character_),
+    seller_delay_bucket = factor(
+      seller_delay_bucket,
+      levels = c("<=10% late", "10–25% late", "25–50% late", ">50% late"))
+  ) %>%
   group_by(seller_delay_bucket) %>%
   summarise(
     orders_n = n(),
-    avg_review = round(mean(review_score_num), 2),
-    share_low_1_2 = round(mean(review_score_num <= 2) * 100, 2),
-    avg_total = round(mean(order_total), 2), .groups = "drop")
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    share_low_1_2 = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 2),
+    avg_total = round(mean(price + freight_value, na.rm = TRUE), 2),
+    .groups = "drop")
 
-risk_sellers <- orders_ops_buckets %>%
-  group_by(seller_id) %>%
-  summarise(
-    orders_n = n(),
-    avg_review = mean(review_score_num),
-    share_low_1_2 = mean(review_score_num <= 2) * 100,
-    avg_delay = mean(delay_vs_eta),
-    share_late = mean(delay_vs_eta > 0) * 100,
-    avg_total = mean(order_total), .groups = "drop") %>%
-  filter(share_late > 25, avg_total > median(avg_total, na.rm = TRUE))
-
-top_risk <- risk_sellers %>%
-  arrange(desc(share_late), desc(avg_total)) %>%
-  select(seller_id, orders_n, avg_total, share_late, avg_review, avg_delay) %>%
-  slice_head(n = 20) %>%
-  mutate(
-    avg_total = round(avg_total, 2),
-    share_late = paste0(round(share_late, 1), "%"),
-    avg_review = round(avg_review, 2),
-    avg_delay = paste0(round(avg_delay, 1), " days"))
-
-colnames(top_risk) <- c("seller_id", "orders", "avg_revenue", "pct_late_orders", "avg_review", "avg_delay")
-```
-
-
-```R
 cat("Seller lateness buckets\n")
 cat(rep("-", 13), "\n\n")
 seller_buckets
-
-cat("\n", rep("-", 15), "\n")
-cat(sprintf("Total high-risk sellers: %d\n", nrow(risk_sellers)))
-cat("Lateness:   ", round(mean(risk_sellers$share_late), 1), "% avg\n")
-cat("Avg Total:  ", round(mean(risk_sellers$avg_total), 2), " BRL\n")
-cat(rep("-", 15), "\n\n")
-
-cat("\n\n")
-cat("Top 20 high-risk sellers (>25% late + high revenue)\n")
-cat(rep("-", 42), "\n\n")
-top_risk %>% slice_head(n = 20)
 ```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_sellers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>68840</td><td>68840</td><td>563</td></tr>
+</tbody>
+</table>
+
+
 
     Seller lateness buckets
     - - - - - - - - - - - - - 
@@ -12586,462 +13009,1637 @@ top_risk %>% slice_head(n = 20)
 
 
 <table class="dataframe">
-<caption>A tibble: 4 × 5</caption>
+<caption>A tibble: 3 × 5</caption>
 <thead>
 	<tr><th scope=col>seller_delay_bucket</th><th scope=col>orders_n</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_total</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+	<tr><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>10–25% late</td><td>26425</td><td>3.94</td><td>18.32</td><td>179.50</td></tr>
-	<tr><td>25–50% late</td><td> 1512</td><td>3.56</td><td>28.24</td><td>237.96</td></tr>
-	<tr><td>&lt;=10% late </td><td>80102</td><td>4.15</td><td>13.14</td><td>177.29</td></tr>
-	<tr><td><span style=white-space:pre-wrap>&gt;50% late  </span></td><td><span style=white-space:pre-wrap>  170</span></td><td>2.62</td><td>53.53</td><td>473.42</td></tr>
+	<tr><td>&lt;=10% late </td><td>45606</td><td>4.27</td><td> 9.79</td><td>136.26</td></tr>
+	<tr><td>10–25% late</td><td>22810</td><td>4.08</td><td>14.44</td><td>142.54</td></tr>
+	<tr><td>25–50% late</td><td>  424</td><td>3.46</td><td>29.48</td><td>136.10</td></tr>
 </tbody>
 </table>
 
 
 
+### Key findings: Seller performance ➡︎ meaningful background risk factor
+
+Seller-level lateness also matters for customer satisfaction, although its effect is weaker, than the direct impact of a specific order arriving late.
+
+A clear gradient appears across seller lateness buckets:
+
+- **<=10% late sellers** → **4.27 avg review** | **9.79% low reviews**
+- **10–25% late sellers** → **4.08 avg review** | **14.44% low reviews**
+- **25–50% late sellers** → **3.46 avg review** | **29.48% low reviews**
+
+So as seller lateness increases, customer satisfaction steadily worsens.
+
+This suggests, that seller operational reliability is a meaningful background risk factor: sellers with a history of late deliveries tend to generate lower reviews overall.
+
+At the same time, the effect is still smaller, than the penalty of direct order-level delay. Earlier results showed, that orders delivered **>3 days late** produce **72.3% low reviews**, which is far more damaging, than seller-level lateness alone.
+
+### Interpretation
+
+Seller quality clearly matters, but mostly as a **risk amplifier**, not the main shock.
+
+Simply speaking:
+
+- **direct delivery delay on the order itself** is the strongest driver of dissatisfaction
+- **seller-level chronic lateness** is a useful secondary warning signal
+- **freight burden and payment structure** remain much weaker in comparison
+
+This means there is a real operational opportunity in identifying and improving sellers with persistently poor delivery reliability, especially those with enough order volume to make their lateness profile stable and meaningful.
+
+---
+
+### Reframing seller performance: final delivery delay vs seller-controlled processing
+
+At first glance, it seems natural to identify “late sellers” using the share of orders delivered after the promised customer delivery date. However, that is not the cleanest seller-performance metric.
+
+The reason is that **final delivery delay** (`delay_vs_eta`) reflects the full downstream logistics chain, not just seller execution. It combines:
+
+- seller processing time
+- carrier pickup timing
+- transportation and route effects
+- final-mile delivery performance
+
+So a seller can appear associated with late deliveries, even when the operational bottleneck happens after the package has already been handed to the carrier.
+
+Because of this, seller-level late-delivery share is better interpreted as a **customer-facing outcome measure**, than as a pure seller-accountability metric.
+
+A more appropriate way to evaluate seller operational performance would be to focus on the part of the process the seller can actually influence more directly: **processing time before carrier hand-off**. In this project, that is better captured by metrics such as:
+
+- **approval_to_carrier time**
+- or whether a seller’s approval-to-carrier time exceeds the overall platform’s pre-defined threshold (e.g. **P90 processing threshold**)
+
+This approach would provide a cleaner signal of seller-side execution.
+
+That said, even seller processing speed should not be judged without context. Different sellers may operate under different business models and product constraints. For example:
+
+> - sellers of stocked, standard products should generally hand off quickly  
+> - sellers of bulky, customized, or made-to-order products may naturally require longer preparation time  
+
+So the next analytical step is not only to identify sellers with slow processing, but also to understand **what categories they sell**. This will help separate:
+
+- sellers with genuinely weak operational discipline
+from
+- sellers whose longer processing time may reflect category-specific fulfillment realities
+
+### Revised interpretation
+
+So for this question:
+
+- **delivery delay vs ETA** remains the right metric for analyzing **customer satisfaction**
+- but for identifying **seller-side operational risk**, a more meaningful approach is to analyze **seller processing time before carrier hand-off**
+- and to interpret that processing time together with **product category context**
+- I will not restrict analysis only to **delivered** orders, but to all statuses, since an order review can be associated with other non-final statuses.
+
+This makes the seller analysis more operationally fair and much more actionable.
+
+
+```R
+# Step 1: I am going to re-build a clean base table
+# structural cohort: single-item + single-seller + all order_status:
+
+item_count_by_order <- order_items %>%
+  group_by(order_id) %>%
+  summarise(
+    item_count = n(),
+    seller_count = n_distinct(seller_id),
+    seller_id = first(seller_id),
+    order_price = sum(price, na.rm = TRUE),
+    order_freight = sum(freight_value, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+orders_base_single <- orders %>%
+  inner_join(item_count_by_order, by = "order_id") %>%
+  filter(item_count == 1, seller_count == 1) %>%
+  mutate(
+    order_total = order_price + order_freight
+  ) %>%
+  inner_join(
+    order_review_clean %>%
+      select(order_id, review_score, review_score_num),
+    by = "order_id"
+  )
+
+orders_base_single_reviewed <- orders_base_single %>%
+  filter(!is.na(review_score_num))
+
+orders_base_single_reviewed %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_sellers = n_distinct(seller_id)
+  )
+
+orders_base_single_reviewed %>%
+  count(order_status, sort = TRUE)
+
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_sellers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>87341</td><td>87341</td><td>2987</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 7 × 2</caption>
+<thead>
+	<tr><th scope=col>order_status</th><th scope=col>n</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>delivered  </td><td>85445</td></tr>
+	<tr><td>shipped    </td><td>  958</td></tr>
+	<tr><td>canceled   </td><td>  398</td></tr>
+	<tr><td>invoiced   </td><td>  276</td></tr>
+	<tr><td>processing </td><td>  258</td></tr>
+	<tr><td>unavailable</td><td>    5</td></tr>
+	<tr><td>approved   </td><td>    1</td></tr>
+</tbody>
+</table>
+
+
+
+Now I need to tighten my logic and be careful - I want to look at all order statuses, but non-delivered ones will have a different set of logistics timestamps
+
+
+```R
+orders_base_single_reviewed_ops <- orders_base_single_reviewed %>%
+  mutate(
+    delay_vs_eta = as.numeric(
+      difftime(order_delivered_customer_date, order_estimated_delivery_date, units = "days")
+    ),
+    approval_to_carrier_days = as.numeric(
+      difftime(order_delivered_carrier_date, order_approved_at, units = "days")
+    )
+  )
+
+# checking missingness & scope:
+
+orders_base_single_reviewed_ops %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    non_missing_delay_vs_eta = sum(!is.na(delay_vs_eta)),
+    non_missing_approval_to_carrier = sum(!is.na(approval_to_carrier_days)),
+    has_approval_n = sum(has_approval == 1, na.rm = TRUE),
+    delivery_timestamp_complete_n = sum(delivery_timestamp_is_complete == 1, na.rm = TRUE),
+    timeline_valid_n = sum(timeline_is_valid == 1, na.rm = TRUE)
+  )
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 7</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>non_missing_delay_vs_eta</th><th scope=col>non_missing_approval_to_carrier</th><th scope=col>has_approval_n</th><th scope=col>delivery_timestamp_complete_n</th><th scope=col>timeline_valid_n</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>87341</td><td>87341</td><td>85442</td><td>86452</td><td>87328</td><td>85442</td><td>84223</td></tr>
+</tbody>
+</table>
+
+
+
+For the broader review analysis, I keep reviewed single-item single-seller orders across all statuses. However, seller-processing time can only be measured for the subset of orders, where **both: approval and carrier hand-off timestamps exist**. The seller P90 offender analysis is therefore based on this narrower measurable-processing cohort, not on all reviewed orders.
+
+
+```R
+seller_processing_base <- orders_base_single_reviewed_ops %>%
+  filter(
+    has_approval == 1,
+    !is.na(order_approved_at),
+    !is.na(order_delivered_carrier_date),
+    !is.na(approval_to_carrier_days)
+  ) %>%
+  select(
+    order_id,
+    seller_id,
+    order_status,
+    review_score_num,
+    order_total,
+    approval_to_carrier_days
+  )
+
+seller_processing_base %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_sellers = n_distinct(seller_id))
+
+seller_processing_base %>%
+  count(order_status, sort = TRUE)
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_sellers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>86452</td><td>86452</td><td>2880</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 3 × 2</caption>
+<thead>
+	<tr><th scope=col>order_status</th><th scope=col>n</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>delivered</td><td>85430</td></tr>
+	<tr><td>shipped  </td><td>  958</td></tr>
+	<tr><td>canceled </td><td>   64</td></tr>
+</tbody>
+</table>
+
+
+
+My seller-processing base now contains:
+
+- 86K distinct orders (at proper grain)
+- 2880 sellers
+
+...with the following status mix:
+
+> - 85430 delivered  
+> - 958 shipped  
+> - 64 canceled  
+
+So this is not literally all statuses anymore (**NOT all reviewed single-item single-seller orders**), it is **reviewed single-item single-seller orders with measurable approval-to-carrier time**, but that is fine — because this subset is defined by whether seller processing time can actually be measured.
+
+Next step: computing the platform-wide P90 threshold for approval_to_carrier_days.
+
+
+```R
+approval_to_carrier_p90 <- quantile(
+  seller_processing_base$approval_to_carrier_days,
+  probs = 0.90,
+  na.rm = TRUE,
+  type = 7)
+
+approval_to_carrier_p90
+
+# Establishing P90 threshold:
+
+seller_processing_base <- seller_processing_base %>%
+  mutate(
+    slow_processed_p90 = approval_to_carrier_days > 5.91938888888889)
+
+seller_processing_seller <- seller_processing_base %>%
+  group_by(seller_id) %>%
+  summarise(
+    seller_orders_n = n(),
+    slow_processed_orders_n = sum(slow_processed_p90, na.rm = TRUE),
+    slow_processing_rate_pct = 100 * slow_processed_orders_n / seller_orders_n,
+    avg_approval_to_carrier_days = mean(approval_to_carrier_days, na.rm = TRUE),
+    avg_review = mean(review_score_num, na.rm = TRUE),
+    share_low_1_2 = 100 * mean(review_score_num <= 2, na.rm = TRUE),
+    avg_order_total = mean(order_total, na.rm = TRUE),
+    .groups = "drop")
+
+seller_processing_seller %>%
+  summarise(
+    sellers = n(),
+    min_orders = min(seller_orders_n, na.rm = TRUE),
+    median_orders = median(seller_orders_n, na.rm = TRUE),
+    max_orders = max(seller_orders_n, na.rm = TRUE))
+```
+
+
+<strong>90%:</strong> 5.91938888888889
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>sellers</th><th scope=col>min_orders</th><th scope=col>median_orders</th><th scope=col>max_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>2880</td><td>1</td><td>6</td><td>1644</td></tr>
+</tbody>
+</table>
+
+
+
+
+```R
+# Filtering for sellers with 30+ orders:
+
+seller_processing_seller_30 <- seller_processing_seller %>%
+  filter(seller_orders_n >= 30)
+
+seller_processing_seller_30 %>%
+  summarise(
+    sellers_kept = n(),
+    min_orders = min(seller_orders_n, na.rm = TRUE),
+    median_orders = median(seller_orders_n, na.rm = TRUE),
+    max_orders = max(seller_orders_n, na.rm = TRUE))
+
+seller_processing_seller %>%
+  summarise(total_orders = sum(seller_orders_n, na.rm = TRUE))
+
+seller_processing_seller_30 %>%
+  summarise(filtered_orders = sum(seller_orders_n, na.rm = TRUE))
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 4</caption>
+<thead>
+	<tr><th scope=col>sellers_kept</th><th scope=col>min_orders</th><th scope=col>median_orders</th><th scope=col>max_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>575</td><td>30</td><td>65</td><td>1644</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+	<tr><th scope=col>total_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>86452</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 1</caption>
+<thead>
+	<tr><th scope=col>filtered_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>70946</td></tr>
+</tbody>
+</table>
+
+
+
+Using `>=30 orders` "filter" allows me to keep ca. 82% of the processing-measurable cohort (575 sellers, ca. 71K orders).
+
+Now I will identify the actual "offenders": 
+> * 30+ measurable orders
+> * I will compute their **slow processing rate**
+> * rank the worst sellers
+
+
+```R
+top_20_processing_offenders <- seller_processing_seller_30 %>%
+  arrange(desc(slow_processing_rate_pct), desc(avg_order_total)) %>%
+  select(
+    seller_id,
+    seller_orders_n,
+    slow_processed_orders_n,
+    slow_processing_rate_pct,
+    avg_approval_to_carrier_days,
+    avg_review,
+    share_low_1_2,
+    avg_order_total) %>%
+  slice_head(n = 20) %>%
+  mutate(
+    slow_processing_rate_pct = round(slow_processing_rate_pct, 1),
+    avg_approval_to_carrier_days = round(avg_approval_to_carrier_days, 2),
+    avg_review = round(avg_review, 2),
+    share_low_1_2 = round(share_low_1_2, 1),
+    avg_order_total = round(avg_order_total, 2))
+
+top_20_processing_offenders
+
+# population summary:
+
+seller_processing_seller_30 %>%
+  summarise(
+    avg_slow_processing_rate = round(mean(slow_processing_rate_pct, na.rm = TRUE), 2),
+    median_slow_processing_rate = round(median(slow_processing_rate_pct, na.rm = TRUE), 2),
+    max_slow_processing_rate = round(max(slow_processing_rate_pct, na.rm = TRUE), 2))
+```
+
+
+<table class="dataframe">
+<caption>A tibble: 20 × 8</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>seller_orders_n</th><th scope=col>slow_processed_orders_n</th><th scope=col>slow_processing_rate_pct</th><th scope=col>avg_approval_to_carrier_days</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_order_total</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 30</td><td> 30</td><td>100.0</td><td>17.93</td><td>4.03</td><td>13.3</td><td>420.95</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 49</td><td> 48</td><td> 98.0</td><td>11.98</td><td>4.35</td><td>10.2</td><td>941.10</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 49</td><td> 45</td><td> 91.8</td><td>15.40</td><td>3.37</td><td>26.5</td><td>167.43</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>756</td><td>670</td><td> 88.6</td><td>11.31</td><td>3.64</td><td>21.7</td><td>184.43</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 34</td><td> 30</td><td> 88.2</td><td>12.24</td><td>3.91</td><td>17.6</td><td>208.42</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 56</td><td> 45</td><td> 80.4</td><td>13.71</td><td>3.34</td><td>37.5</td><td>109.71</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 64</td><td> 50</td><td> 78.1</td><td>10.61</td><td>3.23</td><td>32.8</td><td>191.89</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>105</td><td> 82</td><td> 78.1</td><td> 8.68</td><td>4.12</td><td>12.4</td><td>117.07</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 36</td><td> 28</td><td> 77.8</td><td>10.00</td><td>3.42</td><td>27.8</td><td>131.25</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>173</td><td>126</td><td> 72.8</td><td>11.07</td><td>2.75</td><td>48.6</td><td>214.57</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 31</td><td> 22</td><td> 71.0</td><td> 8.46</td><td>3.97</td><td>16.1</td><td>256.22</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 31</td><td> 21</td><td> 67.7</td><td> 7.98</td><td>4.16</td><td>12.9</td><td>199.30</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 30</td><td> 20</td><td> 66.7</td><td> 8.40</td><td>4.40</td><td> 6.7</td><td>213.31</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 44</td><td> 28</td><td> 63.6</td><td> 6.78</td><td>3.86</td><td>18.2</td><td>204.10</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 34</td><td> 20</td><td> 58.8</td><td>12.24</td><td>3.29</td><td>35.3</td><td>215.10</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 37</td><td> 21</td><td> 56.8</td><td> 8.16</td><td>4.03</td><td>21.6</td><td>209.97</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td> 83</td><td> 45</td><td> 54.2</td><td>10.86</td><td>3.46</td><td>30.1</td><td>254.59</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 39</td><td> 21</td><td> 53.8</td><td>11.00</td><td>4.23</td><td> 7.7</td><td>218.91</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 93</td><td> 50</td><td> 53.8</td><td> 6.82</td><td>4.01</td><td>16.1</td><td> 92.64</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 64</td><td> 34</td><td> 53.1</td><td>14.32</td><td>3.17</td><td>40.6</td><td>162.10</td></tr>
+</tbody>
+</table>
+
+
+
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>avg_slow_processing_rate</th><th scope=col>median_slow_processing_rate</th><th scope=col>max_slow_processing_rate</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>10.6</td><td>3.47</td><td>100</td></tr>
+</tbody>
+</table>
+
+
+
+### Seller processing offenders ➡︎ a small tail of sellers creates outsized operational risk
+
+Using the platform-wide **P90 approval-to-carrier threshold** (**~ 5.92 days**), I flagged orders with unusually slow seller processing and then calculated, for each seller, the share of measurable single-seller orders above that threshold.
+
+Among sellers with at least **30 measurable orders**, the overall picture is quite skewed:
+
+- **median slow-processing rate:** **3.47%**
+- **average slow-processing rate:** **10.6%**
+
+So most sellers are not extreme offenders. The problem is concentrated in a smaller tail of sellers with very high slow-processing rates.
+
+The top offender list shows some very severe cases:
+
+- one seller has **100%** of measurable orders above the P90 threshold
+- ranked next has **98%**
+- one especially important high-volume seller has **756 orders**, with **88.6%** of them slow-processed
+
+This matters because some offenders are not just slow — they are also commercially meaningful.
+
+For example, some sellers combine:
+
+- high slow-processing rates
+- substantial order volume
+- lower review scores
+- elevated low-review shares
+- moderate to high average order values
+
+That makes them strong candidates for operational intervention.
+
+At the same time, the list should **not** be interpreted as a pure “bad seller” ranking yet.
+
+Some sellers are extremely slow-processed but still maintain relatively decent review scores or high order values. That suggests category context may matter: certain sellers may handle products, that naturally require longer preparation times, such as specialized, bulky, or less standardized goods.
+
+🔹 This offender list is best treated as an **investigation shortlist**, not a final blame list.
+
+It tells:
+
+- which sellers are far slower than the platform norm
+- which of them matter most in terms of order volume and revenue
+- which sellers may be creating avoidable customer dissatisfaction
+
+The next step is to examine **what categories these sellers actually sell**, so that slow processing can be interpreted relative to fulfillment context, and not just in isolation.
+
+
+```R
+# Getting sellers-"offenders" list:
+
+offender_sellers <- top_20_processing_offenders %>%
+  select(seller_id) %>%
+  distinct()
+
+cat("\n\n")
+cat("\nTop 20 offender sellers list: unique seller IDs from the top slow-processing offender list\n")
+offender_sellers
+
+# Building and sanity-checking seller-category base:
+
+seller_category_base <- seller_processing_base %>%
+  inner_join(
+    order_items %>%
+      select(order_id, seller_id, product_category),
+    by = c("order_id", "seller_id"))
+
+cat("\nSeller-category sanity check to confirm whether joining product categories back to the processing base preserved order grain\n")
+
+
+seller_category_base %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_sellers = n_distinct(seller_id))
+
+# How many categories each "offender" seller sells?:
+
+offender_category_counts <- seller_category_base %>%
+  semi_join(offender_sellers, by = "seller_id") %>%
+  group_by(seller_id) %>%
+  summarise(
+    category_count = n_distinct(product_category),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(category_count))
+
+cat("\n\n")
+cat("How many distinct product categories each slow-processing offender sells (low cat count -> category concentration; high -> broader assortment).\n")
+offender_category_counts
+
+# Category mix per "offender":
+
+offender_category_mix <- seller_category_base %>%
+  semi_join(offender_sellers, by = "seller_id") %>%
+  group_by(seller_id, product_category) %>%
+  summarise(
+    orders_n = n(),
+    .groups = "drop") %>%
+  group_by(seller_id) %>%
+  mutate(
+    seller_orders_n = sum(orders_n),
+    pct_orders = round(100 * orders_n / seller_orders_n, 2)) %>%
+  ungroup() %>%
+  arrange(desc(pct_orders), seller_id, desc(orders_n))
+
+cat("\n\n")
+cat("Break-down of each 'offender seller' orders by product category\n")
+offender_category_mix
+
+# Top category per "offender":
+
+offender_top_category <- offender_category_mix %>%
+  group_by(seller_id) %>%
+  slice_max(order_by = orders_n, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(seller_id, product_category, orders_n, pct_orders)
+
+cat("\n\n")
+cat("Top category per offender seller (only the dominant category)\n")
+
+offender_top_category
+```
+
     
-     - - - - - - - - - - - - - - - 
-    Total high-risk sellers: 135
-    Lateness:    52.6 % avg
-    Avg Total:   427.37  BRL
-    - - - - - - - - - - - - - - - 
     
     
-    
-    Top 20 high-risk sellers (>25% late + high revenue)
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
+    Top 20 offender sellers list: unique seller IDs from the top slow-processing offender list
     
 
 
 <table class="dataframe">
-<caption>A tibble: 20 × 6</caption>
+<caption>A tibble: 20 × 1</caption>
 <thead>
-	<tr><th scope=col>seller_id</th><th scope=col>orders</th><th scope=col>avg_revenue</th><th scope=col>pct_late_orders</th><th scope=col>avg_review</th><th scope=col>avg_delay</th></tr>
-	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+	<tr><th scope=col>seller_id</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><td>c004e5ea15737026cecaee0447e00b75</td><td>1</td><td>2455.12</td><td>100%</td><td>1</td><td>15.8 days</td></tr>
-	<tr><td>c7b7db6c8f3c64a7cc1afa634db21d50</td><td>1</td><td>1511.86</td><td>100%</td><td>1</td><td>16.7 days</td></tr>
-	<tr><td>04843805947f0fc584fc1969b6e50fe7</td><td>2</td><td>1474.76</td><td>100%</td><td>5</td><td>0.7 days </td></tr>
-	<tr><td>8e670472e453ba34a379331513d6aab1</td><td>1</td><td>1083.96</td><td>100%</td><td>1</td><td>35.7 days</td></tr>
-	<tr><td>6524b847b982cd56bb5d4b02b776ee42</td><td>2</td><td> 834.94</td><td>100%</td><td>4</td><td>16.8 days</td></tr>
-	<tr><td>1b4b28463457a256e9a784ebe2a8f630</td><td>1</td><td> 715.34</td><td>100%</td><td>1</td><td>7.8 days </td></tr>
-	<tr><td>f524ad65d7e0f1daab730ef2d2e86196</td><td>2</td><td> 609.50</td><td>100%</td><td>1</td><td>3.8 days </td></tr>
-	<tr><td>244b04680fdbded0acf5aebd9c92b44a</td><td>1</td><td> 606.48</td><td>100%</td><td>1</td><td>19.3 days</td></tr>
-	<tr><td>f5fea3ffed6c2e889bab72705557c63a</td><td>1</td><td> 468.80</td><td>100%</td><td>5</td><td>1.7 days </td></tr>
-	<tr><td>c13ef0cfbe42f190780f621ce81f2234</td><td>1</td><td> 451.28</td><td>100%</td><td>3</td><td>6.6 days </td></tr>
-	<tr><td>2a73cba571d90c694b7caca072ccf6ce</td><td>2</td><td> 381.48</td><td>100%</td><td>5</td><td>0.7 days </td></tr>
-	<tr><td>685b870da5b52a710782c9c0fefbeb5b</td><td>2</td><td> 335.49</td><td>100%</td><td>2</td><td>16.7 days</td></tr>
-	<tr><td>c611f4ce9ce875bcc063fa97fd4d7d12</td><td>1</td><td> 332.25</td><td>100%</td><td>4</td><td>1.7 days </td></tr>
-	<tr><td>791cfcfe22fe4a771ece27f90017da92</td><td>1</td><td> 315.98</td><td>100%</td><td>1</td><td>5.8 days </td></tr>
-	<tr><td>13d95f0f6f73943d4ceffad0fc2cd32c</td><td>1</td><td> 309.32</td><td>100%</td><td>3</td><td>2.9 days </td></tr>
-	<tr><td>984c273121e743dd14767befe6cb17f5</td><td>1</td><td> 280.91</td><td>100%</td><td>1</td><td>3.7 days </td></tr>
-	<tr><td>2a50b7ee5aebecc6fd0ff9784a4747d6</td><td>2</td><td> 264.24</td><td>100%</td><td>1</td><td>17.6 days</td></tr>
-	<tr><td>efb628aa07c8ca93d7db0d85b91a4f5a</td><td>1</td><td> 262.10</td><td>100%</td><td>4</td><td>2 days   </td></tr>
-	<tr><td>d1a5cc844736958c11b8efab9a2b4c87</td><td>1</td><td> 254.01</td><td>100%</td><td>1</td><td>8.8 days </td></tr>
-	<tr><td>edf3fabebcc20f7463cc9c53da932ea8</td><td>1</td><td> 244.02</td><td>100%</td><td>4</td><td>5 days   </td></tr>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td></tr>
 </tbody>
 </table>
 
 
 
-**Part 2: Seller performance analysis - key findings:**
+    
+    Seller-category sanity check to confirm whether joining product categories back to the processing base preserved order grain
+    
 
-**Seller lateness buckets:**
-> * **<=10% late**: 80102 orders (77% of volume) | 4.15 avg review | 13.1% low reviews
-> * **10-25% late**: 26425 orders (25% of volume) | 3.94 avg review | 18.3% low reviews
-> * **25-50% late**: 1512 orders | 3.56 avg review | 28.2% low reviews
-> * **>50% late**: 170 orders | 2.62 avg review | 53.5% low reviews
 
-**High-risk seller profile:**
-> * 135 sellers flagged (>25% late + above-median revenue)
-> * Average lateness: 52.6%
-> * Average revenue per seller: 427 BRL
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_sellers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>86452</td><td>86452</td><td>2880</td></tr>
+</tbody>
+</table>
 
-**Limitations of Current Risk Assessment Approach** 
 
-After reviewing my initial approach, I realized it had some major flaws that were skewing the results ➡︎ <span style="color:#d62728">**my top 20 high-risk list is dominated by 1-order sellers with 100% late rates**</span>  
 
-Here's what I'm going to change in my improved approach ➤
+    
+    
+    How many distinct product categories each slow-processing offender sells (low cat count -> category concentration; high -> broader assortment).
+    
 
-**Key risk assessment improvements I will implement:**
 
-1. Filtering out low-volume sellers (≥5 orders minimum): my original top 20 list had 18 sellers with only 1-2 orders, which doesn't give us enough data to confidently say they're truly "high-risk." A seller being 100% late on 1 order could just be a one-time shipping issue, but someone who is consistently late across dozens of orders - is a real problem we need to address.
+<table class="dataframe">
+<caption>A tibble: 20 × 2</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>category_count</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>11</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>10</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 8</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td> 6</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 5</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 4</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 3</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td> 3</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 3</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 3</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 2</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 2</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 2</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 2</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 1</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 1</td></tr>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 1</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 1</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 1</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 1</td></tr>
+</tbody>
+</table>
 
-2. Using >3 days as the "severe delay" threshold: when I analyzed the delay buckets earlier, I found, that customers' satisfaction absolutely tanks after 3 days (drops from 3.73 to 1.92 average review, and negative reviews jump from 20% to 73%). It makes sense to use this threshold in severity scoring, as it directly links to customer behavior and keeps everything consistent with my previous analysis.
 
-3. Weighting risk by order volume: a seller with 50 late orders out of 200 affects way more customers than someone with 1 late order out of 2, even though they both technically meet a "late percentage" threshold. The volume multiplier will help prioritize sellers, who are causing the most damage at scale. I'm using a 0.15 scaling factor, which will allow high-volume sellers' risk scores to increase by up to 45% compared to low-volume sellers with identical behavior - this will ensure volume matters, but doesn't completely override the quality of seller performance.
 
-4. Tracking revenue at risk, not just total revenue: I realized high revenue doesn't automatically mean high risk - what matters, is how much money is coming from unhappy customers, who might not come back. By calculating revenue from 1-2 star reviews specifically, I can show which sellers are putting real business value at risk.
+    
+    
+    Break-down of each 'offender seller' orders by product category
+    
 
-5. Building a composite risk score: instead of just looking at one metric (like % late), I will combine multiple factors: how often they're late (25%), how severely late they are (35% - highest priority: since my delay bucket analysis showed, that crossing the 3-day threshold causes customer dissatisfaction to spike from 20% to 73% negative reviews ➡︎ a 265% increase), customer satisfaction scores (25%), and complaint rates (15%). This will give a more complete picture of seller performance.
 
-6. Scaling individual components: each risk factor is calculated on a 0-100 scale, using calibrated thresholds (67% late = 100 risk for frequency; 40% very late = 100 risk for severity; 1-star average = 100 risk for satisfaction; 50% poor reviews = 100 risk for complaints). These thresholds define what level of performance represents "maximum risk" for each dimension, ensuring all components are comparable before combining them with weights.
+<table class="dataframe">
+<caption>A tibble: 70 × 5</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>product_category</th><th scope=col>orders_n</th><th scope=col>seller_orders_n</th><th scope=col>pct_orders</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td>health_beauty                          </td><td> 49</td><td> 49</td><td>100.00</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td>bed_bath_table                         </td><td> 64</td><td> 64</td><td>100.00</td></tr>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td>consoles_games                         </td><td> 30</td><td> 30</td><td>100.00</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td>bed_bath_table                         </td><td> 56</td><td> 56</td><td>100.00</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td>baby                                   </td><td> 34</td><td> 34</td><td>100.00</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td>health_beauty                          </td><td> 44</td><td> 44</td><td>100.00</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td>auto                                   </td><td> 32</td><td> 34</td><td> 94.12</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>office_furniture                       </td><td>687</td><td>756</td><td> 90.87</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>office_furniture                       </td><td> 58</td><td> 64</td><td> 90.62</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td>watches_gifts                          </td><td> 28</td><td> 31</td><td> 90.32</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td>housewares                             </td><td> 35</td><td> 39</td><td> 89.74</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>home_construction                      </td><td> 94</td><td>105</td><td> 89.52</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td>home_appliances_2                      </td><td> 27</td><td> 31</td><td> 87.10</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td>pet_shop                               </td><td> 81</td><td> 93</td><td> 87.10</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td>housewares                             </td><td> 29</td><td> 36</td><td> 80.56</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td>office_furniture                       </td><td> 35</td><td> 49</td><td> 71.43</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>watches_gifts                          </td><td>105</td><td>173</td><td> 60.69</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td>sports_leisure                         </td><td> 22</td><td> 37</td><td> 59.46</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>housewares                             </td><td> 14</td><td> 30</td><td> 46.67</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td>perfumery                              </td><td> 12</td><td> 37</td><td> 32.43</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>computers_accessories                  </td><td> 51</td><td>173</td><td> 29.48</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>perfumery                              </td><td> 23</td><td> 83</td><td> 27.71</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>cool_stuff                             </td><td> 22</td><td> 83</td><td> 26.51</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td>furniture_living_room                  </td><td> 11</td><td> 49</td><td> 22.45</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td>fashion_male_clothing                  </td><td>  7</td><td> 36</td><td> 19.44</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>furniture_decor                        </td><td>  4</td><td> 30</td><td> 13.33</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td>kitchen_dining_laundry_garden_furniture</td><td>  4</td><td> 31</td><td> 12.90</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td>NA                                     </td><td> 12</td><td> 93</td><td> 12.90</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>market_place                           </td><td>  3</td><td> 30</td><td> 10.00</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>telephony                              </td><td>  3</td><td> 30</td><td> 10.00</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>fashion_bags_accessories               </td><td> 5</td><td> 83</td><td>6.02</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>toys                                   </td><td> 5</td><td> 83</td><td>6.02</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td>sports_leisure                         </td><td> 2</td><td> 34</td><td>5.88</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td>furniture_decor                        </td><td> 2</td><td> 49</td><td>4.08</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>auto                                   </td><td> 3</td><td> 83</td><td>3.61</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>baby                                   </td><td> 1</td><td> 30</td><td>3.33</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>NA                                     </td><td> 1</td><td> 30</td><td>3.33</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td>sports_leisure                         </td><td> 1</td><td> 31</td><td>3.23</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>auto                                   </td><td> 2</td><td> 64</td><td>3.12</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>furniture_decor                        </td><td> 2</td><td> 64</td><td>3.12</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>baby                                   </td><td> 5</td><td>173</td><td>2.89</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>consoles_games                         </td><td> 5</td><td>173</td><td>2.89</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>construction_tools_lights              </td><td> 3</td><td>105</td><td>2.86</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td>art                                    </td><td> 1</td><td> 39</td><td>2.56</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>drinks                                 </td><td> 2</td><td> 83</td><td>2.41</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td>kitchen_dining_laundry_garden_furniture</td><td> 1</td><td> 49</td><td>2.04</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>furniture_living_room                  </td><td> 1</td><td> 64</td><td>1.56</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>sports_leisure                         </td><td> 1</td><td> 64</td><td>1.56</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>sports_leisure                         </td><td>10</td><td>756</td><td>1.32</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>consoles_games                         </td><td> 1</td><td> 83</td><td>1.20</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>stationery                             </td><td> 1</td><td> 83</td><td>1.20</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>telephony                              </td><td> 2</td><td>173</td><td>1.16</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>cool_stuff                             </td><td> 1</td><td>173</td><td>0.58</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>electronics                            </td><td> 1</td><td>173</td><td>0.58</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>food_drink                             </td><td> 1</td><td>173</td><td>0.58</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>health_beauty                          </td><td> 1</td><td>173</td><td>0.58</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>sports_leisure                         </td><td> 1</td><td>173</td><td>0.58</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>furniture_living_room                  </td><td> 4</td><td>756</td><td>0.53</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>auto                                   </td><td> 3</td><td>756</td><td>0.40</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>baby                                   </td><td> 3</td><td>756</td><td>0.40</td></tr>
+</tbody>
+</table>
 
-7. Sorting by business impact, not predetermined cutoffs: my old method used a fixed threshold (>25% late), which treated a 26% late seller the same as a 90% late seller, and totally ignoring 26425 orders (24%) from my 1-25% lateness bucket. The new risk score will let me rank sellers on a continuous scale so Olist can prioritize the "worst offenders".
 
-8. Creating action tiers: instead of just flagging "risky" sellers, I will categorize them into critical/high/medium/low tiers so the operations team knows who needs immediate intervention versus who just needs monitoring.
 
-**The biggest insight?** The 10-25% late bucket from my seller analysis contained 26425 orders (24% of total volume), but my old approach completely missed these sellers because I was focused on finding sellers with 100% late rates, who afterall only had 1-2 orders. This new method will actually catch the sellers causing the most widespread customer dissatisfaction.
+    
+    
+    Top category per offender seller (only the dominant category)
+    
+
+
+<table class="dataframe">
+<caption>A tibble: 20 × 4</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>product_category</th><th scope=col>orders_n</th><th scope=col>pct_orders</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td>health_beauty    </td><td> 49</td><td>100.00</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td>sports_leisure   </td><td> 22</td><td> 59.46</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>home_construction</td><td> 94</td><td> 89.52</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>watches_gifts    </td><td>105</td><td> 60.69</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td>home_appliances_2</td><td> 27</td><td> 87.10</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td>office_furniture </td><td> 35</td><td> 71.43</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td>bed_bath_table   </td><td> 64</td><td>100.00</td></tr>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td>consoles_games   </td><td> 30</td><td>100.00</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td>bed_bath_table   </td><td> 56</td><td>100.00</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>office_furniture </td><td>687</td><td> 90.87</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td>housewares       </td><td> 29</td><td> 80.56</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td>perfumery        </td><td> 23</td><td> 27.71</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td>watches_gifts    </td><td> 28</td><td> 90.32</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td>housewares       </td><td> 14</td><td> 46.67</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td>housewares       </td><td> 35</td><td> 89.74</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td>office_furniture </td><td> 58</td><td> 90.62</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td>baby             </td><td> 34</td><td>100.00</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td>auto             </td><td> 32</td><td> 94.12</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td>health_beauty    </td><td> 44</td><td>100.00</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td>pet_shop         </td><td> 81</td><td> 87.10</td></tr>
+</tbody>
+</table>
+
+
 
 
 ```R
-# calculating comprehensive seller performance metrics:
+top_processing_offenders_with_categories <- top_20_processing_offenders %>%
+  left_join(offender_category_counts, by = "seller_id") %>%
+  left_join(
+    offender_top_category %>%
+      rename(
+        top_category = product_category,
+        top_category_orders = orders_n,
+        top_category_pct = pct_orders),
+    by = "seller_id")
 
-seller_perf_enhanced <- delivered_orders_delay %>%
-  group_by(seller_id) %>%
-  summarise(
-    orders_n = n(),
-    avg_delay = mean(delay_vs_eta, na.rm = TRUE),
-    max_delay = max(delay_vs_eta, na.rm = TRUE),
-    share_late = mean(delay_vs_eta > 0, na.rm = TRUE) * 100,
-    share_very_late = mean(delay_vs_eta > 3, na.rm = TRUE) * 100, .groups = "drop")
-
-# Review and revenue metrics per seller:
-        
-seller_impact <- orders_ops_buckets %>%
-  group_by(seller_id) %>%
-  summarise(
-    avg_review = mean(review_score_num, na.rm = TRUE),
-    share_low_reviews = mean(review_score_num <= 2, na.rm = TRUE) * 100,
-    total_revenue = sum(order_total, na.rm = TRUE),
-    avg_revenue = mean(order_total, na.rm = TRUE),
-    revenue_from_poor_reviews = sum(order_total[review_score_num <= 2], na.rm = TRUE), .groups = "drop")
-
-# Combining and calculating risk scores:
-
-seller_risk_base <- seller_perf_enhanced %>%
-  inner_join(seller_impact, by = "seller_id") %>%
-  filter(orders_n >= 5) %>%  
-  mutate(
-    lateness_risk = pmin(share_late * 1.5, 100),           
-    severity_risk = pmin(share_very_late * 2.5, 100),      
-    satisfaction_risk = (5 - avg_review) * 25,             
-    complaint_risk = pmin(share_low_reviews * 2, 100),     
-    
-    # Composite risk score (weighted average of components)       
-    base_risk_score = (lateness_risk * 0.25 + severity_risk * 0.35 + satisfaction_risk * 0.25 + complaint_risk * 0.15),
-    
-    # Volume-weighted adjustment (more orders = higher impact)
-    volume_multiplier = 1 + (log10(orders_n) * 0.15),
-    risk_score = base_risk_score * volume_multiplier,
-    
-    # Business impact metrics
-    revenue_at_risk = revenue_from_poor_reviews,
-    pct_revenue_at_risk = (revenue_from_poor_reviews / total_revenue) * 100,
-    customer_impact = orders_n * (share_low_reviews / 100))
-
-    cat("Revenue at risk distribution (BRL):\n")
-    revenue_quantiles <- quantile(seller_risk_base$revenue_at_risk, c(0.50, 0.75, 0.90, 0.95), na.rm = TRUE)
-    print(revenue_quantiles)  
-
-    revenue_threshold <- quantile(seller_risk_base$revenue_at_risk, 0.9, na.rm = TRUE)
-      
-    # Risk tier classification
-    seller_risk_scored <- seller_risk_base %>%
-  mutate(
-    risk_tier = case_when(
-      risk_score >= 70 & revenue_at_risk > revenue_threshold ~ "Critical",
-      risk_score >= 70 ~ "High",
-      risk_score >= 40 ~ "Medium",
-      risk_score >= 20 ~ "Low",
-      TRUE ~ "Minimal")) %>%
-  arrange(desc(risk_score))
-
-
-# Seller delay buckets:
-
-seller_buckets_improved <- seller_risk_scored %>%
-  mutate(
-    seller_delay_bucket = case_when(
-      share_late <= 10 ~ "<=10% late",
-      share_late > 10 & share_late <= 25 ~ "10-25% late",
-      share_late > 25 & share_late <= 50 ~ "25-50% late",
-      share_late > 50 ~ ">50% late"),
-    seller_delay_bucket = factor(seller_delay_bucket, levels = c("<=10% late", "10-25% late", "25-50% late", ">50% late"))) %>%
-  group_by(seller_delay_bucket) %>%
-  summarise(
-    sellers_n = n(),
-    orders_n = sum(orders_n),
-    avg_review = round(mean(avg_review), 2),
-    share_low_1_2 = round(mean(share_low_reviews), 2),
-    avg_total = round(mean(avg_revenue), 2),
-    total_revenue_at_risk = round(sum(revenue_at_risk), 0), .groups = "drop") %>%
-  arrange(seller_delay_bucket)  
-
-# Top 20 highest-risk sellers
-
-top_risk_improved <- seller_risk_scored %>%
-  filter(risk_tier %in% c("Critical", "High")) %>%
-  select(seller_id, orders_n, total_revenue, share_late, share_very_late, avg_review, share_low_reviews, revenue_at_risk, risk_score, risk_tier) %>%
-  slice_head(n = 20) %>%
-  mutate(
-    total_revenue = round(total_revenue, 0),
-    share_late = paste0(round(share_late, 1), "%"),
-    share_very_late = paste0(round(share_very_late, 1), "%"),  
-    avg_review = round(avg_review, 2),
-    share_low_reviews = paste0(round(share_low_reviews, 1), "%"),
-    revenue_at_risk = round(revenue_at_risk, 0),
-    risk_score = round(risk_score, 1))
-
-cat("\n")
-cat("Improved seller risk assessment\n") 
-cat("_", rep("_", 70), "\n\n", sep = "")
-
-cat("Volume-weighted seller lateness buckets\n")
-cat(rep("-", 50), "\n\n")
-print(seller_buckets_improved, n = Inf)
-
-cat("\n\n")
-cat("Risk distribution summary\n")
-cat(rep("-", 50), "\n")
-risk_summary <- seller_risk_scored %>%
-  group_by(risk_tier) %>%
-  summarise(
-    sellers = n(),
-    total_orders = sum(orders_n),
-    avg_risk_score = round(mean(risk_score), 1),
-    total_revenue_at_risk = round(sum(revenue_at_risk), 0), .groups = "drop") %>%
-  arrange(desc(avg_risk_score))
-print(risk_summary, n = Inf)
-
-cat("\n\n")
-cat("Top 20 highest-risk sellers (prioritized by business impact)\n")
-cat(rep("-", 70), "\n\n")
-print(top_risk_improved, n = 20)
-
-cat("\n\n")
-cat("Key insights:\n")
-cat(rep("-", 50), "\n")
-cat(sprintf("Total sellers analyzed (criteria: >=5 orders): %d\n", nrow(seller_risk_scored)))
-cat(sprintf("Critical + High risk sellers: %d\n", nrow(seller_risk_scored %>% filter(risk_tier %in% c("Critical", "High")))))
-cat(sprintf("Total revenue at risk: %.0f BRL\n", sum(seller_risk_scored$revenue_at_risk, na.rm = TRUE)))
-cat(sprintf("Average risk score: %.1f (typical seller baseline)\n", mean(seller_risk_scored$risk_score, na.rm = TRUE)))
-cat(sprintf("Note: '>3 Days Late' aligns with your delay bucket showing 73 percent negative reviews\n"))
-cat(rep("-", 50), "\n\n")
-
+top_processing_offenders_with_categories
 ```
 
-    Revenue at risk distribution (BRL):
-         50%      75%      90%      95% 
-     409.670 1478.832 3961.304 7201.967 
+
+<table class="dataframe">
+<caption>A tibble: 20 × 12</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>seller_orders_n</th><th scope=col>slow_processed_orders_n</th><th scope=col>slow_processing_rate_pct</th><th scope=col>avg_approval_to_carrier_days</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_order_total</th><th scope=col>category_count</th><th scope=col>top_category</th><th scope=col>top_category_orders</th><th scope=col>top_category_pct</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 30</td><td> 30</td><td>100.0</td><td>17.93</td><td>4.03</td><td>13.3</td><td>420.95</td><td> 1</td><td>consoles_games   </td><td> 30</td><td>100.00</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 49</td><td> 48</td><td> 98.0</td><td>11.98</td><td>4.35</td><td>10.2</td><td>941.10</td><td> 1</td><td>health_beauty    </td><td> 49</td><td>100.00</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 49</td><td> 45</td><td> 91.8</td><td>15.40</td><td>3.37</td><td>26.5</td><td>167.43</td><td> 4</td><td>office_furniture </td><td> 35</td><td> 71.43</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>756</td><td>670</td><td> 88.6</td><td>11.31</td><td>3.64</td><td>21.7</td><td>184.43</td><td> 6</td><td>office_furniture </td><td>687</td><td> 90.87</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 34</td><td> 30</td><td> 88.2</td><td>12.24</td><td>3.91</td><td>17.6</td><td>208.42</td><td> 2</td><td>auto             </td><td> 32</td><td> 94.12</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 56</td><td> 45</td><td> 80.4</td><td>13.71</td><td>3.34</td><td>37.5</td><td>109.71</td><td> 1</td><td>bed_bath_table   </td><td> 56</td><td>100.00</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 64</td><td> 50</td><td> 78.1</td><td>10.61</td><td>3.23</td><td>32.8</td><td>191.89</td><td> 5</td><td>office_furniture </td><td> 58</td><td> 90.62</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>105</td><td> 82</td><td> 78.1</td><td> 8.68</td><td>4.12</td><td>12.4</td><td>117.07</td><td> 3</td><td>home_construction</td><td> 94</td><td> 89.52</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 36</td><td> 28</td><td> 77.8</td><td>10.00</td><td>3.42</td><td>27.8</td><td>131.25</td><td> 2</td><td>housewares       </td><td> 29</td><td> 80.56</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>173</td><td>126</td><td> 72.8</td><td>11.07</td><td>2.75</td><td>48.6</td><td>214.57</td><td>10</td><td>watches_gifts    </td><td>105</td><td> 60.69</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 31</td><td> 22</td><td> 71.0</td><td> 8.46</td><td>3.97</td><td>16.1</td><td>256.22</td><td> 3</td><td>watches_gifts    </td><td> 28</td><td> 90.32</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 31</td><td> 21</td><td> 67.7</td><td> 7.98</td><td>4.16</td><td>12.9</td><td>199.30</td><td> 2</td><td>home_appliances_2</td><td> 27</td><td> 87.10</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 30</td><td> 20</td><td> 66.7</td><td> 8.40</td><td>4.40</td><td> 6.7</td><td>213.31</td><td> 8</td><td>housewares       </td><td> 14</td><td> 46.67</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 44</td><td> 28</td><td> 63.6</td><td> 6.78</td><td>3.86</td><td>18.2</td><td>204.10</td><td> 1</td><td>health_beauty    </td><td> 44</td><td>100.00</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 34</td><td> 20</td><td> 58.8</td><td>12.24</td><td>3.29</td><td>35.3</td><td>215.10</td><td> 1</td><td>baby             </td><td> 34</td><td>100.00</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 37</td><td> 21</td><td> 56.8</td><td> 8.16</td><td>4.03</td><td>21.6</td><td>209.97</td><td> 3</td><td>sports_leisure   </td><td> 22</td><td> 59.46</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td> 83</td><td> 45</td><td> 54.2</td><td>10.86</td><td>3.46</td><td>30.1</td><td>254.59</td><td>11</td><td>perfumery        </td><td> 23</td><td> 27.71</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 39</td><td> 21</td><td> 53.8</td><td>11.00</td><td>4.23</td><td> 7.7</td><td>218.91</td><td> 3</td><td>housewares       </td><td> 35</td><td> 89.74</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 93</td><td> 50</td><td> 53.8</td><td> 6.82</td><td>4.01</td><td>16.1</td><td> 92.64</td><td> 2</td><td>pet_shop         </td><td> 81</td><td> 87.10</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 64</td><td> 34</td><td> 53.1</td><td>14.32</td><td>3.17</td><td>40.6</td><td>162.10</td><td> 1</td><td>bed_bath_table   </td><td> 64</td><td>100.00</td></tr>
+</tbody>
+</table>
+
+
+
+#### Category context for slow-processing sellers
+
+To make the seller offender list more interpretable, I joined the top 20 slow-processing sellers back to `order_items` and checked how many product categories they sell, as well as each seller’s dominant category. This adds an important fairness layer to the interpretation.
+
+And quite a clear pattern emerged:
+
+- many top offenders are **highly concentrated in one main category**: 
+> - several (6 to be exact) sell **100%** of their measurable orders in a single category  
+> - others are still strongly concentrated, with **80–95%** of orders coming from one category  
+
+This suggests, that slow processing is not always just a seller-discipline problem in isolation. In some cases, it may be partly shaped by the category itself (e.g. categories, that are operationally slower to prepare, bulkier to handle, or more complex to fulfill).
+
+At the same time, category concentration does **not automatically explain away** the problem. Some highly concentrated sellers still show both:
+
+- very high slow-processing rates
+- clearly weak customer outcomes (low average reviews and high low-review shares)
+
+So the right interpretation here would be:
+
+- category context matters
+- but some sellers still look like genuine operational risk cases, even after that context is considered
+
+The offender list appears to contain both:
+- **category-concentrated slow sellers**, where product type may partly explain the lag
+- **multi-category offenders**, where the "category explanation" is weaker and the case for operational underperformance is stronger
+
+That makes this list useful not as a final "blame ranking", but as a practical shortlist for deeper investigation.
+
+
+#### Before going further: are these sellers really slow, or are they selling naturally slower categories?
+
+At this point, I have a shortlist of sellers with unusually high slow-processing rates, based on **approval-to-carrier time above the platform P90 threshold**. But I do not want to jump too quickly into calling them "bad sellers", that would be too simplistic.
+
+Some sellers are heavily concentrated in just one category. In a few cases, they sell almost **100%** of their orders in a single product category. That immediately raises a fair question:
+
+> are these sellers slow because they are operationally weak, or because they sell products that are naturally slower to prepare and hand off?
+
+This matters a lot.
+
+A seller dealing mostly in stocked, straightforward products should probably move faster, than a seller handling goods that are bulky, fragile, harder to pack, or more operationally demanding. So if I only look at seller-level slow-processing rates without category context, I risk blaming the seller for something, that may partly reflect what they sell.
+
+So the next step is to add that missing layer of context: I want to compare each offender seller not just to the platform overall, but also to the **category baseline**. In other words:
+
+- is this seller slow compared with everyone else on the platform?
+- or are they mostly slow compared with sellers in the **same kind of category**?
+- and are some categories systematically overrepresented among the worst offenders?
+
+That will make the interpretation much fairer.
+
+If a seller is slow in a category, that is already slow across the platform, that weakens the case, that the seller alone is the problem. But if a seller is much slower than the typical processing time **within their own main category**, then the signal becomes much stronger, that this is a genuine seller-side operational issue.
+
+
+```R
+# Category baseline: approval-to-carrier performance across the platform:
+
+category_processing_baseline <- seller_category_base %>%
+  filter(!is.na(product_category)) %>%
+  group_by(product_category) %>%
+  summarise(
+    cat_orders_n = n(),
+    cat_avg_approval_to_carrier_days = mean(approval_to_carrier_days, na.rm = TRUE),
+    cat_median_approval_to_carrier_days = median(approval_to_carrier_days, na.rm = TRUE),
+    cat_p90_approval_to_carrier_days = quantile(
+      approval_to_carrier_days,
+      probs = 0.90,
+      na.rm = TRUE,
+      type = 7),
+    .groups = "drop") %>%
+  arrange(desc(cat_orders_n))
+
+cat("\n\nCategory-level processing baseline: one row per product category, showing typical approval-to-carrier time across the platform (no seller-size restriction)\n")
+category_processing_baseline
+
+
+
+# Attaching the main category to each "offender"
+
+top_processing_offenders_with_categories <- top_20_processing_offenders %>%
+  left_join(offender_category_counts, by = "seller_id") %>%
+  left_join(offender_top_category %>%
+      rename(
+        top_cat = product_category,
+        top_cat_orders = orders_n,
+        top_cat_pct = pct_orders), by = "seller_id")
+
+cat("\n\nTop processing offenders with category context attached: added category count and dominant category for each offender seller\n")
+top_processing_offenders_with_categories
+
+
+# Comparing each "offender" seller to their main-category baseline:
+
+top_processing_offenders_vs_category <- top_processing_offenders_with_categories %>%
+  left_join(category_processing_baseline %>%
+      rename(top_cat = product_category), by = "top_cat") %>%
+  mutate(
+    seller_vs_cat_avg_gap_days = avg_approval_to_carrier_days - cat_avg_approval_to_carrier_days,
+    seller_vs_cat_median_gap_days = avg_approval_to_carrier_days - cat_median_approval_to_carrier_days) %>%
+  arrange(desc(seller_vs_cat_avg_gap_days))
+
+cat("\n\nOffender sellers compared against their main-category baseline: showed how much slower each seller is than the category norm\n")
+top_processing_offenders_vs_category
+
+
+# Final output:
+
+top_processing_offenders_vs_category_clean <- top_processing_offenders_vs_category %>%
+  mutate(
+    slow_processing_rate_pct = round(slow_processing_rate_pct, 1),
+    avg_approval_to_carrier_days = round(avg_approval_to_carrier_days, 2),
+    avg_review = round(avg_review, 2),
+    share_low_1_2 = round(share_low_1_2, 1),
+    avg_order_total = round(avg_order_total, 2),
+    top_cat_pct = round(top_cat_pct, 2),
+    cat_avg_approval_to_carrier_days = round(cat_avg_approval_to_carrier_days, 2),
+    cat_median_approval_to_carrier_days = round(cat_median_approval_to_carrier_days, 2),
+    cat_p90_approval_to_carrier_days = round(cat_p90_approval_to_carrier_days, 2),
+    seller_vs_cat_avg_gap_days = round(seller_vs_cat_avg_gap_days, 2),
+    seller_vs_cat_median_gap_days = round(seller_vs_cat_median_gap_days, 2)) %>%
+  select(
+    seller_id,
+    seller_orders_n,
+    slow_processing_rate_pct,
+    avg_approval_to_carrier_days,
+    top_cat,
+    top_cat_pct,
+    cat_orders_n,
+    cat_avg_approval_to_carrier_days,
+    cat_median_approval_to_carrier_days,
+    cat_p90_approval_to_carrier_days,
+    seller_vs_cat_avg_gap_days,
+    avg_review,
+    share_low_1_2,
+    avg_order_total)
+
+cat("\n\nFinal cleaned offender comparison table: rounded and selected columns for interpretation\n")
+top_processing_offenders_vs_category_clean
+```
+
     
-    Improved seller risk assessment
-    _______________________________________________________________________
     
-    Volume-weighted seller lateness buckets
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-    [90m# A tibble: 4 × 7[39m
-      seller_delay_bucket sellers_n orders_n avg_review share_low_1_2 avg_total total_revenue_at_risk
-      [3m[90m<fct>[39m[23m                   [3m[90m<int>[39m[23m    [3m[90m<int>[39m[23m      [3m[90m<dbl>[39m[23m         [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m                 [3m[90m<dbl>[39m[23m
-    [90m1[39m <=10% late               [4m1[24m305    [4m7[24m[4m9[24m773       4.23          11.6      223.               2[4m4[24m[4m3[24m[4m4[24m345
-    [90m2[39m 10-25% late               454    [4m2[24m[4m6[24m774       4             17.2      231.               1[4m0[24m[4m8[24m[4m5[24m590
-    [90m3[39m 25-50% late                93     [4m1[24m347       3.61          27.6      247.                 [4m9[24m[4m3[24m873
-    [90m4[39m >50% late                  12       86       2.8           48.8      520.                 [4m3[24m[4m4[24m425
-    
-    
-    Risk distribution summary
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    [90m# A tibble: 5 × 5[39m
-      risk_tier sellers total_orders avg_risk_score total_revenue_at_risk
-      [3m[90m<chr>[39m[23m       [3m[90m<int>[39m[23m        [3m[90m<int>[39m[23m          [3m[90m<dbl>[39m[23m                 [3m[90m<dbl>[39m[23m
-    [90m1[39m Critical        5          158           97.3                 [4m4[24m[4m6[24m700
-    [90m2[39m High           32          333           84.9                 [4m3[24m[4m5[24m076
-    [90m3[39m Medium        141         [4m7[24m052           49.4                [4m7[24m[4m5[24m[4m7[24m959
-    [90m4[39m Low           617        [4m5[24m[4m7[24m724           27.9               2[4m0[24m[4m2[24m[4m9[24m383
-    [90m5[39m Minimal      [4m1[24m069        [4m4[24m[4m2[24m713            9.7                [4m7[24m[4m7[24m[4m9[24m114
-    
-    
-    Top 20 highest-risk sellers (prioritized by business impact)
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
-    [90m# A tibble: 20 × 10[39m
-       seller_id                        orders_n total_revenue share_late share_very_late avg_review share_low_reviews revenue_at_risk risk_score risk_tier
-       [3m[90m<chr>[39m[23m                               [3m[90m<int>[39m[23m         [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m      [3m[90m<chr>[39m[23m                [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m                       [3m[90m<dbl>[39m[23m      [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m    
-    [90m 1[39m 8d92f3ea807b89465643c219455e7369        8           989 87.5%      87.5%                 1    100%                          989      114.  High     
-    [90m 2[39m b1b3948701c5c72445495bd161b83a4c       14         [4m2[24m[4m1[24m924 64.3%      64.3%                 1.93 71.4%                       [4m1[24m[4m8[24m703      109.  Critical 
-    [90m 3[39m 633ecdf879b94b5337cca303328e4a25        6          [4m1[24m000 66.7%      66.7%                 1.8  80%                           684      106.  High     
-    [90m 4[39m 8c3b533c63cca56240f94f1e3a6b18ef        5          [4m2[24m779 80%        80%                   1.67 66.7%                        [4m2[24m495      106.  High     
-    [90m 5[39m 2709af9587499e95e803a6498a5a56e9       46          [4m5[24m704 50%        50%                   2.6  57.8%                        [4m4[24m513      105.  Critical 
-    [90m 6[39m 8d899e15a5925f097cca50faa49b15e3       10          [4m2[24m965 60%        60%                   2.5  60%                          [4m2[24m420      101.  High     
-    [90m 7[39m ec2e006556300a79a5a91e4876ab3a56        6           377 50%        50%                   1.5  100%                          377      101.  High     
-    [90m 8[39m 08cdbae123ff67ca4e36d9d641ce0119        6          [4m7[24m898 66.7%      66.7%                 2.6  60%                          [4m6[24m274      100.  Critical 
-    [90m 9[39m 0d83f8e03188682112cc0d93523705cc        8          [4m2[24m289 50%        50%                   2.75 50%                          [4m1[24m679       94   High     
-    [90m10[39m 8bd0e3abda539b9479c4b44a691be1ec       12          [4m1[24m728 33.3%      33.3%                 1.45 81.8%                        [4m1[24m607       91.6 High     
-    [90m11[39m 538caafddff204241cecbf3a02e6b3cf        8           219 50%        37.5%                 2.75 50%                           105       91.5 High     
-    [90m12[39m 312ba1d77e9c332ef21f9598b7f64cd7        7           456 57.1%      57.1%                 3    40%                           157       91.2 High     
-    [90m13[39m 973f21788dfab357250f69a8dcb7ddee       19          [4m3[24m205 36.8%      36.8%                 2.47 47.4%                        [4m1[24m411       90.6 High     
-    [90m14[39m 427165bf50f8ca07efc7bdc2bfcf1688        5          [4m1[24m693 60%        60%                   3.2  40%                           515       89.2 High     
-    [90m15[39m fce62094ffe6a4009188ec44e681dfdd       11         [4m1[24m[4m4[24m722 45.5%      45.5%                 3.18 45.5%                       [4m1[24m[4m1[24m381       89.1 Critical 
-    [90m16[39m 5acd070dd3fe441bbb2ec1f1ede515ee        8           954 37.5%      37.5%                 2.75 50%                           819       86.2 High     
-    [90m17[39m 6cf476a4ca74498db55cbccdaa9dcfb6        6           871 50%        33.3%                 3    50%                           197       84.2 High     
-    [90m18[39m 54965bbe3e4f07ae045b90b0b8541f52       81         [4m1[24m[4m3[24m642 32.1%      32.1%                 3.09 41.3%                        [4m5[24m829       82.9 Critical 
-    [90m19[39m f9d010e39375d9c91dce3f40b73a2f84        5          [4m1[24m824 40%        40%                   3    40%                           948       82.3 High     
-    [90m20[39m 5b35136197710e16ac5e7b7c2bd4ea85        9          [4m4[24m277 33.3%      33.3%                 2.56 55.6%                        [4m2[24m890       82.2 High     
-    
-    
-    Key insights:
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    Total sellers analyzed (criteria: >=5 orders): 1864
-    Critical + High risk sellers: 37
-    Total revenue at risk: 3648233 BRL
-    Average risk score: 20.3 (typical seller baseline)
-    Note: '>3 Days Late' aligns with your delay bucket showing 73 percent negative reviews
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-    
+    Category-level processing baseline: one row per product category, showing typical approval-to-carrier time across the platform (no seller-size restriction)
     
 
-**Part 2: Improved seller risk assessment - key insights:**
 
-1. **The volume-weighted approach:**
-> Before: 18 of top 20 "high-risk" sellers had 1-2 orders (noise)  
-> After: top 20 now shows 5-81 orders per seller (real patterns, real business impact)
+<table class="dataframe">
+<caption>A tibble: 73 × 5</caption>
+<thead>
+	<tr><th scope=col>product_category</th><th scope=col>cat_orders_n</th><th scope=col>cat_avg_approval_to_carrier_days</th><th scope=col>cat_median_approval_to_carrier_days</th><th scope=col>cat_p90_approval_to_carrier_days</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>health_beauty                  </td><td>7950</td><td>2.599587</td><td>1.6971181</td><td> 5.660144</td></tr>
+	<tr><td>bed_bath_table                 </td><td>7700</td><td>2.763601</td><td>1.8932639</td><td> 5.620352</td></tr>
+	<tr><td>sports_leisure                 </td><td>6719</td><td>2.336589</td><td>1.4907986</td><td> 5.006250</td></tr>
+	<tr><td>computers_accessories          </td><td>5717</td><td>3.044063</td><td>1.8598727</td><td> 6.908315</td></tr>
+	<tr><td>watches_gifts                  </td><td>5206</td><td>2.495852</td><td>1.6638310</td><td> 5.188825</td></tr>
+	<tr><td>housewares                     </td><td>5002</td><td>2.636588</td><td>1.6858333</td><td> 5.737439</td></tr>
+	<tr><td>furniture_decor                </td><td>4884</td><td>3.218514</td><td>2.1182523</td><td> 6.613101</td></tr>
+	<tr><td>telephony                      </td><td>3832</td><td>3.015746</td><td>2.3174942</td><td> 6.006326</td></tr>
+	<tr><td>auto                           </td><td>3546</td><td>2.512403</td><td>1.5296817</td><td> 5.066053</td></tr>
+	<tr><td>toys                           </td><td>3545</td><td>2.422442</td><td>1.4769560</td><td> 5.216674</td></tr>
+	<tr><td>cool_stuff                     </td><td>3384</td><td>2.434251</td><td>1.5719734</td><td> 5.142150</td></tr>
+	<tr><td>perfumery                      </td><td>2876</td><td>2.575481</td><td>1.7010127</td><td> 5.174248</td></tr>
+	<tr><td>garden_tools                   </td><td>2859</td><td>2.532681</td><td>1.9627662</td><td> 5.381845</td></tr>
+	<tr><td>baby                           </td><td>2595</td><td>2.990731</td><td>1.7707523</td><td> 6.573296</td></tr>
+	<tr><td>electronics                    </td><td>2335</td><td>2.301140</td><td>1.5872106</td><td> 4.929296</td></tr>
+	<tr><td>stationery                     </td><td>2070</td><td>2.722210</td><td>2.0483623</td><td> 5.911998</td></tr>
+	<tr><td>fashion_bags_accessories       </td><td>1661</td><td>2.212438</td><td>1.3183796</td><td> 4.655949</td></tr>
+	<tr><td>pet_shop                       </td><td>1492</td><td>2.761633</td><td>1.8238600</td><td> 5.968424</td></tr>
+	<tr><td>office_furniture               </td><td>1007</td><td>9.685551</td><td>9.3117477</td><td>16.725752</td></tr>
+	<tr><td>luggage_accessories            </td><td> 956</td><td>1.654810</td><td>1.0671991</td><td> 3.720891</td></tr>
+	<tr><td>consoles_games                 </td><td> 946</td><td>3.642506</td><td>2.1229051</td><td> 7.741215</td></tr>
+	<tr><td>home_appliances                </td><td> 677</td><td>2.652307</td><td>1.6839236</td><td> 5.033984</td></tr>
+	<tr><td>construction_tools_construction</td><td> 617</td><td>1.935904</td><td>1.1223843</td><td> 3.751991</td></tr>
+	<tr><td>musical_instruments            </td><td> 570</td><td>2.885429</td><td>1.9491319</td><td> 5.724344</td></tr>
+	<tr><td>small_appliances               </td><td> 557</td><td>2.315759</td><td>1.4115394</td><td> 5.214806</td></tr>
+	<tr><td>books_general_interest         </td><td> 460</td><td>2.618302</td><td>1.7313368</td><td> 5.778043</td></tr>
+	<tr><td>food                           </td><td> 393</td><td>1.655195</td><td>0.9638542</td><td> 3.621843</td></tr>
+	<tr><td>home_construction              </td><td> 387</td><td>4.154055</td><td>2.6547685</td><td>10.201472</td></tr>
+	<tr><td>furniture_living_room          </td><td> 342</td><td>3.337394</td><td>2.1088252</td><td> 6.950358</td></tr>
+	<tr><td>audio                          </td><td> 327</td><td>2.567249</td><td>2.0896065</td><td> 5.458373</td></tr>
+	<tr><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><td>agro_industry_and_commerce                   </td><td>163</td><td>2.3820689</td><td>1.5392361</td><td> 5.149014</td></tr>
+	<tr><td>computers                                    </td><td>161</td><td>2.8135770</td><td>2.1317824</td><td> 5.179387</td></tr>
+	<tr><td>construction_tools_garden                    </td><td>148</td><td>2.4657223</td><td>1.4305035</td><td> 6.170708</td></tr>
+	<tr><td>construction_tools_safety                    </td><td>138</td><td>2.7675436</td><td>1.4226794</td><td> 6.724159</td></tr>
+	<tr><td>fashion_underwear_beach                      </td><td>112</td><td>3.8473116</td><td>2.3478646</td><td> 8.183337</td></tr>
+	<tr><td>christmas_supplies                           </td><td>110</td><td>3.2405682</td><td>2.2068634</td><td> 6.645081</td></tr>
+	<tr><td>signaling_and_security                       </td><td>101</td><td>2.5691519</td><td>1.8497917</td><td> 5.796181</td></tr>
+	<tr><td>construction_tools_tools                     </td><td> 89</td><td>2.2960049</td><td>1.6643056</td><td> 5.220137</td></tr>
+	<tr><td>fashion_male_clothing                        </td><td> 89</td><td>3.7271978</td><td>2.4278819</td><td> 7.667137</td></tr>
+	<tr><td>furniture_bedroom                            </td><td> 77</td><td>4.2829398</td><td>3.3716898</td><td> 7.312271</td></tr>
+	<tr><td>small_appliances_home_oven_and_coffee        </td><td> 72</td><td>2.3015135</td><td>1.6910012</td><td> 5.358779</td></tr>
+	<tr><td>tablets_printing_image                       </td><td> 70</td><td>3.0501639</td><td>2.8961806</td><td> 6.508505</td></tr>
+	<tr><td>cine_photo                                   </td><td> 58</td><td>1.6621314</td><td>0.9469039</td><td> 4.396198</td></tr>
+	<tr><td>dvds_blu_ray                                 </td><td> 50</td><td>2.5548229</td><td>1.7466667</td><td> 5.136271</td></tr>
+	<tr><td>books_imported                               </td><td> 42</td><td>2.5194254</td><td>0.9050521</td><td> 6.170081</td></tr>
+	<tr><td>furniture_mattress_and_upholstery            </td><td> 35</td><td>2.4053717</td><td>1.9397917</td><td> 5.015317</td></tr>
+	<tr><td>music                                        </td><td> 35</td><td>3.0660036</td><td>1.8025463</td><td> 4.523218</td></tr>
+	<tr><td>party_supplies                               </td><td> 34</td><td>1.7599578</td><td>1.2808912</td><td> 3.545898</td></tr>
+	<tr><td>fashion_female_clothing                      </td><td> 32</td><td>4.8619770</td><td>2.9430729</td><td>11.112120</td></tr>
+	<tr><td>fashion_sport                                </td><td> 23</td><td>2.1363924</td><td>1.0352083</td><td> 4.939694</td></tr>
+	<tr><td>flowers                                      </td><td> 23</td><td>2.9007241</td><td>1.8762731</td><td> 5.619660</td></tr>
+	<tr><td>diapers_and_hygiene                          </td><td> 22</td><td>3.4488920</td><td>2.0610069</td><td> 5.752029</td></tr>
+	<tr><td>arts_and_craftmanship                        </td><td> 20</td><td>1.5629578</td><td>0.8570544</td><td> 4.553867</td></tr>
+	<tr><td>home_comfort_2                               </td><td> 17</td><td>2.2376355</td><td>1.0679398</td><td> 4.348891</td></tr>
+	<tr><td>kitchen_appliances_food_preparation_equipment</td><td> 12</td><td>1.2025965</td><td>0.7956539</td><td> 2.935255</td></tr>
+	<tr><td>cds_dvds_musicals                            </td><td> 10</td><td>2.7236273</td><td>2.3888194</td><td> 5.879501</td></tr>
+	<tr><td>la_cuisine                                   </td><td>  9</td><td>1.3608526</td><td>1.7746296</td><td> 1.974866</td></tr>
+	<tr><td>fashion_childrens_clothes                    </td><td>  5</td><td>1.5929653</td><td>0.9395139</td><td> 3.072576</td></tr>
+	<tr><td>pc_gamer                                     </td><td>  5</td><td>2.4699815</td><td>1.9636458</td><td> 4.642593</td></tr>
+	<tr><td>security_and_services                        </td><td>  2</td><td>0.9146701</td><td>0.9146701</td><td> 1.103656</td></tr>
+</tbody>
+</table>
 
-**Result:** only 37 sellers (2% of 1864) flagged Critical/High, controlling 491 orders with a total of 81856 BRL (22% of total platform risk)
-
-2. **Critical tier is appropriately rare** ➡︎ 5 sellers (0.27% of total) meet both thresholds: `risk_score ≥70 + revenue_at_risk >3961 BRL` ➜
-158 total orders | 97.3 average risk score | 46780 BRL at risk (13% of platform risk from just 5 sellers)
-
-These 5 sellers processed 158 orders total - manageable, small enough volume for manual intervention
-
-3. **>50% late bucket** ➡︎ small, but dangerous
-> 2 sellers, 86 orders, but catastrophic performance  
-> 2.8 average review score | 48.8% poor reviews (highest across all buckets, 4x platform average 11.6%)    
-> 520 BRL average order value (2.3x platform avg 223 BRL) - high-value items failing delivery  
-> 34425 BRL at risk despite tiny volume  
-
-4. **Medium risk** ➡︎ 21% of total platform risk lives here (141 sellers):  
-> 7052 orders | 49.4 average risk score | 757959 BRL at risk (21% of total platform)  
-> these are improvable sellers - training/logistics support could prevent escalation to High tier    
-> 10-point risk score reduction could save ~150K BRL   
-
-Action: Focus improvement programs (training, logistics support) on Medium tier sellers to prevent them from becoming High/Critical.
-
-5. **Low + minimal risk** ➡︎ healthy platform majority  
-> 1686 sellers (90% of platform) are performing adequately    
-> 95437 orders (88% of volume)  
-> 2808497 BRL at risk (77% of total) this is acceptable, because it is distributed across massive volume (average of 57 orders per seller)  
-> low/minimal tiers have 27.9 and 9.7 average risk scores (well-controlled)  
-> these sellers generate most platform revenue with minimal intervention needed  
-
-**Overall:**   
-
-* Total platform revenue at risk: 3.65M BRL    
-* 90% of Olist's seller base is operationally sound. The 2.8M BRL "at risk" reflects normal business friction across high volume, not systemic problems  
-* Risk concentration: roughly 20% of sellers (critical + high + top medium) are responsible for ~50% of revenue at risk  
-* Targeted interventions on high-risk sellers will have outsized impact  
-
-**Recommended actions:**  
-
-🔸 **Immediate** (critical tier / 5 sellers):   
-- immediate account review  
-- logistics audit for shipping partner issues  
-- consider suspension if patterns don't improve in 30 days  
-
-*Estimated impact:* Prevent ~50K BRL in future poor-review revenue (not lost revenue to recover, it's the captured revenue from dissatisfied customers, that likely won't return)   
-
-🔸 **Short-term** (high tier / 32 sellers):   
-- automated performance warnings  
-- require improvement plans  
-- enhanced monitoring dashboards  
-
-🔸 **Medium-term** (medium tier / 141 sellers):   
-- best practices training programmes  
-- logistics partnership recommendations  
-- incentive programs for improvement
 
 
-**Part 3: Quantifying Factor Impact, predictive modeling**
+    
+    
+    Top processing offenders with category context attached: added category count and dominant category for each offender seller
+    
 
-The seller risk assessment identified, which sellers are problematic and how much revenue is at stake, but it doesn't answer a critical question: how much does each operational factor independently contribute to customer dissatisfaction?
 
-While the plots and buckets showed clear patterns (delay matters, freight doesn't), these comparisons don't tell me how each factor works independently. For example, late orders might also tend to have higher freight costs or different payment methods - so we can't tell if a bad review is due to the delay itself, the high freight, or both. Regression models will let me isolate each factor's individual effect.  
+<table class="dataframe">
+<caption>A tibble: 20 × 12</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>seller_orders_n</th><th scope=col>slow_processed_orders_n</th><th scope=col>slow_processing_rate_pct</th><th scope=col>avg_approval_to_carrier_days</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_order_total</th><th scope=col>category_count</th><th scope=col>top_cat</th><th scope=col>top_cat_orders</th><th scope=col>top_cat_pct</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 30</td><td> 30</td><td>100.0</td><td>17.93</td><td>4.03</td><td>13.3</td><td>420.95</td><td> 1</td><td>consoles_games   </td><td> 30</td><td>100.00</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 49</td><td> 48</td><td> 98.0</td><td>11.98</td><td>4.35</td><td>10.2</td><td>941.10</td><td> 1</td><td>health_beauty    </td><td> 49</td><td>100.00</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 49</td><td> 45</td><td> 91.8</td><td>15.40</td><td>3.37</td><td>26.5</td><td>167.43</td><td> 4</td><td>office_furniture </td><td> 35</td><td> 71.43</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>756</td><td>670</td><td> 88.6</td><td>11.31</td><td>3.64</td><td>21.7</td><td>184.43</td><td> 6</td><td>office_furniture </td><td>687</td><td> 90.87</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 34</td><td> 30</td><td> 88.2</td><td>12.24</td><td>3.91</td><td>17.6</td><td>208.42</td><td> 2</td><td>auto             </td><td> 32</td><td> 94.12</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 56</td><td> 45</td><td> 80.4</td><td>13.71</td><td>3.34</td><td>37.5</td><td>109.71</td><td> 1</td><td>bed_bath_table   </td><td> 56</td><td>100.00</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 64</td><td> 50</td><td> 78.1</td><td>10.61</td><td>3.23</td><td>32.8</td><td>191.89</td><td> 5</td><td>office_furniture </td><td> 58</td><td> 90.62</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>105</td><td> 82</td><td> 78.1</td><td> 8.68</td><td>4.12</td><td>12.4</td><td>117.07</td><td> 3</td><td>home_construction</td><td> 94</td><td> 89.52</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 36</td><td> 28</td><td> 77.8</td><td>10.00</td><td>3.42</td><td>27.8</td><td>131.25</td><td> 2</td><td>housewares       </td><td> 29</td><td> 80.56</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>173</td><td>126</td><td> 72.8</td><td>11.07</td><td>2.75</td><td>48.6</td><td>214.57</td><td>10</td><td>watches_gifts    </td><td>105</td><td> 60.69</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 31</td><td> 22</td><td> 71.0</td><td> 8.46</td><td>3.97</td><td>16.1</td><td>256.22</td><td> 3</td><td>watches_gifts    </td><td> 28</td><td> 90.32</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 31</td><td> 21</td><td> 67.7</td><td> 7.98</td><td>4.16</td><td>12.9</td><td>199.30</td><td> 2</td><td>home_appliances_2</td><td> 27</td><td> 87.10</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 30</td><td> 20</td><td> 66.7</td><td> 8.40</td><td>4.40</td><td> 6.7</td><td>213.31</td><td> 8</td><td>housewares       </td><td> 14</td><td> 46.67</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 44</td><td> 28</td><td> 63.6</td><td> 6.78</td><td>3.86</td><td>18.2</td><td>204.10</td><td> 1</td><td>health_beauty    </td><td> 44</td><td>100.00</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 34</td><td> 20</td><td> 58.8</td><td>12.24</td><td>3.29</td><td>35.3</td><td>215.10</td><td> 1</td><td>baby             </td><td> 34</td><td>100.00</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 37</td><td> 21</td><td> 56.8</td><td> 8.16</td><td>4.03</td><td>21.6</td><td>209.97</td><td> 3</td><td>sports_leisure   </td><td> 22</td><td> 59.46</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td> 83</td><td> 45</td><td> 54.2</td><td>10.86</td><td>3.46</td><td>30.1</td><td>254.59</td><td>11</td><td>perfumery        </td><td> 23</td><td> 27.71</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 39</td><td> 21</td><td> 53.8</td><td>11.00</td><td>4.23</td><td> 7.7</td><td>218.91</td><td> 3</td><td>housewares       </td><td> 35</td><td> 89.74</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 93</td><td> 50</td><td> 53.8</td><td> 6.82</td><td>4.01</td><td>16.1</td><td> 92.64</td><td> 2</td><td>pet_shop         </td><td> 81</td><td> 87.10</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 64</td><td> 34</td><td> 53.1</td><td>14.32</td><td>3.17</td><td>40.6</td><td>162.10</td><td> 1</td><td>bed_bath_table   </td><td> 64</td><td>100.00</td></tr>
+</tbody>
+</table>
 
-In order to answer the core question - "which operational factors have the strongest impact" - I built two linear regression models:
 
-Model 1: Order-level delay impact 
-Model 2: Seller-level consistency impact 
 
-This two-model approach will **test a critical hypothesis**: do customers react more to their individual order experience, or to the seller's overall track record? The answer will determine whether Olist should prioritize real-time logistics improvements or seller reputation screening.
+    
+    
+    Offender sellers compared against their main-category baseline: showed how much slower each seller is than the category norm
+    
+
+
+<table class="dataframe">
+<caption>A tibble: 20 × 18</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>seller_orders_n</th><th scope=col>slow_processed_orders_n</th><th scope=col>slow_processing_rate_pct</th><th scope=col>avg_approval_to_carrier_days</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_order_total</th><th scope=col>category_count</th><th scope=col>top_cat</th><th scope=col>top_cat_orders</th><th scope=col>top_cat_pct</th><th scope=col>cat_orders_n</th><th scope=col>cat_avg_approval_to_carrier_days</th><th scope=col>cat_median_approval_to_carrier_days</th><th scope=col>cat_p90_approval_to_carrier_days</th><th scope=col>seller_vs_cat_avg_gap_days</th><th scope=col>seller_vs_cat_median_gap_days</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 30</td><td> 30</td><td>100.0</td><td>17.93</td><td>4.03</td><td>13.3</td><td>420.95</td><td> 1</td><td>consoles_games   </td><td> 30</td><td>100.00</td><td> 946</td><td>3.642506</td><td>2.122905</td><td> 7.741215</td><td>14.2874942</td><td>15.807095</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 64</td><td> 34</td><td> 53.1</td><td>14.32</td><td>3.17</td><td>40.6</td><td>162.10</td><td> 1</td><td>bed_bath_table   </td><td> 64</td><td>100.00</td><td>7700</td><td>2.763601</td><td>1.893264</td><td> 5.620352</td><td>11.5563990</td><td>12.426736</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 56</td><td> 45</td><td> 80.4</td><td>13.71</td><td>3.34</td><td>37.5</td><td>109.71</td><td> 1</td><td>bed_bath_table   </td><td> 56</td><td>100.00</td><td>7700</td><td>2.763601</td><td>1.893264</td><td> 5.620352</td><td>10.9463990</td><td>11.816736</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 34</td><td> 30</td><td> 88.2</td><td>12.24</td><td>3.91</td><td>17.6</td><td>208.42</td><td> 2</td><td>auto             </td><td> 32</td><td> 94.12</td><td>3546</td><td>2.512403</td><td>1.529682</td><td> 5.066053</td><td> 9.7275972</td><td>10.710318</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 49</td><td> 48</td><td> 98.0</td><td>11.98</td><td>4.35</td><td>10.2</td><td>941.10</td><td> 1</td><td>health_beauty    </td><td> 49</td><td>100.00</td><td>7950</td><td>2.599587</td><td>1.697118</td><td> 5.660144</td><td> 9.3804133</td><td>10.282882</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 34</td><td> 20</td><td> 58.8</td><td>12.24</td><td>3.29</td><td>35.3</td><td>215.10</td><td> 1</td><td>baby             </td><td> 34</td><td>100.00</td><td>2595</td><td>2.990731</td><td>1.770752</td><td> 6.573296</td><td> 9.2492688</td><td>10.469248</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>173</td><td>126</td><td> 72.8</td><td>11.07</td><td>2.75</td><td>48.6</td><td>214.57</td><td>10</td><td>watches_gifts    </td><td>105</td><td> 60.69</td><td>5206</td><td>2.495852</td><td>1.663831</td><td> 5.188825</td><td> 8.5741477</td><td> 9.406169</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 39</td><td> 21</td><td> 53.8</td><td>11.00</td><td>4.23</td><td> 7.7</td><td>218.91</td><td> 3</td><td>housewares       </td><td> 35</td><td> 89.74</td><td>5002</td><td>2.636588</td><td>1.685833</td><td> 5.737439</td><td> 8.3634117</td><td> 9.314167</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td> 83</td><td> 45</td><td> 54.2</td><td>10.86</td><td>3.46</td><td>30.1</td><td>254.59</td><td>11</td><td>perfumery        </td><td> 23</td><td> 27.71</td><td>2876</td><td>2.575481</td><td>1.701013</td><td> 5.174248</td><td> 8.2845191</td><td> 9.158987</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 36</td><td> 28</td><td> 77.8</td><td>10.00</td><td>3.42</td><td>27.8</td><td>131.25</td><td> 2</td><td>housewares       </td><td> 29</td><td> 80.56</td><td>5002</td><td>2.636588</td><td>1.685833</td><td> 5.737439</td><td> 7.3634117</td><td> 8.314167</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 31</td><td> 22</td><td> 71.0</td><td> 8.46</td><td>3.97</td><td>16.1</td><td>256.22</td><td> 3</td><td>watches_gifts    </td><td> 28</td><td> 90.32</td><td>5206</td><td>2.495852</td><td>1.663831</td><td> 5.188825</td><td> 5.9641477</td><td> 6.796169</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 37</td><td> 21</td><td> 56.8</td><td> 8.16</td><td>4.03</td><td>21.6</td><td>209.97</td><td> 3</td><td>sports_leisure   </td><td> 22</td><td> 59.46</td><td>6719</td><td>2.336589</td><td>1.490799</td><td> 5.006250</td><td> 5.8234115</td><td> 6.669201</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 30</td><td> 20</td><td> 66.7</td><td> 8.40</td><td>4.40</td><td> 6.7</td><td>213.31</td><td> 8</td><td>housewares       </td><td> 14</td><td> 46.67</td><td>5002</td><td>2.636588</td><td>1.685833</td><td> 5.737439</td><td> 5.7634117</td><td> 6.714167</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 49</td><td> 45</td><td> 91.8</td><td>15.40</td><td>3.37</td><td>26.5</td><td>167.43</td><td> 4</td><td>office_furniture </td><td> 35</td><td> 71.43</td><td>1007</td><td>9.685551</td><td>9.311748</td><td>16.725752</td><td> 5.7144487</td><td> 6.088252</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>105</td><td> 82</td><td> 78.1</td><td> 8.68</td><td>4.12</td><td>12.4</td><td>117.07</td><td> 3</td><td>home_construction</td><td> 94</td><td> 89.52</td><td> 387</td><td>4.154055</td><td>2.654769</td><td>10.201472</td><td> 4.5259448</td><td> 6.025231</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 44</td><td> 28</td><td> 63.6</td><td> 6.78</td><td>3.86</td><td>18.2</td><td>204.10</td><td> 1</td><td>health_beauty    </td><td> 44</td><td>100.00</td><td>7950</td><td>2.599587</td><td>1.697118</td><td> 5.660144</td><td> 4.1804133</td><td> 5.082882</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 93</td><td> 50</td><td> 53.8</td><td> 6.82</td><td>4.01</td><td>16.1</td><td> 92.64</td><td> 2</td><td>pet_shop         </td><td> 81</td><td> 87.10</td><td>1492</td><td>2.761633</td><td>1.823860</td><td> 5.968424</td><td> 4.0583673</td><td> 4.996140</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 31</td><td> 21</td><td> 67.7</td><td> 7.98</td><td>4.16</td><td>12.9</td><td>199.30</td><td> 2</td><td>home_appliances_2</td><td> 27</td><td> 87.10</td><td> 219</td><td>4.006881</td><td>2.984086</td><td> 7.605167</td><td> 3.9731189</td><td> 4.995914</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>756</td><td>670</td><td> 88.6</td><td>11.31</td><td>3.64</td><td>21.7</td><td>184.43</td><td> 6</td><td>office_furniture </td><td>687</td><td> 90.87</td><td>1007</td><td>9.685551</td><td>9.311748</td><td>16.725752</td><td> 1.6244487</td><td> 1.998252</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 64</td><td> 50</td><td> 78.1</td><td>10.61</td><td>3.23</td><td>32.8</td><td>191.89</td><td> 5</td><td>office_furniture </td><td> 58</td><td> 90.62</td><td>1007</td><td>9.685551</td><td>9.311748</td><td>16.725752</td><td> 0.9244487</td><td> 1.298252</td></tr>
+</tbody>
+</table>
+
+
+
+    
+    
+    Final cleaned offender comparison table: rounded and selected columns for interpretation
+    
+
+
+<table class="dataframe">
+<caption>A tibble: 20 × 14</caption>
+<thead>
+	<tr><th scope=col>seller_id</th><th scope=col>seller_orders_n</th><th scope=col>slow_processing_rate_pct</th><th scope=col>avg_approval_to_carrier_days</th><th scope=col>top_cat</th><th scope=col>top_cat_pct</th><th scope=col>cat_orders_n</th><th scope=col>cat_avg_approval_to_carrier_days</th><th scope=col>cat_median_approval_to_carrier_days</th><th scope=col>cat_p90_approval_to_carrier_days</th><th scope=col>seller_vs_cat_avg_gap_days</th><th scope=col>avg_review</th><th scope=col>share_low_1_2</th><th scope=col>avg_order_total</th></tr>
+	<tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>66e0557ecc2b4dbea057e93f215f68d8</td><td> 30</td><td>100.0</td><td>17.93</td><td>consoles_games   </td><td>100.00</td><td> 946</td><td>3.64</td><td>2.12</td><td> 7.74</td><td>14.29</td><td>4.03</td><td>13.3</td><td>420.95</td></tr>
+	<tr><td>54965bbe3e4f07ae045b90b0b8541f52</td><td> 64</td><td> 53.1</td><td>14.32</td><td>bed_bath_table   </td><td>100.00</td><td>7700</td><td>2.76</td><td>1.89</td><td> 5.62</td><td>11.56</td><td>3.17</td><td>40.6</td><td>162.10</td></tr>
+	<tr><td>6fd52c528dcb38be2eea044946b811f8</td><td> 56</td><td> 80.4</td><td>13.71</td><td>bed_bath_table   </td><td>100.00</td><td>7700</td><td>2.76</td><td>1.89</td><td> 5.62</td><td>10.95</td><td>3.34</td><td>37.5</td><td>109.71</td></tr>
+	<tr><td>cee48807215b30a12ca2ca10ffb5f250</td><td> 34</td><td> 88.2</td><td>12.24</td><td>auto             </td><td> 94.12</td><td>3546</td><td>2.51</td><td>1.53</td><td> 5.07</td><td> 9.73</td><td>3.91</td><td>17.6</td><td>208.42</td></tr>
+	<tr><td>17f51e7198701186712e53a39c564617</td><td> 49</td><td> 98.0</td><td>11.98</td><td>health_beauty    </td><td>100.00</td><td>7950</td><td>2.60</td><td>1.70</td><td> 5.66</td><td> 9.38</td><td>4.35</td><td>10.2</td><td>941.10</td></tr>
+	<tr><td>ad781527c93d00d89a11eecd9dcad7c1</td><td> 34</td><td> 58.8</td><td>12.24</td><td>baby             </td><td>100.00</td><td>2595</td><td>2.99</td><td>1.77</td><td> 6.57</td><td> 9.25</td><td>3.29</td><td>35.3</td><td>215.10</td></tr>
+	<tr><td>2eb70248d66e0e3ef83659f71b244378</td><td>173</td><td> 72.8</td><td>11.07</td><td>watches_gifts    </td><td> 60.69</td><td>5206</td><td>2.50</td><td>1.66</td><td> 5.19</td><td> 8.57</td><td>2.75</td><td>48.6</td><td>214.57</td></tr>
+	<tr><td>a2e874074c877c5a05abae80ad6e488f</td><td> 39</td><td> 53.8</td><td>11.00</td><td>housewares       </td><td> 89.74</td><td>5002</td><td>2.64</td><td>1.69</td><td> 5.74</td><td> 8.36</td><td>4.23</td><td> 7.7</td><td>218.91</td></tr>
+	<tr><td>8444e55c1f13cd5c179851e5ca5ebd00</td><td> 83</td><td> 54.2</td><td>10.86</td><td>perfumery        </td><td> 27.71</td><td>2876</td><td>2.58</td><td>1.70</td><td> 5.17</td><td> 8.28</td><td>3.46</td><td>30.1</td><td>254.59</td></tr>
+	<tr><td>835f0f7810c76831d6c7d24c7a646d4d</td><td> 36</td><td> 77.8</td><td>10.00</td><td>housewares       </td><td> 80.56</td><td>5002</td><td>2.64</td><td>1.69</td><td> 5.74</td><td> 7.36</td><td>3.42</td><td>27.8</td><td>131.25</td></tr>
+	<tr><td>93dc87703c046b603023e75222018b45</td><td> 31</td><td> 71.0</td><td> 8.46</td><td>watches_gifts    </td><td> 90.32</td><td>5206</td><td>2.50</td><td>1.66</td><td> 5.19</td><td> 5.96</td><td>3.97</td><td>16.1</td><td>256.22</td></tr>
+	<tr><td>2089a6d640999f9b9141ac719b2af596</td><td> 37</td><td> 56.8</td><td> 8.16</td><td>sports_leisure   </td><td> 59.46</td><td>6719</td><td>2.34</td><td>1.49</td><td> 5.01</td><td> 5.82</td><td>4.03</td><td>21.6</td><td>209.97</td></tr>
+	<tr><td>9baf5cb77970f539089d09a38bcec5c3</td><td> 30</td><td> 66.7</td><td> 8.40</td><td>housewares       </td><td> 46.67</td><td>5002</td><td>2.64</td><td>1.69</td><td> 5.74</td><td> 5.76</td><td>4.40</td><td> 6.7</td><td>213.31</td></tr>
+	<tr><td>5058e8c1e82653974541e83690655b4a</td><td> 49</td><td> 91.8</td><td>15.40</td><td>office_furniture </td><td> 71.43</td><td>1007</td><td>9.69</td><td>9.31</td><td>16.73</td><td> 5.71</td><td>3.37</td><td>26.5</td><td>167.43</td></tr>
+	<tr><td>213b25e6f54661939f11710a6fddb871</td><td>105</td><td> 78.1</td><td> 8.68</td><td>home_construction</td><td> 89.52</td><td> 387</td><td>4.15</td><td>2.65</td><td>10.20</td><td> 4.53</td><td>4.12</td><td>12.4</td><td>117.07</td></tr>
+	<tr><td>db2956745b3a8e9f3785c99f34b5d25e</td><td> 44</td><td> 63.6</td><td> 6.78</td><td>health_beauty    </td><td>100.00</td><td>7950</td><td>2.60</td><td>1.70</td><td> 5.66</td><td> 4.18</td><td>3.86</td><td>18.2</td><td>204.10</td></tr>
+	<tr><td>dd7ddc04e1b6c2c614352b383efe2d36</td><td> 93</td><td> 53.8</td><td> 6.82</td><td>pet_shop         </td><td> 87.10</td><td>1492</td><td>2.76</td><td>1.82</td><td> 5.97</td><td> 4.06</td><td>4.01</td><td>16.1</td><td> 92.64</td></tr>
+	<tr><td>4917cee8d902e13428c3ec4b1ca6f315</td><td> 31</td><td> 67.7</td><td> 7.98</td><td>home_appliances_2</td><td> 87.10</td><td> 219</td><td>4.01</td><td>2.98</td><td> 7.61</td><td> 3.97</td><td>4.16</td><td>12.9</td><td>199.30</td></tr>
+	<tr><td>7c67e1448b00f6e969d365cea6b010ab</td><td>756</td><td> 88.6</td><td>11.31</td><td>office_furniture </td><td> 90.87</td><td>1007</td><td>9.69</td><td>9.31</td><td>16.73</td><td> 1.62</td><td>3.64</td><td>21.7</td><td>184.43</td></tr>
+	<tr><td>a7f13822ceb966b076af67121f87b063</td><td> 64</td><td> 78.1</td><td>10.61</td><td>office_furniture </td><td> 90.62</td><td>1007</td><td>9.69</td><td>9.31</td><td>16.73</td><td> 0.92</td><td>3.23</td><td>32.8</td><td>191.89</td></tr>
+</tbody>
+</table>
+
+
+
+#### Category context check ➡︎ are these sellers slow because of what they sell, or slow even within their own category?
+
+I can see, that a lot of offender sellers are indeed **highly concentrated in one dominant category**. In several cases, 90–100% of their measurable orders come from a single category. That confirms category context really does matter.
+
+However, category context does **not** fully explain the slowest sellers.
+
+Many of them are still processing orders **far more slowly than the average seller in their own main category**. Some of the gaps are very large:
+
+- **consoles_games seller** → **17.93 days** vs category average **3.64** (**+14.29 days**)
+- **bed_bath_table seller** → **14.32 days** vs **2.76** (**+11.56 days**)
+- **bed_bath_table seller** → **13.71 days** vs **2.76** (**+10.95 days**)
+- **auto seller** → **12.24 days** vs **2.51** (**+9.73 days**)
+- **health_beauty seller** → **11.98 days** vs **2.60** (**+9.38 days**)
+- **baby seller** → **12.24 days** vs **2.99** (**+9.25 days**)
+
+These are not small deviations. These sellers look slow even after allowing for the fact that different categories have different normal preparation times.
+
+🔹**Office furniture** is a good example of why this check matters: this category (**office_furniture**) is genuinely slow across the platform:
+
+- category average approval-to-carrier time = **9.69 days**
+
+So some slowness there is clearly structural, not just seller-specific. But even within that slower category, some sellers still stand out:
+
+- one seller averages **15.40 days** (**+5.71 days** above category average)
+- another averages **11.31 days** (**+1.62 days**)
+- another averages **10.61 days** (**+0.92 days**)
+
+So category context softens the judgment, but does not erase the offender signal.
+
+#### Final interpretation
+
+This check made the "offender"-seller analysis much stronger.
+
+It shows that:
+
+- some sellers are slow partly because they operate in slower categories
+- but several sellers are still **unusually slow even relative to their own category baseline**
+- and some of those same sellers also have clearly weak customer outcomes, with low average reviews and high shares of 1–2 star reviews
+
+So the right conclusion is not **these sellers are slow only because of the categories they sell**, and also not **all slow sellers are equally bad**
+
+The more accurate conclusion is:
+
+> **category context explains part of the pattern, but a subset of sellers still look like genuine processing outliers, even after that context is considered**.
+
+That makes these sellers strong candidates for targeted operational follow-up.
+
+
+```R
+# Plot 2 (displaying product categories instead of slow processing rate):
+
+viz_offenders_cat <- top_processing_offenders_vs_category_clean %>%
+  mutate(
+    seller_label = substr(seller_id, 1, 8),
+    category_label = top_cat
+  )
+
+median_gap <- median(viz_offenders_cat$seller_vs_cat_avg_gap_days, na.rm = TRUE)
+median_low_review <- median(viz_offenders_cat$share_low_1_2, na.rm = TRUE)
+
+options(repr.plot.width = 16, repr.plot.height = 9)
+
+ggplot(
+  viz_offenders_cat,
+  aes(
+    x = seller_vs_cat_avg_gap_days,
+    y = share_low_1_2,
+    size = seller_orders_n,
+    color = top_cat)
+) +
+  geom_vline(
+    xintercept = median_gap,
+    linetype = "dashed",
+    color = "gray45",
+    linewidth = 0.8) +
+  geom_hline(
+    yintercept = median_low_review,
+    linetype = "dashed",
+    color = "gray45",
+    linewidth = 0.8
+  ) +
+  geom_point(alpha = 0.9) +
+  ggrepel::geom_text_repel(
+    aes(label = category_label),
+    size = 5,
+    max.overlaps = Inf,
+    box.padding = 0.5,
+    point.padding = 0.35,
+    show.legend = FALSE
+  ) +
+  annotate(
+    "text",
+    x = max(viz_offenders_cat$seller_vs_cat_avg_gap_days, na.rm = TRUE),
+    y = max(viz_offenders_cat$share_low_1_2, na.rm = TRUE),
+    label = "High priority:\nslow vs category +\nhigh low-review share",
+    hjust = 1,
+    vjust = 1,
+    size = 6,
+    fontface = "bold"
+  ) +
+  scale_size_continuous(
+    range = c(5, 18),
+    breaks = c(50, 100, 200, 400, 600),
+    labels = c("50", "100", "200", "400", "600"),
+    name = "Seller orders"
+  ) +
+  scale_color_manual(
+  values = c(
+    "consoles_games" = "#D55E00",
+    "health_beauty" = "#0072B2",
+    "office_furniture" = "#CC79A7",
+    "auto" = "#009E73",
+    "bed_bath_table" = "#E69F00",
+    "home_construction" = "#56B4E9",
+    "housewares" = "#000000",
+    "watches_gifts" = "#F04452",
+    "baby" = "#6A3D9A",
+    "sports_leisure" = "#1B9E77",
+    "perfumery" = "#8B4513",
+    "pet_shop" = "#4B0082",
+    "home_appliances_2" = "#A6761D"
+  ),
+  name = "Top category"
+) +
+  labs(
+    title = "Which categories appear among slow-processing sellers hurting satisfaction?",
+    subtitle = "Each point is a seller | Labels and colors show the seller's main product category | Dashed lines = seller medians",
+    x = "Gap vs main category average processing time (days)",
+    y = "Low reviews (1–2 stars, %)"
+  ) +
+  guides(
+  color = guide_legend(
+    override.aes = list(size = 6)
+  ),
+  size = guide_legend(
+    override.aes = list(size = 8))
+) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 24),
+    plot.subtitle = element_text(size = 16, color = "gray30"),
+    axis.title.x = element_text(size = 18, face = "bold", margin = margin(t = 12)),
+    axis.title.y = element_text(size = 18, face = "bold", margin = margin(r = 12)),
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 13),
+    panel.grid.minor = element_blank())
+```
+
+
+    
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_417_0.png)
+    
+
+
+
+```R
+# Plot 1:
+
+viz_offenders <- top_processing_offenders_vs_category_clean %>%
+  mutate(
+    seller_label = substr(seller_id, 1, 8))
+
+median_gap <- median(viz_offenders$seller_vs_cat_avg_gap_days, na.rm = TRUE)
+median_low_review <- median(viz_offenders$share_low_1_2, na.rm = TRUE)
+
+options(repr.plot.width = 17, repr.plot.height = 11)
+
+ggplot(viz_offenders, aes(
+    x = seller_vs_cat_avg_gap_days,
+    y = share_low_1_2,
+    size = seller_orders_n,
+    color = slow_processing_rate_pct)
+) +
+  geom_vline(
+    xintercept = median_gap,
+    linetype = "dashed",
+    color = "gray45",
+    linewidth = 0.8
+  ) +
+  geom_hline(
+    yintercept = median_low_review,
+    linetype = "dashed",
+    color = "gray45",
+    linewidth = 0.8
+  ) +
+  geom_point(alpha = 0.85) +
+  ggrepel::geom_text_repel(
+    aes(label = seller_label),
+    size = 5,
+    max.overlaps = Inf,
+    box.padding = 0.5,
+    point.padding = 0.35,
+    show.legend = FALSE
+  ) +
+  annotate("text",
+    x = max(viz_offenders$seller_vs_cat_avg_gap_days, na.rm = TRUE),
+    y = max(viz_offenders$share_low_1_2, na.rm = TRUE),
+    label = "High priority:\nslow vs category +\nhigh low-review share",
+    hjust = 1,
+    vjust = 1,
+    size = 6,
+    fontface = "bold"
+  ) +
+  scale_size_continuous(
+  range = c(5, 18),
+  breaks = c(50, 100, 200, 400, 600),
+  labels = c("50", "100", "200", "400", "600"),
+  name = "Seller orders"
+) +
+  scale_color_gradient(
+    low = "#56B1F7",
+    high = "#D73027",
+    name = "Slow processing rate (%)"
+  ) +
+  labs(
+    title = "Which slow-processing sellers are also hurting satisfaction?",
+    subtitle = "Top seller offenders | X = extra approval-to-carrier days vs main category average | dashed lines = seller medians",
+    x = "Gap vs main category average processing time (days)",
+    y = "Low reviews (1–2 stars, %)"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.title = element_text(face = "bold", size = 24),
+    plot.subtitle = element_text(size = 16, color = "gray30"),
+    axis.title.x = element_text(size = 18, face = "bold", margin = margin(t = 12)),
+    axis.title.y = element_text(size = 18, face = "bold", margin = margin(r = 12)),
+    axis.text.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 14),
+    panel.grid.minor = element_blank()  )
+```
+
+
+    
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_418_0.png)
+    
+
+
+#### Viz summary
+
+**Plot 1: Category view ➡︎ where do slow-processing offender patterns cluster?**
+
+🔹 Before looking at individual seller IDs, I first use this chart to understand whether the worst slow-processing cases show any category pattern.
+🔹 Each point represents **one seller**, but the point is labeled and colored by that seller’s **main product category**.
+
+So this chart is not yet about naming exact sellers, it is a first diagnostic view asking: **"Do the slow-processing sellers hurting satisfaction appear to cluster in certain product categories?"**
+
+🔹 The highest-priority area is the top-right quadrant of the chart: **slow compared with category baseline + high share of low reviews**
+Several categories appear in or near this problem zone, especially:
+
+- **bed_bath_table**
+- **watches_gifts**
+- **housewares**
+- **baby**
+- **perfumery**
+
+This suggests that slow-processing risk is not evenly distributed across the offender group. Some product categories appear more exposed to seller-processing problems, than others.
+
+🔸 Important nuance: this does **not** mean these categories are “bad”. The chart is built only from the **top slow-processing offender sellers**, not from the full marketplace. So it shows category patterns **inside the offender group**, not overall category performance.
+The better interpretation is **some risky sellers are concentrated in certain categories, so category context matters before blaming sellers directly**.
+
+
+🔹 This view helps frame the problem before drilling into exact seller IDs.
+
+It tells me:
+> - whether slow-processing risk has category patterns  
+> - whether certain categories may involve more complex fulfillment  
+> - whether a seller’s delay should be judged against category context, not only platform averages  
+
+For example, **office_furniture** is already a slower category overall, so a seller in that category needs to be compared against office-furniture norms, not against a generic platform average.
+
+#### Practical interpretation:
+
+🔹 This category view is a diagnostic layer.
+🔹 It helps decide where to look more closely, but it does not yet tell me exactly who to act on.
+🔹 The next step is therefore to move from category pattern to **exact seller-level accountability**
+
+That is why the next chart uses seller IDs instead of category names.
+
+
+This chart shows that slow-processing seller risk has category structure, but category alone is not enough.
+
+It helps identify where risky sellers are concentrated, while the seller-ID chart that follows is needed to pinpoint the exact offenders and prioritize action.
+
+---
+
+**Plot 2: Seller processing risk vs customer satisfaction**
+
+This chart separates slow-processing sellers into a more useful priority view.
+
+🔹 Each point is one top slow-processing seller (20 in total)   
+🔹 X-axis shows how many extra approval-to-carrier days the seller takes, compared with the average processing time of their own main category    
+🔹 Y-axis shows the share of low reviews (1-2 stars)  
+🔹 Bubble size shows seller's order volume  
+🔹 Color shows the seller’s slow-processing rate  
+
+The most important area is the **top-right quadrant**: sellers who are both slower than their category norm and also generating a high share of bad reviews.
+
+The main sellers in this high-priority zone are:
+
+- `2eb70248...` — very concerning: high category-adjusted delay gap, **48.6% low reviews**, and **173 orders**
+- `54965bbe...` — strong risk signal: **40.6% low reviews**, high gap vs category, concentrated in `bed_bath_table`
+- `6fd52c52...` — similar pattern: high processing gap, **37.5% low reviews**, also `bed_bath_table`
+- `ad781527...` — high gap and **35.3% low reviews**, concentrated in `baby`
+- `8444e55c...` — multi-category seller with **30.1% low reviews**, so the “category excuse” is weaker
+- `835f0f78...` — high low-review share and slower than category baseline
+- `5058e8c1...` — high slow-processing rate and elevated low-review share, mostly `office_furniture`
+
+The chart also shows an important nuance: some sellers are extremely slow, but do not have very bad review outcomes. For example, `66e0557e...` and `17f51e71...` have large processing gaps, but their low-review shares are relatively low. These sellers should not be treated the same as the top-right-quadrant sellers. They may sell products, where customers tolerate longer processing, or they may compensate with product quality, communication, pricing, or expectations.
+
+The biggest operational priority should therefore not be “all slow sellers.” It should be sellers where slow processing and poor satisfaction overlap.
+
+**Recommended next steps:**
+
+1. Prioritize an "investigation" into the top-right quadrant sellers first, especially `2eb70248...`, `54965bbe...`, and `6fd52c52...` (high category-adjusted processing gap + high low-review share).
+2. Separate sellers into action groups:
+   - slow + unhappy customers ➡︎ operational intervention
+   - slow + low complaint rate ➡︎ check expectations / product type before penalizing
+   - not very slow + unhappy customers ➡︎ investigate product quality, listing accuracy, or service issues
+3. For the worst sellers, inspect inventory availability, handling workflow, and carrier handoff process.
+4. Quantify business impact by adding order volume / GMV-at-risk, so prioritization is not based only on review pain.
+5. Use category-adjusted thresholds instead of one platform-wide SLA when evaluating seller processing.
+
+---
+
+**So overall: which chart actually matters?**
+- The category one (1st) is useful for pattern recognition, but it’s vague. It tells where problems tend to happen, while the seller chart tells who is causing the problem.
+- The **seller-level (IDs)** is the one, that matters operationally.
+  
+
+In a marketplace business context you don’t fix "categories", you fix sellers, contracts, SLAs, fulfillment processes
+
+So:
+> * Category chart = context  
+> * Seller chart = action
+
+---
+
+After the visual analysis, the pattern is already fairly clear: severe delivery delays are strongly linked to low reviews, and some sellers also stand out as processing-risk cases, even after comparing them with their own category baseline. But the charts are still descriptive. They show patterns, not the relative strength of each factor when several variables are considered together. So the next step is to use simple linear regression models to stress-test the relationships more formally: 
+- first, to check how strongly the customer’s own order-level delay is associated with review score;
+- and second, to test whether seller-side processing risk still has a measurable relationship with reviews, when framed as approval-to-carrier performance (instead of final delivery delay).
 
 
 ```R
 library(car)
 
-# Model 1: Order-level delay (for review prediction):
+# Model 1: Order-level delay (for review prediction): direct customer delivery experience (Does this specific order arriving late hurt review score?)
 
-model_reviews <- lm(review_score_num ~ delay_vs_eta + freight_pct + max_installments + main_payment_type, data = orders_ops_buckets)
+# Order-level payment features
+payment_features <- order_payments %>%
+  group_by(order_id) %>%
+  summarise(
+    max_installments = max(payment_installments, na.rm = TRUE),
+    main_payment_type = first(payment_type),
+    total_payment_value = sum(payment_value, na.rm = TRUE),
+    .groups = "drop")
 
-# Model 2: Seller-level performance (for seller analysis):
-model_seller_impact <- lm(review_score_num ~ avg_delay + share_late + freight_pct + max_installments + main_payment_type, data = orders_ops_buckets)
+model_review_delivery_base <- orders_base_single_reviewed_ops %>%
+  filter(!is.na(delay_vs_eta)) %>%
+  mutate(
+    freight_pct = if_else(order_price > 0, 100 * order_freight / order_price, NA_real_)) %>%
+  inner_join(payment_features, by = "order_id") %>%
+  filter(
+    !is.na(review_score_num),
+    !is.na(delay_vs_eta),
+    !is.na(freight_pct),
+    !is.na(max_installments),
+    !is.na(main_payment_type))
 
+model_review_delivery_base %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id))
+
+model_reviews <- lm(
+  review_score_num ~ delay_vs_eta + freight_pct + max_installments + main_payment_type,
+  data = model_review_delivery_base)
+
+cat("\n\n\n")
 cat("Model 1: Order-level delay impact on customer satisfaction (review score)\n")
-cat("-------------------------------------------------------------------------\n\n")
 summary(model_reviews)
 
 cat("\n\n\n")
 cat("Multicollinearity check (Model 1)\n")
-cat("---------------------------------\n")
 vif(model_reviews)
-
-cat("\n\n\n")
-cat("Model 2: Seller-level performance impact on customer satisfaction (review score)\n")
-cat("--------------------------------------------------------------------------------\n\n")
-summary(model_seller_impact)
-
-cat("\n\n\n")
-cat("Multicollinearity check (Model 2)\n")
-cat("---------------------------------\n")
-vif(model_seller_impact)
 ```
 
-    Loading required package: carData
-    
-    
-    Attaching package: ‘car’
-    
-    
-    The following object is masked from ‘package:dplyr’:
-    
-        recode
-    
-    
-    
 
-    Model 1: Order-level delay impact on customer satisfaction (review score)
-    -------------------------------------------------------------------------
+<table class="dataframe">
+<caption>A tibble: 1 × 2</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>85442</td><td>85442</td></tr>
+</tbody>
+</table>
+
+
+
     
+    
+    
+    Model 1: Order-level delay impact on customer satisfaction (review score)
     
 
 
     
     Call:
     lm(formula = review_score_num ~ delay_vs_eta + freight_pct + 
-        max_installments + main_payment_type, data = orders_ops_buckets)
+        max_installments + main_payment_type, data = model_review_delivery_base)
     
     Residuals:
         Min      1Q  Median      3Q     Max 
-    -4.8780 -0.3949  0.6165  0.9156  5.9793 
+    -5.7832 -0.3698  0.4939  0.7917  6.2610 
     
     Coefficients:
                                    Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)                   3.8564800  0.0107914 357.367  < 2e-16 ***
-    delay_vs_eta                 -0.0311364  0.0003941 -79.016  < 2e-16 ***
-    freight_pct                  -0.0021710  0.0001229 -17.669  < 2e-16 ***
-    max_installments             -0.0339227  0.0015659 -21.663  < 2e-16 ***
-    main_payment_typecredit_card  0.0594505  0.0107146   5.549 2.89e-08 ***
-    main_payment_typedebit_card   0.1233414  0.0334507   3.687 0.000227 ***
-    main_payment_typevoucher     -0.0191704  0.0261484  -0.733 0.463475    
+    (Intercept)                   3.8873204  0.0110628 351.388   <2e-16 ***
+    delay_vs_eta                 -0.0371802  0.0003960 -93.891   <2e-16 ***
+    freight_pct                  -0.0013056  0.0001328  -9.830   <2e-16 ***
+    max_installments             -0.0144812  0.0016712  -8.665   <2e-16 ***
+    main_payment_typecredit_card -0.0010015  0.0108607  -0.092   0.9265    
+    main_payment_typedebit_card   0.0295325  0.0330768   0.893   0.3719    
+    main_payment_typevoucher     -0.0635759  0.0256657  -2.477   0.0132 *  
     ---
     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
     
-    Residual standard error: 1.304 on 108202 degrees of freedom
-    Multiple R-squared:  0.05892,	Adjusted R-squared:  0.05887 
-    F-statistic:  1129 on 6 and 108202 DF,  p-value: < 2.2e-16
+    Residual standard error: 1.169 on 85435 degrees of freedom
+    Multiple R-squared:  0.09432,	Adjusted R-squared:  0.09426 
+    F-statistic:  1483 on 6 and 85435 DF,  p-value: < 2.2e-16
     
 
 
@@ -13049,7 +14647,6 @@ vif(model_seller_impact)
     
     
     Multicollinearity check (Model 1)
-    ---------------------------------
     
 
 
@@ -13059,153 +14656,217 @@ vif(model_seller_impact)
 	<tr><th></th><th scope=col>GVIF</th><th scope=col>Df</th><th scope=col>GVIF^(1/(2*Df))</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>delay_vs_eta</th><td>1.003408</td><td>1</td><td>1.001702</td></tr>
-	<tr><th scope=row>freight_pct</th><td>1.030001</td><td>1</td><td>1.014890</td></tr>
-	<tr><th scope=row>max_installments</th><td>1.218409</td><td>1</td><td>1.103816</td></tr>
-	<tr><th scope=row>main_payment_type</th><td>1.189267</td><td>3</td><td>1.029311</td></tr>
+	<tr><th scope=row>delay_vs_eta</th><td>1.002674</td><td>1</td><td>1.001336</td></tr>
+	<tr><th scope=row>freight_pct</th><td>1.047496</td><td>1</td><td>1.023472</td></tr>
+	<tr><th scope=row>max_installments</th><td>1.222166</td><td>1</td><td>1.105516</td></tr>
+	<tr><th scope=row>main_payment_type</th><td>1.176783</td><td>3</td><td>1.027502</td></tr>
 </tbody>
 </table>
 
 
 
-    
-    
-    
-    Model 2: Seller-level performance impact on customer satisfaction (review score)
-    --------------------------------------------------------------------------------
-    
-    
+*Payment features were summarized at order level. Because 97.02% of orders contain only one payment record, `main_payment_type` was treated as the first recorded payment type for modeling purposes. This is a reasonable simplification for the current analysis, but split-payment orders may contain mixed instruments such as voucher + credit card*
 
 
-    
-    Call:
-    lm(formula = review_score_num ~ avg_delay + share_late + freight_pct + 
-        max_installments + main_payment_type, data = orders_ops_buckets)
-    
-    Residuals:
-        Min      1Q  Median      3Q     Max 
-    -3.4540 -0.2612  0.7517  0.9033  4.6099 
-    
-    Coefficients:
-                                   Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)                   4.3716887  0.0236010 185.233  < 2e-16 ***
-    avg_delay                     0.0010335  0.0015068   0.686 0.492785    
-    share_late                   -0.0234763  0.0007859 -29.871  < 2e-16 ***
-    freight_pct                  -0.0018434  0.0001255 -14.686  < 2e-16 ***
-    max_installments             -0.0294117  0.0016018 -18.362  < 2e-16 ***
-    main_payment_typecredit_card  0.0745434  0.0109505   6.807 9.99e-12 ***
-    main_payment_typedebit_card   0.1267180  0.0341932   3.706 0.000211 ***
-    main_payment_typevoucher     -0.0119105  0.0267274  -0.446 0.655866    
-    ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-    
-    Residual standard error: 1.333 on 108201 degrees of freedom
-    Multiple R-squared:  0.01686,	Adjusted R-squared:  0.01679 
-    F-statistic:   265 on 7 and 108201 DF,  p-value: < 2.2e-16
-    
+#### Model 1 — Order-level delay impact on review score
 
+🔹 Model 1 tests the direct customer experience: whether the specific order arriving late compared with the estimated delivery date is associated with lower review scores.
 
-    
-    
-    
-    Multicollinearity check (Model 2)
-    ---------------------------------
-    
+🔹 The model was fitted on **85442 reviewed single-item, single-seller orders** with measurable delivery delay. The grain is clean: **85442 rows = 85442 distinct orders**.
 
+🔹 The strongest predictor is clearly `delay_vs_eta`.
 
-<table class="dataframe">
-<caption>A matrix: 5 × 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>GVIF</th><th scope=col>Df</th><th scope=col>GVIF^(1/(2*Df))</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>avg_delay</th><td>1.553173</td><td>1</td><td>1.246263</td></tr>
-	<tr><th scope=row>share_late</th><td>1.550973</td><td>1</td><td>1.245381</td></tr>
-	<tr><th scope=row>freight_pct</th><td>1.028832</td><td>1</td><td>1.014314</td></tr>
-	<tr><th scope=row>max_installments</th><td>1.220249</td><td>1</td><td>1.104649</td></tr>
-	<tr><th scope=row>main_payment_type</th><td>1.189168</td><td>3</td><td>1.029297</td></tr>
-</tbody>
-</table>
+- `delay_vs_eta` coefficient = **-0.0372**  
+- p-value: **< 2e-16**
 
+🔹 This means that, holding freight burden, installments and payment type constant, each additional day late vs ETA is associated with a decrease of about **0.037 review points** on the 1–5 review scale.
 
+The effect looks small per single day, but it can compound:
 
-Before diving into analysis of linear regression models, a quick check of Model 2, actually, reveals higher VIFs (~1.55) for **avg_delay** and **share_late** (show a moderate correlation), which is expected, as both features measure seller delay patterns. It is still acceptable (VIF < 5), but it shows a clear overlap.
+- **3 days late** ≈ -0.11 review points
+- **10 days late** ≈ -0.37 review points
+- **20 days late** ≈ -0.74 review points
 
-**avg_delay β coefficient** = 0.0010 (p = 0.4928) → not significant  
-**share_late β coefficient** = -0.0235 (p < 0.0001) → highly significant 
+🔹 So the model supports what the earlier analysis already showed: **severe lateness is highly damaging for customer satisfaction**.
 
-I will update my Model 2 by removing insignificant independent variable **avg_daily** ➡︎ Model 2A:
+🔹 Freight burden and installments are also statistically significant, but their practical effects are much smaller:
+
+- `freight_pct` coefficient = **-0.0013**
+- `max_installments` coefficient = **-0.0145**
+
+🔹 Payment type has little explanatory value in this model. Credit card and debit card are not statistically significant, while voucher is statistically significant, but small in effect size.
+
+🔹 The model has an adjusted R2 of **0.0943**, meaning these operational and payment variables explain about **9.4%** of the variation in review scores. This is reasonable for customer-review data, where many important drivers are not observed in the dataset, such as product quality, packaging, communication and customer expectations.
+
+🔹 The multicollinearity check shows no concern. All adjusted GVIF values are close to 1, meaning the predictors are not strongly overlapping.
+
+**Conclusion:** direct order-level delay is the dominant operational predictor in this model. Freight burden and installment structure have measurable but much weaker associations, while payment type does not materially explain review outcomes.
+
+---
+
+#### Moving to Model 2 — seller-side processing risk
+
+Model 1 confirmed the customer-facing side of the story: when an individual order arrives late compared with the ETA, review scores drop. That is the direct customer experience.
+
+But this still does not tell us whether some sellers are systematically creating operational risk before the package even reaches the carrier.
+
+So Model 2 shifts the focus from **"Was this specific order late to the customer?"** to **"Do sellers with slower processing patterns also receive worse reviews?"**
+
+For this model, I will not use final delivery delay as the seller metric, because final delivery also includes carrier and route effects. Instead, I will use the cleaner seller-side signal built earlier: **approval-to-carrier processing performance**, especially the seller’s category-adjusted processing gap and slow-processing rate.
+
+This lets me test whether seller-side processing risk is associated with review scores after accounting for the fact that some categories naturally take longer to prepare than others.
+
 
 
 ```R
-# Model 2A: Seller consistency only (I removed avg_delay):
+# Model 2: Seller-side processing risk (Do sellers with slower category-adjusted processing patterns receive worse reviews?)
 
-model_seller_consistency <- lm(review_score_num ~ share_late + freight_pct + max_installments + main_payment_type, data = orders_ops_buckets)
+# 1. Building category mix for all eligible sellers:
 
-cat("\n\n")
-cat("Model 2A: Seller consistency impact\n")
-cat("-----------------------------------\n\n")
-summary(model_seller_consistency)
+seller_category_mix_all <- seller_category_base %>%
+  group_by(seller_id, product_category) %>%
+  summarise(
+    orders_n = n(),
+    .groups = "drop") %>%
+  group_by(seller_id) %>%
+  mutate(
+    seller_orders_n = sum(orders_n),
+    pct_orders = 100 * orders_n / seller_orders_n) %>%
+  ungroup()
 
-cat("\n\nMulticollinearity Check (Model 2A):\n")
-vif(model_seller_consistency)
+# 2. Getting top category per seller:
+
+seller_top_category_all <- seller_category_mix_all %>%
+  group_by(seller_id) %>%
+  slice_max(order_by = orders_n, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(
+    seller_id,
+    top_category = product_category,
+    top_category_pct = pct_orders)
+
+# 3. Attaching category baseline to all sellers with >=30 measurable processing orders:
+
+seller_processing_features_all <- seller_processing_seller_30 %>%
+  left_join(seller_top_category_all, by = "seller_id") %>%
+  left_join(
+    category_processing_baseline %>%
+      rename(top_category = product_category),
+    by = "top_category") %>%
+  mutate(
+    seller_vs_category_avg_gap_days =
+      avg_approval_to_carrier_days - cat_avg_approval_to_carrier_days)
+
+# 4. Joining seller-level processing features back to order-level reviewed processing base:
+
+model_seller_processing_base <- seller_processing_base %>%
+  inner_join(
+    seller_processing_features_all %>%
+      select(
+        seller_id,
+        slow_processing_rate_pct,
+        avg_approval_to_carrier_days,
+        seller_vs_category_avg_gap_days), by = "seller_id")
+
+# Sanity check: still order grain?
+
+model_seller_processing_base %>%
+  summarise(
+    rows = n(),
+    distinct_orders = n_distinct(order_id),
+    distinct_sellers = n_distinct(seller_id))
+
+# 5. Fitting Model 2:
+
+model_seller_processing <- lm(review_score_num ~ seller_vs_category_avg_gap_days + slow_processing_rate_pct, data = model_seller_processing_base)
+
+cat("\n\nModel 2: Seller-side processing risk impact on review score\n")
+summary(model_seller_processing)
+
+cat("\n\nMulticollinearity check (Model 2)\n")
+vif(model_seller_processing)
 ```
 
+
+<table class="dataframe">
+<caption>A tibble: 1 × 3</caption>
+<thead>
+	<tr><th scope=col>rows</th><th scope=col>distinct_orders</th><th scope=col>distinct_sellers</th></tr>
+	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>70946</td><td>70946</td><td>575</td></tr>
+</tbody>
+</table>
+
+
+
     
     
-    Model 2A: Seller consistency impact
-    -----------------------------------
-    
+    Model 2: Seller-side processing risk impact on review score
     
 
 
     
     Call:
-    lm(formula = review_score_num ~ share_late + freight_pct + max_installments + 
-        main_payment_type, data = orders_ops_buckets)
+    lm(formula = review_score_num ~ seller_vs_category_avg_gap_days + 
+        slow_processing_rate_pct, data = model_seller_processing_base)
     
     Residuals:
         Min      1Q  Median      3Q     Max 
-    -3.4460 -0.2618  0.7511  0.9037  4.6109 
+    -3.3144 -0.2541  0.7353  0.7880  1.6970 
     
     Coefficients:
-                                   Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)                   4.3575271  0.0114324 381.157  < 2e-16 ***
-    share_late                   -0.0231551  0.0006311 -36.688  < 2e-16 ***
-    freight_pct                  -0.0018437  0.0001255 -14.689  < 2e-16 ***
-    max_installments             -0.0294668  0.0015997 -18.420  < 2e-16 ***
-    main_payment_typecredit_card  0.0746531  0.0109493   6.818 9.27e-12 ***
-    main_payment_typedebit_card   0.1270261  0.0341902   3.715 0.000203 ***
-    main_payment_typevoucher     -0.0117640  0.0267265  -0.440 0.659820    
+                                      Estimate Std. Error t value Pr(>|t|)    
+    (Intercept)                      4.2307968  0.0069867 605.551  < 2e-16 ***
+    seller_vs_category_avg_gap_days -0.0283408  0.0050465  -5.616 1.96e-08 ***
+    slow_processing_rate_pct        -0.0052297  0.0005131 -10.193  < 2e-16 ***
     ---
     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
     
-    Residual standard error: 1.333 on 108202 degrees of freedom
-    Multiple R-squared:  0.01685,	Adjusted R-squared:  0.0168 
-    F-statistic: 309.1 on 6 and 108202 DF,  p-value: < 2.2e-16
+    Residual standard error: 1.252 on 70478 degrees of freedom
+      (465 observations deleted due to missingness)
+    Multiple R-squared:  0.008792,	Adjusted R-squared:  0.008764 
+    F-statistic: 312.6 on 2 and 70478 DF,  p-value: < 2.2e-16
     
 
 
     
     
-    Multicollinearity Check (Model 2A):
+    Multicollinearity check (Model 2)
     
 
 
-<table class="dataframe">
-<caption>A matrix: 4 × 3 of type dbl</caption>
-<thead>
-	<tr><th></th><th scope=col>GVIF</th><th scope=col>Df</th><th scope=col>GVIF^(1/(2*Df))</th></tr>
-</thead>
-<tbody>
-	<tr><th scope=row>share_late</th><td>1.000183</td><td>1</td><td>1.000091</td></tr>
-	<tr><th scope=row>freight_pct</th><td>1.028817</td><td>1</td><td>1.014306</td></tr>
-	<tr><th scope=row>max_installments</th><td>1.217172</td><td>1</td><td>1.103255</td></tr>
-	<tr><th scope=row>main_payment_type</th><td>1.188775</td><td>3</td><td>1.029240</td></tr>
-</tbody>
-</table>
+<style>
+.dl-inline {width: auto; margin:0; padding: 0}
+.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
+.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
+.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
+</style><dl class=dl-inline><dt>seller_vs_category_avg_gap_days</dt><dd>2.75604813586986</dd><dt>slow_processing_rate_pct</dt><dd>2.75604813586986</dd></dl>
 
 
+
+### Model 2 — Seller-side processing risk
+
+🔹 Model 2 tests whether seller-side processing risk is associated with review scores.
+
+🔹 Unlike the earlier seller-delay logic, this model does not use final delivery delay as the seller metric. Instead, it uses approval-to-carrier processing behaviour, which is closer to the part of the order lifecycle that sellers can actually influence.
+
+🔹 The model was fitted on **70946 reviewed single-item, single-seller orders** linked to **575 sellers** with at least **30 measurable approval-to-carrier orders**. The grain is clean: **70946 rows = 70946 distinct orders**.
+
+🔹 Both seller-processing variables are statistically significant:
+
+> - `seller_vs_category_avg_gap_days` coefficient = **-0.0283**  
+> - `slow_processing_rate_pct` coefficient = **-0.0052**  
+
+🔹 This means that sellers, who process orders more slowly than their category baseline, tend to receive lower review scores. Similarly, sellers with a higher share of orders above the platform P90 approval-to-carrier threshold also tend to have lower reviews.
+
+🔹 Model’s explanatory power is weak, however: **`adjusted R2 = 0.0088`**. So seller-processing risk explains less than **1%** of review-score variation. This means it is a real signal, but not a dominant driver of satisfaction by itself.
+
+🔹 The multicollinearity check shows moderate overlap between the two seller-processing variables: VIF ~ **2.76**
+This is acceptable and below common concern thresholds, but it also makes sense: sellers with high slow-processing rates often also have positive category-adjusted processing gaps.
+
+**Conclusion:** seller-side processing risk matters, but mostly as a screening and prioritization signal. It is useful for identifying operationally risky sellers, not for fully explaining review scores.
 
 
 ```R
@@ -13213,97 +14874,144 @@ library(broom)
 
 coef_m1 <- tidy(model_reviews, conf.int = TRUE) %>%
   filter(term != "(Intercept)") %>%
-  mutate(model = "Model 1: Order-level delay")
+  mutate(model = "Model 1: Order-level delivery experience")
 
-coef_m2 <- tidy(model_seller_consistency, conf.int = TRUE) %>%
+coef_m2 <- tidy(model_seller_processing, conf.int = TRUE) %>%
   filter(term != "(Intercept)") %>%
-  mutate(model = "Model 2A: Seller consistency")
+  mutate(model = "Model 2: Seller-side processing risk")
 
 coef_combined <- bind_rows(coef_m1, coef_m2) %>%
   mutate(
     term = case_when(
-      term == "delay_vs_eta" ~ "Delay (days late)",
-      term == "share_late" ~ "Seller late rate %",
-      term == "freight_pct" ~ "Freight cost % of order",
+      term == "delay_vs_eta" ~ "Delay vs ETA (+1 day)",
+      term == "freight_pct" ~ "Freight cost % of item value",
       term == "max_installments" ~ "Installments (+1)",
       term == "main_payment_typecredit_card" ~ "Payment: Credit card",
       term == "main_payment_typedebit_card" ~ "Payment: Debit card",
       term == "main_payment_typevoucher" ~ "Payment: Voucher",
+      term == "seller_vs_category_avg_gap_days" ~ "Seller gap vs category avg (+1 day)",
+      term == "slow_processing_rate_pct" ~ "Seller slow-processing rate (+1 pp)",
       TRUE ~ term),
     significant = ifelse(p.value < 0.05, "Yes", "No"))
 
-ggplot(coef_combined, aes(x = estimate, y = reorder(term, estimate), color = significant)) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50", linewidth = 1) +
-  annotate("text", x = 0.005, y = "Delay (days late)", label = "<- No effect threshold ", hjust = 0, size = 5, color = "gray40", fontface = "italic") +
-  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.3, linewidth = 1) +
+options(repr.plot.width = 18, repr.plot.height = 10)
+
+ggplot(coef_combined,
+  aes(x = estimate, y = reorder(term, estimate), color = significant)
+) +
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    color = "gray50",
+    linewidth = 1) +
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.3,
+    linewidth = 1) +
   geom_point(size = 4) +
-  facet_wrap(~ model, ncol = 1) +
-  scale_color_manual(values = c("Yes" = "#d62728", "No" = "gray70")) +
-  labs(title = "Order-level delay has a substantially stronger impact than seller consistency",
+  facet_wrap(~ model, ncol = 1, scales = "free_y") +
+  scale_color_manual(
+    values = c("Yes" = "#d62728", "No" = "gray70")) +
+  labs(
+    title = "Order-level delay has a stronger relationship \n with reviews than seller processing risk",
     subtitle = "Coefficient estimates with 95% confidence intervals | Red = statistically significant",
-    x = "Effect on review score (1–5 scale)", y = NULL, color = "Significant?") +
+    x = "Estimated effect on review score (1–5 scale)",
+    y = NULL,
+    color = "Significant?") +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
-    plot.title = element_text(face = "bold", size = 22),
-    plot.subtitle = element_text(size = 16, color = "gray30"),
-    axis.title.x = element_text(size = 16, face = "bold", margin = margin(t = 10)),
-    axis.title.y = element_text(size = 16, face = "bold"),
-    axis.text.x = element_text(size = 16),
-    axis.text.y = element_text(size = 16),
-    strip.text = element_text(face = "bold", size = 16),
-    legend.position = "bottom",
-    legend.title = element_text(size = 14, face = "bold"),
-    legend.text = element_text(size = 13),
-    panel.grid.minor = element_blank())
+  plot.title = element_text(face = "bold", size = 22),
+  plot.subtitle = element_text(size = 18, color = "gray30"),
+  axis.title.x = element_text(size = 17, face = "bold", margin = margin(t = 10)),
+  axis.text.x = element_text(size = 16),
+  axis.text.y = element_text(size = 18),
+  strip.text = element_text(face = "bold", size = 17),
+  legend.position = "bottom",
+  legend.title = element_text(size = 17, face = "bold"),
+  legend.text = element_text(size = 16),
+  panel.grid.minor = element_blank(),
+  plot.margin = margin(10, 30, 10, 10))
 ```
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_397_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_424_0.png)
     
 
 
-##### **Model validity & limitations:** 
+#### Coefficient plot — key interpretation:
 
-* **Model 1: model_reviews** ➡︎ provides a strong foundation for identifying true operational drivers of customer satisfaction
-> - no multicollinearity concerns detected (based on GVIF)
-> - clean, independent predictors
-> - model is suitable for interpretation
-> - **delivery delay** has the strongest effect
+This chart compares the estimated effects from the two regression models:
 
-🔹 Based on Intercept = 3.86 ➡︎ the expected review score, when delivery is exactly on time, freight cost is 0% (free-shipping), payment carried out as 1 installment via as a payment type. Meaning: a "neutral" order review starts at ca. 3.9 stars, before any operational "frictions"
+- **Model 1:** direct order-level delivery experience
+- **Model 2:** seller-side processing risk
 
-🔹 Model fit (adjusted R-squared) of  0.05887 is acceptable (operational factors explain approximately 5.9% of the variance in review scores), when looking at customer satisfaction models (reviews are "noisy" in general, operations explain only part of satisfaction ➡︎ meaning we don't really know what causes customer's dissatisfaction - product quality, packaging, seller's communication (customer service interaction). There are, additionally, unobserved factors, that matter - like emotions, personal expectations, etc.
+The main message is: `direct order-level delay has a stronger and more actionable relationship with review scores than seller-level processing risk`.
+
+
+- **Delay vs ETA** is clearly negative and statistically significant. The later an order arrives (compared with the estimated delivery date) ➡︎ the lower the review score tends to be.
+
+- **Seller processing risk is also significant**, but weaker. Sellers who are slower than their category baseline, or who have more orders above the P90 approval-to-carrier threshold, tend to receive worse reviews — but the effect is smaller, than the direct delay experienced by the customer.
+
+- **Freight burden and installments have small negative effects.** They are statistically visible, but they do not drive satisfaction the way delivery delay does.
+
+- **Payment type is mostly not important.**  Credit card and debit card are not meaningful predictors here; voucher shows a negative effect, but this should not become the main business story.
 
 <br>
 
+##### 🔹 Key takeaway
 
+The chart supports the same conclusion as the earlier visual analysis ➜
 
-* **Model 2A: model_reviews** ➡︎ is clean, but has weak explanatory power
-> - No multicollinearity concerns detected (based on GVIF)  
-> - model has no multicollinearity concerns
-> - all predictors (except **voucher**) are highly significant (p < 2e-16)  
+> ***customers react most strongly to what happened to their own order***
 
-🔹 Critical issue here is presented by low R-squared (0.0168), meaning that overall seller-level consistency metrics (**share_late**) are much weaker predictors, than order-level delays (**delay_vs_eta**). Seller reputation has a real, but modest impact. Seller consistency matters, but less than order-level delays.
+Seller processing metrics are still useful, but mainly as an **early-warning / seller-monitoring tool**, not as the primary explanation for customer satisfaction.
 
-🔹 Model 1 explains 3.5x more variance, than Model 2A, meaning that **customers react more to their individual experience, rather than to a seller's overall track record**. **delay_vs_eta** is order-specific, it reflects direct customer experience, while **share_late** is seller-based aggregate, which is indirect proxy, that averages across many orders. Customers are primarily reacting to their specific order experience, not the seller's historical performance/reputation.
+<br>
 
+##### 🔹 Business meaning
 
-So, overall **conclusions** ➜ 
+The strongest operational priority is:
+> ***reduce severe customer-facing delays***
 
-1. Model 1 is actionable for logistics improvements  
-2. Model 2A could be used as a complementary "tool" - to screen sellers (identifying "chronic" underperformers (high **share_late**)), to set thresholds for seller rejections (e.g. reject seller, who have late rate of >30%), and to track seller consistency over time  
-3. But, despite conclusion #2 ➡︎ **individual experience > statistical reputation** (a critical insight for prioritizing real-time order tracking over seller ratings)
+The second priority is:
+> ***use category-adjusted seller processing metrics to identify sellers likely to create future delay problems***
 
+<br>
 
+So the right strategy is not broad freight discounts or payment flexibility tweaks. It is tighter delivery reliability and targeted seller-process intervention.
 
 **Question 15 executive summary:**
 
-**Core finding:** 
+🔹 The main finding is very clear ➜ **Late delivery is the strongest operational driver of dissatisfaction.**
 
-➜ delivery speed is essential: delivery delay is the dominant dissatisfaction driver, surpassing all other operational factors. This finding is confirmed by regression analysis  
-➜ freight cost and payment flexibility are irrelevant to satisfaction: high shipping costs don't worsen reviews, when delivery is on time, low shipping costs don't "soften the blow", when delivery is late. Payment methods and installment terms show minimal variation.
-➜ where risk is concentrated?: 90% of sellers are operationally sound. Problems are concentrated in just 2% (37 sellers = 22% of platform risk):
+🔹 Severe lateness creates a huge increase in low reviews. Freight burden does not meaningfully change that story: cheap shipping does not “save” a late order, and expensive shipping does not matter much if the order arrives on time.
+
+🔹 The seller analysis adds a second layer ➜ **some sellers are slow even compared with their own category baseline.**
+This is important because it turns the analysis from a generic logistics problem into a seller-prioritization problem. The goal should not be "fix all sellers" or "punish slow categories". The goal should be to identify sellers, where three things overlap:
+
+> 1. slow processing vs category norm  
+> 2. high low-review share  
+> 3. meaningful order volume  
+
+↑ Those are the sellers most likely creating avoidable operational damage.
+
+🔹 So the final business recommendation is:
+
+> ***Focus first on preventing severe delivery delays, then use seller-processing metrics as an early-warning system to identify chronic seller-side bottlenecks***
+
+🔹 The biggest opportunity is not broad freight discounts or payment flexibility. It is **better operational control**:
+
+- monitor approval-to-carrier delays
+- compare sellers against category-specific baselines
+- intervene with high-risk sellers before delays become customer-facing
+- improve expectation-setting for naturally slower categories
+- prioritize high-volume sellers where small operational improvements affect many orders
+
+🔹 In simple terms:
+
+> * Customers mostly care whether their own order arrives when expected.   
+> * Seller history matters, but mainly as a warning signal for where future problems may happen.
 
 
 **The opportunity lies in simultaneously improving seller delivery performance (delivery speed improvements) while strategically increasing freight margins on reliable routes**
@@ -13369,13 +15077,22 @@ and after a careful consideration, I have decided to segment such holidays as:
 **Mother's Day, Father's Day, Children's Day, Valentine's Day**: −7 to +3 days ➜ 1 week is standard e-commerce buffer for gift planning/buying
 
 
+<br>
+
+*Because customer satisfaction is recorded at the order-review level, this analysis was restricted to single-item delivered orders and aggregated to one row per order before assigning holiday periods. This avoids giving multi-item orders multiple votes in satisfaction averages, delay effects, and interaction models.*
+
+
 ```R
 # Defining exact holiday dates and windows for 2016-2018:
 
-delivered_orders_delay <- delivered_orders_delay %>%
-  left_join(order_review_clean %>% select(order_id, review_score_num), by = "order_id")
+q16_base <- delivered_orders_delay %>%
+  semi_join(single_item_orders, by = "order_id") %>%
+  left_join(
+    order_review_clean %>% select(order_id, review_score_num),
+    by = "order_id") %>%
+  distinct(order_id, .keep_all = TRUE)
 
-delivered_orders_delay <- delivered_orders_delay %>%
+q16_base <- q16_base %>%
   mutate(
     order_date = as.Date(order_purchase_timestamp),
     order_year = year(order_date),
@@ -13446,47 +15163,62 @@ delivered_orders_delay <- delivered_orders_delay %>%
 
 cat("\nHoliday Period Coverage (2016-2018)\n")
 cat(rep("_", 70), "\n")
-holiday_summary <- delivered_orders_delay %>%
+
+holiday_summary <- q16_base %>%
   group_by(shopping_period) %>%
   summarise(
-    orders_n = n(), date_range = paste(min(order_date), "to", max(order_date)), .groups = "drop") %>%
+    orders_n = n_distinct(order_id),
+    date_range = paste(min(order_date), "to", max(order_date)),
+    .groups = "drop"
+  ) %>%
   arrange(desc(orders_n))
+
 print(holiday_summary, n = Inf)
 
 # Analyzing delay impact by period:
 
-delay_impact_by_period <- delivered_orders_delay %>%
-  filter(!is.na(review_score_num)) %>%
-  mutate(is_late = delay_vs_eta > 0, is_very_late = delay_vs_eta > 3) %>%
+delay_impact_by_period <- q16_base %>%
+  mutate(is_late = delay_vs_eta > 0) %>%
   group_by(shopping_period, is_late) %>%
   summarise(
-    orders_n = n(),
-    avg_review = round(mean(review_score_num), 2),
-    share_low_reviews = round(mean(review_score_num <= 2) * 100, 1),
-    avg_delay = round(mean(delay_vs_eta), 1), .groups = "drop") %>%
+    orders_n = n_distinct(order_id), 
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    share_low_reviews = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 1),
+    avg_delay = round(mean(delay_vs_eta, na.rm = TRUE), 1), 
+    .groups = "drop"
+  ) %>%
   arrange(shopping_period, desc(is_late))
 
 cat("\n\nDelay impact by shopping period\n")
 cat(rep("_", 60), "\n")
 print(delay_impact_by_period, n = Inf)
 
+
 # Satisfaction drop for each period:
 
 impact_comparison <- delay_impact_by_period %>%
   select(shopping_period, is_late, avg_review) %>%
-  pivot_wider(names_from = is_late, values_from = avg_review, names_prefix = "late_") %>%
+  pivot_wider(
+    names_from = is_late,
+    values_from = avg_review,
+    names_prefix = "late_"
+  ) %>%
   mutate(
     satisfaction_drop = late_FALSE - late_TRUE,
-    pct_drop = round((satisfaction_drop / late_FALSE) * 100, 1)) %>%
+    pct_drop = round((satisfaction_drop / late_FALSE) * 100, 1)
+  ) %>%
   arrange(desc(satisfaction_drop))
 
 cat("\n\nSatisfaction drop when late (by period)\n")
 cat(rep("_", 60), "\n")
 print(impact_comparison, n = Inf)
 
-# Model: 
 
-model_interaction <- lm(review_score_num ~ delay_vs_eta * is_holiday_period, data = delivered_orders_delay %>% filter(!is.na(review_score_num)))
+# Model:
+
+model_interaction <- lm(
+  review_score_num ~ delay_vs_eta * is_holiday_period,
+  data = q16_base)
 
 cat("\n\nDelay × Holiday interaction model\n")
 cat(rep("_", 60), "\n")
@@ -13494,35 +15226,46 @@ summary(model_interaction)
 
 interaction_coef <- coef(model_interaction)["delay_vs_eta:is_holiday_periodTRUE"]
 
+
 # Severe delays (>3 days) by period:
 
-severe_delay_by_period <- delivered_orders_delay %>%
-  filter(!is.na(review_score_num), delay_vs_eta > 3) %>%
+severe_delay_by_period <- q16_base %>%
+  filter(delay_vs_eta > 3) %>%
   group_by(shopping_period) %>%
   summarise(
-    orders_n = n(),
-    avg_review = round(mean(review_score_num), 2),
-    share_1_2_star = round(mean(review_score_num <= 2) * 100, 1),
-    avg_delay = round(mean(delay_vs_eta), 1), .groups = "drop") %>%
+    orders_n = n_distinct(order_id),
+    avg_review = round(mean(review_score_num, na.rm = TRUE), 2),
+    share_1_2_star = round(mean(review_score_num <= 2, na.rm = TRUE) * 100, 1),
+    avg_delay = round(mean(delay_vs_eta, na.rm = TRUE), 1),
+    .groups = "drop") %>%
   arrange(avg_review)
 
 cat("\n\nSevere delays (>3 Days) by period\n")
 cat(rep("_", 70), "\n")
 print(severe_delay_by_period, n = Inf)
 
+
 # Revenue at risk by period:
 
-revenue_risk_by_period <- delivered_orders_delay %>%
-  inner_join(orders_ops_buckets %>% select(order_id, order_total), by = "order_id", relationship = "many-to-many") %>%
-  filter(!is.na(review_score_num)) %>%
+order_revenue <- orders_ops_buckets %>%
+  group_by(order_id) %>%
+  summarise(
+    order_total = first(total_payment_value),
+    .groups = "drop")
+
+revenue_risk_by_period <- q16_base %>%
+  left_join(order_revenue, by = "order_id") %>%
   mutate(
-    is_poor_review = review_score_num <= 2, is_late = delay_vs_eta > 0) %>%
+    is_poor_review = review_score_num <= 2,
+    is_late = delay_vs_eta > 0
+  ) %>%
   group_by(shopping_period, is_late) %>%
   summarise(
-    orders_n = n(),
+    orders_n = n_distinct(order_id),
     total_revenue = sum(order_total, na.rm = TRUE),
     revenue_at_risk = sum(order_total[is_poor_review], na.rm = TRUE),
-    pct_revenue_at_risk = round((revenue_at_risk / total_revenue) * 100, 1), .groups = "drop") %>%
+    pct_revenue_at_risk = round((revenue_at_risk / total_revenue) * 100, 1),
+    .groups = "drop") %>%
   filter(is_late == TRUE) %>%
   arrange(desc(pct_revenue_at_risk))
 
@@ -13537,15 +15280,15 @@ print(revenue_risk_by_period, n = Inf)
     [90m# A tibble: 9 × 3[39m
       shopping_period   orders_n date_range              
       [3m[90m<chr>[39m[23m                [3m[90m<int>[39m[23m [3m[90m<chr>[39m[23m                   
-    [90m1[39m Regular              [4m7[24m[4m5[24m461 2016-09-15 to 2018-08-29
-    [90m2[39m Black November        [4m8[24m474 2017-11-01 to 2017-11-30
-    [90m3[39m Christmas             [4m5[24m318 2016-12-23 to 2017-12-30
-    [90m4[39m Father's Day          [4m5[24m220 2017-08-06 to 2018-08-15
-    [90m5[39m Mother's Day          [4m5[24m170 2017-05-07 to 2018-05-16
-    [90m6[39m Valentine's Day       [4m3[24m903 2017-06-05 to 2018-06-14
-    [90m7[39m Carnival              [4m2[24m534 2017-02-24 to 2018-02-16
-    [90m8[39m Dia do Consumidor     [4m2[24m127 2017-03-12 to 2018-03-17
-    [90m9[39m Children's Day        [4m1[24m982 2016-10-05 to 2017-10-15
+    [90m1[39m Regular              [4m5[24m[4m9[24m612 2016-10-03 to 2018-08-29
+    [90m2[39m Black November        [4m6[24m466 2017-11-01 to 2017-11-30
+    [90m3[39m Christmas             [4m4[24m324 2016-12-23 to 2017-12-30
+    [90m4[39m Father's Day          [4m4[24m156 2017-08-06 to 2018-08-15
+    [90m5[39m Mother's Day          [4m4[24m022 2017-05-07 to 2018-05-16
+    [90m6[39m Valentine's Day       [4m3[24m038 2017-06-05 to 2018-06-14
+    [90m7[39m Carnival              [4m1[24m993 2017-02-24 to 2018-02-16
+    [90m8[39m Dia do Consumidor     [4m1[24m674 2017-03-12 to 2018-03-17
+    [90m9[39m Children's Day        [4m1[24m550 2016-10-05 to 2017-10-15
     
     
     Delay impact by shopping period
@@ -13553,24 +15296,24 @@ print(revenue_risk_by_period, n = Inf)
     [90m# A tibble: 18 × 6[39m
        shopping_period   is_late orders_n avg_review share_low_reviews avg_delay
        [3m[90m<chr>[39m[23m             [3m[90m<lgl>[39m[23m      [3m[90m<int>[39m[23m      [3m[90m<dbl>[39m[23m             [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m
-    [90m 1[39m Black November    TRUE        [4m1[24m143       2.39              58.7      10.2
-    [90m 2[39m Black November    FALSE       [4m7[24m153       4.14              12.7     -[31m10[39m[31m.[39m[31m4[39m
-    [90m 3[39m Carnival          TRUE         292       2.21              62         9.9
-    [90m 4[39m Carnival          FALSE       [4m2[24m159       4.12              12.4     -[31m11[39m  
-    [90m 5[39m Children's Day    TRUE          95       2.73              49.5       6.5
-    [90m 6[39m Children's Day    FALSE       [4m1[24m846       4.12              13.6     -[31m15[39m[31m.[39m[31m7[39m
-    [90m 7[39m Christmas         TRUE         396       2.37              61.1       9  
-    [90m 8[39m Christmas         FALSE       [4m4[24m823       4.18              12.2     -[31m14[39m[31m.[39m[31m4[39m
-    [90m 9[39m Dia do Consumidor TRUE         369       2.37              60.2      10.9
-    [90m10[39m Dia do Consumidor FALSE       [4m1[24m711       4.1               12.9     -[31m11[39m[31m.[39m[31m1[39m
-    [90m11[39m Father's Day      TRUE         461       3.47              31.7       3.8
-    [90m12[39m Father's Day      FALSE       [4m4[24m700       4.33               8.7     -[31m10[39m[31m.[39m[31m3[39m
-    [90m13[39m Mother's Day      TRUE         416       3.1               38.9       7.1
-    [90m14[39m Mother's Day      FALSE       [4m4[24m709       4.25              10.2     -[31m12[39m  
-    [90m15[39m Regular           TRUE        [4m5[24m147       2.5               55.8       9.7
-    [90m16[39m Regular           FALSE      [4m6[24m[4m8[24m934       4.23              11.1     -[31m13[39m[31m.[39m[31m4[39m
-    [90m17[39m Valentine's Day   TRUE         104       2.54              53.8      12.5
-    [90m18[39m Valentine's Day   FALSE       [4m3[24m754       4.17              13.3     -[31m17[39m[31m.[39m[31m2[39m
+    [90m 1[39m Black November    TRUE         944       2.44              57.6      10.6
+    [90m 2[39m Black November    FALSE       [4m5[24m522       4.34               7.2     -[31m10[39m[31m.[39m[31m3[39m
+    [90m 3[39m Carnival          TRUE         245       2.24              61.6      10.4
+    [90m 4[39m Carnival          FALSE       [4m1[24m748       4.29               7.9     -[31m11[39m[31m.[39m[31m1[39m
+    [90m 5[39m Children's Day    TRUE          81       2.79              47.4       7.6
+    [90m 6[39m Children's Day    FALSE       [4m1[24m469       4.32               8.4     -[31m15[39m[31m.[39m[31m5[39m
+    [90m 7[39m Christmas         TRUE         350       2.4               59.3       9.3
+    [90m 8[39m Christmas         FALSE       [4m3[24m974       4.33               8.1     -[31m14[39m[31m.[39m[31m3[39m
+    [90m 9[39m Dia do Consumidor TRUE         338       2.33              61.3      10.7
+    [90m10[39m Dia do Consumidor FALSE       [4m1[24m336       4.31               7.3     -[31m10[39m[31m.[39m[31m9[39m
+    [90m11[39m Father's Day      TRUE         388       3.49              29.8       4  
+    [90m12[39m Father's Day      FALSE       [4m3[24m768       4.43               6.2     -[31m10[39m  
+    [90m13[39m Mother's Day      TRUE         337       3.14              37.7       6.3
+    [90m14[39m Mother's Day      FALSE       [4m3[24m685       4.38               7       -[31m11[39m[31m.[39m[31m8[39m
+    [90m15[39m Regular           TRUE        [4m4[24m429       2.53              54.7      10.1
+    [90m16[39m Regular           FALSE      [4m5[24m[4m5[24m183       4.37               7.5     -[31m13[39m[31m.[39m[31m2[39m
+    [90m17[39m Valentine's Day   TRUE          85       2.5               57.1      10.8
+    [90m18[39m Valentine's Day   FALSE       [4m2[24m953       4.37               7.5     -[31m16[39m[31m.[39m[31m8[39m
     
     
     Satisfaction drop when late (by period)
@@ -13578,15 +15321,15 @@ print(revenue_risk_by_period, n = Inf)
     [90m# A tibble: 9 × 5[39m
       shopping_period   late_TRUE late_FALSE satisfaction_drop pct_drop
       [3m[90m<chr>[39m[23m                 [3m[90m<dbl>[39m[23m      [3m[90m<dbl>[39m[23m             [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m
-    [90m1[39m Carnival               2.21       4.12              1.91     46.4
-    [90m2[39m Christmas              2.37       4.18              1.81     43.3
-    [90m3[39m Black November         2.39       4.14              1.75     42.3
-    [90m4[39m Regular                2.5        4.23              1.73     40.9
-    [90m5[39m Dia do Consumidor      2.37       4.1               1.73     42.2
-    [90m6[39m Valentine's Day        2.54       4.17              1.63     39.1
-    [90m7[39m Children's Day         2.73       4.12              1.39     33.7
-    [90m8[39m Mother's Day           3.1        4.25              1.15     27.1
-    [90m9[39m Father's Day           3.47       4.33              0.86     19.9
+    [90m1[39m Carnival               2.24       4.29              2.05     47.8
+    [90m2[39m Dia do Consumidor      2.33       4.31              1.98     45.9
+    [90m3[39m Christmas              2.4        4.33              1.93     44.6
+    [90m4[39m Black November         2.44       4.34              1.9      43.8
+    [90m5[39m Valentine's Day        2.5        4.37              1.87     42.8
+    [90m6[39m Regular                2.53       4.37              1.84     42.1
+    [90m7[39m Children's Day         2.79       4.32              1.53     35.4
+    [90m8[39m Mother's Day           3.14       4.38              1.24     28.3
+    [90m9[39m Father's Day           3.49       4.43              0.94     21.2
     
     
     Delay × Holiday interaction model
@@ -13597,24 +15340,25 @@ print(revenue_risk_by_period, n = Inf)
     
     Call:
     lm(formula = review_score_num ~ delay_vs_eta * is_holiday_period, 
-        data = delivered_orders_delay %>% filter(!is.na(review_score_num)))
+        data = q16_base)
     
     Residuals:
         Min      1Q  Median      3Q     Max 
-    -4.8255 -0.3750  0.6377  0.9122  6.1240 
+    -5.6395 -0.3671  0.4920  0.7840  6.2635 
     
     Coefficients:
                                          Estimate Std. Error t value Pr(>|t|)    
-    (Intercept)                         3.7491592  0.0074602 502.554  < 2e-16 ***
-    delay_vs_eta                       -0.0303334  0.0004845 -62.611  < 2e-16 ***
-    is_holiday_periodTRUE              -0.0346458  0.0125208  -2.767  0.00566 ** 
-    delay_vs_eta:is_holiday_periodTRUE -0.0007911  0.0008378  -0.944  0.34503    
+    (Intercept)                         3.8193482  0.0073555 519.251  < 2e-16 ***
+    delay_vs_eta                       -0.0358887  0.0004830 -74.310  < 2e-16 ***
+    is_holiday_periodTRUE              -0.0363269  0.0124631  -2.915  0.00356 ** 
+    delay_vs_eta:is_holiday_periodTRUE -0.0034342  0.0008456  -4.061 4.89e-05 ***
     ---
     Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
     
-    Residual standard error: 1.308 on 108208 degrees of freedom
-    Multiple R-squared:  0.05299,	Adjusted R-squared:  0.05296 
-    F-statistic:  2018 on 3 and 108208 DF,  p-value: < 2.2e-16
+    Residual standard error: 1.17 on 85433 degrees of freedom
+      (1398 observations deleted due to missingness)
+    Multiple R-squared:  0.09301,	Adjusted R-squared:  0.09298 
+    F-statistic:  2920 on 3 and 85433 DF,  p-value: < 2.2e-16
     
 
 
@@ -13625,15 +15369,15 @@ print(revenue_risk_by_period, n = Inf)
     [90m# A tibble: 9 × 5[39m
       shopping_period   orders_n avg_review share_1_2_star avg_delay
       [3m[90m<chr>[39m[23m                [3m[90m<int>[39m[23m      [3m[90m<dbl>[39m[23m          [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m
-    [90m1[39m Carnival               205       1.7            77.1      13.4
-    [90m2[39m Christmas              263       1.83           77.9      12.7
-    [90m3[39m Regular               [4m3[24m416       1.87           73.9      13.8
-    [90m4[39m Black November         777       1.88           74.9      14.3
-    [90m5[39m Children's Day          50       1.9            76        11.2
-    [90m6[39m Valentine's Day         69       1.9            75.4      18.2
-    [90m7[39m Dia do Consumidor      267       2              71.2      14.5
-    [90m8[39m Father's Day           176       2.48           58         7.8
-    [90m9[39m Mother's Day           271       2.49           55        10.2
+    [90m1[39m Carnival               173       1.69           78.4      14.1
+    [90m2[39m Christmas              236       1.85           76.5      13  
+    [90m3[39m Dia do Consumidor      251       1.88           74.4      13.9
+    [90m4[39m Black November         657       1.89           73.9      14.6
+    [90m5[39m Regular               [4m2[24m974       1.9            73        14.3
+    [90m6[39m Valentine's Day         59       1.95           74.6      14.9
+    [90m7[39m Children's Day          47       2.02           72.7      12.1
+    [90m8[39m Father's Day           163       2.45           57.6       7.8
+    [90m9[39m Mother's Day           212       2.5            55         9.2
     
     
     Revenue at risk from late deliveries (by period)
@@ -13641,34 +15385,55 @@ print(revenue_risk_by_period, n = Inf)
     [90m# A tibble: 9 × 6[39m
       shopping_period   is_late orders_n total_revenue revenue_at_risk pct_revenue_at_risk
       [3m[90m<chr>[39m[23m             [3m[90m<lgl>[39m[23m      [3m[90m<int>[39m[23m         [3m[90m<dbl>[39m[23m           [3m[90m<dbl>[39m[23m               [3m[90m<dbl>[39m[23m
-    [90m1[39m Valentine's Day   TRUE         172        [4m5[24m[4m5[24m187.          [4m3[24m[4m9[24m361.                71.3
-    [90m2[39m Carnival          TRUE         388        [4m6[24m[4m6[24m353.          [4m4[24m[4m1[24m236.                62.1
-    [90m3[39m Christmas         TRUE         474       [4m1[24m[4m0[24m[4m8[24m219.          [4m6[24m[4m6[24m086.                61.1
-    [90m4[39m Regular           TRUE        [4m7[24m006      1[4m5[24m[4m3[24m[4m5[24m741.         [4m9[24m[4m3[24m[4m3[24m465.                60.8
-    [90m5[39m Black November    TRUE        [4m1[24m469       [4m2[24m[4m8[24m[4m6[24m162.         [4m1[24m[4m6[24m[4m7[24m932.                58.7
-    [90m6[39m Mother's Day      TRUE         542       [4m1[24m[4m3[24m[4m4[24m566.          [4m7[24m[4m4[24m141.                55.1
-    [90m7[39m Dia do Consumidor TRUE         451        [4m9[24m[4m9[24m891.          [4m5[24m[4m2[24m153.                52.2
-    [90m8[39m Children's Day    TRUE         137        [4m2[24m[4m5[24m182.           [4m9[24m492.                37.7
-    [90m9[39m Father's Day      TRUE         605       [4m1[24m[4m6[24m[4m1[24m911.          [4m5[24m[4m7[24m181.                35.3
+    [90m1[39m Dia do Consumidor TRUE         338        [4m5[24m[4m1[24m747.          [4m3[24m[4m5[24m338.                68.3
+    [90m2[39m Christmas         TRUE         350        [4m6[24m[4m6[24m518.          [4m4[24m[4m2[24m570.                64  
+    [90m3[39m Carnival          TRUE         245        [4m3[24m[4m3[24m352.          [4m2[24m[4m0[24m886.                62.6
+    [90m4[39m Regular           TRUE        [4m4[24m429       [4m7[24m[4m0[24m[4m4[24m603.         [4m4[24m[4m0[24m[4m9[24m234.                58.1
+    [90m5[39m Black November    TRUE         944       [4m1[24m[4m4[24m[4m6[24m891.          [4m8[24m[4m4[24m978.                57.9
+    [90m6[39m Valentine's Day   TRUE          85        [4m2[24m[4m0[24m474.          [4m1[24m[4m1[24m781.                57.5
+    [90m7[39m Children's Day    TRUE          81        [4m1[24m[4m0[24m379.           [4m4[24m589.                44.2
+    [90m8[39m Mother's Day      TRUE         337        [4m5[24m[4m7[24m092.          [4m2[24m[4m3[24m727.                41.6
+    [90m9[39m Father's Day      TRUE         388        [4m5[24m[4m7[24m266.          [4m1[24m[4m7[24m044.                29.8
     
+
+**Key insights:**
+
+🔹 The results show, that delivery delays have a strong negative impact on customer satisfaction across all shopping periods. Across regular periods, late orders received an average review score of 2.53 compared with 4.37 for on-time or early orders, a **satisfaction drop of 1.84 points**.
+
+🔹 The interaction model supports the hypothesis that delays hurt slightly more during holiday periods. In regular periods, each additional delay day was associated with a decrease of 0.036 review points (`delay_vs_eta = -0.0359`). During holiday periods, the penalty became slightly stronger, with an additional negative interaction effect of 0.003 review points per delay day (`delay_vs_eta:is_holiday_periodTRUE = -0.0034`, p < 0.001). This means the holiday effect is statistically significant, but modest in practical size.
+
+🔹 The largest satisfaction drops appeared during Carnival (-2.05), Dia do Consumidor (-1.98), Christmas (-1.93), Black November (-1.90), and Valentine’s Day (-1.87). Regular periods also showed a large drop (-1.84), which suggests that holiday timing intensifies the impact of delays but does not fundamentally change the pattern.
+
+🔹 Severe delays above three days were especially damaging. Average review scores dropped to 1.69 during Carnival, 1.85 during Christmas, 1.88 during Dia do Consumidor, 1.89 during Black November, and 1.90 during regular periods. This indicates that once delays become severe, customer satisfaction collapses regardless of the shopping period.
+
+🔹 From a revenue-risk perspective, Dia do Consumidor, Christmas, and Carnival were the most exposed periods. Among late orders, the share of revenue associated with poor reviews was 68.3% for Dia do Consumidor, 64.0% for Christmas, and 62.6% for Carnival. These periods therefore represent the strongest operational risk windows.
+
+🔹 Mother’s Day and Father’s Day showed smaller satisfaction drops (-1.24 and -0.94), but this should be interpreted carefully. Their late orders also had shorter average delays, especially Father’s Day at only 4.0 days, compared with around 10–11 days for Carnival, Black November, and Dia do Consumidor. The weaker review impact may therefore reflect milder delays rather than higher customer tolerance.
+
+🔹 Overall, the analysis supports the hypothesis, but with nuance. Customers are not substantially more forgiving during holidays. Delays are damaging in all periods, and holiday periods add a small but statistically significant extra penalty. The biggest opportunity is to prevent severe delays during high-volume and high-expectation periods, especially Carnival, Dia do Consumidor, Christmas, and Black November.
+
+
+**Conclusion:**
+Delivery delays reduce satisfaction across all periods. Holiday periods show a statistically significant additional penalty, but the practical difference versus regular periods is modest. The strongest business risk appears in disruption/high-volume windows — especially Carnival, Dia do Consumidor, Christmas, and Black November — where late orders combine larger satisfaction drops, high low-review shares, and elevated revenue-at-risk.
 
 
 ```R
-# Plot 1:
+# Plot 1: Low review share by delivery status and shopping period
 
-heatmap_data <- delivered_orders_delay %>%
-  filter(!is.na(review_score_num)) %>%
+heatmap_data <- q16_base %>%
   mutate(
     delivery_status = case_when(
       delay_vs_eta <= 0 ~ "On-Time",
       delay_vs_eta > 0 & delay_vs_eta <= 3 ~ "Late (1-3 days)",
       delay_vs_eta > 3 ~ "Severely Late (>3 days)"),
-    delivery_status = factor(delivery_status, levels = c("On-Time", "Late (1-3 days)", "Severely Late (>3 days)")),
+    delivery_status = factor(
+      delivery_status,
+      levels = c("On-Time", "Late (1-3 days)", "Severely Late (>3 days)")),
     is_low_review = review_score_num <= 2) %>%
   group_by(shopping_period, delivery_status) %>%
   summarise(
-    total_orders = n(),
-    low_reviews = sum(is_low_review),
+    total_orders = n_distinct(order_id),
+    low_reviews = n_distinct(order_id[is_low_review]),
     pct_low_reviews = round((low_reviews / total_orders) * 100, 1), .groups = "drop")
 
 period_order <- heatmap_data %>%
@@ -13679,18 +15444,30 @@ period_order <- heatmap_data %>%
 heatmap_data_plot <- heatmap_data %>%
   mutate(shopping_period = factor(shopping_period, levels = period_order))
 
-options(repr.plot.width = 12, repr.plot.height = 6)
+options(repr.plot.width = 15, repr.plot.height = 10)
+
 ggplot(heatmap_data_plot, aes(x = delivery_status, y = shopping_period, fill = pct_low_reviews)) +
   geom_tile(color = "white", linewidth = 1.5) +
-  geom_text(aes(label = paste0(pct_low_reviews, "%")), size = 5, color = "white") +
-  scale_fill_gradient2(low = "dodgerblue3", mid = "gray92", high = "firebrick3",
-                       midpoint = 40, limits = c(0, 80), name = "% Low Reviews\n(1-2 Stars)") +
-  labs(title = "Share of Low Reviews by Delivery Performance and Shopping Period", x = NULL, y = NULL) +
+  geom_text(aes(label = paste0(pct_low_reviews, "%")), size = 5.5, color = "white") +
+  scale_fill_gradient2(
+    low = "dodgerblue3",
+    mid = "gray92",
+    high = "firebrick3",
+    midpoint = 40,
+    limits = c(0, 80),
+    name = "% Low Reviews\n(1-2 Stars)"
+  ) +
+  labs(
+    title = "Low Review Share by Delivery Performance and Shopping Period",
+    subtitle = "Single-item delivered orders only | One row = one customer review",
+    x = NULL,
+    y = NULL
+  ) +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 20),
-    plot.subtitle = element_text(size = 11, color = "gray40"),
-    axis.text.x = element_text(face = "bold", size = 14, angle = 0),
+    plot.subtitle = element_text(size = 16, color = "gray40"),
+    axis.text.x = element_text(face = "bold", size = 14),
     axis.text.y = element_text(face = "bold", size = 14),
     legend.title = element_text(face = "bold", size = 16),
     legend.text = element_text(size = 14),
@@ -13699,26 +15476,49 @@ ggplot(heatmap_data_plot, aes(x = delivery_status, y = shopping_period, fill = p
     plot.background = element_rect(fill = "white", color = NA),
     panel.grid = element_blank())
 
-# Plot 2:
+
+# Plot 2: Average review score by delivery status and shopping period
+
 chart_data <- delay_impact_by_period %>%
   mutate(
     delivery_status = ifelse(is_late, "Late", "On-Time"),
     delivery_status = factor(delivery_status, levels = c("On-Time", "Late")),
-    shopping_period = factor(shopping_period, 
-                             levels = c("Father's Day", "Mother's Day", "Children's Day", "Valentine's Day", "Dia do Consumidor", "Regular", 
-                                        "Black November", "Christmas", "Carnival")))
+    shopping_period = factor(
+      shopping_period,
+      levels = c(
+        "Father's Day", "Mother's Day", "Children's Day", "Valentine's Day",
+        "Dia do Consumidor", "Regular", "Black November", "Christmas", "Carnival"
+      )
+    )
+  )
+
 cat(rep("_", 60), "\n")
-options(repr.plot.width = 11, repr.plot.height = 6)
+options(repr.plot.width = 15, repr.plot.height = 10)
+
 ggplot(chart_data, aes(x = shopping_period, y = avg_review, fill = delivery_status)) +
   geom_col(position = position_dodge(width = 0.8), width = 0.75) +
-  geom_text(aes(label = avg_review), position = position_dodge(width = 0.8), vjust = 1.5, size = 4) +
+  geom_text(
+    aes(label = avg_review),
+    position = position_dodge(width = 0.8),
+    vjust = 1.5,
+    size = 5.5
+  ) +
   scale_fill_brewer(palette = "Paired", name = "Delivery Status", direction = -1) +
-  scale_y_continuous(limits = c(0, 5), breaks = seq(0, 5, 1), expand = expansion(mult = c(0, 0.1))) +
-  labs(title = "Customer Satisfaction: On-time vs. late deliveries by shopping period", x = NULL, y = "Average Review Score (1-5)") +
+  scale_y_continuous(
+    limits = c(0, 5),
+    breaks = seq(0, 5, 1),
+    expand = expansion(mult = c(0, 0.1))
+  ) +
+  labs(
+    title = "Average Review Score: On-Time vs Late Deliveries",
+    subtitle = "Single-item delivered orders only | One row = one customer review",
+    x = NULL,
+    y = "Average Review Score (1-5)"
+  ) +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 21, margin = margin(b = 5)),
-    plot.subtitle = element_text(size = 16, color = "white", margin = margin(b = 15)),
+    plot.subtitle = element_text(size = 16, color = "gray40", margin = margin(b = 15)),
     axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
     axis.text.y = element_text(size = 14),
     axis.title.y = element_text(face = "bold", size = 14, margin = margin(r = 10)),
@@ -13730,27 +15530,50 @@ ggplot(chart_data, aes(x = shopping_period, y = avg_review, fill = delivery_stat
     plot.margin = margin(15, 15, 15, 15))
 
 
-# Plot 3: 
+# Plot 3: Satisfaction drop when late by shopping period
 
 diverging_data <- impact_comparison %>%
   mutate(
     period_type = case_when(
       shopping_period %in% c("Mother's Day", "Father's Day") ~ "Relationship Holidays",
       shopping_period %in% c("Valentine's Day", "Children's Day", "Christmas") ~ "Gift Occasions",
-      shopping_period %in% c("Black November", "Carnival", "Dia do Consumidor") ~ "Promotional Events",
-      TRUE ~ "Regular Period"),
-    shopping_period = factor(shopping_period, levels = shopping_period[order(satisfaction_drop)]))
+      shopping_period %in% c("Black November", "Carnival", "Dia do Consumidor") ~ "Promotional / Disruption Periods",
+      TRUE ~ "Regular Period"
+    ),
+    shopping_period = factor(shopping_period, levels = shopping_period[order(satisfaction_drop)])
+  )
 
 cat(rep("_", 60), "\n")
-options(repr.plot.width = 11, repr.plot.height = 6)
+options(repr.plot.width = 15, repr.plot.height = 10)
+
 ggplot(diverging_data, aes(x = satisfaction_drop, y = shopping_period, fill = period_type)) +
   geom_col(width = 0.7) +
-  geom_text(aes(label = round(satisfaction_drop, 2)), 
-            hjust = 1.5, size = 4.5, color = "black") +
-  scale_fill_manual(values = c("Relationship Holidays" = "darkseagreen", "Gift Occasions" = "skyblue3", 
-                               "Promotional Events" = "salmon", "Regular Period" = "sandybrown"), name = "Period Type") +
-  scale_x_continuous(limits = c(0, 2.2), breaks = seq(0, 2, 0.25), expand = expansion(mult = c(0, 0.05))) +
-  labs(title = "Satisfaction Drop When Late (ranked by impact)", x = "Satisfaction Drop (Review Points)", y = NULL) +
+  geom_text(
+    aes(label = round(satisfaction_drop, 2)),
+    hjust = -0.2,
+    size = 5.5,
+    color = "black"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Relationship Holidays" = "darkseagreen",
+      "Gift Occasions" = "skyblue3",
+      "Promotional / Disruption Periods" = "salmon",
+      "Regular Period" = "sandybrown"
+    ),
+    name = "Period Type"
+  ) +
+  scale_x_continuous(
+    limits = c(0, 2.25),
+    breaks = seq(0, 2.25, 0.25),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = "Satisfaction Drop When Deliveries Are Late",
+    subtitle = "Difference between average review score for on-time vs late orders",
+    x = "Satisfaction Drop (Review Points)",
+    y = NULL
+  ) +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 21),
@@ -13764,7 +15587,8 @@ ggplot(diverging_data, aes(x = satisfaction_drop, y = shopping_period, fill = pe
     panel.background = element_rect(fill = "white", color = NA),
     plot.background = element_rect(fill = "white", color = NA),
     panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank())
+    panel.grid.minor = element_blank()
+  )
 ```
 
     _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
@@ -13772,7 +15596,7 @@ ggplot(diverging_data, aes(x = satisfaction_drop, y = shopping_period, fill = pe
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_402_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_430_1.png)
     
 
 
@@ -13781,117 +15605,192 @@ ggplot(diverging_data, aes(x = satisfaction_drop, y = shopping_period, fill = pe
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_402_3.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_430_3.png)
     
 
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_402_4.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_430_4.png)
     
 
 
 
 ```R
-# Scatter plot:
+# Scatter plot: Satisfaction impact vs revenue risk
 
 scatter_data <- impact_comparison %>%
   select(shopping_period, satisfaction_drop) %>%
-  left_join(revenue_risk_by_period %>% 
+  left_join(
+    revenue_risk_by_period %>% 
       filter(is_late == TRUE) %>%
-      select(shopping_period, pct_revenue_at_risk), by = "shopping_period") %>%
-  left_join(delay_impact_by_period %>%
+      select(shopping_period, pct_revenue_at_risk),
+    by = "shopping_period") %>%
+  left_join(
+    delay_impact_by_period %>%
       group_by(shopping_period) %>%
-      summarise(total_orders = sum(orders_n), .groups = "drop"), by = "shopping_period") %>%
-  mutate(period_type = case_when(
+      summarise(total_orders = sum(orders_n), .groups = "drop"),
+    by = "shopping_period") %>%
+  mutate(
+    period_type = case_when(
       shopping_period %in% c("Mother's Day", "Father's Day") ~ "Family Holidays",
       shopping_period %in% c("Valentine's Day", "Children's Day", "Christmas") ~ "Gift Occasions",
-      shopping_period %in% c("Black November", "Carnival", "Dia do Consumidor") ~ "Promotional Events",
+      shopping_period %in% c("Black November", "Carnival", "Dia do Consumidor") ~ "Promotional / Disruption Periods",
       TRUE ~ "Regular Period"))
 
-library(ggrepel)
+options(repr.plot.width = 15, repr.plot.height = 10)
 
-options(repr.plot.width = 14, repr.plot.height = 10)
-ggplot(scatter_data, aes(x = satisfaction_drop, y = pct_revenue_at_risk, size = total_orders, color = period_type)) +
-  geom_point(alpha = 0.7) + geom_text_repel(aes(label = shopping_period), 
-                  size = 4.5, color = "black", box.padding = 0.5, point.padding = 0.3, segment.color = "grey31", segment.size = 0.3,
-                  max.overlaps = 20, show.legend = FALSE) +
-  scale_size_continuous(name = "Order Volume", range = c(3, 20), breaks = c(2000, 10000, 50000, 75000), labels = scales::comma) +
-  scale_color_brewer(palette = "Set2", name = "Period Type") +
-  scale_x_continuous(limits = c(0.5, 2.2), breaks = seq(0.5, 2, 0.25)) +
-  scale_y_continuous(limits = c(30, 75), breaks = seq(30, 75, 5)) +
-  labs(title = "Revenue Risk vs. Customer Satisfaction Impact by Shopping Period",
-       x = "Satisfaction Drop When Late (Review Points)", y = "Revenue at Risk from Late Deliveries (%)") +
+ggplot(scatter_data, aes(
+    x = satisfaction_drop,
+    y = pct_revenue_at_risk,
+    size = total_orders,
+    color = period_type)) +
+  geom_point(alpha = 0.7) +
+  geom_text_repel(
+    aes(label = shopping_period),
+    size = 4.5,
+    color = "black",
+    box.padding = 0.5,
+    point.padding = 0.3,
+    segment.color = "grey31",
+    segment.size = 0.3,
+    max.overlaps = 20,
+    show.legend = FALSE) +
+  scale_size_continuous(
+    name = "Order Volume",
+    range = c(3, 20),
+    labels = scales::comma) +
+  scale_color_brewer(
+    palette = "Set2",
+    name = "Period Type") +
+  scale_x_continuous(
+    limits = c(0.5, 2.2),
+    breaks = seq(0.5, 2, 0.25)) +
+  scale_y_continuous(
+    limits = c(25, 75),
+    breaks = seq(25, 75, 5)) +
+  labs(
+    title = "Revenue Risk vs Satisfaction Impact by Shopping Period",
+    subtitle = "Single-item delivered orders only | Bubble size = reviewed order volume",
+    x = "Satisfaction Drop When Late (Review Points)",
+    y = "Revenue at Risk from Late Deliveries (%)") +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 22),
-    axis.title.x = element_text(size = 14, face = "bold"),
-    axis.title.y = element_text(size = 14, face = "bold"),
-    axis.text = element_text(size = 12),
+    plot.subtitle = element_text(size = 16, color = "gray40"),
+    axis.title.x = element_text(size = 16, face = "bold"),
+    axis.title.y = element_text(size = 16, face = "bold"),
+    axis.text = element_text(size = 16),
     legend.title = element_text(face = "bold", size = 16, color = "black"),
-    legend.text = element_text(size = 14, color = "black"),
+    legend.text = element_text(size = 16, color = "black"),
     panel.background = element_rect(fill = "white", color = NA),
     plot.background = element_rect(fill = "white", color = NA),
     panel.grid.minor = element_blank())
 
-
-# waterall chart: 
+# Waterfall chart: Revenue linked to poor reviews among late deliveries
 
 waterfall_data <- revenue_risk_by_period %>%
   filter(is_late == TRUE) %>%
   select(shopping_period, revenue_at_risk) %>%
   arrange(desc(revenue_at_risk)) %>%
-  mutate(revenue_at_risk_k = revenue_at_risk / 1000, end = cumsum(revenue_at_risk_k), start = lag(end, default = 0), id = row_number(),
+  mutate(
+    revenue_at_risk_k = revenue_at_risk / 1000,
+    end = cumsum(revenue_at_risk_k),
+    start = lag(end, default = 0),
+    id = row_number(),
     type = "period")
 
 total_row <- data.frame(
   shopping_period = "Total at Risk",
-  revenue_at_risk = sum(waterfall_data$revenue_at_risk), revenue_at_risk_k = sum(waterfall_data$revenue_at_risk_k),
-  end = sum(waterfall_data$revenue_at_risk_k), start = 0, id = nrow(waterfall_data) + 1, type = "total")
+  revenue_at_risk = sum(waterfall_data$revenue_at_risk),
+  revenue_at_risk_k = sum(waterfall_data$revenue_at_risk_k),
+  end = sum(waterfall_data$revenue_at_risk_k),
+  start = 0,
+  id = nrow(waterfall_data) + 1,
+  type = "total")
 
 waterfall_merged <- bind_rows(waterfall_data, total_row) %>%
   mutate(shopping_period = factor(shopping_period, levels = shopping_period))
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 15, repr.plot.height = 10)
+
 ggplot(waterfall_merged, aes(x = shopping_period, fill = type)) +
-  geom_rect(aes(xmin = id - 0.4, xmax = id + 0.4, ymin = start, ymax = end)) +
-  geom_segment(data = waterfall_data %>% filter(type == "period"), aes(x = id + 0.4, xend = id + 0.6, y = end, yend = end),
-               linetype = "dashed", color = "gray50", linewidth = 0.5) +
-  geom_text(aes(x = id, y = end, label = paste0("R$", round(revenue_at_risk_k, 0), "K")), vjust = -0.5, size = 4) +
-  scale_fill_manual(values = c("period" = "#4682B4", "total" = "Tomato"),
-                    labels = c("period" = "Shopping Period", "total" = "Total"), name = NULL) +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "R$", suffix = "K"), expand = expansion(mult = c(0, 0.15))) +
-  labs(title = "Cumulative Revenue at Risk from Late Deliveries",
-       x = NULL, y = "Cumulative Revenue at Risk") +
+  geom_rect(
+    aes(
+      xmin = id - 0.4,
+      xmax = id + 0.4,
+      ymin = start,
+      ymax = end
+    )
+  ) +
+  geom_segment(
+    data = waterfall_data,
+    aes(
+      x = id + 0.4,
+      xend = id + 0.6,
+      y = end,
+      yend = end
+    ),
+    linetype = "dashed",
+    color = "gray50",
+    linewidth = 0.5
+  ) +
+  geom_text(
+    aes(
+      x = id,
+      y = end,
+      label = paste0("R$", round(revenue_at_risk_k, 0), "K")
+    ),
+    vjust = -0.5,
+    size = 4
+  ) +
+  scale_fill_manual(
+    values = c("period" = "#4682B4", "total" = "Tomato"),
+    labels = c("period" = "Shopping Period", "total" = "Total"),
+    name = NULL
+  ) +
+  scale_y_continuous(
+    labels = scales::dollar_format(prefix = "R$", suffix = "K"),
+    expand = expansion(mult = c(0, 0.15))
+  ) +
+  labs(
+    title = "Cumulative Revenue Linked to Poor Reviews Among Late Deliveries",
+    subtitle = "Single-item delivered orders only | Revenue at risk = late orders with review score ≤ 2",
+    x = NULL,
+    y = "Cumulative Revenue at Risk"
+  ) +
   theme_minimal(base_size = 14, base_family = "Arial") +
   theme(
     plot.title = element_text(face = "bold", size = 22),
+    plot.subtitle = element_text(size = 16, color = "gray40"),
     axis.title.y = element_text(face = "bold", size = 16),
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 14, face = "bold"),
-    axis.text.y = element_text(size = 14),
-    legend.title = element_text(face = "bold", size = 10),
-    legend.text = element_text(size = 12),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 16, face = "bold"),
+    axis.text.y = element_text(size = 16),
+    legend.text = element_text(size = 16),
     legend.position = "top",
     panel.background = element_rect(fill = "white", color = NA),
     plot.background = element_rect(fill = "white", color = NA),
     panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank())
+    panel.grid.minor = element_blank()
+  )
 
 
 cat("\nRevenue at Risk Contribution:\n")
 cat(rep("_", 30), "\n")
+
+
 waterfall_data %>%
-  filter(type == "period") %>%
-  mutate(pct_of_total = round((revenue_at_risk / sum(revenue_at_risk)) * 100, 1)) %>%
+  mutate(
+    pct_of_total = round((revenue_at_risk / sum(revenue_at_risk)) * 100, 1)
+  ) %>%
   select(shopping_period, revenue_at_risk_k, pct_of_total) %>%
   arrange(desc(revenue_at_risk_k)) %>%
   print(n = Inf)
-cat(rep("_", 50), "\n")
 ```
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_403_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_431_0.png)
     
 
 
@@ -13901,87 +15800,133 @@ cat(rep("_", 50), "\n")
     [90m# A tibble: 9 × 3[39m
       shopping_period   revenue_at_risk_k pct_of_total
       [3m[90m<chr>[39m[23m                         [3m[90m<dbl>[39m[23m        [3m[90m<dbl>[39m[23m
-    [90m1[39m Regular                      933.           64.8
-    [90m2[39m Black November               168.           11.7
-    [90m3[39m Mother's Day                  74.1           5.1
-    [90m4[39m Christmas                     66.1           4.6
-    [90m5[39m Father's Day                  57.2           4  
-    [90m6[39m Dia do Consumidor             52.2           3.6
-    [90m7[39m Carnival                      41.2           2.9
-    [90m8[39m Valentine's Day               39.4           2.7
-    [90m9[39m Children's Day                 9.49          0.7
-    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+    [90m1[39m Regular                      409.           62.9
+    [90m2[39m Black November                85.0          13.1
+    [90m3[39m Christmas                     42.6           6.5
+    [90m4[39m Dia do Consumidor             35.3           5.4
+    [90m5[39m Mother's Day                  23.7           3.6
+    [90m6[39m Carnival                      20.9           3.2
+    [90m7[39m Father's Day                  17.0           2.6
+    [90m8[39m Valentine's Day               11.8           1.8
+    [90m9[39m Children's Day                 4.59          0.7
     
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_403_2.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_431_2.png)
     
 
 
-**Key Insights and summary:**
+#### Key Insights and Summary
 
-**Order Distribution** ➜ regular periods dominate with 75K orders, followed by Black November (8.5K) and major holidays (3-5K each). Carnival and Dia do Consumidor are smaller promotional periods (2-2.5k orders each).
+**Order distribution:** Regular periods dominate the dataset (~ 60K orders), followed by Black November (~ 6.5K) and major holidays (~ 3–4K each). Carnival and Dia do Consumidor are smaller in volume (~ 1.5–2K orders), but still meaningful for analysis.
 
-So, do delays during holidays hurt more? ➜ it depends on the holiday type. My hypothesis is supported, but only partially: delays during holidays do NOT universally hurt more - customer purchase motivation determines delay tolerance, not holiday status alone:
+---
 
-**Delays hurt MORE** during:
-> - Promotional events (Carnival, Black November, etc) - up to 46% satisfaction drop. These are discount shopping events, where customers likely have higher price-sensitivity and lower tolerance for delays.  
-> - Christmas - 43% drop (combined gift urgency and operational strains)
+#### Do delays during holidays hurt more? 
 
-**Delays hurt LESS** during:
-> Family holidays (Mother's Day, Father's Day)  
-> Seems like customers prioritize gesture, rather than perfect timing
-> Even severely delayed orders maintain higher ratings, compared to other periods (e.g.: avg of 1.86 point drop on promotional events vs ~1 on Family gifting holidays)
+**Short answer: yes — but only slightly.**
 
-**Other gift occasions (Valentine's Day, Children's Day)** fall in the middle.
+To formally test this, an interaction (moderation) linear regression model was used:
 
-**Carnival is the most damaging per order, but Regular is the biggest total problem to solve operationally**.
+> `review_score ~ delay_vs_eta * is_holiday_period`
 
-So what's the difference? - My intuitive thought was, that deadline-attached gift-orders delays should lead to a higher dissatisfaction, people shop during Black November, for example, just for a good deal, mostly not for a specific deadline (low emotional attachment, so to say), unlike gifting holidays. But seems like family holidays "sentimental" purchasers are more gesture-focused, the gift itself matters more, than its arrival precision. 
-Christmas, however, is unique, as it combines both dynamics - deadline urgency and high-volume logistics strain, as well as elevated expectations from corresponding customers. All these aspects lead to **increased satisfaction vulnerability**, exposing ~66K BRL to risk.
+This model answers three key questions:
+- Do delays hurt reviews in general?
+- Are reviews lower during holidays even without delays?
+- Do delays hurt more during holidays?
 
+---
 
-**Financial impact:**
+### Model interpretation
 
-1. Regular period dominates absolute risk despite moderate per-order metrics (though Carnival has the worst per-order impact, Regular period has the largest absolute volume of dissatisfied customers due to sheer scale) ➜ $933K (64.8%) of total revenue at risk comes from regular periods  
-2. Black November adds R$168K (11.7%) ➜ second-largest contributor  
-3. Highest per-order vulnerability:  Valentine's Day ➜ 71.3% revenue at risk (small volume, high concentration)  
-4. Father's Day shows lowest vulnerability at 35.3%  
+- **Intercept ~ 3.82** ➡︎ expected review score for on-time deliveries during regular periods.
 
+- **delay_vs_eta = -0.0359 (p < 0.001)** ➡︎ each additional day of delay reduces the review score by ~ 0.036 points ➡︎ strong and consistent negative effect.
 
-**Strategic recommendations:**
+- **is_holiday_period = -0.0363 (p < 0.01)** ➡︎ even on-time holiday orders receive slightly lower reviews. Likely reflects higher expectations and emotional context.
 
-1. Set realistic delivery expectations upfront
-2. Family holidays: maintain standard timelines, but communicate emotional value over speed
-3. Christmas: extend delivery windows 3-5 days earlier than other holidays; communicate proactively
-4. Customer communication strategy ➜ proactive outreach regardless of period: offer compensation (discounts, partial refunds) immediately when delays occur; extend return/exchange windows
+- **delay_vs_eta × holiday = -0.0034 (p < 0.001)** ➡︎ delays hurt slightly more during holidays (~ 0.003 extra penalty per day).  
+Statistically significant, but practically small.
 
+- **Model fit: R2 ~ 0.093** ➡︎ about 9% of review variability is explained by delays and timing.  
+Most satisfaction is driven by other factors (product quality, expectations, service).
 
-**Model** ➜ in order to test whether the effect of 1 variable (delay in my case) depends on another variable (holiday status), I chose interaction/moderation linear regression model.
+---
 
-**Model Interpretation**
-My interaction model tests:
-> 1. Do delays hurt reviews in general?
-> 2. Are reviews lower during holidays even with no delay?
-> 3. Do delays hurt more during holidays than during normal periods?  
+**What the model actually tells me?** 
 
-**Model fit:** R-squared = 0.053 (only 5.3% of review variance is explained by delays and holidays. The remaining 95% comes from product quality, customer service, price expectations, etc). This is normal for customer satisfaction models.
+> ***Delays are always harmful, and holidays slightly amplify the effect, but not dramatically.***
 
-**Baseline (Intercept)** = 3.75 ➜ expected review score for on-time delivery during regular periods.  
-**delay_vs_eta** = -0.0303 ➜ each additional day of delay costs ~0.03 review points during regular non-holiday periods; highly statistically significant (p < 0.001). This confirms earlier findings, that delivery delays are a strong, consistent driver of customer dissatisfaction.   
-**is_holiday_periodTRUE** = -0.036 ➜ holiday orders start with 0.036 lower baseline even when on-time, even when deliveries are on time. This suggests higher expectations, more stress, urgency, as well as emotions involved. Statistically significant (p = 0.006).  
-**delay_vs_eta:is_holiday_periodTRUE** = -0.0008 ➜ not significant (p = 0.345), indicating no meaningful evidence that customers penalize delivery delays more strongly during holiday periods. No evidence that delays are "more damaging" or "less damaging" during holidays overall.  
+The idea that customers are “much less forgiving” during holidays is **not strongly supported at an aggregate level**.
 
+---
 
-So, overall: **Delays hurt equally across all periods** - the aggregate holiday indicator shows no differential effect. However, period-specific analysis revealed the real story: individual holidays like Christmas show much larger satisfaction drops when late, compared to the overall average.
+### Where delays hurt the most (by period)
+
+Looking beyond the model:
+
+**Highest satisfaction drop when late:**
+> - Carnival: -2.05    
+> - Dia do Consumidor: -1.98    
+> - Christmas: -1.93    
+> - Black November: -1.90    
+> - Regular: -1.84    
+
+**Lower impact:**
+> - Mother’s Day: -1.24    
+> - Father’s Day: -0.94    
+
+---
+
+### What is actually driving the differences?
+
+The main driver is **delay severity, not holiday type**.
+
+- High-impact periods ➡︎ delays ~ 10–11 days  
+- Lower-impact periods ➡︎ delays ~ 4–6 days  
+
+So ➡︎ **Customers are not more forgiving during certain holidays — they are reacting to how bad the delay is.**
+
+---
+
+### Special cases
+
+**Carnival:** acts as a logistics disruption period ➡︎ highest satisfaction drop.
+
+**Christmas:** combines high expectations + high volume ➡︎ high risk.
+
+**Black November:** High total impact due to volume, but not the worst per-order risk ➡︎ suggests demand smoothing works.
+
+---
+
+### Financial impact
+
+**Largest contributors to total revenue at risk:**
+- Regular period: ~ 63%  
+- Black November: ~ 13%  
+- Christmas: ~ 6.5%  
+
+**Highest per-order risk:**
+- Dia do Consumidor: 68.3%  
+- Christmas: 64.0%  
+- Carnival: 62.6%  
+
+---
+
+### Final takeaway
+
+The model confirms, that delays are a strong and consistent driver of dissatisfaction. Holiday periods add a small additional penalty, but the dominant factor is delay severity.
+
+> *The biggest opportunity is to reduce severe delays — especially during high-volume and disruption-heavy periods — rather than assuming that holidays fundamentally change customer tolerance*.
 
 
 ### **Geographic Delay Analysis**  
 ### **Question 17: "Which Brazilian states and cities experience the worst delivery performance, and is poor logistics performance driven by seller location, customer location, or specific shipping routes?"** 
 
-Earlier I have established (business questions 13 and 14), that delivery delay is the single most powerful driver of customer dissatisfaction (each day late costs 0.34 review points), and orders, that arrive  >3 days late suffer 73% negative reviews on average. 
-In business question 15, I have established, that seller behaviour is a critical factor in delays: I have identified 37 high-risk sellers (chronic late shippers), that control almost a quarter of total platform risk.
+Earlier, in Business Questions 13 and 14, I've established, that delivery delay is one of the strongest operational drivers of customer dissatisfaction. In the single-item order-level analysis, each additional day of delay is associated with an average decrease of approximately 0.036 review points, and orders delivered more than 3 days late show very high negative-review rates, often around 73% depending on the period analyzed.
+
+In Business Question 15, I further established that seller behavior is a critical contributor to delay-related dissatisfaction. The results show, that a concentrated group of high-risk sellers is disproportionately associated with slow processing, late delivery, and poor review outcomes.
 
 However, knowing that "delays matter" and "which sellers cause delays" doesn't tell operations teams where to intervene geographically. There are still some critical unanswered questions:
 
@@ -13999,10 +15944,8 @@ If delays are concentrated in specific states or cities, Olist can:
 Additionally, this analysis will reveal whether delays are a seller behavior problem (certain sellers ship late regardless of destination) or a logistics infrastructure problem (certain routes are consistently slow). Answering this business question will show, if those problem sellers are geographically clustered or if Brazil's logistics network itself is the bottleneck.
 
 
-
-
 ```R
-# How many orders have multiple sellers?
+# Once again to be sure: How many orders have multiple sellers?
 
 multi_seller_orders <- order_items %>%
   group_by(order_id) %>%
@@ -14044,7 +15987,7 @@ While only 1.3% of orders involve multiple sellers, ignoring this creates method
 - If I assign each order to a single "primary" seller, I will lose visibility into secondary sellers' geographic patterns. If problematic sellers are concentrated in specific states, collapsing multi-seller orders could mask this clustering.
 - A single order shipping from 2 different locations represent two distinct logistics relationships with different delivery performance. Treating this as one route can ignore important bottlenecks.
 
-Overall, to test whether those 37 problematic sellers are geographically clustered, I need seller-level geographic analysis, not order-level.
+Overall, to test whether those problematic sellers are geographically clustered, I need seller-level geographic analysis, not order-level.
 
 I will analyze this problem at the seller × order granularity, where:
 - each unique seller-order combination is one observation
@@ -14106,7 +16049,7 @@ state_region <- tibble(
 geo_delays <- geo_delays %>%
   mutate(is_late = delay_vs_eta > 0, is_very_late = delay_vs_eta > 3,
     same_state = seller_state == customer_state,
-    route = paste0(seller_state, " → ", customer_state)) %>%
+    route = paste0(seller_state, " ➡︎ ", customer_state)) %>%
   left_join(state_region %>% rename(customer_region = region), by = c("customer_state" = "state")) %>%
   left_join(state_region %>% rename(seller_region = region), by = c("seller_state" = "state")) %>%
   mutate(same_region = seller_region == customer_region)
@@ -14122,6 +16065,7 @@ cat("Unique sellers:", n_distinct(geo_delays$seller_id), "\n")
 cat("States covered - Customers:", n_distinct(geo_delays$customer_state), "\n")
 cat("States covered - Sellers:", n_distinct(geo_delays$seller_state), "\n")
 cat("Unique routes:", n_distinct(geo_delays$route), "\n\n")
+
 
 # Checking multi-seller order prevalence:
 
@@ -14448,19 +16392,19 @@ print(problem_customer_states, n = Inf)
 
 **Customer state performance (delivery performance by destination)**  
 
-Tier 1: North Region (20-29 days delivery)  
+**Tier 1: North Region (20-29 days delivery)**  
 🔹 Slowest destinations: RR, AP, AM (26-29 days) + AL from Northeast (24.5 days)  
 🔹 Why so slow? Geographic isolation (Amazon region), low seller presence, weak transportation networks (reliance on air/river transport)  
 🔹 AL (Alagoas) is the outlier: 23.8% late rate (worst in Brazil!), 19.3% severe late rate. Suggests poor logistics execution, not just geography  
 
-Tier 2: Northeast Region (18-21 days delivery)  
+**Tier 2: Northeast Region (18-21 days delivery)**    
 🔹 Systematically slower: BA, CE, MA, SE, PI (19-21 days)  
 🔹 High late rates despite longer ETAs: ETAs not adjusted enough for infrastructure reality  
 🔹 Opportunity: BA could be Northeast fulfillment hub (3.4% of Brazil's orders, decent seller base)  
 
-Tier 3: Southeast/South Core (9-15 days delivery)  
+**Tier 3: Southeast/South Core (9-15 days delivery)**    
 🔹 Why fast? ➜ Dense seller network (~59% of sellers in SP alone), many intra-state/intra-region orders, best infrastructure (roads, airports, warehouses)  
-🔹 São Paulo = Brazil's E-commerce capital: 42% of all orders delivered there, 8.7 days average, 5.8% late rate  
+🔹 SP = Brazil's E-commerce capital: 42% of all orders delivered there, 8.7 days average, 5.8% late rate  
 
 ➡️ Customers in the North wait ~2x longer than those in the Southeast  
 
@@ -14476,7 +16420,7 @@ Tier 3: Southeast/South Core (9-15 days delivery)
 🔹 AM (Amazonas) disaster: Only 1 seller, 3 orders, 66.7% late rate, 48 days delivery (worst in Brazil!)  
 🔹 MA (Maranhão) seller: 389 orders but 23.1% late rate (worst seller state)  
 
-**Overall pattern:** South → Southeast is fastest inter-region corridor
+**Overall pattern:** South ➡︎ Southeast is fastest inter-region corridor
 
 
 **Seller Concentration**  
@@ -14489,8 +16433,8 @@ Tier 3: Southeast/South Core (9-15 days delivery)
 Is poor performance driven by seller location? ➜ Mostly NO!
 
 **Customer location problems** (16 states = 60%)  
-🔹 Northeast: AL, MA, SE, CE, PI, BA → 19-25 days delivery, 15-25% late rates  
-🔹 North: AM, PA, AP, RR → 23-30 days delivery (extremely long)  
+🔹 Northeast: AL, MA, SE, CE, PI, BA ➡︎ 19-25 days delivery, 15-25% late rates  
+🔹 North: AM, PA, AP, RR ➡︎ 23-30 days delivery (extremely long)  
 🔹 Problem: Receiving infrastructure issues (ports, last-mile, urban logistics)  
 
 **Seller location problems** (3 states = 11%)  
@@ -14526,11 +16470,11 @@ Is poor performance driven by seller location? ➜ Mostly NO!
 **Northeast Cluster (MA, CE, BA):**    
 🔹 All deliver ~20-21 days but high late rates: MA (19.5%), CE (15.2%), BA (13.9%)  
 🔹 Root cause: ETAs poorly adjusted - don't match infrastructure reality  
-🔹 Volume matters: BA has 3,256 orders (3.4% of Brazil) → priority for regional fulfillment center  
+🔹 Volume matters: BA has 3256 orders (3.4% of Brazil) ➡︎ priority for regional fulfillment center  
 
 **The Outlier - AL (Alagoas):**    
 🔹 Only 397 orders but 23.8% late rate (highest in Brazil!), 24.5 days delivery  
-🔹 Route-level data confirms: SP → AL (26.5% late), PR → AL (36.8% late!)  
+🔹 Route-level data confirms: SP ➡︎ AL (26.5% late), PR ➡︎ AL (36.8% late!)  
 🔹 State-specific infrastructure breakdown, not just distance  
 
 **Overall Strategic Insights**    
@@ -14541,7 +16485,7 @@ Is poor performance driven by seller location? ➜ Mostly NO!
 
 ➡️ NOT driven by seller inefficiency — most sellers perform well given infrastructure constraints  
 
-➡️ Action priorities:  
+➡️ **Action priorities:**  
     - Recruit more sellers in Northeast/North (BA, CE, PE - states with decent seller performance) to serve local customers and reduce dependence on long-distance sellers  
     - Improve delivery TO problem states (better carriers, route optimization, open a BA fulfillment center)  
     - Restrict AM sellers (48-day deliveries are unacceptable)  
@@ -14585,7 +16529,7 @@ print(intra_region_seller_perf, n = Inf)
 # Cross-region route performance: 
 
 cross_region_routes <- geo_delays %>%
-  mutate(region_route = paste0(seller_region, " → ", customer_region)) %>%
+  mutate(region_route = paste0(seller_region, " ➡︎ ", customer_region)) %>%
   group_by(seller_region, customer_region, region_route) %>%
   summarise(
     seller_order_pairs = n(),
@@ -14650,24 +16594,24 @@ print(cross_region_routes, n = 30)
     [90m# A tibble: 18 × 7[39m
        seller_region customer_region region_route                seller_order_pairs unique_orders avg_delivery_days late_rate
        [3m[90m<chr>[39m[23m         [3m[90m<chr>[39m[23m           [3m[90m<chr>[39m[23m                                    [3m[90m<int>[39m[23m         [3m[90m<int>[39m[23m             [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m
-    [90m 1[39m Southeast     North           Southeast → North                         [4m1[24m522          [4m1[24m506              22.5      10.2
-    [90m 2[39m South         North           South → North                              206           206              22.4       6.8
-    [90m 3[39m South         Northeast       South → Northeast                          867           863              21.9      15.1
-    [90m 4[39m Southeast     Northeast       Southeast → Northeast                     [4m7[24m649          [4m7[24m588              20        14.3
-    [90m 5[39m Central-West  Northeast       Central-West → Northeast                   172           172              19.8      12.8
-    [90m 6[39m Northeast     South           Northeast → South                          139           139              18.1      15.1
-    [90m 7[39m Northeast     Central-West    Northeast → Central-West                   122           122              16        11.5
-    [90m 8[39m Central-West  South           Central-West → South                       126           126              15.8       7.9
-    [90m 9[39m South         Central-West    South → Central-West                       657           655              15.1       4.1
-    [90m10[39m Southeast     Central-West    Southeast → Central-West                  [4m4[24m719          [4m4[24m651              15.1       8.5
-    [90m11[39m Southeast     South           Southeast → South                        [4m1[24m[4m0[24m588         [4m1[24m[4m0[24m466              14.9       7.5
-    [90m12[39m Northeast     Northeast       Northeast → Northeast                      437           437              13.9      11.2
-    [90m13[39m Northeast     Southeast       Northeast → Southeast                      793           793              13.6       8.3
-    [90m14[39m South         Southeast       South → Southeast                         [4m8[24m510          [4m8[24m471              12.8       5.5
-    [90m15[39m Central-West  Southeast       Central-West → Southeast                   895           895              11.5       3.8
-    [90m16[39m South         South           South → South                             [4m3[24m162          [4m3[24m142              10.6       4.9
-    [90m17[39m Southeast     Southeast       Southeast → Southeast                    [4m5[24m[4m6[24m933         [4m5[24m[4m6[24m228              10.3       7.7
-    [90m18[39m Central-West  Central-West    Central-West → Central-West                209           209               8.9       4.3
+    [90m 1[39m Southeast     North           Southeast ➡︎ North                         [4m1[24m522          [4m1[24m506              22.5      10.2
+    [90m 2[39m South         North           South ➡︎ North                              206           206              22.4       6.8
+    [90m 3[39m South         Northeast       South ➡︎ Northeast                          867           863              21.9      15.1
+    [90m 4[39m Southeast     Northeast       Southeast ➡︎ Northeast                     [4m7[24m649          [4m7[24m588              20        14.3
+    [90m 5[39m Central-West  Northeast       Central-West ➡︎ Northeast                   172           172              19.8      12.8
+    [90m 6[39m Northeast     South           Northeast ➡︎ South                          139           139              18.1      15.1
+    [90m 7[39m Northeast     Central-West    Northeast ➡︎ Central-West                   122           122              16        11.5
+    [90m 8[39m Central-West  South           Central-West ➡︎ South                       126           126              15.8       7.9
+    [90m 9[39m South         Central-West    South ➡︎ Central-West                       657           655              15.1       4.1
+    [90m10[39m Southeast     Central-West    Southeast ➡︎ Central-West                  [4m4[24m719          [4m4[24m651              15.1       8.5
+    [90m11[39m Southeast     South           Southeast ➡︎ South                        [4m1[24m[4m0[24m588         [4m1[24m[4m0[24m466              14.9       7.5
+    [90m12[39m Northeast     Northeast       Northeast ➡︎ Northeast                      437           437              13.9      11.2
+    [90m13[39m Northeast     Southeast       Northeast ➡︎ Southeast                      793           793              13.6       8.3
+    [90m14[39m South         Southeast       South ➡︎ Southeast                         [4m8[24m510          [4m8[24m471              12.8       5.5
+    [90m15[39m Central-West  Southeast       Central-West ➡︎ Southeast                   895           895              11.5       3.8
+    [90m16[39m South         South           South ➡︎ South                             [4m3[24m162          [4m3[24m142              10.6       4.9
+    [90m17[39m Southeast     Southeast       Southeast ➡︎ Southeast                    [4m5[24m[4m6[24m933         [4m5[24m[4m6[24m228              10.3       7.7
+    [90m18[39m Central-West  Central-West    Central-West ➡︎ Central-West                209           209               8.9       4.3
     
 
 **PART 3: Summary and Key insights**  
@@ -14675,12 +16619,12 @@ print(cross_region_routes, n = 30)
 **Delivery performance by customer region:**  
 
 🔹 Delivery time differs strongly by customer region  
-🔹 Ranking (slow → fast) is consistent with geography & infrastructure:  
-> North: ~22.5 days
-> Northeast: ~19.9 days
-> Central-West: ~14.9 days
-> South: ~13.9 days
-> Southeast: ~10.6 days
+🔹 Ranking (slow ➡︎ fast) is consistent with geography & infrastructure:  
+> North: ~22.5 days  
+> Northeast: ~19.9 days  
+> Central-West: ~14.9 days  
+> South: ~13.9 days   
+> Southeast: ~10.6 days 
 
 🔹 Late rates increase as delivery distance & infrastructure complexity increase  
 🔹 Customer region is a primary determinant of delivery performance
@@ -14704,10 +16648,10 @@ This is NOT a seller behaviour, this is customer-side only!
  🔹 There are a couple of low-volume states (PI, MT, MS, SE and PB), that represent a very small sample size, they have either extreme average delays, or zero late rates - overall these are statistically unstable and should not drive strategic decisions.
 
 
-➡️ When sellers ship within their own region, delivery performance is consistently strong across Brazil — confirming that poor logistics performance is driven primarily by cross-region distance and infrastructure, not by seller inefficiency      
+➡️ When sellers ship within their own region, delivery performance is consistently strong across Brazil - confirming that poor logistics performance is driven primarily by cross-region distance and infrastructure, not by seller inefficiency      
 ➡️ Expanding seller presence in North and Northeast could reduce delays and late rates, as well as lower logistics cost per order  
 ➡️ Olist should focus improvement efforts of inter-region hand-offs (and not on penalizing sellers with good intra-region performance, as I suggested earlier in my analysis)  
-➡️ Overall this output disproves several assumptions, like **some states have bad sellers** and **late deliveries are mainly due to sellers' inefficiency**, and shows, instead, that **sellers perform reasonably well, once region aspect is removed** and **logistics issues scalate primarily when deliveries are inter-region**  
+➡️ Overall this output disproves several assumptions, like **some states have bad sellers** and **late deliveries are mainly due to sellers' inefficiency**, and shows, instead, that **sellers perform reasonably well, once region aspect is removed** and **logistics issues escalate primarily when deliveries are inter-region**  
 
 <br>
 
@@ -14715,14 +16659,14 @@ This is NOT a seller behaviour, this is customer-side only!
 
 Cross-region route performance shows clear directional penalties:  
 
-1. **Worst-performing** flows:
-Southeast → North  
-Southeast / South → Northeast
+1. **Worst-performing** flows:  
+Southeast ➡︎ North  
+Southeast / South ➡︎ Northeast
 
-2. **Best-performing** flows:
+2. **Best-performing** flows:  
 Within-region routes  
-Central-West → Southeast  
-South → Southeast  
+Central-West ➡︎ Southeast  
+South ➡︎ Southeast  
 
 
 Brazilian logistics **performs best** when:
@@ -14840,7 +16784,7 @@ ggplot(route_heatmap_data, aes(x = customer_state, y = seller_state, fill = avg_
   scale_fill_gradient2(low = "steelblue4", mid = "white", high = "tomato",
                        midpoint = median(route_heatmap_data$avg_delivery_days),
                        name = "Avg Delivery\nDays") +
-  labs(title = "Delivery Time Heatmap: Seller State → Customer State",
+  labs(title = "Delivery Time Heatmap: Seller State ➡︎ Customer State",
        subtitle = "Top 12 states by volume; minimum 20 seller-order pairs per route",
        x = "Customer State (Destination)",
        y = "Seller State (Origin)") +
@@ -14882,36 +16826,36 @@ ggplot(route_heatmap_data, aes(x = customer_state, y = seller_state, fill = avg_
     [90m# A tibble: 30 × 11[39m
        seller_state customer_state route   route_type   seller_order_pairs unique_orders avg_delay_vs_eta late_rate severe_late_rate avg_delivery_days weighted_impact
        [3m[90m<chr>[39m[23m        [3m[90m<chr>[39m[23m          [3m[90m<chr>[39m[23m   [3m[90m<chr>[39m[23m                     [3m[90m<int>[39m[23m         [3m[90m<int>[39m[23m            [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m            [3m[90m<dbl>[39m[23m             [3m[90m<dbl>[39m[23m           [3m[90m<dbl>[39m[23m
-    [90m 1[39m SP           RR             SP → RR Inter-Region                 33            33            -[31m13[39m[31m.[39m[31m8[39m      15.2             15.2              31.6           [4m1[24m043.
-    [90m 2[39m PR           AL             PR → AL Inter-Region                 38            38             -[31m6[39m[31m.[39m[31m9[39m      36.8             28.9              28.7           [4m1[24m091.
-    [90m 3[39m SP           AP             SP → AP Inter-Region                 49            49            -[31m17[39m[31m.[39m[31m8[39m       6.1              2                28.1           [4m1[24m377.
-    [90m 4[39m MG           PA             MG → PA Inter-Region                 84            84            -[31m10[39m[31m.[39m[31m5[39m      13.1              8.3              27.3           [4m2[24m293.
-    [90m 5[39m SP           AM             SP → AM Inter-Region                 99            99            -[31m18[39m[31m.[39m[31m6[39m       4                2                25.8           [4m2[24m554.
-    [90m 6[39m MG           SE             MG → SE Inter-Region                 36            36             -[31m8[39m[31m.[39m[31m4[39m      11.1              8.3              25.3            911.
-    [90m 7[39m PR           PA             PR → PA Inter-Region                 55            55            -[31m14[39m[31m.[39m[31m3[39m      12.7              9.1              25.2           [4m1[24m386 
-    [90m 8[39m SP           AL             SP → AL Inter-Region                253           252             -[31m7[39m        26.5             22.5              25             [4m6[24m300 
-    [90m 9[39m PR           CE             PR → CE Inter-Region                 69            68             -[31m8[39m[31m.[39m[31m9[39m      14.5             14.5              24.9           [4m1[24m693.
-    [90m10[39m RJ           CE             RJ → CE Inter-Region                 57            57             -[31m6[39m[31m.[39m[31m1[39m      21.1             17.5              24.7           [4m1[24m408.
-    [90m11[39m SP           PA             SP → PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753.
-    [90m12[39m PR           PB             PR → PB Inter-Region                 42            42            -[31m13[39m        16.7             11.9              22.2            932.
-    [90m13[39m PR           MA             PR → MA Inter-Region                 43            42             -[31m9[39m[31m.[39m[31m6[39m      18.6             11.6              22              924 
-    [90m14[39m SP           MA             SP → MA Inter-Region                495           491             -[31m8[39m[31m.[39m[31m6[39m      21.2             15.4              22            [4m1[24m[4m0[24m802 
-    [90m15[39m RJ           PA             RJ → PA Inter-Region                 41            41            -[31m14[39m[31m.[39m[31m2[39m       9.8              7.3              21.9            898.
-    [90m16[39m MG           AL             MG → AL Inter-Region                 36            36            -[31m11[39m[31m.[39m[31m4[39m      16.7             11.1              21.8            785.
-    [90m17[39m PR           BA             PR → BA Inter-Region                145           145             -[31m9[39m[31m.[39m[31m5[39m      16.6             13.8              21.8           [4m3[24m161 
-    [90m18[39m RJ           MT             RJ → MT Inter-Region                 31            31            -[31m13[39m         9.7              3.2              21.2            657.
-    [90m19[39m SP           SE             SP → SE Inter-Region                209           207             -[31m8[39m[31m.[39m[31m7[39m      16.3             13.9              21.2           [4m4[24m388.
-    [90m20[39m SP           CE             SP → CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277.
-    [90m21[39m RS           BA             RS → BA Inter-Region                 42            42             -[31m8[39m[31m.[39m[31m9[39m      16.7             11.9              21              882 
-    [90m22[39m MG           MT             MG → MT Inter-Region                 54            54            -[31m12[39m[31m.[39m[31m9[39m       7.4              3.7              20.8           [4m1[24m123.
-    [90m23[39m SP           AC             SP → AC Inter-Region                 57            57            -[31m19[39m[31m.[39m[31m9[39m       3.5              1.8              20.7           [4m1[24m180.
-    [90m24[39m SC           BA             SC → BA Inter-Region                 80            80            -[31m10[39m[31m.[39m[31m3[39m      12.5             10                20.6           [4m1[24m648 
-    [90m25[39m SP           PB             SP → PB Inter-Region                334           333            -[31m12[39m[31m.[39m[31m3[39m      10.8              8.1              20.6           [4m6[24m860.
-    [90m26[39m MG           CE             MG → CE Inter-Region                 75            75            -[31m11[39m[31m.[39m[31m6[39m      12               12                20.5           [4m1[24m538.
-    [90m27[39m SP           RN             SP → RN Inter-Region                333           332            -[31m12[39m[31m.[39m[31m3[39m      12                8.1              20.4           [4m6[24m773.
-    [90m28[39m SP           PI             SP → PI Inter-Region                330           328            -[31m10[39m        18.2             13.6              20.2           [4m6[24m626.
-    [90m29[39m PR           PE             PR → PE Inter-Region                 88            88            -[31m11[39m[31m.[39m[31m3[39m      13.6             10.2              19.7           [4m1[24m734.
-    [90m30[39m SP           BA             SP → BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212.
+    [90m 1[39m SP           RR             SP ➡︎ RR Inter-Region                 33            33            -[31m13[39m[31m.[39m[31m8[39m      15.2             15.2              31.6           [4m1[24m043.
+    [90m 2[39m PR           AL             PR ➡︎ AL Inter-Region                 38            38             -[31m6[39m[31m.[39m[31m9[39m      36.8             28.9              28.7           [4m1[24m091.
+    [90m 3[39m SP           AP             SP ➡︎ AP Inter-Region                 49            49            -[31m17[39m[31m.[39m[31m8[39m       6.1              2                28.1           [4m1[24m377.
+    [90m 4[39m MG           PA             MG ➡︎ PA Inter-Region                 84            84            -[31m10[39m[31m.[39m[31m5[39m      13.1              8.3              27.3           [4m2[24m293.
+    [90m 5[39m SP           AM             SP ➡︎ AM Inter-Region                 99            99            -[31m18[39m[31m.[39m[31m6[39m       4                2                25.8           [4m2[24m554.
+    [90m 6[39m MG           SE             MG ➡︎ SE Inter-Region                 36            36             -[31m8[39m[31m.[39m[31m4[39m      11.1              8.3              25.3            911.
+    [90m 7[39m PR           PA             PR ➡︎ PA Inter-Region                 55            55            -[31m14[39m[31m.[39m[31m3[39m      12.7              9.1              25.2           [4m1[24m386 
+    [90m 8[39m SP           AL             SP ➡︎ AL Inter-Region                253           252             -[31m7[39m        26.5             22.5              25             [4m6[24m300 
+    [90m 9[39m PR           CE             PR ➡︎ CE Inter-Region                 69            68             -[31m8[39m[31m.[39m[31m9[39m      14.5             14.5              24.9           [4m1[24m693.
+    [90m10[39m RJ           CE             RJ ➡︎ CE Inter-Region                 57            57             -[31m6[39m[31m.[39m[31m1[39m      21.1             17.5              24.7           [4m1[24m408.
+    [90m11[39m SP           PA             SP ➡︎ PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753.
+    [90m12[39m PR           PB             PR ➡︎ PB Inter-Region                 42            42            -[31m13[39m        16.7             11.9              22.2            932.
+    [90m13[39m PR           MA             PR ➡︎ MA Inter-Region                 43            42             -[31m9[39m[31m.[39m[31m6[39m      18.6             11.6              22              924 
+    [90m14[39m SP           MA             SP ➡︎ MA Inter-Region                495           491             -[31m8[39m[31m.[39m[31m6[39m      21.2             15.4              22            [4m1[24m[4m0[24m802 
+    [90m15[39m RJ           PA             RJ ➡︎ PA Inter-Region                 41            41            -[31m14[39m[31m.[39m[31m2[39m       9.8              7.3              21.9            898.
+    [90m16[39m MG           AL             MG ➡︎ AL Inter-Region                 36            36            -[31m11[39m[31m.[39m[31m4[39m      16.7             11.1              21.8            785.
+    [90m17[39m PR           BA             PR ➡︎ BA Inter-Region                145           145             -[31m9[39m[31m.[39m[31m5[39m      16.6             13.8              21.8           [4m3[24m161 
+    [90m18[39m RJ           MT             RJ ➡︎ MT Inter-Region                 31            31            -[31m13[39m         9.7              3.2              21.2            657.
+    [90m19[39m SP           SE             SP ➡︎ SE Inter-Region                209           207             -[31m8[39m[31m.[39m[31m7[39m      16.3             13.9              21.2           [4m4[24m388.
+    [90m20[39m SP           CE             SP ➡︎ CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277.
+    [90m21[39m RS           BA             RS ➡︎ BA Inter-Region                 42            42             -[31m8[39m[31m.[39m[31m9[39m      16.7             11.9              21              882 
+    [90m22[39m MG           MT             MG ➡︎ MT Inter-Region                 54            54            -[31m12[39m[31m.[39m[31m9[39m       7.4              3.7              20.8           [4m1[24m123.
+    [90m23[39m SP           AC             SP ➡︎ AC Inter-Region                 57            57            -[31m19[39m[31m.[39m[31m9[39m       3.5              1.8              20.7           [4m1[24m180.
+    [90m24[39m SC           BA             SC ➡︎ BA Inter-Region                 80            80            -[31m10[39m[31m.[39m[31m3[39m      12.5             10                20.6           [4m1[24m648 
+    [90m25[39m SP           PB             SP ➡︎ PB Inter-Region                334           333            -[31m12[39m[31m.[39m[31m3[39m      10.8              8.1              20.6           [4m6[24m860.
+    [90m26[39m MG           CE             MG ➡︎ CE Inter-Region                 75            75            -[31m11[39m[31m.[39m[31m6[39m      12               12                20.5           [4m1[24m538.
+    [90m27[39m SP           RN             SP ➡︎ RN Inter-Region                333           332            -[31m12[39m[31m.[39m[31m3[39m      12                8.1              20.4           [4m6[24m773.
+    [90m28[39m SP           PI             SP ➡︎ PI Inter-Region                330           328            -[31m10[39m        18.2             13.6              20.2           [4m6[24m626.
+    [90m29[39m PR           PE             PR ➡︎ PE Inter-Region                 88            88            -[31m11[39m[31m.[39m[31m3[39m      13.6             10.2              19.7           [4m1[24m734.
+    [90m30[39m SP           BA             SP ➡︎ BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212.
     
     
     HIGH-VOLUME PROBLEMATIC CUSTOMER STATES (>=100 unique orders and above-median average delivery time)
@@ -14937,37 +16881,37 @@ ggplot(route_heatmap_data, aes(x = customer_state, y = seller_state, fill = avg_
     [90m# A tibble: 26 × 11[39m
        seller_state customer_state route   route_type   seller_order_pairs unique_orders avg_delay_vs_eta late_rate severe_late_rate avg_delivery_days weighted_impact
        [3m[90m<chr>[39m[23m        [3m[90m<chr>[39m[23m          [3m[90m<chr>[39m[23m   [3m[90m<chr>[39m[23m                     [3m[90m<int>[39m[23m         [3m[90m<int>[39m[23m            [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m            [3m[90m<dbl>[39m[23m             [3m[90m<dbl>[39m[23m           [3m[90m<dbl>[39m[23m
-    [90m 1[39m SP           RJ             SP → RJ Intra-Region               [4m8[24m195          [4m8[24m110            -[31m10[39m[31m.[39m[31m2[39m      15.5             12.2              16.2         [4m1[24m[4m3[24m[4m1[24m382 
-    [90m 2[39m SP           RS             SP → RS Inter-Region               [4m3[24m630          [4m3[24m583            -[31m13[39m[31m.[39m[31m6[39m       7.5              5.3              16.1          [4m5[24m[4m7[24m686.
-    [90m 3[39m SP           BA             SP → BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212.
-    [90m 4[39m SP           PE             SP → PE Inter-Region               [4m1[24m130          [4m1[24m126            -[31m13[39m        10.7              8.2              18.8          [4m2[24m[4m1[24m169.
-    [90m 5[39m SP           CE             SP → CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277.
-    [90m 6[39m PR           RJ             PR → RJ Inter-Region               [4m1[24m000           994            -[31m12[39m[31m.[39m[31m6[39m      13.5              9.7              17            [4m1[24m[4m6[24m898 
-    [90m 7[39m SP           PA             SP → PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753.
-    [90m 8[39m SP           MT             SP → MT Inter-Region                660           649            -[31m14[39m[31m.[39m[31m1[39m       6.7              4.7              17.6          [4m1[24m[4m1[24m422.
-    [90m 9[39m SP           MA             SP → MA Inter-Region                495           491             -[31m8[39m[31m.[39m[31m6[39m      21.2             15.4              22            [4m1[24m[4m0[24m802 
-    [90m10[39m SC           RJ             SC → RJ Inter-Region                490           488            -[31m12[39m[31m.[39m[31m9[39m       9.8              7.6              16.1           [4m7[24m857.
-    [90m11[39m SP           PB             SP → PB Inter-Region                334           333            -[31m12[39m[31m.[39m[31m3[39m      10.8              8.1              20.6           [4m6[24m860.
-    [90m12[39m MG           BA             MG → BA Inter-Region                376           376            -[31m10[39m[31m.[39m[31m1[39m      10.4              8.5              18.2           [4m6[24m843.
-    [90m13[39m SP           RN             SP → RN Inter-Region                333           332            -[31m12[39m[31m.[39m[31m3[39m      12                8.1              20.4           [4m6[24m773.
-    [90m14[39m SP           PI             SP → PI Inter-Region                330           328            -[31m10[39m        18.2             13.6              20.2           [4m6[24m626.
-    [90m15[39m SP           AL             SP → AL Inter-Region                253           252             -[31m7[39m        26.5             22.5              25             [4m6[24m300 
-    [90m16[39m MG           RS             MG → RS Inter-Region                288           287            -[31m16[39m[31m.[39m[31m1[39m       4.9              3.8              17             [4m4[24m879 
-    [90m17[39m SP           SE             SP → SE Inter-Region                209           207             -[31m8[39m[31m.[39m[31m7[39m      16.3             13.9              21.2           [4m4[24m388.
-    [90m18[39m MG           SC             MG → SC Inter-Region                258           258            -[31m12[39m[31m.[39m[31m7[39m       8.5              4.3              17             [4m4[24m386 
-    [90m19[39m SP           TO             SP → TO Inter-Region                204           198            -[31m10[39m[31m.[39m[31m9[39m      12.3              8.8              17.5           [4m3[24m465 
-    [90m20[39m SP           RO             SP → RO Inter-Region                169           166            -[31m19[39m[31m.[39m[31m6[39m       3                1.8              19.2           [4m3[24m187.
-    [90m21[39m PR           BA             PR → BA Inter-Region                145           145             -[31m9[39m[31m.[39m[31m5[39m      16.6             13.8              21.8           [4m3[24m161 
-    [90m22[39m MG           ES             MG → ES Intra-Region                178           178            -[31m11[39m[31m.[39m[31m6[39m       5.1              3.9              16.3           [4m2[24m901.
-    [90m23[39m RJ           BA             RJ → BA Inter-Region                143           143            -[31m10[39m        11.2             10.5              17             [4m2[24m431 
-    [90m24[39m MA           SP             MA → SP Inter-Region                124           124             -[31m9[39m[31m.[39m[31m2[39m      25               18.5              16             [4m1[24m984 
-    [90m25[39m PR           ES             PR → ES Inter-Region                111           111            -[31m12[39m[31m.[39m[31m3[39m       9                8.1              17.5           [4m1[24m942.
-    [90m26[39m MG           PE             MG → PE Inter-Region                113           113            -[31m14[39m[31m.[39m[31m4[39m       8                6.2              16.4           [4m1[24m853.
+    [90m 1[39m SP           RJ             SP ➡︎ RJ Intra-Region               [4m8[24m195          [4m8[24m110            -[31m10[39m[31m.[39m[31m2[39m      15.5             12.2              16.2         [4m1[24m[4m3[24m[4m1[24m382 
+    [90m 2[39m SP           RS             SP ➡︎ RS Inter-Region               [4m3[24m630          [4m3[24m583            -[31m13[39m[31m.[39m[31m6[39m       7.5              5.3              16.1          [4m5[24m[4m7[24m686.
+    [90m 3[39m SP           BA             SP ➡︎ BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212.
+    [90m 4[39m SP           PE             SP ➡︎ PE Inter-Region               [4m1[24m130          [4m1[24m126            -[31m13[39m        10.7              8.2              18.8          [4m2[24m[4m1[24m169.
+    [90m 5[39m SP           CE             SP ➡︎ CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277.
+    [90m 6[39m PR           RJ             PR ➡︎ RJ Inter-Region               [4m1[24m000           994            -[31m12[39m[31m.[39m[31m6[39m      13.5              9.7              17            [4m1[24m[4m6[24m898 
+    [90m 7[39m SP           PA             SP ➡︎ PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753.
+    [90m 8[39m SP           MT             SP ➡︎ MT Inter-Region                660           649            -[31m14[39m[31m.[39m[31m1[39m       6.7              4.7              17.6          [4m1[24m[4m1[24m422.
+    [90m 9[39m SP           MA             SP ➡︎ MA Inter-Region                495           491             -[31m8[39m[31m.[39m[31m6[39m      21.2             15.4              22            [4m1[24m[4m0[24m802 
+    [90m10[39m SC           RJ             SC ➡︎ RJ Inter-Region                490           488            -[31m12[39m[31m.[39m[31m9[39m       9.8              7.6              16.1           [4m7[24m857.
+    [90m11[39m SP           PB             SP ➡︎ PB Inter-Region                334           333            -[31m12[39m[31m.[39m[31m3[39m      10.8              8.1              20.6           [4m6[24m860.
+    [90m12[39m MG           BA             MG ➡︎ BA Inter-Region                376           376            -[31m10[39m[31m.[39m[31m1[39m      10.4              8.5              18.2           [4m6[24m843.
+    [90m13[39m SP           RN             SP ➡︎ RN Inter-Region                333           332            -[31m12[39m[31m.[39m[31m3[39m      12                8.1              20.4           [4m6[24m773.
+    [90m14[39m SP           PI             SP ➡︎ PI Inter-Region                330           328            -[31m10[39m        18.2             13.6              20.2           [4m6[24m626.
+    [90m15[39m SP           AL             SP ➡︎ AL Inter-Region                253           252             -[31m7[39m        26.5             22.5              25             [4m6[24m300 
+    [90m16[39m MG           RS             MG ➡︎ RS Inter-Region                288           287            -[31m16[39m[31m.[39m[31m1[39m       4.9              3.8              17             [4m4[24m879 
+    [90m17[39m SP           SE             SP ➡︎ SE Inter-Region                209           207             -[31m8[39m[31m.[39m[31m7[39m      16.3             13.9              21.2           [4m4[24m388.
+    [90m18[39m MG           SC             MG ➡︎ SC Inter-Region                258           258            -[31m12[39m[31m.[39m[31m7[39m       8.5              4.3              17             [4m4[24m386 
+    [90m19[39m SP           TO             SP ➡︎ TO Inter-Region                204           198            -[31m10[39m[31m.[39m[31m9[39m      12.3              8.8              17.5           [4m3[24m465 
+    [90m20[39m SP           RO             SP ➡︎ RO Inter-Region                169           166            -[31m19[39m[31m.[39m[31m6[39m       3                1.8              19.2           [4m3[24m187.
+    [90m21[39m PR           BA             PR ➡︎ BA Inter-Region                145           145             -[31m9[39m[31m.[39m[31m5[39m      16.6             13.8              21.8           [4m3[24m161 
+    [90m22[39m MG           ES             MG ➡︎ ES Intra-Region                178           178            -[31m11[39m[31m.[39m[31m6[39m       5.1              3.9              16.3           [4m2[24m901.
+    [90m23[39m RJ           BA             RJ ➡︎ BA Inter-Region                143           143            -[31m10[39m        11.2             10.5              17             [4m2[24m431 
+    [90m24[39m MA           SP             MA ➡︎ SP Inter-Region                124           124             -[31m9[39m[31m.[39m[31m2[39m      25               18.5              16             [4m1[24m984 
+    [90m25[39m PR           ES             PR ➡︎ ES Inter-Region                111           111            -[31m12[39m[31m.[39m[31m3[39m       9                8.1              17.5           [4m1[24m942.
+    [90m26[39m MG           PE             MG ➡︎ PE Inter-Region                113           113            -[31m14[39m[31m.[39m[31m4[39m       8                6.2              16.4           [4m1[24m853.
     
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_413_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_441_1.png)
     
 
 
@@ -14989,7 +16933,7 @@ ggplot(route_heatmap_data, aes(x = customer_state, y = seller_state, fill = avg_
 > SP → AM: 25.8 days  
 > MG → PA: 27.3 days  
 
-🔹 Routes with moderate volumes can have very high delays (e.g. PR → AL: 28.7 days)  
+🔹 Routes with moderate volumes can have very high delays (e.g. PR ➡︎ AL: 28.7 days)  
 
 ➡️ Inter-region distance and infrastructure gaps are the primary drivers of poor route performance. Local sellers generally perform well  
 
@@ -15005,7 +16949,7 @@ ggplot(route_heatmap_data, aes(x = customer_state, y = seller_state, fill = avg_
 **High-impact problematic routes:**
 
 🔹 Routes combining high order volume and high delays show where operational improvements would have the largest impact  
-🔹 Top examples: SP → RJ (16.2 average delivery days, 8110 orders), SP → RS (16.1 average delivery days, 3583 orders), SP → BA (19.7 average delivery days, 2295 orders), SP → PE/CE/PA (18–23 average delivery days, 600–1500 orders)  
+🔹 Top examples: SP ➡︎ RJ (16.2 average delivery days, 8110 orders), SP ➡︎ RS (16.1 average delivery days, 3583 orders), SP ➡︎ BA (19.7 average delivery days, 2295 orders), SP ➡︎ PE/CE/PA (18–23 average delivery days, 600–1500 orders)  
 
 ➡️ Even high-volume, efficient states like SP, generate major delays when shipping to distant regions — these routes are key targets for logistics improvements.  
 
@@ -15106,12 +17050,12 @@ print(critical_routes, n = Inf, width = Inf)
     [90m# A tibble: 6 × 15[39m
       seller_state customer_state route   route_type   seller_order_pairs unique_orders avg_delay_vs_eta late_rate severe_late_rate avg_delivery_days weighted_impact volume_tier       
       [3m[90m<chr>[39m[23m        [3m[90m<chr>[39m[23m          [3m[90m<chr>[39m[23m   [3m[90m<chr>[39m[23m                     [3m[90m<int>[39m[23m         [3m[90m<int>[39m[23m            [3m[90m<dbl>[39m[23m     [3m[90m<dbl>[39m[23m            [3m[90m<dbl>[39m[23m             [3m[90m<dbl>[39m[23m           [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m             
-    [90m1[39m SP           RJ             SP → RJ Intra-Region               [4m8[24m195          [4m8[24m110            -[31m10[39m[31m.[39m[31m2[39m      15.5             12.2              16.2         [4m1[24m[4m3[24m[4m1[24m382  High Volume (500+)
-    [90m2[39m SP           BA             SP → BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212. High Volume (500+)
-    [90m3[39m SP           ES             SP → ES Intra-Region               [4m1[24m473          [4m1[24m459             -[31m8[39m[31m.[39m[31m9[39m      14.1              9.6              15.7          [4m2[24m[4m2[24m906. High Volume (500+)
-    [90m4[39m SP           CE             SP → CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277. High Volume (500+)
-    [90m5[39m PR           RJ             PR → RJ Inter-Region               [4m1[24m000           994            -[31m12[39m[31m.[39m[31m6[39m      13.5              9.7              17            [4m1[24m[4m6[24m898  High Volume (500+)
-    [90m6[39m SP           PA             SP → PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753. High Volume (500+)
+    [90m1[39m SP           RJ             SP ➡︎ RJ Intra-Region               [4m8[24m195          [4m8[24m110            -[31m10[39m[31m.[39m[31m2[39m      15.5             12.2              16.2         [4m1[24m[4m3[24m[4m1[24m382  High Volume (500+)
+    [90m2[39m SP           BA             SP ➡︎ BA Inter-Region               [4m2[24m322          [4m2[24m295            -[31m10[39m[31m.[39m[31m2[39m      14.8             10.4              19.7          [4m4[24m[4m5[24m212. High Volume (500+)
+    [90m3[39m SP           ES             SP ➡︎ ES Intra-Region               [4m1[24m473          [4m1[24m459             -[31m8[39m[31m.[39m[31m9[39m      14.1              9.6              15.7          [4m2[24m[4m2[24m906. High Volume (500+)
+    [90m4[39m SP           CE             SP ➡︎ CE Inter-Region                967           961            -[31m10[39m[31m.[39m[31m3[39m      15.2             11.4              21.1          [4m2[24m[4m0[24m277. High Volume (500+)
+    [90m5[39m PR           RJ             PR ➡︎ RJ Inter-Region               [4m1[24m000           994            -[31m12[39m[31m.[39m[31m6[39m      13.5              9.7              17            [4m1[24m[4m6[24m898  High Volume (500+)
+    [90m6[39m SP           PA             SP ➡︎ PA Inter-Region                684           679            -[31m13[39m[31m.[39m[31m4[39m      13               11                23.2          [4m1[24m[4m5[24m753. High Volume (500+)
       delay_tier                        priority      infra_flag                    
       [3m[90m<chr>[39m[23m                             [3m[90m<chr>[39m[23m         [3m[90m<chr>[39m[23m                         
     [90m1[39m Severe Delays (top 25% late rate) P1 - Critical Mixed (Regional Ops + Sellers)
@@ -15131,7 +17075,7 @@ print(critical_routes, n = Inf, width = Inf)
 🔹 P3 Medium: 13 routes, 2799 orders (2.9% of platform)  
 🔹 P4 Low: 99 routes, 64626 orders (67% of platform)  
 
-➡️ P1 + P2 = only 14 routes (11% of routes) but 28.4% of order volume — high concentration of problems in few corridors
+➡️ P1 + P2 = only 14 routes (11% of routes) but 28.4% of order volume - high concentration of problems in few corridors
 
 **P1 Critical Routes (need immediate fix)**
 
@@ -15156,7 +17100,7 @@ The Big 3 Problems:
 * Longest P1 route (20 days = Northeast distance penalty)
 * Inter-region, infrastructure-driven
 
-Confirms: Southeast → Northeast corridor is "broken"
+Confirms: Southeast ➡︎ Northeast corridor is "broken"
 
 3. **SP ➡︎ ES**
 * 1459 orders, 14.1% late, 15.7 average delivery days
@@ -15188,26 +17132,26 @@ Why? ETAs are padded heavily, but consistency is poor (high variance, some order
 
 **Strategic Implications:**  
 
-1. São Paulo is the bottleneck (5 out of 6 P1 routes)
+**1. São Paulo is the bottleneck (5 out of 6 P1 routes)**  
 * SP sellers handle 70% of Brazil's orders, but struggle with distant destinations
-* Not SP seller inefficiency — they perform well intra-region (confirmed in Part 3)  
+* Not SP seller inefficiency - they perform well intra-region (confirmed in Part 3)  
 * Problem: SP is Brazil's ONLY major fulfillment hub ➡︎ single point of failure
 
-2. RJ has systemic receiving problems  
+**2. RJ has systemic receiving problems**  
 * Appears in 2 of 6 P1 routes (SP ➡︎ RJ, PR ➡︎ RJ)
 * Both show 13.5-15.5% late rates, despite being relatively short distances
-* Not a sending problem — RJ outbound seller performance is average when shipping out, indicating the problem is receiving-side logistics, not RJ sellers themselves (12.1 days on average from Part 2)
+* Not a sending problem - RJ outbound seller performance is average when shipping out, indicating the problem is receiving-side logistics, not RJ sellers themselves (12.1 days on average from Part 2)
 
 Problem: RJ metro last-mile (confirmed in Part 2: 13.3% late rate, 3x worse severe late vs. SP)
 
-3. Northeast destinations need regional hub
+**3. Northeast destinations need regional hub**  
 * 3 of 6 P1 routes end in North/Northeast (BA, CE, PA)  
 * All show 19-23 days delivery (2x Southeast average)
 * All are primarily infrastructure-driven, with two intra-region routes showing mixed causes (regional ops + last-mile)
 * Solution from Parts 2 and 3: BA fulfillment center could serve Northeast customers locally
 
 
-4. Intra-Region routes shouldn't be P1!
+**4. Intra-Region routes shouldn't be P1!**  
 * SP ➡︎ RJ and SP ➡︎ ES are both Southeast region but still critically slow
 * This information emerges for the first time in my analysis
 * Suggests: regional corridor congestion or destination last-mile breakdown, not just cross-region distance
@@ -15225,9 +17169,9 @@ So what data actually tells?
 * Not a seller problem, as RJ sellers perform quite well (8.4% late, when shipping out)
 
 **There are several hypothesis as of why MG ➡︎ RJ is 4 days faster, than SP ➡︎ RJ:**
-Hypothesis 1: MG sellers might have direct routes to RJ, while SP sellers might use longer routes or logistics trucks, serving multiple destinations  
-Hypothesis 2: RJ receives 12350 orders (12.8% of Brazil), but may have concentrated delivery zones. High volume leads to last-mile bottlenecks  
-Hypothesis 3: high delivery variance: this suggests a deeper investigation into product categories or sellers, that are consistently late. Ideally there's a need to investigate difference between SP ➡︎ RJ/Rio de janeiro vs SP ➡︎ RJ/other RJ cities. Deliveries to Rio de Janeiro city are likely slower, than to other RJ state cities 
+**Hypothesis 1:** MG sellers might have direct routes to RJ, while SP sellers might use longer routes or logistics trucks, serving multiple destinations  
+**Hypothesis 2:** RJ receives 12350 orders (12.8% of Brazil), but may have concentrated delivery zones. High volume leads to last-mile bottlenecks  
+**Hypothesis 3:** high delivery variance: this suggests a deeper investigation into product categories or sellers, that are consistently late. Ideally there's a need to investigate difference between SP ➡︎ RJ/Rio de janeiro vs SP ➡︎ RJ/other RJ cities. Deliveries to Rio de Janeiro city are likely slower, than to other RJ state cities 
 
 Ideally, delivery time by carrier should be tracked (if multiple carriers are involved) and identify, if specific carriers underperform on this route.
 Alternatively|additionally, ETA could be adjusted (based on high variance): increate ETA to reduce overall late rate
@@ -15238,16 +17182,16 @@ Alternatively|additionally, ETA could be adjusted (based on high variance): incr
 > * Separate fulfillment for RJ metro vs. rest of RJ state
 
 2. Open BA (Bahia) fulfillment center (will impact SP ➡︎ BA, SP ➡︎ CE, SP ➡︎ PA)
-* Could serve 3 P1 routes (~4K orders combined)
+* Could serve 3 P1 routes (~ 4K orders combined)
 * Could reduce 20-23 day deliveries to 10-13 days
 * Could enable local Northeast sellers to scale
 
-3. Investigate SP ➡︎ ES corridor (~1.5K orders)  
+3. Investigate SP ➡︎ ES corridor (~ 1.5K orders)  
 * Should be fast (both Southeast, neighbors) but isn't  
 * Check: carrier performance, warehouse location, route optimization  
 
 4. Address PR ➡︎ RJ issues (994 orders)  
-* Same RJ destination problem as SP → RJ
+* Same RJ destination problem as SP ➡︎ RJ
 * Confirms RJ receiving infrastructure is systemic issue  
 
 **Priority 2: monitor closely** (P2 routes = 13% of orders)
@@ -15604,7 +17548,7 @@ cat("\n")
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_418_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_446_1.png)
     
 
 
@@ -15670,7 +17614,7 @@ A difference of 0.8 percentage points is statistically negligible at this scale
 🔹 Most orders (50.6%) fall into tier 2 (typical)  
 🔹 SP → RJ has 2.3x more "very slow" orders than expected (11.5% vs. 5% expected, by definition of >P95) ➡︎ route underperforms the Brazil-wide P95 benchmark for each category. This could mean:    
 > 1. The route makes all categories slower (systemic route problem) or  
-> 2. SP → RJ ships more of the naturally-slow categories (product mix problem)  
+> 2. SP ➡︎ RJ ships more of the naturally-slow categories (product mix problem)  
 
 ➡️ This pattern matches operational breakdowns, not seller delay or category constraints  
 
@@ -15727,7 +17671,7 @@ Category variation exists!
 
 Overall: 
 
-➡️ When comparing SP ➡︎ RJ items to Brazil-wide performance for their categories, SP → RJ is 2.3x worse at creating 'very slow' deliveries.  
+➡️ When comparing SP ➡︎ RJ items to Brazil-wide performance for their categories, SP ➡︎ RJ is 2.3x worse at creating 'very slow' deliveries.  
 ➡️ On the SP ➡︎ RJ route, some categories perform much worse than others. Musical instruments and electronics have 10x higher late rates than drinks.   
 
 
@@ -15870,7 +17814,7 @@ ggplot(product_delivery_clean, aes(x = product_weight_g)) +
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_423_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_451_0.png)
     
 
 
@@ -15899,7 +17843,7 @@ ggplot(product_delivery_clean, aes(x = product_weight_g)) +
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_425_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_453_0.png)
     
 
 
@@ -15977,7 +17921,7 @@ ggplot(size_flag_plot_data, aes(x = factor(size_flag), y = value, fill = factor(
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_427_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_455_1.png)
     
 
 
@@ -16041,7 +17985,7 @@ ggplot(weight_freight, aes(x = weight_bucket, y = avg_freight_value, color = fac
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_429_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_457_0.png)
     
 
 
@@ -16061,7 +18005,7 @@ In the next section, I will try to discover, whether certain routes struggle mor
 
 
 ```R
-# Rroute type sensitivity to size:
+# Route type sensitivity to size:
 
 route_size_analysis <- product_delivery_clean %>%
   mutate(
@@ -16137,7 +18081,7 @@ ggplot(route_size_analysis, aes(x = factor(size_flag), y = route_type, fill = la
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_431_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_459_1.png)
     
 
 
@@ -16223,7 +18167,7 @@ ggplot(top_problem_states, aes(x = reorder(customer_state, late_rate_pct), y = l
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_433_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_461_1.png)
     
 
 
@@ -16351,7 +18295,7 @@ cat("\n\n")
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_435_4.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_463_4.png)
     
 
 
@@ -16393,7 +18337,7 @@ options(repr.plot.width = 14, repr.plot.height = 20)
 dim_by_cat %>%
   ggplot(aes(x = reorder(product_category_eng, avg_weight_g), avg_weight_g, fill = avg_weight_g)) +
   geom_col() +
-  geom_text(aes(label = round(avg_weight_g, 0)), hjust = 1.05, color = "white", size = 4) +
+  geom_text(aes(label = round(avg_weight_g, 0)), hjust = 1.05, color = "white", size = 4.5) +
   coord_flip() +
   scale_y_continuous(expand = c(0, 0)) + scale_fill_gradient(low = "#c6dbef", high = "#08306b") +
   labs(x = "Product category", y = "Average weight (g)", fill = "Avg weight",
@@ -16414,7 +18358,7 @@ options(repr.plot.width = 14, repr.plot.height = 20)
 dim_by_cat %>%
   ggplot(aes(x = reorder(product_category_eng, avg_volume_cm3), y = avg_volume_cm3, fill = avg_volume_cm3)) +
   geom_col() +
-  geom_text(aes(label = round(avg_volume_cm3, 0)), hjust = 1.05, color = "white", size = 4) +
+  geom_text(aes(label = round(avg_volume_cm3, 0)), hjust = 1.05, color = "white", size = 4.5) +
   coord_flip() +
   scale_y_continuous(expand = c(0, 0)) + scale_fill_gradient(low = "#f4a6b8", high = "#7b0022") +
   labs(x = "Product category", y = "Average volume (cm³)", fill = "Avg volume",
@@ -16442,7 +18386,7 @@ top_bottom <- bind_rows(
 options(repr.plot.width = 22, repr.plot.height = 10)
 ggplot(top_bottom, aes(x = reorder(product_category_eng, value), y = value / 1000, fill = metric)) +
   geom_col(position = position_dodge(width = 0.6), width = 0.5) +
-  geom_text(aes(label = paste0(round(value / 1000, 1), "K"), group = metric), position = position_dodge(width = 0.6), hjust = -0.1, size = 4) +
+  geom_text(aes(label = paste0(round(value / 1000, 1), "K"), group = metric), position = position_dodge(width = 0.6), hjust = -0.1, size = 5.5) +
   coord_flip() +
   facet_wrap(~ group, scales = "free_y") +
   scale_fill_manual(values = c(avg_weight_g = "#5a739c", avg_volume_cm3 = "#c78490"), labels = c("Average weight (g)", "Average volume (cm³)")) +
@@ -16453,28 +18397,28 @@ ggplot(top_bottom, aes(x = reorder(product_category_eng, value), y = value / 100
     plot.title = element_text(size = 22, face = "bold"),
     axis.title.x = element_text(size = 16, face = "bold"),
     axis.title.y = element_text(size = 16, face = "bold"),
-    axis.text.x = element_text(size = 14),
-    axis.text.y = element_text(size = 14),
-    strip.text = element_text(size = 14, face = "bold"),
+    axis.text.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    strip.text = element_text(size = 16, face = "bold"),
     legend.title = element_text(size = 16, face = "bold"),
-    legend.text = element_text(size = 12))
+    legend.text = element_text(size = 16))
 ```
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_437_0.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_465_0.png)
     
 
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_437_1.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_465_1.png)
     
 
 
 
     
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_437_2.png)
+![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_465_2.png)
     
 
 
@@ -16527,12 +18471,6 @@ ggplot(top_bottom_delivery, aes(x = reorder(product_category_eng, late_rate_pct)
     legend.text = element_text(size = 14))
 ```
 
-
-    
-![png](olist-retention-logistics-risk_files/olist-retention-logistics-risk_438_0.png)
-    
-
-
 **Key insights / product category analysis:**
 
 🔹 Top 10 heaviest/bulkiest categories (right panel):  
@@ -16564,204 +18502,209 @@ In this question I tested whether heavier and bulkier products lead to worse del
 
 # 5. OLIST E-COMMERCE OPERATIONS ANALYSIS: Executive Summary
 
-**Business Context:**
-This analysis examines 96470 delivered orders across Brazil (October 2016 – August 2018), evaluating marketplace health, customer behavior, operational performance and logistics infrastructure to identify high-impact opportunities for revenue growth and customer satisfaction improvement
+**Business Context:**  
+This analysis examines 96470 delivered orders across Brazil (October 2016 – August 2018), evaluating marketplace health, customer behavior, operational performance, and logistics infrastructure to identify high-impact opportunities for revenue growth and customer satisfaction improvement.
 
-**Key Findings:**
+---
 
-#### 1. **Marketplace health & growth trajectory**
+## Key Findings
+
+### 1. **Marketplace health & growth trajectory**
 **Strong foundation with retention opportunity**
 
-- Platform generated 15M BRL GMV with 97% delivery success rate, demonstrating operational maturity  
-- Monthly GMV grew from near-zero (late 2016) to 900K-1.1M BRL (2018), indicating successful market penetration
-- Marketplace diversification protects against risk: top 10 sellers = 14% GMV (Gini coefficient 0.787 with HHI 0.0039 confirms healthy long-tail structure without dangerous concentration)
-  
+- Platform generated ~15M BRL GMV with ~97% delivery success rate, demonstrating operational maturity  
+- Monthly GMV grew from near-zero (late 2016) to ~ 900K–1.1M BRL (2018), indicating successful market penetration  
+- Marketplace diversification protects against risk: top 10 sellers = ~ 14% GMV (Gini 0.787; HHI 0.0039 confirms a healthy long-tail structure)
+
 **Critical weakness: customer retention**
 
-- 94% of GMV comes from one-time buyers; repeat customers are only 3% of base but generate 92% more revenue per customer (145.9 BRL vs. 273 BRL lifetime value)
-- Converting one-time to repeat buyers is the highest-leverage growth opportunity, as second purchase is where most value unlocks
+- ~94% of GMV comes from one-time buyers; repeat customers are ~3% of the base but generate ~92% more revenue per customer (≈146 BRL vs ≈273 BRL LTV)  
+- Converting one-time to repeat buyers is the highest-leverage growth opportunity
 
 **Strategic customer segments identified**
 
-- Heavy-repeat customers (3+ orders) generate 600 BRL average revenue despite representing <1% of customer base
-- Credit card users dominate repeat behavior (179 heavy-repeat customers vs. 68 boleto users), concentrated in SP, RJ, MG, PR states
-- Category affinity drives retention: heavy-repeat buyers concentrate spending in bed_bath_table (15% GMV), sports_leisure (10%), watches_gifts (10%)  
+- Heavy-repeat customers (3+ orders) generate ~ 600 BRL average revenue despite representing <1% of the base  
+- Credit card users dominate repeat behavior (vs. boleto), concentrated in SP, RJ, MG, PR  
+- Category affinity drives retention: bed_bath_table (~15% GMV), sports_leisure (~10%), watches_gifts (~10%)
 
+---
 
-#### 2. Operational performance: Delivery delay is everything
+### 2. **Operational performance: Delivery delay is everything**
+
 **Delivery delay is the dominant dissatisfaction driver**
 
-- Orders >3 days late: 1.92 avg review + 72.8% negative reviews
-- On-time orders: 4.06-4.22 avg review + ~12% negative reviews
-- Each additional day of delay costs 0.03 review points (statistically significant, p<0.001)
+- Orders >3 days late: ~1.9 avg review + ~ 73% negative reviews  
+- On-time orders: ~ 4.3 avg review + ~7–8% negative reviews  
+- Each additional day of delay reduces review score by ~0.036 points (p < 0.001)
 
 **Freight cost and payment flexibility are irrelevant to satisfaction**
 
-- Within >3 days late bucket: 72-74% negative reviews regardless of freight cost (≤5% freight = 74%, >20% freight = 72%)
-- Payment methods show minimal variation (3.51-4.18 avg review range vs. 1.92-4.22 for delivery delay)
-- Hypothesis rejected: customers are **not** more tolerant of delays when shipping is cheap
+- Within the >3-day late bucket: ~73–74% negative reviews regardless of freight cost  
+- Payment methods show minimal variation compared to delivery performance  
+- Customers are **not more tolerant of delays** when shipping is cheaper
 
 **Seller risk is concentrated**
 
-- 90% of sellers are operationally sound
-- 37 high-risk sellers (2% of platform) control 22% of total risk, with 52.6% average lateness and ~ 82K BRL revenue at risk
-- 5 Critical-tier sellers alone represent 46780 BRL at risk (13% of platform risk from 0.27% of sellers)
+- The majority of sellers are operationally sound  
+- A small group of high-risk sellers disproportionately contributes to delays, poor reviews, and revenue at risk  
+- Delay risk is structurally concentrated, making seller-level intervention highly scalable
 
+---
 
-#### 3. Geographic infrastructure drives performance, not seller behavior
-**Delivery times vary 3.4x across Brazil by destination**
+### 3. **Geographic infrastructure drives performance, not seller behavior**
+**Delivery times vary ~3.4x across Brazil by destination**
 
-- North region: 26-29 days (RR, AP, AM)
-- Northeast: 19-21 days (BA, CE, MA, SE, PI)
-- Southeast: 9-15 days (SP, RJ, MG)
-- Worst-performing state: AL (Alagoas, Northeastern region) – 24.5 days, 23.8% late rate
+- North: ~ 26–29 days  
+- Northeast: ~ 19–21 days  
+- Southeast: ~ 9–15 days  
+- Worst-performing state: AL (~ 24.5 days, ~ 23.8% late rate)
 
 **São Paulo is an overloaded single-point-of-failure**
 
-- SP handles 70% of Brazil's orders (68081 orders from 1737 sellers)
-- 5 of 6 P1 Critical routes originate from SP, with 15-19% late rates
-- SP sellers perform well intra-region (6.4% late rate within Southeast), confirming infrastructure bottleneck, not seller inefficiency  
+- SP handles ~ 70% of orders  
+- 5 of 6 P1 Critical routes originate from SP  
+- SP performs well intra-region, confirming infrastructure bottleneck rather than seller inefficiency
 
 **Route concentration defines operational priorities**
 
-- 14 routes (11% of total) = 28.4% of platform orders
-- P1 Critical routes: 6 routes, 14498 orders (15% of platform), 14.4% average late rate
-- SP → RJ is the single biggest failure point: 8110 orders (56% of P1 volume), 15.5% late rate, driven by RJ interior cities (São Gonçalo @ 29.8% late, Cabo Frio @ 30.4% late) – not Rio de Janeiro city (13.5% late)  
+- 14 routes (~11%) = ~ 28% of platform orders  
+- SP → RJ is the largest failure point (~ 8K orders, ~ 15.5% late rate), driven by interior RJ cities
 
-**Inter-region shipping is the bottleneck**  
+**Inter-region shipping is the bottleneck**
 
-- Intra-state delivery: 5-10 days, <10% late rates
-- Cross-region (Southeast → North/Northeast): 19-29 days, 13-24% late rates
-- Seller origin location doesn't matter: SP capital vs. interior showed a negllibigle difference of 0.8 pp (15.1% vs. 15.9% late)  
- 
+- Intra-state: 5–10 days, <10% late  
+- Cross-region: 19–29 days, 13–24% late  
+- Seller location has minimal impact compared to route distance
 
-#### 4. Product dimensions: cost impact, not performance impact
-**Freight cost scales 8x with product size**  
+---
 
-- Small products (flag 0): 16.5 BRL average freight
-- Large products (flag 6): 136.1 BRL average freight
-- Driven by furniture and large appliances (mattresses: 80K cm3, 75 kg; office furniture: 70K cm3)
+### 4. **Product dimensions: cost impact, not performance impact**
+
+**Freight cost scales ~8x with product size**
+
+- Small: ~ 16.5 BRL  
+- Large: ~ 136 BRL  
 
 **Delivery performance barely affected by size**
 
-- Small products: 12 days average delivery
-- Large products: 15.4 days average delivery (only 28% increase)
-- Correlation between weight/volume and lateness: r = 0.02 (statistically significant, but practically irrelevant)
+- Small: ~ 12 days  
+- Large: ~ 15.4 days (~ 28% increase)  
+- Correlation between size and lateness is negligible (r ~ 0.02)
 
-**Geography matters much more than product size**
+**Geography matters far more than product characteristics**
 
-- Route type impact: SP-Other 12-13% late vs. In-State 6-9% late
-- Smallest categories have highest late rates: audio (12.8%), fashion_underwear_beach (12.6%), books_technical (11.4%)
-- Bulkiest categories perform well: office_furniture (9%), furniture_bedroom (7.8%), home_appliances_2 (7.1%)  
+---
 
+### 5. **Seasonal & holiday effects**
 
-#### 5. Seasonal & holiday effects
-**Delays hurt more during promotional events, less during family gifting holidays**  
+**Delays are consistently harmful, with slight amplification during peak periods**
 
-- Carnival: 46% satisfaction drop when late (worst per-order impact)
-- Black November: 8500 orders, elevated late rates during high-volume period
-- Christmas: 43% satisfaction drop (combines gift urgency + operational strain)
-- Mother's/Father's Day: ~1.86 point drop (customers prioritize gesture over timing)  
+- Carnival: ~ 2.05 review point drop when late  
+- Dia do Consumidor: ~ 1.98 drop with highest revenue-at-risk share (~68%)  
+- Christmas: ~ 1.93 drop (high expectations + operational strain)  
+- Black November: ~ 1.90 drop (volume-driven stress)  
+- Regular periods: ~ 1.84 drop (baseline effect remains strong)
 
-**Holiday baseline expectations are higher**
+**Lower-impact periods are driven by milder delays**
 
-- Holiday orders start 0.036 review points lower even when on-time (p=0.006)
-- No evidence delays are "more damaging" during holidays overall (interaction term p=0.345)  
+- Mother’s Day: ~ 1.24 drop  
+- Father’s Day: ~ 0.94 drop  
 
+These periods show shorter delays (~ 4–6 days vs ~ 10–11 days), indicating that **delay severity—not customer sentiment—drives satisfaction outcomes**
 
-#### Strategic Recommendations
+**Holiday expectations are slightly higher**
 
-**Immediate Priorities**
+- Holiday orders start ~ 0.036 review points lower even when on-time  
+- Delays are slightly more damaging during holidays (~ −0.003 additional penalty per day), but the effect is small
 
-1. Fix SP ➡︎ RJ route (8110 orders = 56% of P1 Critical volume)  
-- partner with better RJ carriers for interior/coastal cities
-- separate fulfillment strategies for RJ metro vs. rest of state
-- address last-mile challenges in São Gonçalo, Cabo Frio, Volta Redonda
-- estimated impact: prevent 15.5% late rate on Brazil's highest-volume corridor
+**Conclusion on seasonality**
 
+- Customers are not meaningfully more forgiving or less forgiving during holidays  
+- Delays are damaging in all periods  
+- Operational factors (delay severity, volume pressure, logistics disruption) dominate
 
-2. Intervene on Critical-tier sellers (5 sellers, 46780 BRL at risk)
-- Immediate account review and logistics audit
-- Consider suspension if no improvement within 30 days
-- Extend to High-tier (32 sellers): automated warnings + improvement plans
+---
 
+## Strategic Recommendations
 
-3. Retention campaign targeting one-time credit card users in SP/RJ/MG/PR
-- Focus on converting to second purchase (where 92% more lifetime value unlocks)
-- Prioritize bed_bath_table, sports_leisure, watches_gifts categories (high repeat affinity)
-- Target: increase repeat customer share from 3% to 5% = + 67% increase in repeat GMV (explanation: if repeat customer share increases by 67% (from 3% to 5% of base) and per-customer GMV stays constant, new repeat GMV: 825K x 1.67 = 1378K BRL ➜ absolute increase: +553K BRL ➜ percentage increase in repeat GMV: + 67%)
+### Immediate Priorities
 
+1. **Fix SP ➡︎ RJ route**
+- Highest-volume corridor and largest failure point  
+- Target RJ interior logistics performance  
+- Separate metro vs non-metro fulfillment strategies  
 
-**Short-term initiatives**
+2. **Intervene on high-risk sellers**
+- Immediate audit and performance enforcement  
+- Expand to broader high-risk seller cohort with structured improvement plans  
 
-4. Open Bahia (BA) fulfillment center  
-- Impacts 3x P1 routes: SP ➡︎ BA, SP ➡︎ CE, SP ➡︎ PA (~ 4K orders combined)
-- Reduces 20-23 day deliveries to 10-13 days
-- Enables local Northeast seller scaling (BA has 3.4% of Brazil's orders)
+3. **Retention campaign for one-time buyers**
+- Focus on credit card users in SP/RJ/MG/PR  
+- Push second purchase conversion (highest LTV unlock)  
 
-5. Recalibrate ETAs by route type  
-- All states deliver 7-19 days early on average within their region
-- Adjust ETAs to match infrastructure reality (reduces padding, improves trust)
-- Northeast states particularly affected: MA, CE, BA deliver ~20 days but ETAs don't match  
+---
 
-6. Implement training programs for medium-risk sellers (141 sellers, 21% of platform risk)
-- Logistics partnership recommendations
-- Best practices training
-- 10-point risk score reduction could save ~150K BRL in at-risk revenue (if assuming a linear relationship between risk score and revenue at risk)
+### Short-term initiatives
 
+4. **Open Bahia (BA) fulfillment center**
+- Reduce Northeast delivery times by ~40–50%  
 
-**Medium-term strategy**
+5. **Recalibrate ETAs**
+- Align delivery promises with actual route performance  
+- Reduce expectation gaps  
 
-7. Diversify fulfillment beyond São Paulo
-- SP handles 70% of orders but creates bottlenecks on long-distance routes
-- Recruit sellers in Northeast (PE, CE) and South (PR, SC, RS) with strong intra-region performance
-- Goal: reduce SP's share from 70% to 50% of national volume
+6. **Train medium-risk sellers**
+- Improve logistics practices  
+- Reduce delay-driven dissatisfaction  
 
+---
 
-8. Optimize freight pricing strategy  
-- Freight cost is irrelevant to satisfaction when delivery is on-time
-- Opportunity: increase freight margins on reliable routes (In-State, Intra-Region) without customer backlash
-- Use savings to subsidize infrastructure improvements in North/Northeast  
+### Medium-term strategy
 
+7. **Diversify fulfillment beyond São Paulo**
+- Reduce dependence on a single logistics hub  
 
-9. Category-specific merchandising for retention
-- Heavy-repeat customers concentrate in lifestyle/tech categories (bed_bath_table 15%, sports_leisure 10%)
-- Steer one-time buyers toward these categories via personalized recommendations
-- Cross-sell/up-sell within high-repeat categories to increase customer lifetime value
+8. **Optimize freight pricing**
+- Increase margins on reliable routes  
+- Subsidize weak infrastructure regions  
 
+9. **Category-driven retention strategy**
+- Promote high-repeat categories  
+- Increase customer lifetime value  
 
-#### Financial Impact Summary
+---
 
-| Initiative                     | Orders Impacted        | Revenue at Risk  | Expected Improvement                   |
-| ------------------------------ | ---------------------- | ---------------- | -------------------------------------- |
-| Fix P1 + P2 routes (14 routes) | 27420 (28%)            | High             | Reduce late rates from 14.4% to <10%   |
-| Critical seller intervention   | 158 orders             | 46,780 BRL       | Prevent 53.5% negative review rate     |
-| BA fulfillment center          | ~4,000 orders          | Medium           | Cut Northeast delivery time 40-50%     |
-| Retention campaign             | 93000 one-time buyers  | 15M BRL GMV pool | +2% repeat rate = +300K BRL annual GMV |
+## Financial Impact Summary
 
+| Initiative                     | Orders Impacted | Expected Impact                          |
+|------------------------------|----------------|------------------------------------------|
+| Fix P1 + P2 routes           | ~ 28% volume    | Reduce late rates to <10%                |
+| Seller intervention          | High-risk set  | Reduce disproportionate delay impact     |
+| BA fulfillment center        | ~ 4K orders     | 40–50% delivery time reduction           |
+| Retention campaign           | ~ 93K customers | Significant GMV uplift via repeat growth |
 
-**Total addressable opportunity:** Fixing P1 routes + Critical sellers + retention = impact on 30% of platform volume with minimal capital investment  
+---
 
+## Conclusion
 
-### Conclusion
+Olist operates a healthy, diversified marketplace with strong delivery fundamentals, but faces three core challenges:
 
-Olist has built a healthy, diversified marketplace with strong delivery fundamentals (97% success rate), but faces three interconnected challenges:
+1. Geographic infrastructure gaps  
+2. Single-hub dependency (São Paulo)  
+3. Low customer retention  
 
-1. Geographic infrastructure gaps (North/Northeast 2-3x slower than Southeast)  
-2. Single-hub dependency (SP overload creates bottlenecks)  
-3. Retention failure (94% of GMV from one-time buyers)  
+The primary driver of customer dissatisfaction is delivery delay severity. Seasonal peaks expose operational weaknesses but do not fundamentally change customer behavior.
 
-
-The good news: these are solvable operational problems, not product or seller quality issues. Most sellers perform well given infrastructure constraints. The solution is concentrated — 14 routes represent 28% of orders and drive overall performance.
-
-Immediate action priorities: Fix SP ➡︎ RJ (highest impact), intervene on 37 high-risk sellers (highest ROI), and launch retention campaign targeting credit card users in top 4 states (highest leverage).
+The highest-impact opportunities lie in improving delivery reliability, reducing severe delays, and increasing repeat customer conversion.
 
 # 6. REFLECTIONS & METHODOLOGY
 
-This analysis took longer, than I initially anticipated, but I am extremely proud of the outcome and the rigor I maintained throughout the process. What began as exploratory data analysis, evolved into 18 interconnected business questions, that systematically examined many dimensions of Olist's operations — from marketplace health and customer lifetime value to route-level logistics performance and seller risk stratification.
+This analysis took longer than I initially anticipated, but I am extremely proud of the outcome and the rigor I maintained throughout the process. What began as exploratory data analysis evolved into 18 interconnected business questions that systematically examined multiple dimensions of Olist's operations - from marketplace health and customer lifetime value to route-level logistics performance and seller risk stratification.
 
-Throughout this project, I prioritized asking relevant business questions that decision-makers actually need answered, rather than pursuing technically impressive, but operationally meaningless analyses. Each question was designed to either quantify a business problem, test a hypothesis, or identify actionable opportunities for improvement. For example, when examining delivery delays, I didn't stop at "delays hurt satisfaction" — I quantified the effect size, tested whether freight cost moderated the relationship (it doesn't), and built a seller risk framework to identify exactly which sellers are causing 22% of platform risk.
+Throughout this project, I prioritized asking relevant business questions that decision-makers actually need answered, rather than pursuing technically impressive but operationally meaningless analyses. Each question was designed to either quantify a business problem, test a hypothesis, or identify actionable opportunities. For example, when examining delivery delays, I did not stop at confirming that delays hurt satisfaction - I quantified the effect size, tested potential moderating factors such as freight cost and seasonality, and developed a seller risk framework to identify which sellers disproportionately contribute to operational risk.
 
-I remained committed to unbiased data-driven conclusions, even when they contradicted my initial hypotheses. My hypothesis, that customers would tolerate delays more when freight costs were low was decisively rejected by the data, and I reported this transparently, rather than searching for alternative framings. Similarly, when my initial seller risk assessment produced a list dominated by 1-order sellers with 100% late rates, I recognized the methodology was flawed, rebuilt the framework with volume weighting and composite scoring, and documented both the mistake and the correction.
+A key part of the methodology was maintaining strict analytical rigor around data modeling choices. For customer satisfaction analyses, I treated the order review as the customer voice and aligned the analysis grain accordingly, so each reviewed order represented one customer experience. This was especially important when analyzing delivery delays, seller behavior, holiday effects, and revenue at risk, where mixing item-level and order-level logic could distort the conclusions.
 
-I hope this project demonstrates not just technical proficiency in R, SQL and statistical modeling, but also the critical thinking skills required to translate raw data into strategic business intelligence. The ability to ask the right questions, challenge assumptions, validate findings across multiple analytical approaches, and prioritize recommendations by business impact — these are the capabilities I'm most proud to have developed through this work.
+I remained committed to unbiased, data-driven conclusions, even when they contradicted my initial hypotheses. My assumption that customers would tolerate delays more when freight costs were low was clearly rejected by the data, and I reported this transparently. Similarly, when seller risk patterns were affected by low-volume sellers, I applied appropriate constraints and validated the results more carefully rather than accepting misleading rankings at face value.
+
+This project demonstrates not only technical proficiency in R, SQL, and statistical modeling, but also the ability to apply critical thinking to real-world data problems. Asking the right questions, challenging assumptions, validating results across multiple approaches, and prioritizing recommendations based on business impact were the core principles guiding this work.

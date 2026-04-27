@@ -39,15 +39,31 @@ Complete Notebook: [Olist: Retention, Logistics & Risk](https://www.kaggle.com/c
 
 ---
 
-## Dataset Schema (ERD)
+## Project Structure
+
+- 📊 Marketplace Growth → demand, GMV, concentration  
+- 👥 Customer Behavior → retention, segments, purchasing patterns  
+- 🚚 Operations & Logistics → delivery performance, seller risk, delays  
+- 💰 Profitability & Risk → revenue drivers, churn, satisfaction  
+
+Each section follows a consistent structure:
+
+> - business question  
+> - analytical approach  
+> - visualizations  
+> - actionable insights  
+
+---
+
+# Explore the Project
+
+### Dataset Schema (ERD)
 
 The analytical warehouse is built on the Olist marketplace dataset, linking orders, customers, sellers, products, payments and reviews.
 
 ![Dataset ERD](docs/dataset_erd.png)
 
 ---
-
-# Explore the Project
 
 ### Business Analysis
 
@@ -77,7 +93,7 @@ Key scripts:
 - [order_items_cleaning.sql](./sql_cleaning/order_items_cleaning.sql)
 - [products_cleaning.sql](./sql_cleaning/products_cleaning.sql)
 - [reviews_cleaning.sql](./sql_cleaning/reviews_cleaning.sql)
-- [payments_cleaning.sql](./sql_cleaning/payment_cleaning.sql)
+- [payment_cleaning.sql](./sql_cleaning/payment_cleaning.sql)
 
 ---
 
@@ -95,13 +111,50 @@ or you can check out the original
 
 ---
 
+## Data Scope & Definitions
+
+All analyses are based on **valid delivered orders**, defined as:
+
+- order_status = 'delivered'  
+- timeline_is_valid = 1 (purchase ≤ approval ≤ carrier ≤ delivery)  
+- is_hanging = 0  
+- payment_value ≥ 1 BRL  
+
+Unless otherwise stated, all metrics:
+- are computed at **order level**
+- exclude zero-value and micro-payment artifacts
+
+***All customer satisfaction analyses are conducted at **order level** to ensure each observation represents a single customer experience.***
+***All results are based on filtered and validated datasets to ensure internal consistency of timelines and monetary metrics.***
+
+---
+
+## Methodological Principles
+
+- Match analytical grain to business question (order vs item vs seller)
+- Avoid many-to-many joins that inflate observations
+- Normalize metrics where structural differences exist (e.g. category-based delivery benchmarks)
+- Prioritize interpretable, decision-relevant metrics over purely statistical outputs
+
+---
+
+## Tools & Stack
+
+- SQL (BigQuery) — data cleaning and transformation  
+- R (tidyverse) — analysis and modeling  
+- Power BI — dashboarding and visualization  
+- GitHub — documentation and reproducibility  
+
+---
+
+
 # Key Findings
 
 ➜ **Delivery delays are the primary driver of dissatisfaction**  
-Crossing the 3-day delay threshold increases negative reviews by ~265%.
+Low-review share increases sharply from ~20% to ~70% once delays exceed 3 days.
 
 ➜ **Operational risk is highly concentrated**  
-Only ~2% of sellers account for ~22% of revenue exposed to delay risk.
+A small group of sellers accounts for a disproportionate share of revenue exposed to delay risk.
 
 ➜ **Logistics bottlenecks are route-specific**  
 14 delivery corridors represent ~28% of platform volume.
@@ -109,29 +162,8 @@ Only ~2% of sellers account for ~22% of revenue exposed to delay risk.
 ➜ **Retention is extremely low**  
 ~94% of GMV comes from one-time buyers.
 
-These insights translate into targeted operational and growth strategies documented in the **Executive Summary section of the analysis notebook**.
 
 These insights translate into targeted operational and growth strategies discussed in the [Executive Summary](./notebooks/olist-retention-logistics-risk.md#5-olist-e-commerce-operations-analysis-executive-summary).
-
----
-
-# Tools Used
-
-**Data Warehouse and Processing:** Google BigQuery  
-
-**Analysis Environment and Statistical Analysis:** R (Kaggle Notebook)
-
-**Core Libraries:**
-
-- bigrquery
-- DBI
-- dplyr
-- ggplot2
-- lubridate
-
-**Visualization:** *ggplot2*
-
-**Version control:** Git and GitHub
 
 ---
 
@@ -162,7 +194,7 @@ The Kaggle notebook runs in a **non-persistent container**, meaning each executi
 
 ## Analytical Methodology
 
-EDA ➜ feature engineering ➜ segmentation ➜ hypothesis testing ➜ business insights
+Exploratory analysis → feature engineering → cohort segmentation → statistical testing → business interpretation
 
 ---
 
@@ -188,7 +220,7 @@ EDA ➜ feature engineering ➜ segmentation ➜ hypothesis testing ➜ business
         │                                │                                ├── olist-retention-logistics-risk.pdf
         │                                │                                └── olist-retention-logistics-risk_files/
         │                                │
-        │                                └── project_architecture.png
+        │                                └── project_architecture.png + additional viz for Notebook
         │
         ├──────────────────────┬──────────────────────┬───────────────────┐
         │                      │                      │                   │
@@ -335,4 +367,4 @@ business_questions       sql_cleaning         reproducibility          docs
 
 ## Documentation Workflow
 
-Project reports for this repository were drafted using an AI-assisted documentation workflow with Google NotebookLM to structure and summarize analytical outputs. All analytical logic, code, and results were independently validated and written by the author.
+Project reports for this repository were structured with AI-assisted tools (Google NotebookLM) to help organize and summarize analytical outputs. All analytical logic, code, and conclusions were independently developed and validated by the author.

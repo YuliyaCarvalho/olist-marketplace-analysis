@@ -29,6 +29,8 @@ The analysis combines:
 
 ### 1. Order-level behavioral analysis
 
+*All satisfaction analysis was conducted at order level to ensure each observation represents a single customer experience*
+
 Customer satisfaction was evaluated against:
 
 - delivery delay vs ETA  
@@ -111,8 +113,8 @@ Measures whether sellers with **slower-than-category processing patterns** tend 
 
 Delivery delay is the strongest and most consistent driver of dissatisfaction.
 
-- each additional day late reduces review score (~ -0.037)
-- severe delays lead to **massive spikes in low reviews (~70%+)**
+- each additional day late reduces review score (~ -0.036)
+- severe delays lead to **very high low-review rates (~70–75%)**
 
 Customers clearly react to **what happened to their order**, not averages or expectations.
 
@@ -129,7 +131,7 @@ Once an order is late, the outcome is almost the same regardless of freight cost
 
 ---
 
-### Seller processing matters — but less than direct experience
+### Seller processing matters — but primarily as an upstream risk factor
 
 Seller-side processing risk is real:
 
@@ -139,7 +141,7 @@ Seller-side processing risk is real:
 But:
 
 - effect size is smaller
-- model explains <1% of variation
+- model explains only a very small share of variation
 
 Meaning:
 
@@ -163,7 +165,7 @@ This prevents misclassifying sellers in inherently slower categories (e.g. furni
 
 The strongest pattern across all analysis:
 
-> customers judge the platform based on their own order, not seller reputation
+> customers primarily react to their own order experience, rather than aggregated performance metrics
 
 ---
 
@@ -183,7 +185,7 @@ The strongest pattern across all analysis:
 
 > Customer satisfaction is driven primarily by whether the order arrives on time.
 
-Everything else is secondary.
+All other factors play a secondary role.
 
 - Delivery delay has the strongest and most visible impact  
 - Freight cost and payment structure have minimal influence  

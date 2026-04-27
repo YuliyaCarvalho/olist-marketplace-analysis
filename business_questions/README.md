@@ -51,23 +51,23 @@ This project investigates the Olist marketplace through four analytical lenses:
 ### 03_operations_and_logistics/
 │
 ├── **q11_delivery_speed_vs_repeat_rate**
-│   Do faster deliveries correlate with higher repeat-purchase behaviour?
+│   Do repeat customers experience systematically different delivery performance compared to one-time buyers?
 │
 ├── **q15_operational_drivers_of_reviews**
-│   Which operational factors (delivery delays, freight cost, payment type, seller performance) impact reviews and revenue?
+│   Which operational factors (delivery delays, freight cost, and seller processing performance) have the strongest impact on customer satisfaction and revenue at risk?
 │
 ├── **q16_holiday_delay_impact**
-│   Do delivery delays during holidays have a stronger impact on satisfaction?
+│   Do delivery delays during holidays have a meaningfully stronger impact on customer satisfaction?
 │
 ├── **q17_geographic_delivery_performance**
 │   Which states, cities, or routes experience the worst delivery performance?
 │
 └── **q18_product_size_vs_logistics**
-    How do product dimensions and weight affect delivery performance and freight costs?
+    How do product dimensions and weight affect delivery performance and freight cost?
 
 ---
 
-### 04_profitability_and_risk/
+### 04_customer_value_and_risk/
 │
 ├── **q12_reviews_vs_repeat_rate**
 │   Are higher review scores associated with higher repeat-purchase behaviour?
@@ -79,4 +79,3 @@ This project investigates the Olist marketplace through four analytical lenses:
     Which review groups are most likely to churn?
     ```
 
-    
