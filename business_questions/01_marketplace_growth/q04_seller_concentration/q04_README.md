@@ -51,13 +51,13 @@ This represents seller-attributed item revenue, not payment-level GMV. This appr
 
 Two complementary perspectives were used to assess concentration:
 
-1. **Cumulative GMV share by seller rank** — shows how much of total GMV is captured by the top sellers.
-2. **Distinct order count by seller** — measures how many unique orders each seller participated in.
+1. **Cumulative GMV share by seller rank** - shows how much of total GMV is captured by the top sellers.
+2. **Distinct order count by seller** - measures how many unique orders each seller participated in.
 
 In addition, two formal concentration metrics were computed:
 
-**Gini Coefficient** — measures inequality in the distribution of seller-level GMV.
-**Herfindahl–Hirschman Index (HHI)** — measures overall market concentration by summing squared market shares, giving greater weight to larger sellers.
+**Gini Coefficient** - measures inequality in the distribution of seller-level GMV.  
+**Herfindahl–Hirschman Index (HHI)** - measures overall market concentration by summing squared market shares, giving greater weight to larger sellers.  
 
 **Granularity:**
 

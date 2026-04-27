@@ -159,5 +159,5 @@ These differences are too small to support the idea that logistics speed is the 
 ## Next Question
 
 ➡️ **Next:** If delivery speed isn't the primary differentiator for loyalty, the next step is to examine subjective satisfaction: "How do customer review scores differ between one‑time, light‑repeat, and heavy‑repeat customers, and are higher review scores associated with higher repeat‑purchase behaviour?"
-[q12 Reviews vs Repeat Rate](../../04_profitability_and_risk/q12_reviews_vs_repeat_rate/q12_README.md)
+[q12 Reviews vs Repeat Rate](../../04_customer_value_and_risk/q12_reviews_vs_repeat_rate/q12_README.md)
 
