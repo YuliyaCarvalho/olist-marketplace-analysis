@@ -91,5 +91,5 @@ Monthly delivery performance metrics were calculated to evaluate:
 
 ## Next Question
 
-➡️ **Next:** With fulfillment completion confirmed as stable, the next logical step is to examine the concentration of the marketplace participants: "How concentrated is Olist’s GMV and order volume across sellers and products?" [q04 Seller Product Concentration](../q04_seller_product_concentration/q04_README.md)
+➡️ **Next:** With fulfillment completion confirmed as stable, the next logical step is to examine the concentration of the marketplace participants: "How concentrated is Olist’s GMV and order volume across sellers and products?" [q04 Seller Product Concentration](../q04_seller_concentration/q04_README.md)
 
