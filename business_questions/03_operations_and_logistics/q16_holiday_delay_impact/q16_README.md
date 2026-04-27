@@ -128,12 +128,14 @@ This isolates the portion of revenue directly associated with negative customer 
 ### Table 16.1 — Satisfaction Impact of Late Deliveries
 
 | Shopping Period | Avg Score (Late) | Avg Score (On Time) | Satisfaction Drop | % Drop |
-|---|---|---|---|---|
+|---|---:|---:|---:|---:|
 | Carnival | 2.24 | 4.29 | 2.05 | 47.8% |
 | Dia do Consumidor | 2.33 | 4.31 | 1.98 | 45.9% |
 | Christmas | 2.40 | 4.33 | 1.93 | 44.6% |
 | Black November | 2.44 | 4.34 | 1.90 | 43.8% |
+| Valentine's Day | 2.50 | 4.37 | 1.87 | 42.8% |
 | Regular | 2.53 | 4.37 | 1.84 | 42.1% |
+| Children's Day | 2.79 | 4.32 | 1.53 | 35.4% |
 | Mother's Day | 3.14 | 4.38 | 1.24 | 28.3% |
 | Father's Day | 3.49 | 4.43 | 0.94 | 21.2% |
 
@@ -141,17 +143,33 @@ This isolates the portion of revenue directly associated with negative customer 
 
 ### Table 16.2 — Revenue at Risk by Shopping Period
 
-| Shopping Period | Revenue at Risk (BRL) | % Revenue at Risk |
-|---|---|---|
-| Dia do Consumidor | 35,338 | 68.3% |
-| Christmas | 42,570 | 64.0% |
-| Carnival | 20,886 | 62.6% |
-| Regular | 409,234 | 58.1% |
-| Black November | 84,978 | 57.9% |
-| Valentine's Day | 11,781 | 57.5% |
-| Children's Day | 4,589 | 44.2% |
-| Mother's Day | 23,727 | 41.6% |
-| Father's Day | 17,044 | 29.8% |
+| Shopping Period | Late Orders | Late-Order Revenue (BRL) | Revenue at Risk (BRL) | % Revenue at Risk |
+|---|---:|---:|---:|---:|
+| Dia do Consumidor | 338 | 51,747 | 35,338 | 68.3% |
+| Christmas | 350 | 66,518 | 42,570 | 64.0% |
+| Carnival | 245 | 33,352 | 20,886 | 62.6% |
+| Regular | 4,429 | 704,603 | 409,234 | 58.1% |
+| Black November | 944 | 146,891 | 84,978 | 57.9% |
+| Valentine's Day | 85 | 20,474 | 11,781 | 57.5% |
+| Children's Day | 81 | 10,379 | 4,589 | 44.2% |
+| Mother's Day | 337 | 57,092 | 23,727 | 41.6% |
+| Father's Day | 388 | 57,266 | 17,044 | 29.8% |
+
+---
+
+### Table 16.3 — Revenue at Risk Contribution
+
+| Shopping Period | Revenue at Risk (BRL K) | Share of Total Revenue at Risk |
+|---|---:|---:|
+| Regular | 409.2 | 62.9% |
+| Black November | 85.0 | 13.1% |
+| Christmas | 42.6 | 6.5% |
+| Dia do Consumidor | 35.3 | 5.4% |
+| Mother's Day | 23.7 | 3.6% |
+| Carnival | 20.9 | 3.2% |
+| Father's Day | 17.0 | 2.6% |
+| Valentine's Day | 11.8 | 1.8% |
+| Children's Day | 4.6 | 0.7% |
 
 ---
 
