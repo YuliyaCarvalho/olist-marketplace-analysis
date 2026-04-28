@@ -206,4 +206,4 @@ This heatmap shows the percentage of orders delivered after the estimated date a
 ---
 
 
-All four visuals on this page are implemented as Python heatmaps in Power BI; technical plotting code is documented separately in [`regional-delivery-flows-python-visuals.md`](LINK)
+All four visuals on this page are implemented as Python heatmaps in Power BI; technical plotting code is documented separately in [`regional-delivery-flows-python-visuals.md`](../technical-notes/regional-delivery-flows-python-visuals.md)

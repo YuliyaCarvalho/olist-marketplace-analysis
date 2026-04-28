@@ -70,19 +70,19 @@ This page does not use KPI cards because its purpose is not headline summarizati
 - **Title:** Review Score Distribution (% of Reviews)
 - **X-axis:** `order_review_final[review_stars]`
 - **Y-axis:** Count of `order_review_final[review_id]`
-- **Displayed Values:** [Review %](./olist-dashboard-measures-and-calculated-columns.md#review-percent)
+- **Displayed Values:** [Review %](../reference/measures-and-calculated-columns.md#review-percent)
 - **Visual-level Filters:**  
   - `order_review_final[review_stars]` is not blank
 - **Used As:** Baseline customer satisfaction distribution showing how review scores are distributed across the marketplace
 
 **Business Definition:**  
-This chart shows the distribution of non-blank review scores from 1 to 5 stars, using the count of `review_id` as the underlying volume measure and [Review %](./olist-dashboard-measures-and-calculated-columns.md#review-percent) as the displayed value label. It provides a high-level view of customer sentiment by showing whether reviews are concentrated in low, middle, or high score ranges.
+This chart shows the distribution of non-blank review scores from 1 to 5 stars, using the count of `review_id` as the underlying volume measure and [Review %](../reference/measures-and-calculated-columns.md#review-percent) as the displayed value label. It provides a high-level view of customer sentiment by showing whether reviews are concentrated in low, middle, or high score ranges.
 
 **Documentation Notes:**
 
 ➡︎ Uses `order_review_final[review_stars]` on the x-axis to group reviews by star rating  
 ➡︎ Uses count of `order_review_final[review_id]` on the y-axis to show review volume in each score bucket  
-➡︎ Uses [Review %](./olist-dashboard-measures-and-calculated-columns.md#review-percent) as the displayed value label so each bar shows its share of the review distribution rather than only raw count  
+➡︎ Uses [Review %](../reference/measures-and-calculated-columns.md#review-percent) as the displayed value label so each bar shows its share of the review distribution rather than only raw count  
 ➡︎ Applies a visual-level filter excluding blank review scores so only submitted ratings are included  
 ➡︎ Serves as the baseline sentiment visual for the page before dissatisfaction is linked to delivery-delay severity  
 ➡︎ Helps establish whether customer feedback is broadly positive, polarized, or concentrated at the high end of the scale  
@@ -102,8 +102,8 @@ This chart shows the distribution of non-blank review scores from 1 to 5 stars, 
 - **Chart Type:** Column chart
 - **Title:** Customer Dissatisfaction by Delivery Delay (Order-Level Perspective)
 - **Subtitle:** *As delivery performance improves → dissatisfaction decreases*
-- **X-axis:** [`orders_final[Delay Bucket 4]`](./olist-dashboard-measures-and-calculated-columns.md#delay-bucket-4)
-- **Y-axis Measure:** [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-percent)
+- **X-axis:** [`orders_final[Delay Bucket 4]`](../reference/measures-and-calculated-columns.md#delay-bucket-4)
+- **Y-axis Measure:** [Low Review %](../reference/measures-and-calculated-columns.md#low-review-percent)
 - **Visual-level Filters:**  
   - `orders_final[Delay Bucket 4]` is not blank  
   - `orders_final[order_status] = "delivered"`  
@@ -111,15 +111,15 @@ This chart shows the distribution of non-blank review scores from 1 to 5 stars, 
 - **Used As:** Order-level dissatisfaction visual showing how the share of low reviews changes across delivery-delay severity groups
 
 **Business Definition:**  
-This chart shows the percentage of reviews classified as low reviews within each delivery-delay bucket, using [`orders_final[Delay Bucket 4]`](./olist-dashboard-measures-and-calculated-columns.md#delay-bucket-4) as the grouping field and [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-) as the outcome metric. It is designed to show how customer dissatisfaction changes as delivery performance worsens.
+This chart shows the percentage of reviews classified as low reviews within each delivery-delay bucket, using [`orders_final[Delay Bucket 4]`](../reference/measures-and-calculated-columns.md#delay-bucket-4) as the grouping field and [Low Review %](../reference/measures-and-calculated-columns.md#low-review-) as the outcome metric. It is designed to show how customer dissatisfaction changes as delivery performance worsens.
 
 **Documentation Notes:**
 
-➡︎ Uses [`orders_final[Delay Bucket 4]`](./olist-dashboard-measures-and-calculated-columns.md#delay-bucket-4) on the x-axis to group delivered orders into four delivery-outcome categories: `Severely Late (>3d)`, `Late (1–3d)`, `On-Time`, and `Early (≥3d early)`  
-➡︎ Uses [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-percent) on the y-axis to measure the share of reviews flagged as low within each delay category  
+➡︎ Uses [`orders_final[Delay Bucket 4]`](../reference/measures-and-calculated-columns.md#delay-bucket-4) on the x-axis to group delivered orders into four delivery-outcome categories: `Severely Late (>3d)`, `Late (1–3d)`, `On-Time`, and `Early (≥3d early)`  
+➡︎ Uses [Low Review %](../reference/measures-and-calculated-columns.md#low-review-percent) on the y-axis to measure the share of reviews flagged as low within each delay category  
 ➡︎ Applies a visual-level filter excluding blank delay buckets so only classified delivery outcomes are included  
 ➡︎ Applies additional visual-level filters restricting the chart to delivered orders with `timeline_is_valid = 1`  
-➡︎ Uses the sort helper [`orders_final[Delay Bucket 4 Sort]`](./olist-dashboard-measures-and-calculated-columns.md#delay-bucket-4-sort) so categories appear in business-logical severity order rather than alphabetical order  
+➡︎ Uses the sort helper [`orders_final[Delay Bucket 4 Sort]`](../reference/measures-and-calculated-columns.md#delay-bucket-4-sort) so categories appear in business-logical severity order rather than alphabetical order  
 ➡︎ Serves as the clearest customer-experience linkage visual on the page by showing how dissatisfaction escalates as lateness becomes more severe  
 
 **Interpretation Notes:**
@@ -136,22 +136,22 @@ This chart shows the percentage of reviews classified as low reviews within each
 
 - **Chart Type:** Column chart
 - **Title:** Average Review Score by Delay Severity
-- **X-axis:** [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category)
-- **Y-axis Measure:** [Avg Review Score](./olist-dashboard-measures-and-calculated-columns.md#avg-review-score)
-- **Reference Line:** Overall average based on [Avg Review Score](./olist-dashboard-measures-and-calculated-columns.md#avg-review-score)
+- **X-axis:** [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category)
+- **Y-axis Measure:** [Avg Review Score](../reference/measures-and-calculated-columns.md#avg-review-score)
+- **Reference Line:** Overall average based on [Avg Review Score](../reference/measures-and-calculated-columns.md#avg-review-score)
 - **Visual-level Filters:**  
   - `orders_final[Delay Category]` is not blank
 - **Used As:** Satisfaction-severity visual showing how average customer rating changes across simplified delivery-delay categories
 
 **Business Definition:**  
-This chart compares the average review score across simplified delivery-delay categories using [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category) as the grouping field and [Avg Review Score](./olist-dashboard-measures-and-calculated-columns.md#avg-review-score) as the outcome metric. It shows how overall customer sentiment deteriorates as delivery performance worsens.
+This chart compares the average review score across simplified delivery-delay categories using [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category) as the grouping field and [Avg Review Score](../reference/measures-and-calculated-columns.md#avg-review-score) as the outcome metric. It shows how overall customer sentiment deteriorates as delivery performance worsens.
 
 **Documentation Notes:**
 
-➡︎ Uses [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category) on the x-axis to group orders into `On-Time`, `Late (1–3d)`, and `Severely Late (>3d)` categories  
-➡︎ Uses [Avg Review Score](./olist-dashboard-measures-and-calculated-columns.md#avg-review-score) on the y-axis to measure average customer satisfaction within each delay group  
+➡︎ Uses [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category) on the x-axis to group orders into `On-Time`, `Late (1–3d)`, and `Severely Late (>3d)` categories  
+➡︎ Uses [Avg Review Score](../reference/measures-and-calculated-columns.md#avg-review-score) on the y-axis to measure average customer satisfaction within each delay group  
 ➡︎ Applies a visual-level filter excluding blank delay categories so only classified delivery outcomes are included  
-➡︎ Includes a horizontal reference line based on [Avg Review Score](./olist-dashboard-measures-and-calculated-columns.md#avg-review-score), providing a marketplace-wide benchmark for comparison  
+➡︎ Includes a horizontal reference line based on [Avg Review Score](../reference/measures-and-calculated-columns.md#avg-review-score), providing a marketplace-wide benchmark for comparison  
 ➡︎ Complements the low-review chart by showing the continuous rating penalty associated with worsening delivery severity, not just the share of clearly dissatisfied customers  
 ➡︎ Makes visible that customer satisfaction declines sharply as lateness becomes more severe  
 
@@ -171,7 +171,7 @@ This chart compares the average review score across simplified delivery-delay ca
 - **Title:** Share of Low Reviews by Delivery Performance and Shopping Period
 - **Rows:** `dim_shopping_period[Shopping Period]`
 - **Columns:** `dim_delay_category[Delay Category]`
-- **Values:** [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-percent)
+- **Values:** [Low Review %](../reference/measures-and-calculated-columns.md#low-review-percent)
 - **Visual-level Filters:**  
   - `orders_final[Delay Category]` is not blank  
   - `orders_final[delivery_timestamp_is_complete] = 1`  
@@ -179,15 +179,15 @@ This chart compares the average review score across simplified delivery-delay ca
 - **Used As:** Shopping-period sensitivity heatmap showing how customer dissatisfaction changes across both: delivery-performance severity and seasonal demand periods
 
 **Business Definition:**  
-This matrix shows the share of low reviews across combinations of shopping period and delivery-performance severity. It uses [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-percent) as the cell value, with shopping periods arranged on rows and simplified delay categories on columns. The goal is to identify whether certain commercial periods are more sensitive to poor delivery execution than others.
+This matrix shows the share of low reviews across combinations of shopping period and delivery-performance severity. It uses [Low Review %](../reference/measures-and-calculated-columns.md#low-review-percent) as the cell value, with shopping periods arranged on rows and simplified delay categories on columns. The goal is to identify whether certain commercial periods are more sensitive to poor delivery execution than others.
 
 **Documentation Notes:**
 
 ➡︎ Uses `dim_shopping_period[Shopping Period]` on rows to compare major commercial periods such as Childrens Day, Christmas, Black November, and Regular periods  
 ➡︎ Uses `dim_delay_category[Delay Category]` on columns to compare `On-Time`, `Late (1–3d)`, and `Severely Late (>3d)` delivery outcomes  
-➡︎ Uses [Low Review %](./olist-dashboard-measures-and-calculated-columns.md#low-review-percent) as the matrix value, allowing each cell to express dissatisfaction as a comparable percentage rather than raw review count  
+➡︎ Uses [Low Review %](../reference/measures-and-calculated-columns.md#low-review-percent) as the matrix value, allowing each cell to express dissatisfaction as a comparable percentage rather than raw review count  
 ➡︎ Applies visual-level filters restricting the analysis to delivered orders with complete delivery timestamps and non-blank delay category classification  
-➡︎ Shopping-period membership is assigned in [`orders_final[Shopping Period]`](./olist-dashboard-measures-and-calculated-columns.md#shopping-period), while `dim_shopping_period` serves as the reporting dimension used to display those groups in a stable business-defined order  
+➡︎ Shopping-period membership is assigned in [`orders_final[Shopping Period]`](../reference/measures-and-calculated-columns.md#shopping-period), while `dim_shopping_period` serves as the reporting dimension used to display those groups in a stable business-defined order  
 ➡︎ Uses custom sort logic from `dim_shopping_period[Sort Order]` and `dim_delay_category[Sort Order]` so both rows and columns appear in business-logical order rather than alphabetical order  
 ➡︎ Functions as the page’s core interaction heatmap by combining customer experience, delivery severity, and calendar sensitivity in one view  
 
@@ -207,19 +207,19 @@ This matrix shows the share of low reviews across combinations of shopping perio
 - **Title:** Revenue at Risk: Value and Share by Delay Severity
 - **Subtitle:** *Bars show Net GMV from 1–2 star orders; the line shows its share within each delay category*
 - **X-axis:** `dim_delay_category[Delay Category]`
-- **Column Y-axis Measure:** [Revenue at Risk](./olist-dashboard-measures-and-calculated-columns.md#revenue-at-risk)
-- **Line Y-axis Measure:** [% Revenue at Risk](./olist-dashboard-measures-and-calculated-columns.md#percent-revenue-at-risk)
+- **Column Y-axis Measure:** [Revenue at Risk](../reference/measures-and-calculated-columns.md#revenue-at-risk)
+- **Line Y-axis Measure:** [% Revenue at Risk](../reference/measures-and-calculated-columns.md#percent-revenue-at-risk)
 - **Visual-level Filters:** None
 - **Used As:** Combined value-and-share visual showing how much revenue is associated with low-rated orders across simplified delivery-delay categories
 
 **Business Definition:**  
-This chart compares both the **absolute value** and the **relative share** of revenue associated with dissatisfied orders across delay-severity groups. The columns show [Revenue at Risk](./olist-dashboard-measures-and-calculated-columns.md#revenue-at-risk), defined as [`Net GMV`](./olist-dashboard-measures-and-calculated-columns.md#net-gmv) from orders with review scores of 1 or 2 stars, while the line shows [`% Revenue at Risk`](./olist-dashboard-measures-and-calculated-columns.md#percent-revenue-at-risk), indicating how large that at-risk portion is within each delay category.
+This chart compares both the **absolute value** and the **relative share** of revenue associated with dissatisfied orders across delay-severity groups. The columns show [Revenue at Risk](../reference/measures-and-calculated-columns.md#revenue-at-risk), defined as [`Net GMV`](../reference/measures-and-calculated-columns.md#net-gmv) from orders with review scores of 1 or 2 stars, while the line shows [`% Revenue at Risk`](../reference/measures-and-calculated-columns.md#percent-revenue-at-risk), indicating how large that at-risk portion is within each delay category.
 
 **Documentation Notes:**
 
 ➡︎ Uses `dim_delay_category[Delay Category]` on the x-axis to compare `On-Time`, `Late (1–3d)`, and `Severely Late (>3d)` delivery outcomes  
-➡︎ Uses [`Revenue at Risk`](./olist-dashboard-measures-and-calculated-columns.md#revenue-at-risk) as the column measure to show the absolute amount of billed value tied to low-rated orders  
-➡︎ Uses [`% Revenue at Risk`](./olist-dashboard-measures-and-calculated-columns.md#percent-revenue-at-risk) as the line measure to show how concentrated dissatisfied-order revenue is within each delay category  
+➡︎ Uses [`Revenue at Risk`](../reference/measures-and-calculated-columns.md#revenue-at-risk) as the column measure to show the absolute amount of billed value tied to low-rated orders  
+➡︎ Uses [`% Revenue at Risk`](../reference/measures-and-calculated-columns.md#percent-revenue-at-risk) as the line measure to show how concentrated dissatisfied-order revenue is within each delay category  
 ➡︎ Applies no visual-level filters, so the chart remains fully responsive to the page’s slicers and current report context  
 ➡︎ Combines magnitude and proportion in one visual, making it possible to distinguish where revenue at risk is large in absolute terms from where it is most severe as a share of category GMV  
 ➡︎ Uses the simplified delay-severity dimension from `dim_delay_category`, which is sorted through `dim_delay_category[Sort Order]` to preserve a business-logical progression from better to worse delivery outcomes  

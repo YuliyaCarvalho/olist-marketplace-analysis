@@ -66,7 +66,7 @@ This slicer helps test whether fulfillment complexity is associated with weaker 
 
 - **Display Name:** Avg Delivery Time (Days)
 - **Type:** Card
-- **Measure:** [Avg Delivery Time (Days)](./olist-dashboard-measures-and-calculated-columns.md#avg-delivery-time-days)
+- **Measure:** [Avg Delivery Time (Days)](../reference/measures-and-calculated-columns.md#avg-delivery-time-days)
 - **Used As:** Headline logistics speed KPI showing the average end-to-end delivery duration for valid delivered orders
 
 **Business Definition:**  
@@ -85,7 +85,7 @@ Represents the average number of days between order purchase and customer delive
 
 - **Display Name:** On-Time Delivery Rate 
 - **Type:** Card
-- **Measure:** [On-Time Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#on-time-delivery-rate-percent)
+- **Measure:** [On-Time Delivery Rate %](../reference/measures-and-calculated-columns.md#on-time-delivery-rate-percent)
 - **Used As:** Headline logistics reliability KPI showing the share of valid delivered orders that arrived on or before the estimated delivery date
 
 **Business Definition:**  
@@ -116,11 +116,11 @@ Represents the average difference, in days, between the **estimated delivery dat
 
 **Documentation Notes:**
 
-➡︎ Uses the calculated column [`orders_final[delay_vs_eta]`](./olist-dashboard-measures-and-calculated-columns.md#delay-vs-eta) with **Average** aggregation  
+➡︎ Uses the calculated column [`orders_final[delay_vs_eta]`](../reference/measures-and-calculated-columns.md#delay-vs-eta) with **Average** aggregation  
 ➡︎ Applies visual-level filters restricting the card to delivered orders with `timeline_is_valid = 1`  
 ➡︎ Negative values indicate orders were delivered **earlier** than estimated, positive values indicate orders were delivered **later** than estimated  
 ➡︎ Measures average schedule deviation relative to the promised delivery date  
-➡︎ Complements [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) by showing the average size and direction of the timing gap, not just the share of missed deadlines  
+➡︎ Complements [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-) by showing the average size and direction of the timing gap, not just the share of missed deadlines  
 
 ---
 
@@ -128,7 +128,7 @@ Represents the average difference, in days, between the **estimated delivery dat
 
 - **Display Name:** Severely Late Orders %
 - **Type:** Card
-- **Measure:** [Severely Late (>3d) %](./olist-dashboard-measures-and-calculated-columns.md#severely-late-3d-)
+- **Measure:** [Severely Late (>3d) %](../reference/measures-and-calculated-columns.md#severely-late-3d-)
 - **Used As:** Headline severity KPI showing the share of valid delivered orders that were delivered more than 3 days after the estimated delivery date
 
 **Business Definition:**  
@@ -137,8 +137,8 @@ Represents the percentage of **valid delivered orders** that fall into the `Seve
 **Documentation Notes:**
 
 ➡︎ This KPI isolates the most operationally severe late deliveries rather than all late orders  
-➡︎ It is calculated as the share of [`Valid Delivered Orders`](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) classified as `Severely Late (>3d)`  
-➡︎ It complements [`On-Time Delivery Rate %`](./olist-dashboard-measures-and-calculated-columns.md#on-time-delivery-rate-percent) and [`Late Delivery Rate %`](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-percent) by focusing specifically on high-impact delivery failures  
+➡︎ It is calculated as the share of [`Valid Delivered Orders`](../reference/measures-and-calculated-columns.md#valid-delivered-orders) classified as `Severely Late (>3d)`  
+➡︎ It complements [`On-Time Delivery Rate %`](../reference/measures-and-calculated-columns.md#on-time-delivery-rate-percent) and [`Late Delivery Rate %`](../reference/measures-and-calculated-columns.md#late-delivery-rate-percent) by focusing specifically on high-impact delivery failures  
 ➡︎ Higher values indicate more serious reliability breakdowns and a worse customer delivery experience  
 
 ---
@@ -147,7 +147,7 @@ Represents the percentage of **valid delivered orders** that fall into the `Seve
 
 - **Display Name:** Valid Delivered Orders
 - **Type:** Card
-- **Measure:** [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
+- **Measure:** [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
 - **Used As:** Baseline cohort-size KPI showing the number of orders included in the page’s core logistics metrics
 
 **Business Definition:**  
@@ -176,13 +176,13 @@ Represents the number of distinct orders that qualify as **valid delivered order
 - **Used As:** Fulfillment-structure context KPI showing how many delivered, timeline-valid, non-hanging orders were fulfilled by a single seller
 
 **Business Definition:**  
-Represents the number of delivered orders in the current filter context that passed timeline quality checks, were not flagged as hanging, and were classified as [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) = `Single-Seller`.
+Represents the number of delivered orders in the current filter context that passed timeline quality checks, were not flagged as hanging, and were classified as [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) = `Single-Seller`.
 
 **Documentation Notes:**
 
 ➡︎ Uses `orders_final[order_id]` with **Count** aggregation directly in the visual  
 ➡︎ Applies visual-level filters restricting the card to delivered, timeline-valid, non-hanging orders only  
-➡︎ Filters specifically to [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) = `Single-Seller`  
+➡︎ Filters specifically to [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) = `Single-Seller`  
 ➡︎ Serves as a fulfillment-structure context card rather than a reusable DAX measure  
 ➡︎ Useful for showing how much of the logistics analysis is driven by simpler one-seller fulfillment cases  
 
@@ -202,13 +202,13 @@ Represents the number of delivered orders in the current filter context that pas
 - **Used As:** Fulfillment-structure context KPI showing how many delivered, timeline-valid, non-hanging orders were fulfilled by more than one seller
 
 **Business Definition:**  
-Represents the number of delivered orders in the current filter context that passed timeline quality checks, were not flagged as hanging, and were classified as [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) = `Multi-Seller`.
+Represents the number of delivered orders in the current filter context that passed timeline quality checks, were not flagged as hanging, and were classified as [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) = `Multi-Seller`.
 
 **Documentation Notes:**
 
 ➡︎ Uses `orders_final[order_id]` with **Count** aggregation directly in the visual  
 ➡︎ Applies visual-level filters restricting the card to delivered, timeline-valid, non-hanging orders only  
-➡︎ Filters specifically to [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) = `Multi-Seller`  
+➡︎ Filters specifically to [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) = `Multi-Seller`  
 ➡︎ Serves as a fulfillment-structure context card rather than a reusable DAX measure  
 ➡︎ Useful for showing the relative scale of more complex fulfillment cases within the logistics cohort  
 
@@ -218,16 +218,16 @@ Represents the number of delivered orders in the current filter context that pas
 
 - **Display Name:** Worst Region (by Late Delivery Rate)
 - **Type:** Card
-- **Measure:** [Worst Region Late Rate](./olist-dashboard-measures-and-calculated-columns.md#worst-region-late-rate)
+- **Measure:** [Worst Region Late Rate](../reference/measures-and-calculated-columns.md#worst-region-late-rate)
 - **Used As:** Headline regional risk KPI identifying the customer region with the highest late delivery rate in the current filter context
 
 **Business Definition:**  
-Returns the name of the customer region with the highest [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) among the regions visible in the current filter context.
+Returns the name of the customer region with the highest [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-) among the regions visible in the current filter context.
 
 **Documentation Notes:**
 
 ➡︎ This is a text-based ranking KPI rather than a numeric performance measure  
-➡︎ It evaluates [`Late Delivery Rate %`](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) across the visible values of `customers_final[Customer Region]`  
+➡︎ It evaluates [`Late Delivery Rate %`](../reference/measures-and-calculated-columns.md#late-delivery-rate-) across the visible values of `customers_final[Customer Region]`  
 ➡︎ It returns the worst-performing customer region from a delivery reliability perspective  
 ➡︎ It responds dynamically to page filters such as `Reporting Period`, `Customer Region`, and `Order Type`  
 ➡︎ It is useful for quickly surfacing the region with the weakest delivery reliability on the page  
@@ -242,8 +242,8 @@ Returns the name of the customer region with the highest [Late Delivery Rate %](
 - **Title:** Delivery Time Breakdown by Customer Region
 - **Subtitle:** *Regional delivery differences are driven mainly by transit time, not handling time*
 - **Y-axis:** `customers_final[Customer Region]`
-- **X-axis Measures:** [Transit Time (Days)](./olist-dashboard-measures-and-calculated-columns.md#transit-time-days), [Order Processing Time (Days)](./olist-dashboard-measures-and-calculated-columns.md#order-processing-time-days)
-- **Tooltips:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-), [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
+- **X-axis Measures:** [Transit Time (Days)](../reference/measures-and-calculated-columns.md#transit-time-days), [Order Processing Time (Days)](../reference/measures-and-calculated-columns.md#order-processing-time-days)
+- **Tooltips:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-), [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
 - **Visual-level Filters:** None
 - **Used As:** Regional delivery decomposition visual showing how total customer delivery time is split between pre-transit order processing and carrier-to-customer transit
 
@@ -255,7 +255,7 @@ This chart compares average delivery duration across customer regions by splitti
 ➡︎ Uses a stacked bar layout to show total delivery time while preserving the contribution of each stage  
 ➡︎ Compares delivery speed across `customers_final[Customer Region]` rather than across individual states or cities  
 ➡︎ Makes visible that most cross-region delivery differences come from the transit component rather than the processing component  
-➡︎ Uses [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) and [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to connect delivery speed with reliability and sample size  
+➡︎ Uses [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-) and [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to connect delivery speed with reliability and sample size  
 ➡︎ Supports the page’s broader logistics question by showing where customer delivery time is structurally longer and what stage contributes most to that delay  
 
 **Interpretation Notes:**
@@ -273,19 +273,19 @@ This chart compares average delivery duration across customer regions by splitti
 - **Title:** Late Delivery Rate % by Customer Region
 - **Subtitle:** *Share of delivered orders that arrived after the estimated date, by customer region*
 - **X-axis:** `customers_final[Customer Region]`
-- **Y-axis Measure:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-)
-- **Tooltips:** [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
+- **Y-axis Measure:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-)
+- **Tooltips:** [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
 - **Visual-level Filters:** None
 - **Used As:** Regional reliability comparison visual showing where customers are most likely to receive orders after the promised delivery date
 
 **Business Definition:**  
-This chart compares the share of [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) that were delivered late across customer regions. It highlights where delivery reliability is weakest from the customer perspective and makes it easier to distinguish slower regions from truly less reliable ones.
+This chart compares the share of [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders) that were delivered late across customer regions. It highlights where delivery reliability is weakest from the customer perspective and makes it easier to distinguish slower regions from truly less reliable ones.
 
 **Documentation Notes:**
 
-➡︎ Uses [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) as the primary reliability metric  
+➡︎ Uses [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-) as the primary reliability metric  
 ➡︎ Compares customer-facing delivery reliability across `customers_final[Customer Region]`  
-➡︎ Includes [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to provide sample-size context for each regional result  
+➡︎ Includes [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to provide sample-size context for each regional result  
 ➡︎ Uses a platform-average reference line to show which regions are performing above or below the marketplace baseline  
 ➡︎ Supports the logistics story by surfacing where promised delivery dates are missed most often, not just where delivery is slowest on average  
 
@@ -303,22 +303,22 @@ This chart compares the share of [Valid Delivered Orders](./olist-dashboard-meas
 - **Chart Type:** Clustered column chart
 - **Title:** Order Fulfillment Performance: Speed vs Reliability
 - **Subtitle:** *Single-seller and multi-seller orders show materially different delivery patterns and should not be analyzed as one homogeneous logistics group*
-- **Category Axis:** [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type)
-- **Left-side Y-axis Measure:** [Avg Delivery Time (Days)](./olist-dashboard-measures-and-calculated-columns.md#avg-delivery-time-days)
-- **Right-side Y-axis Measure:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-)
-- **Tooltips:** [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
+- **Category Axis:** [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type)
+- **Left-side Y-axis Measure:** [Avg Delivery Time (Days)](../reference/measures-and-calculated-columns.md#avg-delivery-time-days)
+- **Right-side Y-axis Measure:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-)
+- **Tooltips:** [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
 - **Visual-level Filters:** None
 - **Used As:** Fulfillment-structure comparison visual showing whether single-seller and multi-seller orders differ in both delivery speed and delivery reliability
 
 **Business Definition:**  
-This chart compares the two fulfillment structures captured in [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) — **Single-Seller** and **Multi-Seller** — across two logistics outcomes: average end-to-end delivery time and late delivery rate. Its purpose is not route-level diagnosis, but structural comparison. It helps determine whether these two order types behave similarly enough to be analyzed together or differently enough to justify separate treatment in later logistics analysis.
+This chart compares the two fulfillment structures captured in [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) — **Single-Seller** and **Multi-Seller** — across two logistics outcomes: average end-to-end delivery time and late delivery rate. Its purpose is not route-level diagnosis, but structural comparison. It helps determine whether these two order types behave similarly enough to be analyzed together or differently enough to justify separate treatment in later logistics analysis.
 
 **Documentation Notes:**
 
-➡︎ Uses [`orders_final[Order Type]`](./olist-dashboard-measures-and-calculated-columns.md#order-type) as the category field on the x-axis  
-➡︎ Uses [`Avg Delivery Time (Days)`](./olist-dashboard-measures-and-calculated-columns.md#avg-delivery-time-days) on the left-side y-axis to compare fulfillment speed  
-➡︎ Uses [`Late Delivery Rate %`](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-) on the right-side y-axis to compare delivery reliability against the estimated date  
-➡︎ Includes [`Valid Delivered Orders`](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to provide cohort-size context for each order type  
+➡︎ Uses [`orders_final[Order Type]`](../reference/measures-and-calculated-columns.md#order-type) as the category field on the x-axis  
+➡︎ Uses [`Avg Delivery Time (Days)`](../reference/measures-and-calculated-columns.md#avg-delivery-time-days) on the left-side y-axis to compare fulfillment speed  
+➡︎ Uses [`Late Delivery Rate %`](../reference/measures-and-calculated-columns.md#late-delivery-rate-) on the right-side y-axis to compare delivery reliability against the estimated date  
+➡︎ Includes [`Valid Delivered Orders`](../reference/measures-and-calculated-columns.md#valid-delivered-orders) in the tooltip to provide cohort-size context for each order type  
 ➡︎ Supports the methodological decision to assess single-seller and multi-seller orders separately in downstream logistics analysis rather than blending them into one combined order population  
 
 **Interpretation Notes:**
@@ -338,18 +338,18 @@ This chart compares the two fulfillment structures captured in [`orders_final[Or
 - **Chart Type:** 100% stacked bar chart
 - **Title:** Delivery Reliability by Region
 - **Category Axis:** `customers_final[Customer Region]`
-- **Value Axis:** [`Valid Delivered Orders`](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
-- **Legend:** [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category)
+- **Value Axis:** [`Valid Delivered Orders`](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
+- **Legend:** [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category)
 - **Visual-level Filters:** None
 - **Used As:** Regional delivery-outcome composition visual showing how the mix of on-time, mildly late, and severely late orders differs across customer regions
 
 **Business Definition:**  
-This chart breaks down the composition of [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) across customer regions using [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category). It shows what share of delivered orders in each region arrived **On-Time**, **Late (1–3d)**, or **Severely Late (>3d)**, making it possible to compare not just overall lateness but the severity profile of delivery outcomes.
+This chart breaks down the composition of [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders) across customer regions using [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category). It shows what share of delivered orders in each region arrived **On-Time**, **Late (1–3d)**, or **Severely Late (>3d)**, making it possible to compare not just overall lateness but the severity profile of delivery outcomes.
 
 **Documentation Notes:**
 
 ➡︎ Uses a 100% stacked layout so each region is evaluated as a proportional distribution, rather than by raw order volume  
-➡︎ Uses [`Valid Delivered Orders`](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) on the value axis and [`orders_final[Delay Category]`](./olist-dashboard-measures-and-calculated-columns.md#delay-category) as the legend split  
+➡︎ Uses [`Valid Delivered Orders`](../reference/measures-and-calculated-columns.md#valid-delivered-orders) on the value axis and [`orders_final[Delay Category]`](../reference/measures-and-calculated-columns.md#delay-category) as the legend split  
 ➡︎ Compares the reliability mix across `customers_final[Customer Region]`, not just total late-delivery rate  
 ➡︎ Distinguishes mild lateness from severe lateness, which adds more operational meaning than a binary on-time vs late view  
 ➡︎ By default, the chart shows the overall regional reliability mix across the current filtered order population, including both single-seller and multi-seller orders  
@@ -362,7 +362,7 @@ This chart breaks down the composition of [Valid Delivered Orders](./olist-dashb
 * Larger blue sections indicate more orders that were late by 1 to 3 days
 * Larger red sections indicate a higher concentration of severe delivery failures, where orders arrived more than 3 days late
 * Regions can have similar overall on-time shares but still differ meaningfully in the balance between mild lateness and severe lateness
-* Because this visual shows proportional composition, it should be interpreted alongside [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders) and the regional late-rate chart for full context
+* Because this visual shows proportional composition, it should be interpreted alongside [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders) and the regional late-rate chart for full context
 
 ---
 

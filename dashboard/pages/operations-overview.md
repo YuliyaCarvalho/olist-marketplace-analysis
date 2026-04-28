@@ -74,7 +74,7 @@ These slicers are page-wide and affect all visuals unless a visual has been expl
 
 - **Display Name:** Valid Delivered Orders
 - **Type:** Card
-- **Measure:** [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
+- **Measure:** [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
 - **Used As:** Baseline operational volume KPI showing the number of delivered orders that pass all core data-quality and commercial-validity checks
 
 **Business Definition:**  
@@ -94,7 +94,7 @@ Represents the number of distinct delivered orders that qualify as operationally
 
 - **Display Name:** Average Delivery Time
 - **Type:** Card
-- **Measure:** [Avg Delivery Time (Days)](./olist-dashboard-measures-and-calculated-columns.md#avg-delivery-time-days)
+- **Measure:** [Avg Delivery Time (Days)](../reference/measures-and-calculated-columns.md#avg-delivery-time-days)
 - **Used As:** Headline fulfillment-speed KPI showing the average number of days required to deliver valid orders
 
 **Business Definition:**  
@@ -114,7 +114,7 @@ Represents the average number of days between order purchase and customer delive
 
 - **Display Name:** On-Time Delivery Rate
 - **Type:** Card
-- **Measure:** [On-Time Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#on-time-delivery-rate-percent)
+- **Measure:** [On-Time Delivery Rate %](../reference/measures-and-calculated-columns.md#on-time-delivery-rate-percent)
 - **Used As:** Headline delivery-reliability KPI showing the share of valid delivered orders that arrived on or before the estimated delivery date
 
 **Business Definition:**  
@@ -134,7 +134,7 @@ Represents the percentage of **valid delivered orders** that were delivered on t
 
 - **Display Name:** Late Delivery Rate
 - **Type:** Card
-- **Measure:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-percent)
+- **Measure:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-percent)
 - **Used As:** Headline delivery-risk KPI showing the share of valid delivered orders that arrived after the estimated delivery date
 
 **Business Definition:**  
@@ -203,14 +203,14 @@ Represents the average number of days between **order approval** and **carrier h
 - **Display Name:** Top 10 Sellers by Extreme Processing Delay Rate
 - **Type:** Horizontal bar chart
 - **Axis:** `sellers_final[Seller Label Short]`
-- **Measure:** [Slow Processing Rate % (P90)](./olist-dashboard-measures-and-calculated-columns.md#slow-processing-rate-percent-p90)
+- **Measure:** [Slow Processing Rate % (P90)](../reference/measures-and-calculated-columns.md#slow-processing-rate-percent-p90)
 - **Tooltip:**  
-  - [Selected Seller ID](./olist-dashboard-measures-and-calculated-columns.md#selected-seller-id)  
-  - [Single-Seller Orders with Approval-To-Carrier](./olist-dashboard-measures-and-calculated-columns.md#single-seller-orders-with-approval-to-carrier)  
-  - [Slow Processed Orders (P90)](./olist-dashboard-measures-and-calculated-columns.md#slow-processed-orders-p90)  
+  - [Selected Seller ID](../reference/measures-and-calculated-columns.md#selected-seller-id)  
+  - [Single-Seller Orders with Approval-To-Carrier](../reference/measures-and-calculated-columns.md#single-seller-orders-with-approval-to-carrier)  
+  - [Slow Processed Orders (P90)](../reference/measures-and-calculated-columns.md#slow-processed-orders-p90)  
   - `orders_final[Approval To Carrier (Days Decimal)]` aggregated as **Average**  
-  - [Approval To Carrier P90](./olist-dashboard-measures-and-calculated-columns.md#approval-to-carrier-p90)
-- **Visual-level Filter:** [Seller Eligible for Ranking](./olist-dashboard-measures-and-calculated-columns.md#seller-eligible-for-ranking) `>= 30`
+  - [Approval To Carrier P90](../reference/measures-and-calculated-columns.md#approval-to-carrier-p90)
+- **Visual-level Filter:** [Seller Eligible for Ranking](../reference/measures-and-calculated-columns.md#seller-eligible-for-ranking) `>= 30`
 - **Used As:** Seller-risk ranking view showing which sellers have the highest share of severely slow internal processing events
 
 **Business Definition:**  
@@ -240,9 +240,9 @@ This visual identifies sellers with unusually frequent extreme pre-shipment dela
 - **Type:** Line chart
 - **Axis:** `dim_date[Month Start]`
 - **Measures:**  
-  - [Estimated Delivery Days](./olist-dashboard-measures-and-calculated-columns.md#estimated-delivery-days)  
-  - [Actual Delivery Days](./olist-dashboard-measures-and-calculated-columns.md#actual-delivery-days)
-- **Tooltip:** [Delivery Gap (Days)](./olist-dashboard-measures-and-calculated-columns.md#delivery-gap-days)
+  - [Estimated Delivery Days](../reference/measures-and-calculated-columns.md#estimated-delivery-days)  
+  - [Actual Delivery Days](../reference/measures-and-calculated-columns.md#actual-delivery-days)
+- **Tooltip:** [Delivery Gap (Days)](../reference/measures-and-calculated-columns.md#delivery-gap-days)
 - **Visual-level Filter:** Reporting timeline starts at **Jan 2017**
 - **Used As:** Monthly fulfillment trend view comparing promised delivery lead time against actual delivery performance
 
@@ -274,10 +274,10 @@ Although the broader calendar may include later months, some months may not appe
 - **Display Name:** Order Volume vs Late Delivery Rate Over Time
 - **Type:** Combo chart 
 - **Axis:** `dim_date[Month Start]`
-- **Column Measure:** [Valid Delivered Orders](./olist-dashboard-measures-and-calculated-columns.md#valid-delivered-orders)
-- **Line Measure:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-percent)
-- **Tooltip:** [Late Delivery Rate %](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-percent)
-- **Label-support Measure:** [Late Delivery Rate % Label](./olist-dashboard-measures-and-calculated-columns.md#late-delivery-rate-percent-label)
+- **Column Measure:** [Valid Delivered Orders](../reference/measures-and-calculated-columns.md#valid-delivered-orders)
+- **Line Measure:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-percent)
+- **Tooltip:** [Late Delivery Rate %](../reference/measures-and-calculated-columns.md#late-delivery-rate-percent)
+- **Label-support Measure:** [Late Delivery Rate % Label](../reference/measures-and-calculated-columns.md#late-delivery-rate-percent-label)
 - **Visual-level Filter:** Timeline restricted to **Jan 2017 – Aug 2018**
 - **Used As:** Monthly operations trend view comparing fulfilled order volume with late-delivery risk over time
 

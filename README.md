@@ -209,35 +209,40 @@ Exploratory analysis → feature engineering → cohort segmentation → statist
 ```text
                              olist-marketplace-analysis
                                         │
-        ┌────────────────────────────────┼────────────────────────────────┐
-        │                                │                                │
-        │                                │                                │
-     README.md                        assets                         notebooks
-        │                                │                                │
-        │                                │                                ├── olist-retention-logistics-risk.ipynb
-        │                                │                                ├── olist-retention-logistics-risk.html
-        │                                │                                ├── olist-retention-logistics-risk.md
-        │                                │                                ├── olist-retention-logistics-risk.pdf
-        │                                │                                └── olist-retention-logistics-risk_files/
-        │                                │
-        │                                └── project_architecture.png + additional viz for Notebook
+        ┌───────────────────────────────┼───────────────────────────────┐
+        │                               │                               │
+     README.md                       assets                         notebooks
+        │                               │                               │
+        │                               │                               ├── olist-retention-logistics-risk.ipynb
+        │                               │                               ├── olist-retention-logistics-risk.html
+        │                               │                               ├── olist-retention-logistics-risk.md
+        │                               │                               ├── olist-retention-logistics-risk.pdf
+        │                               │                               └── olist-retention-logistics-risk_files/
+        │                               │
+        │                               └── project_architecture.png + supporting notebook visuals
         │
-        ├──────────────────────┬──────────────────────┬───────────────────┐
-        │                      │                      │                   │
-        │                      │                      │                   │
-business_questions       sql_cleaning         reproducibility          docs
+        ├──────────────────────┬──────────────────────┬──────────────────────┬───────────────────┐
+        │                      │                      │                      │                   │
+business_questions        dashboard             sql_cleaning         reproducibility          docs
+        │                      │                      │                      │
+        │                      │                      │                      ├── bigquery_connection.md
+        │                      │                      │                      └── run_instructions.md
         │                      │                      │
-        │                      │                      ├── bigquery_connection.md
-        │                      │                      └── run_instructions.md
+        │                      │                      ├── customers_cleaning.sql
+        │                      │                      ├── sellers_cleaning.sql
+        │                      │                      ├── products_cleaning.sql
+        │                      │                      ├── orders_cleaning.sql
+        │                      │                      ├── order_items_cleaning.sql
+        │                      │                      ├── payment_cleaning.sql
+        │                      │                      ├── reviews_cleaning.sql
+        │                      │                      └── geolocations_cleaning.sql
         │                      │
-        │                      ├── customers_cleaning.sql
-        │                      ├── sellers_cleaning.sql
-        │                      ├── products_cleaning.sql
-        │                      ├── orders_cleaning.sql
-        │                      ├── order_items_cleaning.sql
-        │                      ├── payment_cleaning.sql
-        │                      ├── reviews_cleaning.sql
-        │                      └── geolocations_cleaning.sql
+        │                      ├── README.md
+        │                      ├── olist-dashboard.pbix
+        │                      ├── pages/
+        │                      ├── reference/
+        │                      ├── screenshots/
+        │                      └── technical-notes/
         │
         ├── 01_marketplace_growth
         ├── 02_customer_behavior
@@ -340,6 +345,33 @@ business_questions       sql_cleaning         reproducibility          docs
 │       └── q14_churn_by_review_score
 │           ├── q14_README.md
 │           └── q14_dataviz
+│
+├── dashboard
+│   ├── README.md
+│   ├── olist-dashboard.pbix
+│   │
+│   ├── pages
+│   │   ├── olist-dashboard-marketplace-overview.md
+│   │   ├── olist-dashboard-customer-behavior.md
+│   │   ├── olist-dashboard-operations-overview.md
+│   │   ├── olist-dashboard-regional-delivery-flows.md
+│   │   ├── olist-dashboard-delivery-impact-on-satisfaction.md
+│   │   └── olist-dashboard-customer-loyalty.md
+│   │
+│   ├── reference
+│   │   └── measures-and-calculated-columns.md
+│   │
+│   ├── technical-notes
+│   │   ├── data-modeling-decisions.md
+│   │   └── regional-delivery-flows-python-visuals.md
+│   │
+│   └── screenshots
+│       ├── marketplace-overview.png
+│       ├── customer-behavior.png
+│       ├── operations-overview.png
+│       ├── regional-delivery-flows.png
+│       ├── delivery-impact-on-satisfaction.png
+│       └── customer-loyalty.png
 │
 ├── notebooks
 │   ├── olist-retention-logistics-risk.ipynb
